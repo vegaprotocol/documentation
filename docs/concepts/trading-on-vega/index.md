@@ -11,6 +11,7 @@ The Vega protocol software is built to provide a framework for creating markets 
 Currently, the Vega protocol supports creating the following cash-settled products:
 * dated futures markets
 * perpetual futures markets
+* spot markets
 
 [Learn about cash settlement on Investopedia. ↗](https://www.investopedia.com/terms/c/cashsettlement.asp)
 

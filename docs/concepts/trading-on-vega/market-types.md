@@ -65,3 +65,8 @@ The margin calculations for perpetual futures markets contain an additional para
 * [Concept: Positions and margin](./margin.md)
 * [Tutorial: Propose a perpetuals market](../../tutorials/proposals/new-perpetuals-market.md)
 :::
+
+## Spot
+Spot markets allow for buying and selling assets and receiving them as soon as the order is filled - in effect swapping one asset for another. You'll need the full amount of the asset you want to exchange, and will receive the full exchange amount in return. Spot markets are not margined, which means you also can't hold a position because as soon as your order is filled, it's completed.
+
+Both assets in a spot market need to be enabled on the asset bridge.

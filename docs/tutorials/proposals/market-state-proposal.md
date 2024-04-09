@@ -21,7 +21,7 @@ import Batch from './_batch-sample.md';
 Below, learn how to submit a governance proposal to:
 * [Suspend normal trading](#suspend-a-market) on a live market
 * [Resume trading](#resume-a-market) on a market suspended through governance
-* [Terminating a market](#terminate-a-market)
+* [Terminate a market](#terminate-a-market)
 
 ## Requirements
 
