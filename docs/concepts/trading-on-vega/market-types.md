@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-title: Market types
+title: Markets on Vega
 vega_network: TESTNET
 hide_title: false
 description: Understand the products supported by the network.
@@ -11,6 +11,10 @@ Markets supported by the Vega network are cash-settled. When a market expires or
 All markets created using Vega software are proposed through governance, by community members. Market proposals that pass a governance vote are then enacted and can be traded on.
 
 Currently, the network supports two types of derivatives markets: futures markets that expire, and perpetual futures markets that do not expire.
+
+:::tip Try it out
+[Console](https://console.fairground.wtf): See all the currently active markets.
+:::
 
 ## Futures
 Cash-settled futures markets allow for placing orders and taking margined positions to speculate on what the value of an underlying asset will be at a specific future date.
@@ -71,4 +75,6 @@ Spot markets allow for buying and selling assets and receiving them as soon as t
 
 Spot markets have a base asset and quote asset, where the base asset is traded against the quote asset. The spot price reflects how much of the quote asset is required to buy 1 unit of the base asset. The base asset is listed first in the pair: for example, in BTC/USD, the base asset is BTC and the quote asset is USD.
 
-Both assets in a spot market need to be enabled on the [asset bridge](../../tutorials/proposals/update-asset-bridge.md).
+Both assets in a spot market need to be enabled on one of the [asset bridges](../../tutorials/proposals/update-asset-bridge.md).
+
+For a limit order on a spot market, or any order that doesn't immediately trade in full, whatever collateral is needed to cover the order, and its fees, is moved to a holding account, to ensure you can support your open order. If you cancel or reduce the size, any freed up collateral is returned to your general account. This is true in both continuous trading and auction modes.

@@ -116,7 +116,7 @@ The risk model uses the following properties:
 | Field | Description | Suggested value |
 | ----------- | ----------- | ----------- |
 | `tau` | Projection horizon measured as a year fraction. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: 0.000114077116130504 - corresponds to one hour expressed as year fraction | 0.000114077116130504 |
-| `riskAversionParameter` | Probability confidence level. <br/><br/> Accepted values: strictly greater than 0 and strictly smaller than 1 | 0.00001 |
+| `riskAversionParameter` | Probability confidence level; lower values will mean tighter price monitoring bounds. <br/><br/> Accepted values: strictly greater than 0 and strictly smaller than 1 | 0.00001 |
 | `param: mu` | Annualised growth rate of the underlying asset. <br/><br/>Accepted values: any real number | 0 |
 | `param: r` | Annualised growth rate of the risk-free asset, it's used for discounting of future cash flows. Use 0.0 unless otherwise required. <br/><br/> Accepted values: any real number | 0.0 |
 | `param: sigma` | Annualised historic volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
