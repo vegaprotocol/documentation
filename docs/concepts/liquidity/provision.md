@@ -89,9 +89,7 @@ Providing liquidity to a spot market requires setting aside a set amount of comm
 
 #### Example
 
-An LP commits 100,000 USDT to the bond account for a BTC/USDT market.
-
-That LP has committed to providing 100,000 USDT worth of buy orders and sell orders.
+An LP has submitted a commitment and has an obligation to provide 100,000 USDT worth of buy orders and sell orders.
 
 If that LP places a BUY order of size 200 at price 500, they have a notional order value of 100,000 USDT. Therefore, they are meeting the obligation for buy orders. They would need to have 100,000 USDT available to cover this.
 
