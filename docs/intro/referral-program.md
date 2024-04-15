@@ -23,7 +23,7 @@ You can become a **referrer** by navigating to the [referral info page ↗](http
 
 Vega also contains an on-chain program for discounts to trading fees based on historic executed taker trading volume (i.e. all taker trades executed by the party). When activated, as they currently are, these discounts are divided into tiers, each offering higher savings. As a trader, you can take advantage of volume discounts that provide savings based on your trading activity.
 
-Your position in these tiers depends on your recent trading volume over the last 30 days. When you make trades, the corresponding discount for your tier is applied to your taker fees.
+Your position in these tiers depends on your recent trading volume over the last 30 days. When you make trades, the corresponding discount for your tier is applied to your trading fees.
 
 ![Volume discount tiers](/img/intro/referral/volume-discount.png)
 

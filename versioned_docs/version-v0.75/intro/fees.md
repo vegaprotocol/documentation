@@ -11,11 +11,9 @@ You can offset some of those fees, or earn even more, by receiving discounts or 
 
 For a deeper dive, see the main [discount and rewards](../concepts/trading-on-vega/discounts-rewards.md) page.
 
-As of February 2024, the current fee for taker trades is 0.045% across all markets. This breaks down as:
+As of April 2024, the current fees for taker trades are:
 
-- 0.03% Infrastructure fee
-- 0.01% Liquidity fee
-- 0.005% Maker fee
+![Fees in April 2024](/img/intro/fees/april-fees.png)
 
 The meaning of each is covered on the [fees](../concepts/trading-on-vega/fees.md) page. *Infrastructure* and *maker* fees are set by governance at a network level, and the *liquidity* fee is set independently for each market. The liquidity fee may be set dynamically or set as a constant per market. 
 
