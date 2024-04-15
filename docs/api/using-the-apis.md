@@ -100,7 +100,7 @@ The **Wallet API** uses JSON-RPC with an HTTP wrapper. Find out [how to use the 
 ## Asset bridges
 Vega uses ERC-20 assets from Ethereum and Arbitrum, and to facilitate inter-chain interactions between Vega and other chains, those assets are then transferred through a series of smart contract bridges. These bridges let participants use ERC-20 and other assets on the (non-Ethereum) Vega chain.
 
-Moreover, these smart contract bridges operate just like any other smart contract on Ethereum, meaning that users can interact with them directly using a JSON-RPC node provider or a service like [Etherscan ↗](https://etherscan.io/), which provides a user-friendly interface for exploring and interacting with Ethereum smart contracts.
+Moreover, these smart contract bridges operate just like any other smart contract on Ethereum, meaning that users can interact with them directly using a JSON-RPC node provider or a service like [Etherscan ↗](https://etherscan.io/), or [Arbiscan ↗](https://arbiscan.io/) which provide a user-friendly interface for exploring and interacting with Ethereum and Arbitrum smart contracts, respectively.
 
 ### Smart contracts
 **[Smart contracts overview](./bridge/index.md)**: Explore the contracts.

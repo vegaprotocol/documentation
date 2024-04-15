@@ -24,7 +24,9 @@ To remove all assets from your public key, you'll need to close all your open po
 
 If you plan to stop using the key entirely, check if you have any [VEGA tokens](./withdrawing-vega-tokens.md#check-the-status-of-your-vega) connected to it.
 
-Console has a step-by-step process to move your assets out of Vega; this is the easiest way to withdraw them. If you want to use Etherscan instead, follow the [instructions](#withdraw-using-etherscan) below.
+Console has a step-by-step process to move your assets out of Vega; this is the easiest way to withdraw them. 
+
+If you want to use Etherscan instead for ERC-20 assets on Ethereum, follow the [instructions](#withdraw-using-etherscan) below.
 
 ## Withdraw your rewards
 Assets received as rewards may be locked for a time. Each epoch, a percentage of the locked amount begins vesting. Any amount that is vested is moved into a vested account. From there, you can redeem vested tokens by transferring them into your general account. Then, they can be withdrawn to an Ethereum address.
@@ -125,7 +127,7 @@ Before a network upgrade or planned restart, a snapshot is taken of the network,
 ### Get transaction data
 1. Find the public key that you started the withdrawal from. Ask the Vega team for the JSON of your transaction. Ask on [Discord ↗](https://vega.xyz/discord) or email `hi@vega.xyz`. **Confirm that you are in contact with someone from the actual Vega team.**
 
-### Interact with bridge contract
+### Interact with Ethereum bridge contract
 2. Once you have the transaction JSON, go to the ERC-20 bridge contract on Etherscan. `etherscan.io/address/[erc20_bridge_logic_address]#code`. (See above for the address.)
 3. Click on the `Contract` tab
 4. Click on the `Write Contract` tab
