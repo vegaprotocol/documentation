@@ -16,9 +16,13 @@ A party is a single user, defined as a Vega public key. As one person or entity 
 | See a paginated list of parties | [List parties](../api/rest/data-v2/trading-data-service-list-parties.api.mdx) |  `GET /api/v2/parties` |
 
 ## Assets
-Assets used on Vega (to start) are all ERC-20 tokens, and thus originate on the Ethereum chain, not the Vega chain. Inter-chain asset interactions between Vega and Ethereum are facilitated through the [Ethereum bridges](#ethereum-bridges). 
+Assets used on Vega originate on external chains, not the Vega chain. 
 
-Assets can only be added to the network to be used as collateral through a successful governance proposal and enactment, and a follow-on update to the asset bridge.
+Inter-chain asset interactions can be:
+ - Between Vega and Ethereum, and facilitated through the Ethereum bridge. 
+ - Between Vega and other chains, faciliated through the Arbitrum bridge.
+
+Assets can only be added to the network to be used as collateral through a successful governance proposal and enactment, and a follow-on update to the relevant [asset bridge](./using-the-apis.md#asset-bridges).
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |
@@ -26,7 +30,13 @@ Assets can only be added to the network to be used as collateral through a succe
 | Show a specific asset's details | [Asset](../api/rest/data-v2/trading-data-service-get-asset.api.mdx) | `GET /api/v2/asset/:assetId` |
 
 ## Deposits and withdrawals
-Assets used on the Vega network need to be deposited from an Ethereum wallet using the [bridge contracts](#ethereum-bridges), and can be withdrawn back into an Ethereum wallet if they are not being used for margin or positions.
+Assets used on the Vega network can be deposited using a web3 wallet:
+- Via the Ethereum bridge contract, for ERC-20 assets on Ethereum mainnet
+- Via Arbitrum bridge, which supports cross-chain asset interactions for EVM chains
+
+[Read more about the asset bridges](./using-the-apis.md#asset-bridges).
+
+Assets can be withdrawn back into an external wallet if they are not being used for margin, positions, or liquidity bond.
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |

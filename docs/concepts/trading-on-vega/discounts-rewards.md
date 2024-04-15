@@ -164,7 +164,7 @@ Since rewards can only be provided if they're funded, the [recurring transfer](.
 If you have multipliers from the activity streak and/or the reward hoarder bonus, your share of the reward grows in proportion to those multipliers.
 
 ### How rewards are capped
-If a reward is given an upper limit, each participant's actual reward amount received will be whichever is smaller of: full earned reward amount, or the reward cap number multiplied by the participant's fees paid in the epoch. The reward cap is included in the transfer that set up the reward. If any of the reward amount is unpaid, it stays in the pool.
+If a reward is given an upper limit, each participant's actual reward amount received will be whichever is smaller of: full earned reward amount, or the reward cap number multiplied by the participant's trading fees paid in the epoch. The reward cap is included in the transfer that set up the reward. If any of the reward amount is unpaid, it stays in the pool.
 
 Example:
 3 market participants are eligible for the 200 USDC reward pool per epoch. The cap is set to 1 (100%).
@@ -173,9 +173,9 @@ Party A: Trades enough to get 20% of reward
 Party B: Trades enough to get 30% of reward
 Party C: Trades enough to get 50% of reward
 
-Party A: Paid 500 in fees
-Party B: Paid 1000 in fees
-Party C: Paid 50 in fees
+Party A: Paid 500 in trading fees
+Party B: Paid 1000 in trading fees
+Party C: Paid 50 in trading fees
 
 Party A: Receives 40 (20% of 200) - the full amount
 Party B: Receives 60 (30% of 200) - the full amount

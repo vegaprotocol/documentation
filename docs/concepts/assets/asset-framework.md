@@ -5,11 +5,12 @@ vega_network: TESTNET
 hide_title: false
 description: Vega supports ERC-20 assets that are added through governance.
 ---
-Vega currently supports exclusively using ERC-20 tokens for markets on Vega. Those assets must be [proposed through governance](../governance/asset.md) and pass the voting threshold, and be enabled on the Vega bridge. ERC-20 tokens originate on the Ethereum chain, not the Vega chain. Inter-chain asset interactions between Vega and Ethereum are facilitated through the Ethereum bridges. 
+
+Vega currently supports using ERC-20 tokens for markets on Vega. Those assets must be [proposed through governance](../governance/asset.md) and pass the voting threshold, and be enabled on the Vega bridge. ERC-20 tokens originate on the Ethereum chain, not the Vega chain. Inter-chain asset interactions between Vega and Ethereum are facilitated through the Ethereum and Arbitrum bridges. 
 
 The assets on Vega are used for margining and settling positions, paying fees, and supplying liquidity on markets. Assets can also be transferred between keys and accounts.
 
-Assets need to be deposited using a bridge contract, and can be withdrawn back into an Ethereum wallet if they are not being used for margin or a liquidity bond.
+Assets need to be deposited using a bridge contract, and can be withdrawn back into a web3 wallet if they are not being used for margin or a liquidity bond.
 
 ## Asset definition
 Each asset has a set of defined fields: those that are validated against the origin contract and cannot be changed, and those that provide extra settings specifically for use with Vega.
@@ -27,7 +28,7 @@ The following fields come from the asset's smart contract. When proposing an ass
 These fields are all set in the asset's governance proposal, and can also be changed by governance.
 
 * **Maximum lifetime deposit**: The lifetime deposit limit per public key.
-* **Withdrawal delay threshold**: The maximum that someone with the asset can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the ERC-20 bridge, per asset. For an asset with a threshold of 1 (the lowest possible decimal amount for the asset), all withdrawals will be subject to the delay.
+* **Withdrawal delay threshold**: The maximum that someone with the asset can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the Ethereum and Arbitrum bridges, per asset. For an asset with a threshold of 1 (the lowest possible decimal amount for the asset), all withdrawals will be subject to the delay.
 
 #### Quantum 
 An asset's quantum is a loose approximation of the smallest 'meaningful' amount of that asset. For example the quantity of the asset that would approximately match the value of 1 USD. 
@@ -43,10 +44,12 @@ Asset bridges facilitate using assets from blockchains that aren't Vega. Bridges
 
 When an asset has successfully been proposed and approved through governance, the asset bridge will then need to be updated. Vega validators automatically create a multisig bundle - a collection of signatures indicating their approval of the update. That bundle is then submitted to the bridge before the asset can be deposited and used.
 
-### ERC-20 tokens
-The first Vega asset bridge targets the ERC-20 token standard. Ethereum holds and provides access to the majority of the currencies either natively or bridged and wrapped currencies from other chains. By focusing on Ethereum first, Vega markets get the most value for the least effort and complexity.
+Assets from other chains can also be swapped for assets that are enabled on Vega using Squid router. These assets 
 
-ERC-20 is a ubiquitous smart contract interface that allows users to mint, issue, and transfer tokens safely and easily between users, exchanges, and protocols. By creating a bridge first to ERC-20 assets, Vega users can propose using assets like Tether, USDC, Wrapped BTC, Wrapped ETH, and thousands of others.
+### ERC-20 tokens
+The Vega asset bridges target the ERC-20 token standard.
+
+ERC-20 is a ubiquitous smart contract interface that allows users to mint, issue, and transfer tokens safely and easily between users, exchanges, and protocols. Vega users can propose using assets like Tether, USDC, Wrapped BTC, Wrapped ETH, and thousands of other ERC-20 assets.
 
 ### Diagram: ERC-20 asset bridge
 

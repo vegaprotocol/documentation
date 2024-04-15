@@ -45,7 +45,7 @@ You'll need a wallet that connects to the Vega network to trade, nominate valida
 * [Get a Vega Wallet](../tools/vega-wallet/index.md): You'll need it for trading and staking tokens. The Vega Wallet is available as a browser extension, or you can download an app.
 * [Use Vega Snap](../tools/vega-protocol-snap.md): The quickest way to create a Vega keypair is to use MetaMask Snap. 
 
-You'll also need an **Ethereum wallet with Ethereum** for paying gas fees for depositing assets onto the Vega chain.
+You'll also need a **web3 wallet with Ethereum** for paying gas fees for depositing assets onto the Vega chain.
 
 #### Trading on mainnet
 * [Vega Console](https://console.vega.xyz): Use the trading interface (hosted on IPFS) to deposit assets, place trades and follow your positions.

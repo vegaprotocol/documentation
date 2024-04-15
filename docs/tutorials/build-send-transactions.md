@@ -7,7 +7,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-This guide will teach you how to build, sign, and send a Vega transaction.
+This guide will teach you how to build, sign, and send a Vega transaction using Vega's CLI wallet app.
 
 A transaction is an action you want to issue to the network, usually encoded in JSON. For example, a transaction to indicate an affirmative vote for a governance proposal might look like this:
 
@@ -20,7 +20,7 @@ A transaction is an action you want to issue to the network, usually encoded in 
 }
 ```
 
-Before the transaction is submitted to the Vega network, it must be bundled up with a few pieces of metadata and signed with your public key. That metadata includes:
+Before the transaction is submitted to the Vega network, it must be bundled up with a few pieces of metadata and signed. That metadata includes:
 
 - your public key
 - a small proof-of-work calculation
@@ -34,20 +34,19 @@ The former is the most convenient way to sign & submit a transaction, but the la
 
 ## Build transactions
 
-
-Vega Wallet allows you to send and sign transactions to the Vega network by using the following wallet commands:
+Send and sign transactions to the Vega network by using the following wallet commands:
 * `vegawallet transaction sign`: takes your transaction, bundles it with the metadata discussed above, signs it and returns an base64 encoded representation of the `raw_transaction`
 * `vegawallet transaction send`:  as above, but immediately send the transaction to the network rather then displaying the base64 encoded `raw_transaction`
 * `vegawallet raw_transaction send`: forward the base64-encoded output of `transaction sign` and submits it to the network.
 
-:::info Transactions and raw_transactions are different
-A Vega raw_transaction is a base64 encoded bundle containing a Vega transaction, a signature, a public key and target block height.
+:::info Transactions and raw transactions are different
+A Vega raw transaction is a base64 encoded bundle containing a Vega transaction, a signature, a public key and target block height.
 
 Inserting a Vega transaction in `vegawallet raw_transaction send` will fail, as it requires a encoded transaction bundle.
-Inserting a Vega raw_transaction in `vegawallet transaction sign` will fail, as it requires a Vega transaction only, without signature or any other data.
+Inserting a Vega raw transaction in `vegawallet transaction sign` will fail, as it requires a Vega transaction only, without signature or any other data.
 :::
 
-:::warning
+:::warning gRPC only
 Only gRPC commands are supported.
 
 HTTP REST and GraphQL commands are not supported.
@@ -72,6 +71,11 @@ The gRPC transaction needs to be formatted as a JSON payload, as follows:
 * `commandName` is the name of the command you want to submit in your transaction, such as "voteSubmission", or "orderCancellation". It should be camel or snake case.
 * `someProperty` is the name of the property or properties that are required by the command, such as "proposalId" on "voteSubmission", or "price" on "orderSubmission". It should be camel or snake case.
 * If the command you want to send has nested fields, `anObject` is the name of the object that wraps them, such as "peggedOrder" on "orderSubmission", or "terms" on "proposalSubmission".
+
+You will need to include the external `chainID` in your transaction if you're submitting a transaction for:
+
+* New asset governance proposal
+* Issue signatures (validators only)
 
 ### Example commands
 

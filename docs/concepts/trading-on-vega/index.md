@@ -17,7 +17,7 @@ Currently, the Vega protocol supports creating the following cash-settled produc
 Participants that interact with a market created using Vega software can submit market, limit, pegged orders. They can also act as market makers in exchange for a portion of the fees by submitting the liquidity commitment transaction and fulfilling the requirements associated with it.
 
 :::info Try it out
-This section covers derivatives trading concepts and parameters that can impact trading modes. If you understand basics and want to try out the Vega protocol for trading, use [Vega Console ↗](https://console.fairground.wtf) for the Fairground network. You'll need to deposit testnet assets using Vega and Ethereum wallets.
+This section covers derivatives trading concepts and parameters that can impact trading modes. If you understand basics and want to try out the Vega protocol for trading, use [Vega Console ↗](https://console.fairground.wtf) for the Fairground network. You'll need to deposit testnet assets using Vega and web3 wallets.
 :::
 
 ## Automated market processes
