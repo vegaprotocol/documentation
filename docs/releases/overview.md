@@ -25,7 +25,7 @@ This version was released to the Vega testnet on 15 April 2024.
 The protocol now supports proposing spot markets, which will let users buy or sell assets using assets they own. Spot markets have no margin or leverage.
 
 ### New bridge support
-There is now support for an Arbitrum bridge so that users can bridge assets from multiple chains easily to Vega and avoid Ethereum gas fees.
+There is now support for an Arbitrum bridge so that users can bridge assets easily from Arbitrum to Vega and avoid Ethereum gas fees.
 
 ### API changes
 * `chainId` is now required when submitting new asset proposal and `IssueSignature` transactions.
