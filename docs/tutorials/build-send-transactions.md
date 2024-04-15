@@ -75,7 +75,7 @@ The gRPC transaction needs to be formatted as a JSON payload, as follows:
 You will need to include the external `chainID` in your transaction if you're submitting a transaction for:
 
 * New asset governance proposal
-* Issue signatures (validators only)
+* Issuing signatures to update signers on the MultisigControl contract
 
 ### Example commands
 
