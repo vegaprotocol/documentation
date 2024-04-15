@@ -18,14 +18,14 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-## Pre-release version v0.76.0  | 2024-04->>
-This version was released to the Vega testnet on ?? April 2024.
+## Pre-release version v0.76.0-preview.3  | 2024-04-15
+This version was released to the Vega testnet on 15 April 2024.
 
 ### Spot markets
 The protocol now supports proposing spot markets, which will let users buy or sell assets using assets they own. Spot markets have no margin or leverage.
 
 ### New bridge support
-There is now support for an Arbitrum bridge with an Axelar connector so that users can bridge assets from multiple chains easily to Vega and avoid Ethereum gas fees.
+There is now support for an Arbitrum bridge so that users can bridge assets from multiple chains easily to Vega and avoid Ethereum gas fees.
 
 ### API changes
 * `chainId` is now required when submitting new asset proposal and `IssueSignature` transactions.
