@@ -44,7 +44,7 @@ Asset bridges facilitate using assets from blockchains that aren't Vega. Bridges
 
 When an asset has successfully been proposed and approved through governance, the asset bridge will then need to be updated. Vega validators automatically create a multisig bundle - a collection of signatures indicating their approval of the update. That bundle is then submitted to the bridge before the asset can be deposited and used.
 
-Assets from other chains can also be swapped for assets that are enabled on Vega using Squid router. These assets 
+Assets from other chains can also be swapped for assets that are enabled on Vega using Squid router.
 
 ### ERC-20 tokens
 The Vega asset bridges target the ERC-20 token standard.
