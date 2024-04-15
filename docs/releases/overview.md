@@ -18,6 +18,48 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
+## Pre-release version v0.76.0  | 2024-04->>
+This version was released to the Vega testnet on ?? April 2024.
+
+### Spot markets
+The protocol now supports proposing spot markets, which will let users buy or sell assets using assets they own. Spot markets have no margin or leverage.
+
+### New bridge support
+There is now support for an Arbitrum bridge with an Axelar connector so that users can bridge assets from multiple chains easily to Vega and avoid Ethereum gas fees.
+
+### API changes
+* `chainId` is now required when submitting new asset proposal and `IssueSignature` transactions.
+* `chainId`/`chain_id` and `sourceChainId`/`source_chain_id` are now returned when querying assets, withdrawals and chain events.  
+* a `list games` request's epoch filter parameters have changed. If `from epoch` or `to epoch` is omitted, only the last 30 epochs are provided, and there is a limit of a 30 epoch range for each request.
+
+### Improvements
+
+The minimum epochs in a team network parameter can now be set to 0, so team members can take part in games immediately. This has been done in [issue 10994 ↗](https://github.com/vegaprotocol/vega/issues/10994).
+
+### Bug fixes
+
+- Market decimal validation in governance is now market decimals + position decimals >= asset decimals. This ensures it’s not possible to be in a situation where small price moves don’t register but big ones do. This has been done in [issue 11009 ↗](https://github.com/vegaprotocol/vega/issues/11009).
+- Auctions in cross-margin mode now use max(order price, auction price) for margin calculation. This was done in [11036 ↗](https://github.com/vegaprotocol/vega/issues/11036).
+- Querying recurring governance transfers now includes the dispatch strategy. This was done in [10946 ↗](https://github.com/vegaprotocol/vega/issues/10945).
+- Vesting summary events are now sorted deterministically before sending. This was done in [11000 ↗](https://github.com/vegaprotocol/vega/issues/11000).
+- For some LPs, the `SLA` commitment state was returning as higher than 100% of time on book. It is now reset correctly at the end of an epoch, as of issue [11065 ↗](https://github.com/vegaprotocol/vega/issues/11065).
+- Previously, a referral set could be made into a team and owned by anyone in the set. This has been fixed in [10960 ↗](https://github.com/vegaprotocol/vega/issues/10960) so only the owner of a referral set can update it.
+- If a validator node hasn't received its own node vote some time after sending it, the node vote will be sent again, and the error received had a hard-coded time. The time in the error message is now dependent on how long it actually was. This was fixed in [10943 ↗](https://github.com/vegaprotocol/vega/issues/10943).
+- The `collateralIncreaseEstimate` for limit orders in isolated margin mode was wrongly calculated on the API. This has been fixed in [10928 ↗](https://github.com/vegaprotocol/vega/issues/10928).
+- Cancelled liquidity provisions would persist after opening auction when they shouldn't. This has been fixed in [10950 ↗](https://github.com/vegaprotocol/vega/issues/10950).
+- Stop order rejections were not returning correct errors. This was fixed in [10975 ↗](https://github.com/vegaprotocol/vega/issues/10975).
+- Opening auctions were displayed as uncrossing in the past, even while still open. This was fixed in [10973 ↗](https://github.com/vegaprotocol/vega/issues/10973).
+- Teams statistics API was showing data from all rewards, not just those limited to teams. This was fixed in [10969 ↗](https://github.com/vegaprotocol/vega/issues/10969).
+- The `lastFeeDistribution` time in snapshots was incorrect. This was fixed in [10962 ↗](https://github.com/vegaprotocol/vega/issues/10962).
+- The hard limit on `gRPC` message sizes meant that some data, such as network history logs, was unattainable. This limit is now configurable, and defaults to 20MB, as of issue [10980 ↗](https://github.com/vegaprotocol/vega/issues/10980).
+- Cases where leaving opening auction triggers monitoring auction are now handled by defaulting to last trade price if the opening auction breaches price bound. This was completed with issue [10997 ↗](https://github.com/vegaprotocol/vega/issues/10997).
+- The price ranges state for price monitoring has been simplified, making loading from a snapshot unsuccessful. This was fixed in [11038 ↗](https://github.com/vegaprotocol/vega/issues/11038).
+- Stop orders with invalid percentages were not being rejected with a rejection reason. This was causing the data node to crash.  An enum for the order rejecting reason was added in [11042 ↗](https://github.com/vegaprotocol/vega/issues/11042).
+- When querying historic ledger movements, an error would be received. This was fixed in [11059 ↗](https://github.com/vegaprotocol/vega/issues/11059).
+- The error for rejected batch proposals was not included in GraphQL. This was resolved in [11052 ↗](https://github.com/vegaprotocol/vega/pull/11052).
+
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/release/v0.75.8...v0.76.0-preview.2).
+
 ## Pre-release version v0.75.7  | 2024-03-28
 This version was released to the Vega testnet on 28 March 2024.
 
