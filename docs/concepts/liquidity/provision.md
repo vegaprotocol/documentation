@@ -82,6 +82,19 @@ The bond total will remain in the bond account for as long as the LP chooses to 
 
 The bond committed during the liquidity commitment transaction is stored in a bond account (one per party, per market). Deposits and withdrawals for the bond account are governed by the protocol and cannot be manually triggered.
 
+### Liquidity commitment for a spot market
+In almost all ways, providing liquidity to a spot market is the same as for other markets. There are minor differences when considering the commitment and how much to have available to support a spot market commitment. 
+
+Providing liquidity to a spot market requires setting aside a set amount of commitment as bond, using the market's quote asset. The orders for the commitment need to provide the full amount of assets required to support the liquidity for both the buy and sell side.
+
+#### Example
+
+An LP has submitted a commitment and has an obligation to provide 100,000 USDT worth of buy orders and sell orders.
+
+If that LP places a BUY order of size 200 at price 500, they have a notional order value of 100,000 USDT. Therefore, they are meeting the obligation for buy orders. They would need to have 100,000 USDT available to cover this.
+
+If that LP places a SELL order of size 50 at price 2000, they have a notional order value of 100,000 USDT. Therefore, they are meeting the obligation for sell orders. They would need to have 50 BTC available to cover this.
+
 ### Price range for liquidity orders
 A market’s governance proposal includes a liquidity provision price range. That range determines which orders count towards the LP meeting their commitment to the market. The range determines the furthest away from the mid-price the orders can be. Anything outside of that range won’t count towards an LP’s commitment, and thus doesn’t count towards meeting the SLA.
 

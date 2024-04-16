@@ -11,12 +11,13 @@ Markets are proposed and voted into existence by Vega tokenholders. The paramete
 
 Some market parameters can also be changed. They can only be proposed by a liquidity provider with enough equity-like share in the market, and need to be voted for by a sufficient number of tokenholders and/or liquidity providers.
 
-When creating a market governance proposal, whether it is for a new dated futures market, a new perpetual futures market, or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
+When creating a market governance proposal, whether it is for a new dated futures market, a new perpetual futures market, a new spot market, or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
 
 Read more:
 * [Vega community forum ↗](https://community.vega.xyz): Share your draft proposals for community discussion.
 * [New perpetual futures market proposal ↗](../../tutorials/proposals/new-perpetuals-market.md): Guide to submitting a proposal for a new market
 * [New futures market proposal ↗](../../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market
+* [New spot market proposal ↗](../../tutorials/proposals/new-spot-market.md): Guide to submitting a proposal for a new market
 * [New successor market proposal ↗](../../tutorials/proposals/new-successor-market-proposal.md): Guide to submitting a proposal for a new successor market
 * [Update market proposal ↗](../../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
