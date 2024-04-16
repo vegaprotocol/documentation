@@ -135,7 +135,7 @@ The values of the fields `newSigner/oldSigner`, `nonce` and `signatures` will be
 
 <EthAddresses frontMatter={frontMatter} show={["MultisigControl"]} />
 
-Alternatively they can also be submitted through Etherscan by naviagating to the contract address and clicking on the tabs `Contract` followed by `Write Contract`, and then expanding then `add_signer/remove_signer` function. You can then fill in the required fields using the information retrieved earlier from a data node, connect a Web3 wallet, and then click `Write`.
+Alternatively they can also be submitted through Etherscan by naviagating to the contract address and clicking on the tabs `Contract` followed by `Write Contract`, and then expanding then `add_signer/remove_signer` function. You can then fill in the required fields using the information retrieved earlier from a data node, connect an Ethereum wallet, and then click `Write`.
 
 :::caution Submit using the correct Ethereum keys
 The Ethereum wallet you use to connect to Etherscan, or use to submit the transaction programatically, must have the address that matches the `submitter` fields returned by the data node's API. If it is not then the transaction will fail as the signatures are tied to the submitter.

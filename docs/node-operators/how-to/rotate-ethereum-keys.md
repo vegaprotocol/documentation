@@ -79,6 +79,7 @@ vega rotate_eth_key --target-block=$TARGET_BLOCK --submitter=$SUBMITTER_ADDR --r
 ```
 
 `TARGET_BLOCK` is the block-height at which the key-rotation will occur in the Vega network and must be a block in the future. It is advised to choose a block-height that will be at a time where the below steps can be completed, and one that will not be close to an epoch boundary.
+
 ## Reload Ethereum wallet in Vega validator node
 Once the network reaches `TARGET_BLOCK` it will rotate the keys associating `ETH_NEW_ADDR` with the node. It is at this time that the following command needs to be run to rotate the key on the node itself:
 ```
