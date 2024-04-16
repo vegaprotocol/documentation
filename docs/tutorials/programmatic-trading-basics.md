@@ -124,7 +124,7 @@ When connecting, you'll be given a prompt similar to this one:
 * For the market you wish to trade on, click on the settlement asset. This will open an asset details dialog. Select the contract address to see details of the asset’s smart contract on Etherscan.
 * Select “Contract” in the middle toolbar. 
 * Select “Write” in the buttons below.
-* Select “Connect to Web3” and allow it to connect to your Ethereum wallet.
+* Select “Connect to Web3” and allow it to connect to your web3 wallet.
 * Further down the page, choose the faucet option, select it and click “Write”. This will create and transfer some of the asset to your Ethereum address.
 
 ## Deposit assets
@@ -136,7 +136,7 @@ You'll need Sepolia ETH to pay for the Ethereum transaction gas.
 * Go back to [Console ↗](https://console.fairground.wtf/) and select the “PORTFOLIO” button on the top toolbar. 
 * Select the Deposits tab.
 * Click the “DEPOSIT” button on the bottom right.
-* Connect your Ethereum wallet to the dApp to populate the “from address”.
+* Connect your web3 wallet to the dApp to populate the “from address”.
 * In the asset dropdown, select the asset you got in the faucet step.
 * Enter the amount of the asset you would like to transfer, taking into account the maximum limits shown above the data entry field.
 * Click the “DEPOSIT” button to perform the transfer from your Ethereum address to your Vega key.

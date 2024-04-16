@@ -164,7 +164,7 @@ Since rewards can only be provided if they're funded, the [recurring transfer](.
 If you have multipliers from the activity streak and/or the reward hoarder bonus, your share of the reward grows in proportion to those multipliers.
 
 ### How rewards are capped
-If a reward is given an upper limit, each participant's actual reward amount received will be whichever is smaller of: full earned reward amount, or the reward cap number multiplied by the participant's fees paid in the epoch. The reward cap is included in the transfer that set up the reward. If any of the reward amount is unpaid, it stays in the pool.
+If a reward is given an upper limit, each participant's actual reward amount received will be whichever is smaller of: full earned reward amount, or the reward cap number multiplied by the participant's trading fees paid in the epoch. The reward cap is included in the transfer that set up the reward. If any of the reward amount is unpaid, it stays in the pool.
 
 Example:
 3 market participants are eligible for the 200 USDC reward pool per epoch. The cap is set to 1 (100%).
@@ -173,9 +173,9 @@ Party A: Trades enough to get 20% of reward
 Party B: Trades enough to get 30% of reward
 Party C: Trades enough to get 50% of reward
 
-Party A: Paid 500 in fees
-Party B: Paid 1000 in fees
-Party C: Paid 50 in fees
+Party A: Paid 500 in trading fees
+Party B: Paid 1000 in trading fees
+Party C: Paid 50 in trading fees
 
 Party A: Receives 40 (20% of 200) - the full amount
 Party B: Receives 60 (30% of 200) - the full amount
@@ -217,6 +217,8 @@ The largest traders by position size category rewards traders with consistenly l
 
 It measures a trader's time-weighted average position over a set number of epochs to determine how long each trader is able to manage a position that's larger than the positions of other traders, without being closed out. It's also known as the "average position metric".
 
+This reward is applicable to trading on derivatives markets, not spot markets.
+
 #### Example of largest traders by position size
 The image below shows how the largest traders by positions size is calculated in a single 24-hour epoch.
 
@@ -231,6 +233,8 @@ Actions of the example trader in the image above over 24 hours:
 ### Most profitable traders
 The most profitable traders category rewards high profit in relation to traders' position sizes. A trader's highest relative profit is taken from each epoch in the reward window, and averaged out. Those who have higher relative profits rank better in the standings. It's also known as the "relative return metric".
 
+This reward is applicable to trading on derivatives markets, not spot markets.
+
 #### Example of most profitable traders
 The image below shows how the most profitable trader's score is calculated across epochs. A trader with a large amount of capital will have as much chance of winning as a trader with a smaller amount.
 
@@ -240,6 +244,8 @@ The image below shows how the most profitable trader's score is calculated acros
 The most consistently profitable traders category rewards traders with the least amount of variance in their returns while they had a position open on a market in the rewards window. Traders who have similar amount of profit across the epochs, rather than spikes and dips, rank higher in the standings.
 
 This is measured by taking the sum of each trader's mark to market gains and losses, both realised and unrealised, and includes funding gains and losses if trades are on a perpetuals market. It's also known as the "returns volatility metric".
+
+This reward is applicable to trading on derivatives markets, not spot markets.
 
 ### Market creation rewards 
 The market creation reward dispatch metric is designed to incentivise creating markets that attract high trading volumes. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 

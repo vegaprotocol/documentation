@@ -30,6 +30,7 @@ Take a look at the tutorials for help with using the Vega software.
 | 🧱 [Propose a change to network parameters](./proposals/network-parameter-proposal.md)        | How to propose a change to the value of a network parameter |
 | ♾️ [Propose a new perpetual futures market](./proposals/new-perpetuals-market.md)        | How to propose a new futures market |
 | 🛍️ [Propose a new futures market](./proposals/new-market-proposal.md)        | How to propose a new futures market |
+| 💹 [Propose a new spot market](./proposals/new-spot-market.md)        | How to propose a new spot market |
 | ⇒ [Propose a new successor futures market](./proposals/new-successor-market-proposal.md)        | How to propose a new successor futures market |
 | 🛒 [Propose a change to a market](./proposals/update-market-proposal.md)        | How to propose an update to market parameters |
 | 🪙 [Propose a new asset](./proposals/new-asset-proposal.md)        | How to propose a new asset |
