@@ -20,7 +20,7 @@ Assets used on Vega originate on external chains, not the Vega chain.
 
 Inter-chain asset interactions can be:
  - Between Vega and Ethereum, and facilitated through the Ethereum bridge. 
- - Between Vega and other chains, faciliated through the Arbitrum bridge.
+ - Between Vega and Arbitrum, faciliated through the Arbitrum bridge.
 
 Assets can only be added to the network to be used as collateral through a successful governance proposal and enactment, and a follow-on update to the relevant [asset bridge](./using-the-apis.md#asset-bridges).
 
@@ -32,7 +32,7 @@ Assets can only be added to the network to be used as collateral through a succe
 ## Deposits and withdrawals
 Assets used on the Vega network can be deposited using a web3 wallet:
 - Via the Ethereum bridge contract, for ERC-20 assets on Ethereum mainnet
-- Via Arbitrum bridge, which supports cross-chain asset interactions for EVM chains
+- Via the Arbitrum bridge, for assets on the Arbitrum mainnet network
 
 [Read more about the asset bridges](./using-the-apis.md#asset-bridges).
 
