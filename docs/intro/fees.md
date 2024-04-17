@@ -7,7 +7,7 @@ hide_title: false
 
 Participants who place orders onto the order book, provide liquidity and run the network infrastructure receive the fees that traders pay on filled orders and transfers. The protocol does not charge gas fees for interacting with the network.
 
-You can offset some of those fees, or earn even more, by receiving discounts or getting rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. See the rewards that are currently available on [Console ↗](https://console.vega.xyz/#/rewards).
+You can offset some of those fees, or earn even more, by receiving discounts or getting rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. See the rewards that are currently available in mainnet on [Console ↗](https://console.vega.xyz/#/rewards).
 
 For a deeper dive, see the main [discount and rewards](../concepts/trading-on-vega/discounts-rewards.md) page.
 

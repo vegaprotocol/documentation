@@ -33,14 +33,14 @@ The currently active rewards can be explored within the trading [Console ↗](ht
 
 ![Rewards](/img/intro/rewards.png)
 
-At the time of writing, there are three active rewards for each market on Vega:
+As of April 2024, there are the following active rewards for each market on Vega:
 
- - **1200 VEGA per epoch**: Liquidity Fees Received
+ - **Liquidity Fees Received** available on all markets:
    - Distributed based on proportional amount of liquidity fees received by a trader. To be eligible for these, a party must submit a liquidity commitment and meet the time-on-book requirements. After this, fees are distributed based on the size of their on-book commitment and quality of prices. See [liquidity provision](./liquidity-provision.md) for more on how to supply liquidity.
- - **100 VEGA per epoch**: Maker Fees Earned
-   - Distributed based on proportional amount of maker fees received by a trader that epoch (Acting as maker on a trade).
- - **100 VEGA per epoch**: Maker Fees Paid
-   - Distributed based on proportional amount of maker fees paid by a trader that epoch (Acting as taker on a trade).
+ - **Maker Fees Earned** available on Bitcoin / Tether USD Perpetual, Ether / Tether USD Perpetual:
+   - Distributed based on proportional amount of maker fees received by a trader that epoch (acting as maker on a trade).
+ - **Maker Fees Paid** available on all markets: 
+   - Distributed based on proportional amount of maker fees paid by a trader that epoch (acting as taker on a trade).
 
 ### Reward hoarder bonus
 Leaving your reward earnings in your vested account will increase your share of the trading rewards you've accrued. How much extra you get depends on your total rewards balance, whether it's locked, vesting, or vested.
