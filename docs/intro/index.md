@@ -7,7 +7,7 @@ import DocCardList from '@theme/DocCardList';
 
 Vega is a protocol for creating and trading on dated future and perpetual derivatives markets and spot markets, on a fully decentralised network.
 
-The Vega mainnet is run by a set of validator nodes. There's also a Vega testnet called Fairground, where it's possible to try trading cash-settled futures and perpetuals on a test network.
+The Vega mainnet is run by a set of [validator nodes](../concepts/vega-chain/validator-nodes.md). There's also a Vega testnet called Fairground, where it's possible to try trading spot, and cash-settled futures and perpetuals on a test network.
 
 Learn more about Vega below.
 

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-title: Trading modes
+title: Auctions & continuous trading
 vega_network: TESTNET
 hide_title: false
 description: Find out what trading modes the protocol supports.
@@ -39,12 +39,10 @@ Most, but not all, order types and times in force are accepted during continuous
 ## Auctions
 Auctions are a trading mode that collect orders during a set period, called an [auction call period](#auction-call-period). The end of an auction call period is determined by the condition that the auction aims to meet.
 
-Auctions aggregate participation over time, up to a pre-set time when the market is uncrossed. The auction uncrossing generates trades at the conclusion of the auction, using an algorithm that processes, in price-time priority, the set of crossed orders that maximises traded volume. 
-
 Currently, all auctions are triggered automatically based on market conditions. Market conditions that could trigger an auction:
 * A market has opened for trading, which means it needs a defined price to start trading from 
 * Price swing on a market is perceived, based on risk models, to be extreme and unrealistic
-* Not enough liquidity on a market 
+* Not enough liquidity on a market
 
 ### Auction type: Opening
 Every continuous trading market opens with an auction. Their purpose is to calibrate a market and help with price discovery by determining a fair mid-price to start off continuous trading.
@@ -115,3 +113,8 @@ Auctions end, orders are uncrossed and resulting trades are created when:
 * The criteria that end the particular auction are reached
 
 Auctions **do not end** if the resulting state would immediately cause another auction to begin. Instead, the current auction gets extended.
+
+### Auction uncrossing 
+When an auction has been exited, the orders are uncrossed. During an auction uncrossing, orders that were collected during the auction generate trades. Those trades are processed in price-time priority. 
+
+First, the protocol determines the range where the highest total quantity of trades can occur, in other words, the volume-maximising price range. Then, the trades at the mid-price within that range are filled. For example, if the volume-maximising price range is 98-102, the protocol prices all trades in the uncrossing at 100, i.e. `(minimum price of range + maximum price of range)/2`.

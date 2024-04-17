@@ -13,18 +13,26 @@ The program is structured such that a **referrer** generates a referral code whi
 
 Both the commission and discount percentages vary and depend on a tier system. Tiers are based on the cumulative trading volume of the referrer and all of their associated referees over the last 30 days. The tier on the current epoch will be based on the rolling 30 days as at the start of the epoch. 
 
-As a **referrer**, you can further boost your rewards by staking VEGA tokens, applying a multiplier to the percentage of fees paid by your **referees** you receive. 
+As a **referrer**, you can further boost your rewards by staking VEGA tokens, applying a multiplier to the percentage of fees paid by your **referees** you receive.
+
+As of April 2024, the following reward boosts are available:
 
 ![Available reward boost tiers](/img/intro/referral/tiers.png)
 
-You can become a **referrer** by navigating to the [referral info page ↗](https://console.vega.xyz/#/referrals/create-code) where you can generate your referral code. Friends entering this code on the same page will become your **referees**. By becoming a referrer you will earn commission from the trading fees paid from your **referees**. Commission is received in the market settlement currency and paid directly into the **referrer**'s general account without any vesting. 
+You can become a **referrer** by navigating to the [referral info page ↗](https://console.vega.xyz/#/referrals/create-code) where you can generate your referral code. 
+
+Friends entering this code on the same page will become your **referees**. 
+
+By becoming a referrer you will earn commission from the trading fees paid from your **referees**. Commission is received in the market settlement currency and paid directly into the **referrer**'s general account without any vesting. 
 
 ## Volume discounts
 
 Vega also contains an on-chain program for discounts to trading fees based on historic executed taker trading volume (i.e. all taker trades executed by the party). When activated, as they currently are, these discounts are divided into tiers, each offering higher savings. As a trader, you can take advantage of volume discounts that provide savings based on your trading activity.
 
-Your position in these tiers depends on your recent trading volume over the last 30 days. When you make trades, the corresponding discount for your tier is applied to your taker fees.
+Your position in these tiers depends on your recent trading volume over the last 30 days. When you make trades, the corresponding discount for your tier is applied to your trading fees.
+
+As of April 2024, the following volume discount tiers are available:
 
 ![Volume discount tiers](/img/intro/referral/volume-discount.png)
 
-Up-to-date volume discount program details can be found on [Console ↗](https://console.vega.xyz/#/fees).
+The most up-to-date volume discount program details can be found on [Console ↗](https://console.vega.xyz/#/fees).
