@@ -36,6 +36,8 @@ You will need:
 
 You should also share your proposal idea in the [_Freeform Proposals_ forum section ↗](https://community.vega.xyz/c/governance/free-form-proposals/31) before submitting it to the network.
 
+## Submitting proposals in a batch
+
 <Batch />
 
 ## Templates and submitting

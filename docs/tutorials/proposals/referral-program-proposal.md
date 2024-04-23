@@ -58,6 +58,8 @@ To end an existing program early, set your proposal up with the exact same param
 | `minimumStakedTokens` | Required number of VEGA tokens a referrer must have associated to their Vega key to receive the reward multiplier | Integer greater than 0 |
 | `referralRewardMultiplier` | Multiplier applied when calculating referral rewards due to the referrer, if they meet the criteria | Whole number, decimals allowed, greater than or equal to 1 |
 
+## Submitting proposals in a batch
+
 <Batch />
 
 ## Templates and submitting

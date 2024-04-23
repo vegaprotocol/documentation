@@ -1,5 +1,3 @@
-
-## Submitting proposals in a batch
 If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
 
 ```

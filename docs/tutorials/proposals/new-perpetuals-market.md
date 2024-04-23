@@ -84,7 +84,7 @@ An instrument contains the following properties:
 | [`dataSourceSpecForSettlementData`](#data-source-for-settlement-data) | This defines the Ethereum data source, the method, normalisers, required confirmations, etc, that will be used to identify the settlement price when the market expires. | |
 | [`dataSourceSpecForSettlementSchedule`](#data-source-for-settlement-schedule) | This defines how the market will source data for funding, and how often to source it. | |
 | [`dataSourceSpecBinding`](#data-source-bindings) | The fields describe how specific information provided by the data source is used. For example, they are used to set the settlement data property and the settlement schedule property. |
-| `tickSize` | Sets the smallest possible change in the price in the market. Tick size is in relation to the market `decimalPlaces`, as an integer. If a BTCUSDT market is configured with 5 mdp, tick size 1 would make the smallest tick size 0.00001. Tick size can help manage a market with 'too many' decimal places, or an asset's value dropping dramatically. | A value of 2000 with 5 `decimalPlaces` is a scaled tick size of 0.02. |
+| `tickSize` | Sets the smallest possible change in the price in the market. Tick size is in relation to the market `decimalPlaces`, as an integer. If a BTCUSDT market is configured with 5 mdp, tick size 1 would make the smallest tick size 0.00001. Tick size can help manage a market with 'too many' decimal places, or an asset's value dropping dramatically. A value of 2000 with 5 `decimalPlaces` is a scaled tick size of 0.02. A minimum of 10 is recommended. | 10 |
 
 ### Data source for settlement schedule
 The periodic settlements scheduled with the fields below determine how often the market's funding payments occur. It's recommended that funding payments are be less frequent than auction extensions for [price monitoring](#price-monitoring). Very frequent funding payments may lead to quick price changes in the market that participants may not have time to react to. Setting longer funding payment triggers allow for more time. 
@@ -127,7 +127,7 @@ Data source specs include the following properties under `ethOracle`:
 | `sourceChainId` | Describes the chain ID of the data source. This chain must already be enabled in network parameters and supported by validators. |
 
 :::info Submitting data
-Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md).
+Learn how to find and submit data in the [submitting data sources tutorial](../using-data-sources.md). This includes examples using Pyth and Ethereum data.
 :::
 
 ### Liquidity monitoring
@@ -224,6 +224,8 @@ The liquidity parameters set the requirements that liquidity providers on the ma
 | `slaCompetitionFactor` | Sets the maximum fraction of their accrued fees an LP that meets the SLA will lose to liquidity providers that achieved a higher SLA performance than them. | 0.2 | 
 | `liquidityFeeSettings` | Optional setting for how the liquidity fee factor is determined. See [liquidity fees](../../concepts/liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage) for more. | `METHOD_MARGINAL_COST` (default) `METHOD_CONSTANT`, `METHOD_WEIGHTED_AVERAGE` |
 | `feeConstant` | For the fee setting `METHOD_CONSTANT`, a constant fee factor needs to be provided. | 0.00005 |
+
+## Submitting proposals in a batch
 
 <Batch />
 

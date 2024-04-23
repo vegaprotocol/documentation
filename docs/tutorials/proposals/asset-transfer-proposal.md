@@ -102,6 +102,7 @@ You will need to define the dispatch strategy, which includes the metric, the le
   "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA"
 ```
 
+## Submitting proposals in a batch
 <Batch />
 
 ## Templates and submitting

@@ -12,7 +12,9 @@ import EthAddresses from '@site/src/components/EthAddresses';
 <Topic />
 
 ## Connecting to the APIs
-As most of the APIs are designed to be used for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. The public endpoints differ between testnet and mainnet, as do the network configurations your Vega-compatible wallet needs in order to connect. See the [public endpoints page](./public-endpoints.md) for details. 
+As most of the APIs are designed to be used for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. 
+
+The public endpoints differ between testnet and mainnet, as do the network configurations your Vega-compatible wallet needs in order to connect. See the [public endpoints page](./public-endpoints.md) for details. 
 
 To use the Vega APIs, a developer will need access to a network-compatible instance of the relevant software, depending on their goals: core node, data node, and/or Vega Wallet.
 
@@ -27,7 +29,7 @@ Some rate limiting is implemented with default limitations on the APIs.
 
 For the specifics on WebSocket connections, see [WebSocket streams](./websocket.md) page.
 
-To prevent abuse of the APIs provided by data nodes, there are limitations to the rate of API requests that can be enabled by data node operators. Rate limiting is applied on a per-remote-IP-address basis.
+Data node operators can limit the rate of API requests. Rate limiting is applied on a per-remote-IP-address basis.
 
 Each IP address that connects to a data node is assigned a bucket of tokens. That bucket has a maximum capacity, and begins full of tokens. Each API request costs one token, which is removed from the bucket when the call is made. The data node adds a number of tokens every second (the rate of the limiter) to the bucket up to its maximum capacity.
 
@@ -50,7 +52,9 @@ If a client continues to make requests despite having no tokens available, the r
 * REST: `HTTP 429 StatusTooManyRequests for HTTP APIs`
 * gRPC: `14 Unavailable`
 
-Each unsuccessful response will deduct a token from a separate bucket with the same refill rate and capacity as the requests bucket. Exhausting the supply of tokens in this second bucket will result in the client's IP address being banned for a period of time determined by the data node operators, with 10 minutes as the default.
+Each unsuccessful response will deduct a token from a separate bucket with the same refill rate and capacity as the requests bucket. 
+
+Exhausting the supply of tokens in this second bucket will result in the client's IP address being banned for a period of time determined by the data node operators, with 10 minutes as the default.
 
 If banned, the response will be `HTTP 403 Forbidden for HTTP APIs`.
 
@@ -59,16 +63,16 @@ Read more about rate limiting in the [rate limiting README ↗](https://github.c
 ## Formatting and field conventions
 
 ### Strings vs numbers format
-When using an API, in many cases the field is described as requiring a number but the data type is a string. Numerical fields are passed in string format so that there is no loss of precision, or risk of integer overflow for large numbers.
+Often when an API requires a number, it uses the `string` data type. Numerical fields are passed in string format so that there is no loss of precision, or risk of integer overflow for large numbers.
 
 ### Decimal precision
 The APIs don't provide or accept decimal points in numbers or strings, so the decimal precision must be calculated and the number represented in integers, depending on what decimal precision the number needs. 
 
-* For quotes and prices, use the *market decimal places* to calculate, which can be found by [querying for a market's parameters](../api/rest/data-v2/trading-data-service-get-market.api.mdx) and using `decimalPlaces`
-* For fees, margin, and liquidity, use the *settlement asset decimal places* to calculate, which can be found by [querying an asset's parameters](../api/rest/data-v2/trading-data-service-get-asset.api.mdx) and using `decimals`
+* For quotes and prices, use the *market decimal places* to calculate, which can be found by [querying for a market's parameters](../api/rest/data-v2/trading-data-service-get-market.api.mdx) and using `decimalPlaces`.
+* For fees, margin, and liquidity, use the *settlement asset decimal places* to calculate, which can be found by [querying an asset's parameters](../api/rest/data-v2/trading-data-service-get-asset.api.mdx) and using `decimals`.
 
 ### Timestamps
-Unless otherwise specified, response timestamps, are encoded as a Unix timestamp, which is counted from midnight on 1 January, 1970. Requests that require timestamps will also need to be submitted in Unix time. Whether it's a nanosecond, second, or other, is signposted in the tutorial or API reference documentation.
+Unless otherwise specified, response timestamps are encoded as a Unix timestamp, which is counted from midnight on 1 January, 1970. Requests that require timestamps will also need to be submitted in Unix time. Whether it's a nanosecond, second, or other, is signposted in the tutorial or API reference documentation.
 
 ## Available frameworks
 
@@ -90,12 +94,13 @@ REST is easy to get started with, and Vega supports nearly all the functionality
 
 Try out queries and learn the structure with the [GraphQL playground ↗](https://api.testnet.vega.xyz/graphql/)
 
-## Vega Wallet integration
+<!--## Vega Wallet integration
 To integrate the Vega Wallet with a dApp or bots, you'll likely need to use the wallet API.
 
 The **Wallet API** uses JSON-RPC with an HTTP wrapper. Find out [how to use the API](./vega-wallet/before-you-start.md) before jumping into the reference docs. 
 
 [Download a Vega Wallet](../tools/vega-wallet/index.md) to use the Wallet API to programmatically interact with the network for your own transactions.
+-->
 
 ## Asset bridges
 Vega uses ERC-20 assets from Ethereum and Arbitrum, and to facilitate inter-chain interactions between Vega and other chains, those assets are then transferred through a series of smart contract bridges. These bridges let participants use ERC-20 and other assets on the (non-Ethereum) Vega chain.

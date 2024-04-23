@@ -61,7 +61,7 @@ An instrument contains the following properties:
 | `baseAsset` | ?????? Settlement asset requires the ID of the asset that the market will be margined and settled in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 
 
-| `tickSize` | Sets the smallest possible change in the price in the market. Tick size is in relation to the market `decimalPlaces`, as an integer. If a BTCUSDT market is configured with 5 mdp, tick size 1 would make the smallest tick size 0.00001. Tick size can help manage a market with 'too many' decimal places, or an asset's value dropping dramatically. | A value of 2000 with 5 `decimalPlaces` is a scaled tick size of 0.02. |
+| `tickSize` | Sets the smallest possible change in the price in the market. Tick size is in relation to the market `decimalPlaces`, as an integer. If a BTCUSDT market is configured with 5 mdp, tick size 1 would make the smallest tick size 0.00001. Tick size can help manage a market with 'too many' decimal places, or an asset's value dropping dramatically. A value of 2000 with 5 `decimalPlaces` is a scaled tick size of 0.02. A minimum of 10 is recommended. | 10|
 
 **Decimal places** need to be defined for both order sizes and the market. A market cannot specify more decimal places than its settlement asset supports. The values for these fields cannot be changed, even through governance.
 
@@ -121,6 +121,9 @@ The risk model uses the following properties:
 | `param: r` | Annualised growth rate of the risk-free asset, it's used for discounting of future cash flows. Use 0.0 unless otherwise required. <br/><br/> Accepted values: any real number | 0.0 |
 | `param: sigma` | Annualised historic volatility of the underlying asset. <br/><br/>Accepted values: any strictly non-negative real number; suggested value: asset dependent, should be derived from the historical time-series of prices. | 0.8 (converts to 80%) |
 
+## Submitting proposals in a batch
+<Batch />
+
 ## Templates and submitting
 In the tabs below you'll see:
 
@@ -148,11 +151,10 @@ In the tabs below you'll see:
       "changes": {
         "instrument": {
           "name": "Bitcoin / Tether USD (Spot)",
-          "code": "BTC/USDT",
+          "code": "BTC/USDT spot",
           "spot": {
             "baseAsset": "b335cd4ba8a9c5b387b66117e5ee6dbd5a03fb7c74ee4a1d012589aafd45eb25",
             "quoteAsset": "948970482946248f0d04dd271d063cd44458822c67609d230e072d6d51d60956",
-            "name": "BTC/USDT"
           }
         },
         "tickSize": "10",        
@@ -234,11 +236,10 @@ In the tabs below you'll see:
       "changes": {
         "instrument": {
           "name": "Bitcoin / Tether USD (Spot)",
-          "code": "BTC/USDT",
+          "code": "BTC/USDT spot",
           "spot": {
             "baseAsset": "b335cd4ba8a9c5b387b66117e5ee6dbd5a03fb7c74ee4a1d012589aafd45eb25",
             "quoteAsset": "948970482946248f0d04dd271d063cd44458822c67609d230e072d6d51d60956",
-            "name": "BTC/USDT"
           }
         },
         "tickSize": "10",        
@@ -321,11 +322,10 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     \"sizeDecimalPlaces\": \"5\",^
     \"instrument\": {^
      \"name\": \"Bitcoin / Tether USD (Spot)\",^
-     \"code\": \"BTC/USDT\",^
+     \"code\": \"BTC/USDT spot\",^
      \"spot\": {^
       \"baseAsset\": \"b335cd4ba8a9c5b387b66117e5ee6dbd5a03fb7c74ee4a1d012589aafd45eb25\",^
       \"quoteAsset\": \"b335cd4ba8a9c5b387b66117e5ee6dbd5a03fb7c74ee4a1d012589aafd45eb25\",^
-      \"name\": \"BTC/USDT\",^
     \"metadata\": [^
      \"enactment:2024-04-23T15:14:03Z\",^
     ],^
