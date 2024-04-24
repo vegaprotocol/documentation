@@ -39,8 +39,6 @@ The following fields cannot be changed. They are not included in the [proposal t
 
 - `sizeDecimalPlaces`
 - `priceDecimalPlaces`
-- `name`
-- `code`
 - `baseAsset`
 - `quoteAsset`
 
@@ -76,22 +74,25 @@ In the tabs below you'll see:
   "rationale": {
     "description": "Propose a change to the spot market for Bitcoin and USDT",
     "title": "Change Bitcoin/USDT spot market"
-  }
+  },
   "terms": {
     "closingTimestamp": "1683626590",
     "enactmentTimestamp": "1683626600",
     "updateSpotMarket": {
-    "marketId: "123",
+    "marketId": "123",
       "changes": {
+          "instrument": {
+          "code": "BTC/USDT",
+          "name": "BTC/USDT"
+          },
         "tickSize": "10",        
         "metadata": [
           "base:BTC",
           "quote:USDT",
           "class:fx/crypto",
           "spot",
-          "sector:defi",
+          "sector:defi"
         ],
-    
         "priceMonitoringParameters": {
           "triggers": [
             {
@@ -120,7 +121,6 @@ In the tabs below you'll see:
           "timeWindow": "3600",
           "scalingFactor": 0.05
         },
-        "sizeDecimalPlaces": "4",
         "slaParams": {
           "priceRange": "0.03",
           "commitmentMinTimeFraction": "0.75",
@@ -139,7 +139,7 @@ In the tabs below you'll see:
         }
       }
     }
-  },
+   }
  }
 }
 ```
@@ -148,76 +148,79 @@ In the tabs below you'll see:
 		<TerminalInstructions />
 
 ```
-./vegawallet transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME '{
-"proposalSubmission": {
-  "rationale": {
-    "description": "Propose a spot market for Bitcoin and USDT",
-    "title": "Bitcoin/USDT spot market"
-  }
-  "terms": {
-    "closingTimestamp": "1683626590",
-    "enactmentTimestamp": "1683626600",
-    "updateSpotMarket": {
-    "marketId: "123",
-      "changes": {
-        "tickSize": "10",        
-        "metadata": [
-          "base:BTC",
-          "quote:USDT",
-          "class:fx/crypto",
-          "spot",
-          "sector:defi",
-        ],
-    
-        "priceMonitoringParameters": {
-          "triggers": [
-            {
-              "horizon": "21600",
-              "probability": "0.9999999",
-              "auctionExtension": "86400"
-            },
-            {
-              "horizon": "4320",
-              "probability": "0.9999999",
-              "auctionExtension": "3600"
-            },
-            {
-              "horizon": "1440",
-              "probability": "0.9999999",
-              "auctionExtension": "1800"
-            },
-            {
-              "horizon": "360",
-              "probability": "0.9999999",
-              "auctionExtension": "300"
+./vegawallet transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KEY --network NETWORK_NAME '
+{
+    "proposalSubmission": {
+        "rationale": {
+            "description": "Propose a spot market for Bitcoin and USDT",
+            "title": "Bitcoin/USDT spot market",
+            "terms": {
+                "closingTimestamp": "1683626590",
+                "enactmentTimestamp": "1683626600",
+                "updateSpotMarket": {
+                    "marketId": "123",
+                    "changes": {
+                        "instrument": {
+                            "code": "BTC/USDT",
+                            "name": "BTC/USDT"
+                        },
+                        "tickSize": "10",
+                        "metadata": [
+                            "base:BTC",
+                            "quote:USDT",
+                            "class:fx/crypto",
+                            "spot",
+                            "sector:defi"
+                        ],
+                        "priceMonitoringParameters": {
+                            "triggers": [
+                                {
+                                    "horizon": "21600",
+                                    "probability": "0.9999999",
+                                    "auctionExtension": "86400"
+                                },
+                                {
+                                    "horizon": "4320",
+                                    "probability": "0.9999999",
+                                    "auctionExtension": "3600"
+                                },
+                                {
+                                    "horizon": "1440",
+                                    "probability": "0.9999999",
+                                    "auctionExtension": "1800"
+                                },
+                                {
+                                    "horizon": "360",
+                                    "probability": "0.9999999",
+                                    "auctionExtension": "300"
+                                }
+                            ]
+                        },
+                        "targetStakeParameters": {
+                            "timeWindow": "3600",
+                            "scalingFactor": 0.05
+                        },
+                        "slaParams": {
+                            "priceRange": "0.03",
+                            "commitmentMinTimeFraction": "0.75",
+                            "performanceHysteresisEpochs": "1",
+                            "slaCompetitionFactor": "0.8"
+                        },
+                        "liquidityFeeSettings": {
+                            "method": "METHOD_MARGINAL_COST"
+                        },
+                        "logNormal": {
+                            "riskAversionParameter": 0.000001,
+                            "tau": 0.000003995,
+                            "params": {
+                                "sigma": 1
+                            }
+                        }
+                    }
+                }
             }
-          ]
-        },
-        "targetStakeParameters": {
-          "timeWindow": "3600",
-          "scalingFactor": 0.05
-        },
-        "sizeDecimalPlaces": "4",
-        "slaParams": {
-          "priceRange": "0.03",
-          "commitmentMinTimeFraction": "0.75",
-          "performanceHysteresisEpochs": "1",
-          "slaCompetitionFactor": "0.8"
-        },
-        "liquidityFeeSettings": {
-          "method": "METHOD_MARGINAL_COST"
-        },
-        "logNormal": {
-          "riskAversionParameter": 1e-06,
-          "tau": 3.995e-06,
-          "params": {
-            "sigma": 1.0
-          }
         }
-      }
     }
-  },
- }
 }
 ```
   </TabItem>
@@ -234,10 +237,14 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
  },^
  \"terms\": {^
   \"updateSpotMarket\": {^
+  \"marketId\": \"123\",
    \"changes\": {^
-    \"sizeDecimalPlaces\": \"5\",^
+   \"instrument\": {^
+      \"code\": \"BTC/USDT\",^
+      \"name\": \"BTC/USDT\"^
+      },^
     \"metadata\": [^
-     \"enactment:2024-04-23T15:14:03Z\",^
+     \"enactment:2024-04-23T15:14:03Z\"^
     ],^
     \"priceMonitoringParameters\": {^
      \"triggers\": [^
@@ -284,8 +291,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
  }^
 }^
 }^
-}^
-}"
+"
 ```
 </TabItem>
 </Tabs>
