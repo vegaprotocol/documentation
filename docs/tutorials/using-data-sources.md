@@ -29,17 +29,16 @@ Settlement data can be sourced from smart contracts and EVM chains that support 
 
 Data sources that use Ethereum RPC calls cause the Vega network validators to read the result from the specified smart contract and submit the result to Vega. When the data is verified by enough validators, this price is accepted on to the network.
 
-This is unlike the other two Oracle types ([Open Oracle signed messages](#open-oracle-signed-messages) & [JSON signed message data](#json-signed-message-data)),which both rely on a third party submitting data to the network.
-
+Read on for examples and guidance on [ABIs](#abi), [normalisers](#normaliser) and [time trigger](#time-trigger).
 
 ### Using a Pyth price feed
-Vega supports using Pyth price feeds, with data published to the Gnosis chain or other EVM chains.
+Vega supports using Pyth price feeds, with data published to Gnosis or other EVM chains.
 
 When considering a market to propose, check the [Pyth price feed IDs ↗](https://pyth.network/developers/price-feed-ids) to determine if Pyth provides the required price data feed.
 
 The following spec would read from the Gnosis contract at `0x28...17b43` to pull data from the Pyth price feed `0xe6...5b43` every 60 seconds, and fetch the Bitcoin price value from the returned object. 
 
-You can use the snippet for contract and ABI details in your proposal. As long as the contract doesn't change, the ABI, which is managed by Pyth, also won’t change.
+You can use the below snippet for contract and ABI details in your proposal. The ABI won't change as long as the contract, which is managed by Pyth, doesn't change.
 
 ```json
 "dataSourceSpecForSettlementData": {
