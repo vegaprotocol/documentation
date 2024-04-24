@@ -70,7 +70,8 @@ You will need to define the dispatch strategy, which includes the metric, the le
 | `markets` | Optional: Used to choose which market(s) are in scope. If left blank, all markets that are settled in the asset are included | Any trading market's ID |
 | `stakingRequirement` | Optional: Sets a minimum number of VEGA tokens that need to be staked for a party to be considered eligible for the reward | Number, if omitted it defaults to 0 |
 | `notionalTimeWeightedAveragePositionRequirement` | Optional: Sets a minimum notional TWAP, measured for the asset metric, that's required for a party to be considered eligible to receive rewards | Defaults to 0 | 
-| `windowLength` | Number of epochs in which performance against the reward metric is measured | Any number between 1 and 100 |
+| `windowLength` | Number of epochs in which performance against the reward metric is measured | Any number between 1 and 100 inclusive |
+| `transferInterval` | Optional: Number of epochs between transfers. For example, if set to 4, funds will be transferred every 4 epochs with the first transfer occurring 4 epochs after the transaction is processed. If left blank, it transfers every epoch. | Any number between 1 and 100 inclusive |
 | `lockPeriod` | Number of epochs to keep earned rewards in the recipient's reward vesting account before moving to their vested account, at which point they can be redeemed |
 | `entityScope` | Defines the entities within scope, i.e. whether they are in a team or not | ENTITY_SCOPE_INDIVIDUALS; ENTITY_SCOPE_TEAMS |
 | `individualScope` | To be used if the eligible reward recipients should be all participants, individuals, or within a team |  INDIVIDUAL_SCOPE_ALL; INDIVIDUAL_SCOPE_IN_TEAM; INDIVIDUAL_SCOPE_NOT_IN_TEAM |
@@ -85,6 +86,7 @@ You will need to define the dispatch strategy, which includes the metric, the le
   "assetForMetric": "b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663",
   "metric": "DISPATCH_METRIC_AVERAGE_POSITION",
   "windowLength": "2",
+  "transferInterval": "4",
   "entityScope": "ENTITY_SCOPE_TEAMS",
   "teamScope": [
     "0fc06d09f0805f1da96dd171af4a6e38dc6d443e135c855c7990a1ebe395b26f",
@@ -97,6 +99,7 @@ You will need to define the dispatch strategy, which includes the metric, the le
   "assetForMetric": "b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663",
   "metric": "DISPATCH_METRIC_AVERAGE_POSITION",
   "windowLength": "2",
+  "transferInterval": "4",
   "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
   "individualScope": "INDIVIDUAL_SCOPE_ALL",
   "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA"
@@ -141,6 +144,7 @@ These templates show an example of how to fund rewards with a governance transfe
           "assetForMetric": "b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663",
           "metric": "DISPATCH_METRIC_MAKER_FEES_PAID",
           "windowLength": "1",
+          "transferInterval": "4",
           "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
           "individualScope": "INDIVIDUAL_SCOPE_ALL",
           "distributionStrategy": "DISTRIBUTION_STRATEGY_PRO_RATA",
@@ -183,6 +187,7 @@ These templates show an example of how to fund rewards with a governance transfe
           "assetForMetric": "b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663",
           "metric": "DISPATCH_METRIC_MAKER_FEES_PAID",
           "windowLength": "1",
+          "transferInterval": "4",
           "lockPeriod": "0",
           "entityScope": "ENTITY_SCOPE_INDIVIDUALS",
           "individualScope": "INDIVIDUAL_SCOPE_ALL",
@@ -193,7 +198,7 @@ These templates show an example of how to fund rewards with a governance transfe
 
      }
     }
-   },
+   }
   }
  }
 }'
@@ -229,6 +234,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
           \"assetForMetric\": \"b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663\", ^
           \"metric\": \"DISPATCH_METRIC_MAKER_FEES_PAID\", ^
           \"windowLength\": \"1\",^
+          \"transferInterval\": \"4\",^
           \"lockPeriod\": \"0\",^
           \"entityScope\": \"ENTITY_SCOPE_INDIVIDUALS\", ^
           \"individualScope\": \"INDIVIDUAL_SCOPE_ALL\", ^
@@ -236,10 +242,9 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
           \"capRewardFeeMultiple\": \"0.2\"^
 
       } ^
-
     } ^
    }^
-  },^
+  }^
  }^
 }^
 }"
