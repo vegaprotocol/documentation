@@ -149,7 +149,8 @@ Vega Visor CLI v0.72.10 (26afd41a2fe4cb20f3fffeae0d4cfe523fc35614)
 visor init --home=$YOUR_VISOR_HOME_PATH
 ```
 
-4. Edit the `$YOUR_VISOR_HOME_PATH/config.toml` file to tunning startup parameters
+4. Edit the `$YOUR_VISOR_HOME_PATH/config.toml` file to tune the startup parameters
+
 
 ```toml
 ...

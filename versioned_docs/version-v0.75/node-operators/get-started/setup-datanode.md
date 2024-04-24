@@ -343,7 +343,7 @@ vega datanode init --home=$YOUR_DATANODE_HOME_PATH "vega-mainnet-0011"
 
 3. Change the data node configuration at `$YOUR_DATANODE_HOME_PATH/config/data-node/config.toml` to `AutoInitialiseFromNetworkHistory` = true
 
-4. Find the list of network history bootstrap nodes by querying the network history bootstrap API. For example: `https://api0.vega.community/api/v2/networkhistory/bootstrap``
+4. Find the list of network history bootstrap nodes by querying the network history bootstrap API. For example: `https://api0.vega.community/api/v2/networkhistory/bootstrap`
 
 5. Still in your data node configuration file, paste the list of nodes into the `NetworkHistory.Store.BootstrapPeers`:
 
@@ -353,7 +353,7 @@ vega datanode init --home=$YOUR_DATANODE_HOME_PATH "vega-mainnet-0011"
       BootstrapPeers = ["/dns/api1.vega.community/tcp/4001/ipfs/12D3KooWDZrusS1p2XyJDbCaWkVDCk2wJaKi6tNb4bjgSHo9yi5Q", "/dns/api2.vega.community/tcp/4001/ipfs/12D3KooWEH9pQd6P7RgNEpwbRyavWcwrAdiy9etivXqQZzd7Jkrh", "/dns/api3.vega.community/tcp/4001/ipfs/12D3KooWEH9pQd6P7RgNEpwbRyavWcwrAdiy9etivXqQZzd7Jkrh"]
 ```
 
-6. Set number of blocks to sync to minimum value if you do not need historical data - it drastically improves startup time.
+6. Set number of blocks to sync to a low value if you do not need historical data - it drastically improves startup time.
 
 ```toml
 ...
@@ -362,7 +362,7 @@ vega datanode init --home=$YOUR_DATANODE_HOME_PATH "vega-mainnet-0011"
     ...
 ```
 
-7. Set the BlocksRetentionSpan
+7. Set the block retention span
 
 ```toml
   ...
@@ -371,7 +371,7 @@ vega datanode init --home=$YOUR_DATANODE_HOME_PATH "vega-mainnet-0011"
     ...
 ```
 
-8. If your node is internal data-node disable publishing network history segments - it will improve performance.
+8. If your node is for internal use only, disable publishing network history segments - it will improve performance.
 
 ```toml
 [NetworkHistory]
