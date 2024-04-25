@@ -231,9 +231,9 @@ Actions of the example trader in the image above over 24 hours:
 - 12:00 - trader reduces their position, their average position starts to decrease
 
 ### Most profitable traders
-The most profitable traders category rewards high profit in relation to traders' position sizes. A trader's highest relative profit is taken from each epoch in the reward window, and averaged out. Those who have higher relative profits rank better in the standings. It's also known as the "relative return metric".
+The most profitable traders category rewards traders with a competitive profit and loss (PnL) in relation to their position sizes. A trader's relative PnL are taken from each epoch in the reward window, and averaged out. Those with a greater relative PnL rank better in the standings. It's also known as the "relative return metric".
 
-This reward is applicable to trading on derivatives markets, not spot markets.
+This reward is applicable to trading on derivatives markets, but not spot markets.
 
 #### Example of most profitable traders
 The image below shows how the most profitable trader's score is calculated across epochs. A trader with a large amount of capital will have as much chance of winning as a trader with a smaller amount.
@@ -245,7 +245,12 @@ The most consistently profitable traders category rewards traders with the least
 
 This is measured by taking the sum of each trader's mark to market gains and losses, both realised and unrealised, and includes funding gains and losses if trades are on a perpetuals market. It's also known as the "returns volatility metric".
 
-This reward is applicable to trading on derivatives markets, not spot markets.
+This reward is applicable to trading on derivatives markets, but not spot markets.
+
+### Highest realised return
+The realised returns metric rewards traders with the highest realised returns during the competition window. Only realised profits on the market are counted for this reward - in other words, the gains on any portion of a closed position. 
+
+This reward is applicable to trading on derivatives markets, but not spot markets.
 
 ### Market creation rewards 
 The market creation reward dispatch metric is designed to incentivise creating markets that attract high trading volumes. Rewards are awarded to the proposers of any markets that meet a certain total trade value. 
