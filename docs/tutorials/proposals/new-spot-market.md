@@ -55,12 +55,10 @@ An instrument contains the following properties:
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `name` | A string for the market name. Best practice is to include a full and fairly descriptive name for the instrument. | Oranges DEC18. |
-| `code`  (instrument) | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD/DEC18 |
+| `code`  (instrument) | This is a shortcode used to easily describe the instrument. The more information you add, the easier it is for people to know what the market offers. | FX:BTCUSD |
 | `spot` | An object that provides details about the spot market to be proposed. |
-| `quoteAsset` | ????? Settlement asset requires the ID of the asset that the market will be margined and settled in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
-| `baseAsset` | ?????? Settlement asset requires the ID of the asset that the market will be margined and settled in. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
-
-
+| `quoteAsset` | Quote specifies the asset which can be exchanged for the base asset. This field requires the asset ID. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
+| `baseAsset` | Base asset specifies the asset to be bought or sold on the market. Requires the asset ID. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `tickSize` | Sets the smallest possible change in the price in the market. Tick size is in relation to the market `decimalPlaces`, as an integer. If a BTCUSDT market is configured with 5 mdp, tick size 1 would make the smallest tick size 0.00001. Tick size can help manage a market with 'too many' decimal places, or an asset's value dropping dramatically. | A value of 2000 with 5 `decimalPlaces` is a scaled tick size of 0.02. |
 
 **Decimal places** need to be defined for both order sizes and the market. A market cannot specify more decimal places than its settlement asset supports. The values for these fields cannot be changed, even through governance.
