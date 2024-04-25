@@ -42,6 +42,8 @@ New futures and derivatives market proposals now require a new field for liquida
 - Transfers are not as strictly restricted when it comes to validating whether a transfer is the 'same', and thus likely spam. This was done in [11184 ↗](https://github.com/vegaprotocol/vega/issues/11184).
 - The spot market feature also had several issues fixed in this release.
 
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/release/v0.76.0-preview.6...v0.76.0-preview.3).
+
 ## Pre-release version v0.76.0-preview.3  | 2024-04-15
 This version was released to the Vega testnet on 15 April 2024.
 
@@ -82,7 +84,7 @@ The minimum epochs in a team network parameter can now be set to 0, so team memb
 - When querying historic ledger movements, an error would be received. This was fixed in [11059 ↗](https://github.com/vegaprotocol/vega/issues/11059).
 - The error for rejected batch proposals was not included in GraphQL. This was resolved in [11052 ↗](https://github.com/vegaprotocol/vega/pull/11052).
 
-To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/release/v0.75.8...v0.76.0-preview.2).
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/release/v0.75.8...v0.76.0-preview.3).
 
 ## Pre-release version v0.75.7  | 2024-03-28
 This version was released to the Vega testnet on 28 March 2024.
