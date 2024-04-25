@@ -150,7 +150,6 @@ In the tabs below you'll see:
           "spot": {
             "baseAsset": "b335cd4ba8a9c5b387b66117e5ee6dbd5a03fb7c74ee4a1d012589aafd45eb25",
             "quoteAsset": "948970482946248f0d04dd271d063cd44458822c67609d230e072d6d51d60956",
-            "name": "BTC/USDT"
           }
         },
         "tickSize": "10",        
@@ -236,7 +235,6 @@ In the tabs below you'll see:
           "spot": {
             "baseAsset": "b335cd4ba8a9c5b387b66117e5ee6dbd5a03fb7c74ee4a1d012589aafd45eb25",
             "quoteAsset": "948970482946248f0d04dd271d063cd44458822c67609d230e072d6d51d60956",
-            "name": "BTC/USDT"
           }
         },
         "tickSize": "10",        
@@ -323,7 +321,6 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"spot\": {^
       \"baseAsset\": \"b335cd4ba8a9c5b387b66117e5ee6dbd5a03fb7c74ee4a1d012589aafd45eb25\",^
       \"quoteAsset\": \"b335cd4ba8a9c5b387b66117e5ee6dbd5a03fb7c74ee4a1d012589aafd45eb25\",^
-      \"name\": \"BTC/USDT\",^
     \"metadata\": [^
      \"enactment:2024-04-23T15:14:03Z\",^
     ],^
