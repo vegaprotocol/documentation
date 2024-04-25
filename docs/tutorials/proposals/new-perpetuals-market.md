@@ -225,8 +225,18 @@ The liquidity parameters set the requirements that liquidity providers on the ma
 | `liquidityFeeSettings` | Optional setting for how the liquidity fee factor is determined. See [liquidity fees](../../concepts/liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage) for more. | `METHOD_MARGINAL_COST` (default) `METHOD_CONSTANT`, `METHOD_WEIGHTED_AVERAGE` |
 | `feeConstant` | For the fee setting `METHOD_CONSTANT`, a constant fee factor needs to be provided. | 0.00005 |
 
-## Submitting proposals in a batch
+### Liquidation strategy
+Set up the liquidation strategy to minimise the impact of distressed traders on the market. These parameters can balance between minimising the market impact of disposing of distressed positions and not holding a large open volume for a long time.
 
+| Field | Description | Suggested value |
+| ----------- | ----------- | ----------- |
+| `disposalTimeStep` | Interval, in seconds, at which the network will attempt to close a position it's acquired from distressed traders. | 30 |
+| `disposalFraction` | Fraction of the open position the market will try to close in a single attempt. Range 0 through 1 | 0.1 |
+| `fullDisposalSize` | Size of the position that the network will try to close in a single attempt  | 1 |
+| `maxFractionConsumed` | Maximum fraction of the order book's total volume, within the liquidity bounds, that the network can use to close its position. Range 0 through 1 | 0.05 |
+| `disposalSlippageRange` | Decimal number greater than 0 specifying the range above and below the mid price within which the network will trade to dispose of its position. | 0.1 |
+
+## Submitting proposals in a batch
 <Batch />
 
 ## Templates and submitting

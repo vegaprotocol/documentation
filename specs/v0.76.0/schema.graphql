@@ -1415,6 +1415,8 @@ enum DispatchMetric {
   DISPATCH_METRIC_RETURN_VOLATILITY
   "Dispatch metric that uses the validator ranking of the validator as metric"
   DISPATCH_METRIC_VALIDATOR_RANKING
+  "Dispatch metric that uses the realised return of the party in the market"
+  DISPATCH_METRIC_REALISED_RETURN
 }
 
 enum EntityScope {
@@ -1483,6 +1485,9 @@ type DispatchStrategy {
 
   "Optional multiplier on taker fees used to cap the rewards a party may receive in an epoch"
   capRewardFeeMultiple: String
+
+  "Interval for the distribution of the transfer"
+  transfer_interval: Int!
 }
 
 type RankTable {
@@ -2086,8 +2091,6 @@ type Spot {
   baseAsset: Asset!
   "Underlying quote asset for the spot product"
   quoteAsset: Asset!
-  "Name of the instrument"
-  name: String!
 }
 
 "Perpetual future product"
@@ -3304,6 +3307,8 @@ enum StopOrderRejectionReason {
   REJECTION_REASON_STOP_ORDER_NOT_ALLOWED_DURING_OPENING_AUCTION
   "Stop order cannot have matching OCO expiry times"
   REJECTION_REASON_STOP_ORDER_CANNOT_MATCH_OCO_EXPIRY_TIMES
+  "Stop orders on spot markets cannot have a position size override"
+  REJECTION_REASON_STOP_ORDER_SIZE_OVERRIDE_UNSUPPORTED_FOR_SPOT
 }
 
 "Stop order size override settings"
@@ -4427,6 +4432,8 @@ enum AccountType {
   ACCOUNT_TYPE_PENDING_FEE_REFERRAL_REWARD
   "Per asset market account for party in isolated margin mode"
   ACCOUNT_TYPE_ORDER_MARGIN
+  "Realised return reward account is per asset per reward scheme"
+  ACCOUNT_TYPE_REWARD_REALISED_RETURN
 }
 
 "Types that describe why a transfer has been made"
@@ -4540,8 +4547,6 @@ type SpotProduct {
   baseAsset: Asset!
   "Underlying quote asset for the spot product"
   quoteAsset: Asset!
-  "Name of the instrument"
-  name: String!
 }
 
 type PerpetualProduct {
@@ -5052,6 +5057,8 @@ type LiquidationStrategy {
   fullDisposalSize: Int!
   "Specifies the maximum size by which the network can reduce its position as a fraction of the volume on the book."
   maxFractionConsumed: String!
+  "Specifies the slippage relative to the mid prige within which the network will place orders to dispose of its position."
+  disposalSlippageRange: String!
 }
 
 "Representation of a network parameter"
@@ -5122,6 +5129,10 @@ type BatchProposalTermsChange {
   Constrained by "minEnactInSeconds" and "maxEnactInSeconds" network parameters.
   """
   enactmentDatetime: Timestamp
+  """
+  RFC3339Nano time and date allocated to the validator to validate the proposal.
+  """
+  validationDatetime: Timestamp
 
   "Actual change being introduced by the proposal - action the proposal triggers if passed and enacted."
   change: ProposalChange!

@@ -224,6 +224,7 @@ Set up the liquidation strategy to minimise the impact of distressed traders on 
 | `disposalFraction` | Fraction of the open position the market will try to close in a single attempt. Range 0 through 1 | 0.1 |
 | `fullDisposalSize` | Size of the position that the network will try to close in a single attempt  | 1 |
 | `maxFractionConsumed` | Maximum fraction of the order book's total volume, within the liquidity bounds, that the network can use to close its position. Range 0 through 1 | 0.05 |
+| `disposalSlippageRange` | Decimal number greater than 0 specifying the range above and below the mid price within which the network will trade to dispose of its position. | 0.1 |
 
 ## Submitting proposals in a batch
 

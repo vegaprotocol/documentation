@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega core state APIs",
-    "version": "v0.76.0-preview.3"
+    "version": "v0.76.0-preview.6"
   },
   "tags": [
     {
@@ -924,10 +924,11 @@
         "ACCOUNT_TYPE_REWARD_RETURN_VOLATILITY",
         "ACCOUNT_TYPE_REWARD_VALIDATOR_RANKING",
         "ACCOUNT_TYPE_PENDING_FEE_REFERRAL_REWARD",
-        "ACCOUNT_TYPE_ORDER_MARGIN"
+        "ACCOUNT_TYPE_ORDER_MARGIN",
+        "ACCOUNT_TYPE_REWARD_REALISED_RETURN"
       ],
       "default": "ACCOUNT_TYPE_UNSPECIFIED",
-      "description": "- ACCOUNT_TYPE_UNSPECIFIED: Default value\n - ACCOUNT_TYPE_INSURANCE: Insurance pool accounts contain insurance pool funds for a market\n - ACCOUNT_TYPE_SETTLEMENT: Settlement accounts exist only during settlement or mark-to-market\n - ACCOUNT_TYPE_MARGIN: Margin accounts contain funds set aside for the margin needed to support a party's open positions.\nEach party will have a margin account for each market they have traded in.\nRequired initial margin is allocated to each market from user's general account.\nCollateral in the margin account can't be withdrawn or used as margin on another market until\nit is released back to the general account.\nVega protocol uses an internal accounting system to segregate funds held as\nmargin from other funds to ensure they are never lost or 'double spent'\n\nMargin account funds will vary as margin requirements on positions change\n - ACCOUNT_TYPE_GENERAL: General accounts contain the collateral for a party that is not otherwise allocated. A party will\nhave multiple general accounts, one for each asset they want\nto trade with\n\nGeneral accounts are where funds are initially deposited or withdrawn from,\nit is also the account where funds are taken to fulfil fees and initial margin requirements\n - ACCOUNT_TYPE_FEES_INFRASTRUCTURE: Infrastructure accounts contain fees earned by providing infrastructure on Vega\n - ACCOUNT_TYPE_FEES_LIQUIDITY: Liquidity accounts contain fees earned by providing liquidity on Vega markets\n - ACCOUNT_TYPE_FEES_MAKER: This account is created to hold fees earned by placing orders that sit on the book\nand are then matched with an incoming order to create a trade - These fees reward parties\nwho provide the best priced liquidity that actually allows trading to take place\n - ACCOUNT_TYPE_BOND: This account is created to maintain liquidity providers funds commitments\n - ACCOUNT_TYPE_EXTERNAL: External account represents an external source (deposit/withdrawal)\n - ACCOUNT_TYPE_GLOBAL_INSURANCE: Global insurance account for the asset\n - ACCOUNT_TYPE_GLOBAL_REWARD: Global reward account for the asset\n - ACCOUNT_TYPE_PENDING_TRANSFERS: Per asset account used to store pending transfers (if any)\n - ACCOUNT_TYPE_REWARD_MAKER_PAID_FEES: Per asset reward account for fees paid to makers\n - ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES: Per asset reward account for fees received by makers\n - ACCOUNT_TYPE_REWARD_LP_RECEIVED_FEES: Per asset reward account for fees received by liquidity providers\n - ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS: Per asset reward account for market proposers when the market goes above some trading threshold\n - ACCOUNT_TYPE_HOLDING: Per asset account for holding in-flight unfilled orders' funds\n - ACCOUNT_TYPE_LP_LIQUIDITY_FEES: Network controlled liquidity provider's account, per market, to hold accrued liquidity fees.\n - ACCOUNT_TYPE_LIQUIDITY_FEES_BONUS_DISTRIBUTION: Network controlled liquidity fees bonus distribution account, per market.\n - ACCOUNT_TYPE_NETWORK_TREASURY: Network controlled treasury\n - ACCOUNT_TYPE_VESTING_REWARDS: Account holding user's rewards for the vesting period\n - ACCOUNT_TYPE_VESTED_REWARDS: Account holding user's rewards after the vesting period\n - ACCOUNT_TYPE_REWARD_AVERAGE_POSITION: Per asset market reward account given for average position\n - ACCOUNT_TYPE_REWARD_RELATIVE_RETURN: Per asset market reward account given for relative return\n - ACCOUNT_TYPE_REWARD_RETURN_VOLATILITY: Per asset market reward account given for return volatility\n - ACCOUNT_TYPE_REWARD_VALIDATOR_RANKING: Per asset market reward account given to validators by their ranking\n - ACCOUNT_TYPE_PENDING_FEE_REFERRAL_REWARD: Per asset account for pending fee referral reward payouts\n - ACCOUNT_TYPE_ORDER_MARGIN: Per asset market account for party in isolated margin mode",
+      "description": "- ACCOUNT_TYPE_UNSPECIFIED: Default value\n - ACCOUNT_TYPE_INSURANCE: Insurance pool accounts contain insurance pool funds for a market\n - ACCOUNT_TYPE_SETTLEMENT: Settlement accounts exist only during settlement or mark-to-market\n - ACCOUNT_TYPE_MARGIN: Margin accounts contain funds set aside for the margin needed to support a party's open positions.\nEach party will have a margin account for each market they have traded in.\nRequired initial margin is allocated to each market from user's general account.\nCollateral in the margin account can't be withdrawn or used as margin on another market until\nit is released back to the general account.\nVega protocol uses an internal accounting system to segregate funds held as\nmargin from other funds to ensure they are never lost or 'double spent'\n\nMargin account funds will vary as margin requirements on positions change\n - ACCOUNT_TYPE_GENERAL: General accounts contain the collateral for a party that is not otherwise allocated. A party will\nhave multiple general accounts, one for each asset they want\nto trade with\n\nGeneral accounts are where funds are initially deposited or withdrawn from,\nit is also the account where funds are taken to fulfil fees and initial margin requirements\n - ACCOUNT_TYPE_FEES_INFRASTRUCTURE: Infrastructure accounts contain fees earned by providing infrastructure on Vega\n - ACCOUNT_TYPE_FEES_LIQUIDITY: Liquidity accounts contain fees earned by providing liquidity on Vega markets\n - ACCOUNT_TYPE_FEES_MAKER: This account is created to hold fees earned by placing orders that sit on the book\nand are then matched with an incoming order to create a trade - These fees reward parties\nwho provide the best priced liquidity that actually allows trading to take place\n - ACCOUNT_TYPE_BOND: This account is created to maintain liquidity providers funds commitments\n - ACCOUNT_TYPE_EXTERNAL: External account represents an external source (deposit/withdrawal)\n - ACCOUNT_TYPE_GLOBAL_INSURANCE: Global insurance account for the asset\n - ACCOUNT_TYPE_GLOBAL_REWARD: Global reward account for the asset\n - ACCOUNT_TYPE_PENDING_TRANSFERS: Per asset account used to store pending transfers (if any)\n - ACCOUNT_TYPE_REWARD_MAKER_PAID_FEES: Per asset reward account for fees paid to makers\n - ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES: Per asset reward account for fees received by makers\n - ACCOUNT_TYPE_REWARD_LP_RECEIVED_FEES: Per asset reward account for fees received by liquidity providers\n - ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS: Per asset reward account for market proposers when the market goes above some trading threshold\n - ACCOUNT_TYPE_HOLDING: Per asset account for holding in-flight unfilled orders' funds\n - ACCOUNT_TYPE_LP_LIQUIDITY_FEES: Network controlled liquidity provider's account, per market, to hold accrued liquidity fees.\n - ACCOUNT_TYPE_LIQUIDITY_FEES_BONUS_DISTRIBUTION: Network controlled liquidity fees bonus distribution account, per market.\n - ACCOUNT_TYPE_NETWORK_TREASURY: Network controlled treasury\n - ACCOUNT_TYPE_VESTING_REWARDS: Account holding user's rewards for the vesting period\n - ACCOUNT_TYPE_VESTED_REWARDS: Account holding user's rewards after the vesting period\n - ACCOUNT_TYPE_REWARD_AVERAGE_POSITION: Per asset market reward account given for average position\n - ACCOUNT_TYPE_REWARD_RELATIVE_RETURN: Per asset market reward account given for relative return\n - ACCOUNT_TYPE_REWARD_RETURN_VOLATILITY: Per asset market reward account given for return volatility\n - ACCOUNT_TYPE_REWARD_VALIDATOR_RANKING: Per asset market reward account given to validators by their ranking\n - ACCOUNT_TYPE_PENDING_FEE_REFERRAL_REWARD: Per asset account for pending fee referral reward payouts\n - ACCOUNT_TYPE_ORDER_MARGIN: Per asset market account for party in isolated margin mode\n - ACCOUNT_TYPE_REWARD_REALISED_RETURN: Per asset market reward account for realised return",
       "title": "Various collateral/account types as used by Vega"
     },
     "vegaAsset": {
@@ -1067,6 +1068,11 @@
           "format": "int64",
           "description": "Timestamp as Unix time in seconds when proposal terms gets enacted if proposal passed the vote,\nconstrained by `minEnact` and `maxEnact` network parameters."
         },
+        "validationTimestamp": {
+          "type": "string",
+          "format": "int64",
+          "description": "Validation timestamp as Unix time in seconds."
+        },
         "updateMarket": {
           "$ref": "#/definitions/vegaUpdateMarket",
           "description": "Proposal change for modifying an existing futures market."
@@ -1114,6 +1120,10 @@
         "updateVolumeDiscountProgram": {
           "$ref": "#/definitions/vegaUpdateVolumeDiscountProgram",
           "description": "Proposal change for updating the volume discount program."
+        },
+        "newAsset": {
+          "$ref": "#/definitions/vegaNewAsset",
+          "description": "Proposal change for adding a new asset."
         }
       },
       "title": "Terms change for a batch governance proposal"
@@ -1447,10 +1457,11 @@
         "DISPATCH_METRIC_AVERAGE_POSITION",
         "DISPATCH_METRIC_RELATIVE_RETURN",
         "DISPATCH_METRIC_RETURN_VOLATILITY",
-        "DISPATCH_METRIC_VALIDATOR_RANKING"
+        "DISPATCH_METRIC_VALIDATOR_RANKING",
+        "DISPATCH_METRIC_REALISED_RETURN"
       ],
       "default": "DISPATCH_METRIC_UNSPECIFIED",
-      "title": "- DISPATCH_METRIC_MAKER_FEES_PAID: Dispatch metric that uses the total maker fees paid in the market\n - DISPATCH_METRIC_MAKER_FEES_RECEIVED: Dispatch metric that uses the total maker fees received in the market\n - DISPATCH_METRIC_LP_FEES_RECEIVED: Dispatch metric that uses the total LP fees received in the market\n - DISPATCH_METRIC_MARKET_VALUE: Dispatch metric that uses total value of the market if above the required threshold and not paid given proposer bonus yet\n - DISPATCH_METRIC_AVERAGE_POSITION: Dispatch metric that uses the time weighted average position\n - DISPATCH_METRIC_RELATIVE_RETURN: Dispatch metric that uses the relative PNL of the party in the market\n - DISPATCH_METRIC_RETURN_VOLATILITY: Dispatch metric that uses return volatility of the party in the market\n - DISPATCH_METRIC_VALIDATOR_RANKING: Dispatch metric that uses the validator ranking of the validator as metric"
+      "title": "- DISPATCH_METRIC_MAKER_FEES_PAID: Dispatch metric that uses the total maker fees paid in the market\n - DISPATCH_METRIC_MAKER_FEES_RECEIVED: Dispatch metric that uses the total maker fees received in the market\n - DISPATCH_METRIC_LP_FEES_RECEIVED: Dispatch metric that uses the total LP fees received in the market\n - DISPATCH_METRIC_MARKET_VALUE: Dispatch metric that uses total value of the market if above the required threshold and not paid given proposer bonus yet\n - DISPATCH_METRIC_AVERAGE_POSITION: Dispatch metric that uses the time weighted average position\n - DISPATCH_METRIC_RELATIVE_RETURN: Dispatch metric that uses the relative PNL of the party in the market\n - DISPATCH_METRIC_RETURN_VOLATILITY: Dispatch metric that uses return volatility of the party in the market\n - DISPATCH_METRIC_VALIDATOR_RANKING: Dispatch metric that uses the validator ranking of the validator as metric\n - DISPATCH_METRIC_REALISED_RETURN: Dispatch metric that uses the realised return of the party in a market"
     },
     "vegaDispatchStrategy": {
       "type": "object",
@@ -1521,6 +1532,11 @@
         "capRewardFeeMultiple": {
           "type": "string",
           "description": "If set, the actual amount of rewards transferred to each public key during distribution for this transfer will be `min(calculated_reward_in_quantum, cap_reward_fee_multiple × fees_paid_this_epoch_in_quantum)."
+        },
+        "transferInterval": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Number of epochs between transfers, i.e. when 4, funds will be transferred every 4 epochs with the first transfer occurring 4 epochs after the transaction is processed."
         }
       }
     },
@@ -1859,6 +1875,10 @@
         "maxFractionConsumed": {
           "type": "string",
           "description": "Max fraction of the total volume of the orderbook, within liquidity bounds, that the network can use to close its position; range 0 through 1."
+        },
+        "disposalSlippageRange": {
+          "type": "string",
+          "description": "Decimal \u003e 0 specifying the range range above and below the mid price within which the network will trade to dispose of its position.\nThe value can be \u003e 1. For example, if set to 1.5, the minimum price will be 0, ie max(0, mid_price * (1 - 1.5)), and the maximum price will be mid_price * (1 + 1.5)."
         }
       },
       "description": "Liquidation strategy used when the network holds a position resulting from position resolution."
@@ -3371,10 +3391,6 @@
         "quoteAsset": {
           "type": "string",
           "description": "Asset ID of the underlying quote asset for the spot product."
-        },
-        "name": {
-          "type": "string",
-          "description": "Name of the instrument."
         }
       },
       "title": "Spot product definition"
@@ -3389,10 +3405,6 @@
         "quoteAsset": {
           "type": "string",
           "description": "Quote asset ID."
-        },
-        "name": {
-          "type": "string",
-          "description": "Product name."
         }
       },
       "title": "Spot product configuration"

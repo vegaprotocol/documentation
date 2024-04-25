@@ -392,6 +392,7 @@ function generateLiquidationStrategy(skeleton) {
     disposalFraction: "1",
     fullDisposalSize: "18446744073709551615",
     maxFractionConsumed: "1",
+    disposalSlippageRange: "0.1"
   };
 
   liquidationStrategy[inspect.custom] = () => {
@@ -404,6 +405,8 @@ function generateLiquidationStrategy(skeleton) {
         fullDisposalSize: "${liquidationStrategy.fullDisposalSize}",
         // ${skeleton.properties.maxFractionConsumed.description} (${skeleton.properties.maxFractionConsumed.type})
         maxFractionConsumed: "${liquidationStrategy.maxFractionConsumed}",
+        /* ${skeleton.properties.disposalSlippageRange.description} (${skeleton.properties.disposalSlippageRange.type}) */
+        disposalSlippageRange: "${liquidationStrategy.disposalSlippageRange}",
       }`;
   };
 

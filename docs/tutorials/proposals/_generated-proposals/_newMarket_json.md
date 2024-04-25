@@ -74,8 +74,8 @@
             }
           },
           "metadata": [
-            "enactment:2024-05-06T10:25:13Z",
-            "settlement:2024-05-05T10:25:13Z",
+            "enactment:2024-05-14T17:48:59Z",
+            "settlement:2024-05-13T17:48:59Z",
             "source:docs.vega.xyz"
           ],
           "priceMonitoringParameters": {
@@ -106,7 +106,8 @@
             "disposalTimeStep": "500",
             "disposalFraction": "1",
             "fullDisposalSize": "18446744073709551615",
-            "maxFractionConsumed": "1"
+            "maxFractionConsumed": "1",
+            "disposalSlippageRange": "0.1"
           },
           "liquidityFeeSettings": {
             "method": "METHOD_CONSTANT",
@@ -139,8 +140,8 @@
           "tickSize": "1"
         }
       },
-      "closingTimestamp": 1714901113,
-      "enactmentTimestamp": 1714987513
+      "closingTimestamp": 1715618939,
+      "enactmentTimestamp": 1715705339
     }
   }
 }
