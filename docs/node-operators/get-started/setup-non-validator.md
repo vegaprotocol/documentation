@@ -29,7 +29,7 @@ If you prefer to build the code yourself, the instructions can be found inside t
 
 2. Check it is working by trying:
 
-```
+```shell
 user@veganode:~/vega/bin$ vega version
 Vega CLI v0.71.4 (8e5767b20902097c79e8c846cf37f2b5d01dbff8)
 
@@ -37,7 +37,7 @@ Vega CLI v0.71.4 (8e5767b20902097c79e8c846cf37f2b5d01dbff8)
 
 3. Initialise the node 
 
-```
+```shell
 vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH full
 ```
 
@@ -48,10 +48,11 @@ This creates a set of configuration files which you then need to alter for your 
 5. Use this value to update the address in the file `$YOUR_VEGA_HOME_PATH/config/node/config.toml`
 
 ```toml
- [Blockchain.tendermint]
+ [Blockchain.Tendermint]
     RPCAddr = <RPC address>
 ```
 ## Request peers
+
 6. Build a list of Tendermint peers by reaching out to existing node operators as they can provide the data, on the [Vega Discord](https://vega.xyz/discord) for example. You'll need to format the peers data as a comma separated list.
 
 7. Open the config file `$YOUR_TENDERMINT_HOME_PATH/config/config.toml` and update the value `persistent_peers` with the list created above.
@@ -67,7 +68,7 @@ This creates a set of configuration files which you then need to alter for your 
 
 9. Then start the node with the following command:
 
-```script
+```shell
 vega start --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH --network-url=https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json
 ```
 
@@ -78,14 +79,15 @@ vega start --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_P
 2. From the [Vega GitHub repo ↗](https://github.com/vegaprotocol/vega/releases), download the version of Vega that matches the `coreVersion`. Unzip the executable and make sure it is in the command path.
 
 3. Test it works
-```script
+
+```shell
 user@veganode:~/vega/bin$ vega version
 Vega CLI v0.71.6 (7a23f5e2f0fb4981c8318253142e2e23e3aa4f7c)
 ```
 
-4. Initialise the node 
+4. Initialize the node 
 
-```script
+```shell
 vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH full
 ```
 
@@ -93,13 +95,14 @@ This creates a set of configuration files which you then need to alter for your 
 
 5. Edit the file `$YOUR_TENDERMINT_HOME_PATH/config/config.toml` and find the RPC address located in the configuration point `[rpc]->laddr`
 
-6. Use this value to update the address in the file `$VEGA_PATH/config/node/config.toml``
+6. Use this value to update the address in the file `$VEGA_PATH/config/node/config.toml`
 
 ```toml
-  [Blockchain.tendermint]
+  [Blockchain.Tendermint]
     RPCAddr = <RPC address>
 ```
 ## Request peers
+
 7. Build a list of Tendermint peers by reaching out to existing node operators as they can provide the data, on the [Vega Discord](https://vega.xyz/discord) for example. You'll need to format the peers data as a comma separated list.
 
 8. Open the config file `$TENDERMINT_PATH/config/config.toml` and update the value `[p2p] -> persistent_peers` with the list created above
@@ -109,7 +112,9 @@ This creates a set of configuration files which you then need to alter for your 
 ```toml
   [p2p]
     max_packet_msg_payload_size=16384
-  [Mempool Configuration Option]
+    pex = true
+    seeds = "b0db58f5651c85385f588bd5238b42bedbe57073@13.125.55.240:26656,abe207dae9367995526812d42207aeab73fd6418@18.158.4.175:26656,198ecd046ebb9da0fc5a3270ee9a1aeef57a76ff@144.76.105.240:26656,211e435c2162aedb6d687409d5d7f67399d198a9@65.21.60.252:26656,c5b11e1d819115c4f3974d14f76269e802f3417b@34.88.191.54:26656,61051c21f083ee30c835a34a0c17c5d1ceef3c62@51.178.75.45:26656,b0db58f5651c85385f588bd5238b42bedbe57073@18.192.52.234:26656,36a2ca7bb6a50427be2181c8ebb7f62ac62ebaf5@m2.vega.community:26656,9903c02a0ff881dc369fc7daccb22c1f9680d2dd@api0.vega.community:26656,9903c02a0ff881dc369fc7daccb22c1f9680d2dd@api0.vega.community:26656,32d7380b195c088c0605c5d24bcf15ff1dade05f@api1.vega.community:26656,4f26ec99d3cf6f0e9e973c0a5f3da87d89ec6677@api2.vega.community:26656,eafacd11af53cd9fb2a14eada53485779cbee4ab@api3.vega.community:26656"
+  [mempool]
     broadcast = true
   [statesync]
     enable = true
@@ -120,11 +125,12 @@ This creates a set of configuration files which you then need to alter for your 
 
 10. Start the node with the following command:
 
-```script
+```shell
 vega start --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH --network-url=https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json
 ```
 
 ## Upgrade your node using Visor
+
 We strongly recommend using the tool `Visor` to start up the Vega node as it will transparently take care of upgrading the node as new versions of the software are required. Learn more about it on the [Visor page](../visor.md).
 
 During the replay process, the node will require newer versions of the software at the same block height that the nodes were upgraded previously. As an example: If the chain was upgraded from version 0.12.3 to 0.12.4 at block 123456, everyone running this network would need to have version 0.12.3 when they process block 123456 and then have version 0.12.4 when they process block 123457.
@@ -142,7 +148,22 @@ Vega Visor CLI v0.72.10 (26afd41a2fe4cb20f3fffeae0d4cfe523fc35614)
 ```script
 visor init --home=$YOUR_VISOR_HOME_PATH
 ```
-4. Edit the file `$YOUR_VISOR_HOME_PATH/genesis/run-config.toml` to customise for your setup:
+
+4. Edit the `$YOUR_VISOR_HOME_PATH/config.toml` file to tune the startup parameters
+
+
+```toml
+...
+...
+
+[autoInstall]
+  enabled = true
+  [autoInstall.asset]
+    name = "vega-linux-amd64.zip"
+    binaryName = "vega"
+```
+
+5. Edit the `$YOUR_VISOR_HOME_PATH/genesis/run-config.toml` file to customize for your setup:
 
 ```toml
 name = "genesis"
@@ -161,7 +182,19 @@ name = "genesis"
 
 See the [Visor config documentation ↗](https://github.com/vegaprotocol/vega/blob/develop/visor/visor-config.md) for more details on what you can configure and why.
 
-5. Start the node by running the command
+6. Copy the vega binary
+
+```shell 
+cp $PATH_TO_DOWNLOADED_VEGA_BINARY $YOUR_VISOR_HOMEPATH/genesis/vega
+```
+
+7. Link the genesis directory to the current - tell visor which folder to use
+
+```shell
+ln -s $YOUR_VISOR_HOMEPATH/genesis $YOUR_VISOR_HOMEPATH/current
+```
+
+8. Start the node by running the command
 
 ```script
 visor --home=$YOUR_VISOR_HOME_PATH run

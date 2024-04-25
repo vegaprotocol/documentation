@@ -230,28 +230,6 @@ chown -R postgres:postgres /home/vega/postgresql
 chomd 700 /home/vega/postgresql
 ```
 
-### Potential error: wrong Block.Header.AppHash at block 41090347
-
-A bug crashed the mainnet network at block `41090347`.
-
-You may see the following error:
-
-```
-wrong Block.Header.AppHash.  Expected E02A8186F254267A97D069DEFE0DE1EB581B952ACE04CA9C73F5C930EFD581E2, got 24808BBEF33F7B7DDB59F814621A9AC587000D7E4191646256DADD2345A8BB56
-```
-
-To fix the issue follow the below steps:
-
-1. Stop your node.
-2. Run tm rollback for a single block: `vega tm rollback --home <tendermint_home>`
-3. Replace the vega binary with [0.74.10-fix.1](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1)
-4. Update the config/flag to your node from the one before the last snapshot.
-    a. If you use Visor you can add the following path to the run-config.toml(`<vegavisor_home>/current/run-config.toml`) file: `"--snapshot.load-from-block-height", "41090047"` 
-    b. If you do not use Visor, you can add the following flag to your start command: `--snapshot.load-from-block-height 41090047`
-    c. You can also update core config (`<vega_home>/config/node/config.toml`): `Snapshot.StartHeight = 41090047`
-5. Start node
-6. When your node is stable, and it is running revert the change applied in step 4.
-
 ## Starting the data node from block 0
 
 If you're starting your data node from block zero, the non validator node must also be starting from block 0. If you don't already have a non validator set up, do it before continuing.
@@ -305,6 +283,45 @@ If your node fails with this error message, follow the procedure described below
 2. Replace the old vega binary with the one you downloaded
 3. Start your node with the latest local snapshot - just restart node with a new binary
 
+### Potential error: wrong Block.Header.LastResultsHash
+
+A bug crashed the mainnet network at block `38535816`.
+
+The error you should expect is:
+
+```
+wrong Block.Header.LastResultsHash.  Expected 3A736D1F6EAC1219BB9B2A38F7778707A14B837A9723DC72C8B40DE8F26E9EC0, got A939F9452FB4C17D926C8853B65F4629FF2EB00E188E1970872D688DEEF33AC2
+```
+
+To fix the issue, follow these steps:
+
+1. Stop your node if it is still running
+2. Swap your vega binary with [the v0.74.7-patch-mainnet-affected-nodes release ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.74.7-patch-mainnet-affected-nodes)
+3. Rollback the last comet bft block with the `vega tm rollback --home <tendermint_home>` command
+4. Start your node
+
+### Potential error: wrong Block.Header.AppHash at block 41090347
+
+A bug crashed the mainnet network at block `41090347`.
+
+You may see the following error:
+
+```
+wrong Block.Header.AppHash.  Expected E02A8186F254267A97D069DEFE0DE1EB581B952ACE04CA9C73F5C930EFD581E2, got 24808BBEF33F7B7DDB59F814621A9AC587000D7E4191646256DADD2345A8BB56
+```
+
+To fix the issue follow the below steps:
+
+1. Stop your node.
+2. Run tm rollback for a single block: `vega tm rollback --home <tendermint_home>`
+3. Replace the vega binary with [0.74.10-fix.1](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1)
+4. Update the config/flag to your node from the one before the last snapshot.
+    a. If you use Visor you can add the following path to the run-config.toml(`<vegavisor_home>/current/run-config.toml`) file: `"--snapshot.load-from-block-height", "41090047"` 
+    b. If you do not use Visor, you can add the following flag to your start command: `--snapshot.load-from-block-height 41090047`
+    c. You can also update core config (`<vega_home>/config/node/config.toml`): `Snapshot.StartHeight = 41090047`
+5. Start node
+6. When your node is stable, and it is running revert the change applied in step 4.
+
 ## Starting the data node from network history
 
 If you're using network history to get the current state to start up your data node, you'll first need to start the non validator node using a snapshot. Follow the instructions in the [non validator node set up guide](./setup-non-validator.md#start-a-node-using-a-remote-snapshot).
@@ -313,7 +330,9 @@ If you're using network history to get the current state to start up your data n
 
 ```toml
   [Broker]
-    [Broker.Socket]->Enabled = true
+    [Broker.Socket]
+      Enabled = true
+      ...
 ```
 
 2. Initialise the data node config files
@@ -324,19 +343,48 @@ vega datanode init --home=$YOUR_DATANODE_HOME_PATH "vega-mainnet-0011"
 
 3. Change the data node configuration at `$YOUR_DATANODE_HOME_PATH/config/data-node/config.toml` to `AutoInitialiseFromNetworkHistory` = true
 
-4. Find the list of network history bootstrap nodes by querying the network history bootstrap API. For example: `https://api.vega.community/api/v2/networkhistory/bootstrap``
+4. Find the list of network history bootstrap nodes by querying the network history bootstrap API. For example: `https://api0.vega.community/api/v2/networkhistory/bootstrap`
 
-5. Still in your data node configuration file, paste the list of nodes into the section:
+5. Still in your data node configuration file, paste the list of nodes into the `NetworkHistory.Store.BootstrapPeers`:
 
 ```toml
   [NetworkHistory]
     [NetworkHistory.Store]
-      BootstrapPeers
+      BootstrapPeers = ["/dns/api1.vega.community/tcp/4001/ipfs/12D3KooWDZrusS1p2XyJDbCaWkVDCk2wJaKi6tNb4bjgSHo9yi5Q", "/dns/api2.vega.community/tcp/4001/ipfs/12D3KooWEH9pQd6P7RgNEpwbRyavWcwrAdiy9etivXqQZzd7Jkrh", "/dns/api3.vega.community/tcp/4001/ipfs/12D3KooWEH9pQd6P7RgNEpwbRyavWcwrAdiy9etivXqQZzd7Jkrh"]
 ```
 
-6. Start the data node
+6. Set number of blocks to sync to a low value if you do not need historical data - it drastically improves startup time.
 
+```toml
+...
+  [NetworkHistory.Initialise]
+    MinimumBlockCount = 100
+    ...
 ```
+
+7. Set the block retention span
+
+```toml
+  ...
+  [NetworkHistory.Store]
+    HistoryRetentionBlockSpan = 10000000
+    ...
+```
+
+8. If your node is for internal use only, disable publishing network history segments - it will improve performance.
+
+```toml
+[NetworkHistory]
+  Enabled = true
+  Publish = false
+  ...
+  ...
+```
+
+
+9. Start the data node
+
+```shell
 vega datanode start --home=$YOUR_DATANODE_HOME_PATH
 ```
 
@@ -344,7 +392,7 @@ vega datanode start --home=$YOUR_DATANODE_HOME_PATH
 The data node will by default pull all the entire chain's history and is expected to take almost 24 hours. The `--networkhistory.initialise.block-count` option can be used to limit the amount of data pulled, but this is not recommended for the purposed of a public data node.
 :::
 
-7. Start the non validator node. Confirm that both nodes are running and you can see the block height increasing on both.
+10. Start the non validator node. Confirm that both nodes are running and you can see the block height increasing on both.
 
 ## Using Visor to control and upgrade your data node
 
@@ -366,6 +414,12 @@ Follow the instructions for Visor in the [non validator node setup guide](./setu
 ```
 visor --home=$YOUR_VISOR_HOME_PATH run
 ```
+
+:::note Post start actions
+
+Make sure you disable statesync by setting `statesync.enabled = false` in the tendermint configuration and `AutoInitialiseFromNetworkHistory = false` in the network history. Otherwise your node will FAIL after next restart.
+:::
+
 
 ## Configure the data node SSL certificate
 
