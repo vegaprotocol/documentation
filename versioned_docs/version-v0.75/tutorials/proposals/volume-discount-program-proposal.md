@@ -47,6 +47,8 @@ To end an existing program early, set your proposal up with the exact same param
 | `minimumRunningNotionalTakerVolume` | The notional volume of aggressive trades that a trader is required to have across the aggregation window, to access the discount in this tier | Integer greater than or equal to 1 |
 | `volumeDiscountFactor` | Proportion of each trader's fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
 
+## Submitting proposals in a batch
+
 <Batch />
 
 ## Templates and submitting

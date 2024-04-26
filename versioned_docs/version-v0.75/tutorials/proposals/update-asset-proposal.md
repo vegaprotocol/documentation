@@ -41,7 +41,7 @@ After a new asset vote passes, the change has to be submitted to the asset bridg
 ## Anatomy of an update asset proposal
 The key inputs on an update asset proposal are as follows.
 
-In addition to the parameters you want to change, you must include the existing parameters from the original new asset proposal, even if they are not being changed.
+In addition to the parameters you want to change, you must include the existing editable parameters from the original new asset proposal, even if they are not being changed.
 
 **Rationale** requires a title and a description. They are free-text fields that describe the purpose of the proposal. Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the asset proposal. Formatting your rationale with markdown makes it easier to read when it's displayed.
 
@@ -51,6 +51,8 @@ In addition to the parameters you want to change, you must include the existing 
 | `quantum` | The minimum economically meaningful amount of the asset (string). This should be the amount of the asset roughly equal to 1 USD. It is used in a number of ways by the protocol but only requires precision to an order of magnitude level.  For example, if one BTC = 26,583 USD, then in this case a quantum of 1 / 25,000 or 0.00004 is sufficient. Converted to asset decimals it would be 40000000000000. | 1000000000000000000 |
 | `withdrawThreshold` | The maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the ERC-20 bridge per asset. Setting this to 1 means all withdrawals will be subject to the delay. It's measured in asset decimals, so 1 is the smallest increment of the market's asset. | 1 |
 | `lifetimeLimit` | The lifetime deposit limit per public key, in asset decimals. Users are able to opt out of this functionality using the `exempt_depositor` write function on the ERC20 contract if they wish to. Suggested value: equivalent of 10,000 USD | 10000000000000000000000 |
+
+## Submitting proposals in a batch
 
 <Batch />
 

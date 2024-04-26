@@ -48,8 +48,8 @@ If you have a client that you want use to send a transaction using the Vega wall
 
 :::note Go deeper
 * **[Guide: How to build and send transactions](../tutorials/build-send-transactions.md)**: See how to build and send transactions using the Vega Wallet.
-* **[Concept: Transactions](./../concepts/vega-chain/transactions.md)**: Learn about the concepts of transactions, commands, validation, and ordering.
 * **[API: Commands](./grpc/vega/commands/v1/commands.proto)** See a full list of transaction types. 
+* **[Concept: Transactions](./../concepts/vega-chain/transactions.md)**: Learn about the concepts of transactions, commands, validation, and ordering.
 :::
 
 ### Transaction hashes

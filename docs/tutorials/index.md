@@ -32,10 +32,11 @@ Take a look at the tutorials for help with using the Vega software.
 | 🛍️ [Propose a new futures market](./proposals/new-market-proposal.md)        | How to propose a new futures market |
 | 💹 [Propose a new spot market](./proposals/new-spot-market.md)        | How to propose a new spot market |
 | ⇒ [Propose a new successor futures market](./proposals/new-successor-market-proposal.md)        | How to propose a new successor futures market |
-| 🛒 [Propose a change to a market](./proposals/update-market-proposal.md)        | How to propose an update to market parameters |
+| 🛒 [Propose changing a futures market](./proposals/update-market-proposal.md)        | How to propose changing futures market parameters |
+| 🛒 [Propose changing a spot market](./proposals/update-spot-market.md)        | How to propose changing spot market parameters |
 | 🪙 [Propose a new asset](./proposals/new-asset-proposal.md)        | How to propose a new asset |
 | 🌉 [Update the asset bridge](./proposals/update-asset-bridge.md)        | How to add the asset to the bridge after proposing it |
-| 💱 [Propose a change to an asset](./proposals/update-asset-proposal.md)        | How to propose an update to an asset |
+| 💱 [Propose changing an asset](./proposals/update-asset-proposal.md)        | How to propose changing an asset's parameters |
 | 💡 [Create a freeform proposal](./proposals/freeform-proposal.md)                     | How to create a freeform proposal |
 
 ## Community-created projects

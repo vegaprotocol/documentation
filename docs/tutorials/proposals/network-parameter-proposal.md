@@ -65,6 +65,8 @@ For example, a proposal to change the `rewards.activityStreak.benefitTiers` netw
 }"
 ```
 
+## Submitting proposals in a batch
+
 <Batch />
 
 

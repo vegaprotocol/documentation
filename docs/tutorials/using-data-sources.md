@@ -27,63 +27,116 @@ The **binding** tells the market which field contains the value. The **spec** de
 ## EVM data sources
 Settlement data can be sourced from smart contracts and EVM chains that support Ethereum RPC calls.
 
+Data sources that use Ethereum RPC calls cause the Vega network validators to read the result from the specified smart contract and submit the result to Vega. When the data is verified by enough validators, this price is accepted on to the network.
+
+Read on for examples and guidance on [ABIs](#abi), [normalisers](#normaliser) and [time trigger](#time-trigger).
+
+### Using a Pyth price feed
+Vega supports using Pyth price feeds, with data published to Gnosis or other EVM chains.
+
+When considering a market to propose, check the [Pyth price feed IDs ↗](https://pyth.network/developers/price-feed-ids) to determine if Pyth provides the required price data feed.
+
+The following spec would read from the Gnosis contract at `0x28...17b43` to pull data from the Pyth price feed `0xe6...5b43` every 60 seconds, and fetch the Bitcoin price value from the returned object. 
+
+You can use the below snippet for contract and ABI details in your proposal. The ABI won't change as long as the contract, which is managed by Pyth, doesn't change.
+
+```json
+"dataSourceSpecForSettlementData": {
+  "external": {
+    "ethOracle": {
+      "address": "0x2880ab155794e7179c9ee2e38200202908c17b43",
+      "abi": "[{\n      \"inputs\" : [\n         {\n            \"internalType\" : \"bytes32\",\n            \"name\" : \"id\",\n            \"type\" : \"bytes32\"\n         }\n      ],\n      \"name\" : \"getPrice\",\n      \"outputs\" : [\n         {\n            \"components\" : [\n               {\n                  \"internalType\" : \"int64\",\n                  \"name\" : \"price\",\n                  \"type\" : \"int64\"\n               },\n               {\n                  \"internalType\" : \"uint64\",\n                  \"name\" : \"conf\",\n                  \"type\" : \"uint64\"\n               },\n               {\n                  \"internalType\" : \"int32\",\n                  \"name\" : \"expo\",\n                  \"type\" : \"int32\"\n               },\n               {\n                  \"internalType\" : \"uint256\",\n                  \"name\" : \"publishTime\",\n                  \"type\" : \"uint256\"\n               }\n            ],\n            \"internalType\" : \"struct PythStructs.Price\",\n            \"name\" : \"price\",\n            \"type\" : \"tuple\"\n         }\n      ],\n      \"stateMutability\" : \"view\",\n      \"type\" : \"function\"\n   }]",
+      "method": "getPrice",
+      "args": [
+        "0xe62df6c8b4a85fe1a67db44dc12de5db330f7ac66b72dc658afedf0f4a415b43"
+         ],
+      "trigger": {
+        "timeTrigger": {
+          "every": "60"
+         }
+      },
+      "requiredConfirmations": "3",
+      "filters": [
+        {
+          "key": {
+            "name": "btc.price",
+            "type": "TYPE_INTEGER",
+            "numberDecimalPlaces": "8"
+          },
+          "conditions": [{
+            "operator": "OPERATOR_GREATER_THAN",
+            "value": "0"
+          }]
+        }
+      ],
+      "normalisers": [{
+        "name": "btc.price",
+        "expression": "$[0].price"
+      }],
+      "sourceChainId": "100"
+    }
+  }
+} 
+```
+### Using an Ethereum price feed
 The following spec would read from the Ethereum contract at `0x1b4...e43` every 30 seconds, and fetch the Bitcoin price value from the returned object:
 
 ```javascript
 "dataSourceSpecForSettlementData": {
-    "external": {
-        "ethOracle": {
-            "sourceChainId": "1",
-            "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
-            "abi": "[{\"inputs\":[],\"name\":\"latestRoundData\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-            "method": "latestRoundData",
-            "normalisers": [{
-                  "name": "btc.price",
-                  "expression": "$[0]"
-              }],
-            "requiredConfirmations": 3,
-            "trigger": {
-                "timeTrigger": {
-                    "every": 30
-                }
+  "external": {
+      "ethOracle": {
+        "sourceChainId": "1",
+        "address": "0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43",
+        "abi": "[{\"inputs\":[],\"name\":\"latestRoundData\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+        "method": "latestRoundData",
+        "normalisers": [{
+              "name": "btc.price",
+              "expression": "$[0]"
+          }],
+        "requiredConfirmations": 3,
+        "trigger": {
+            "timeTrigger": {
+                "every": 30
+            }
+        },
+        "filters": [{
+            "key": {
+              "name": "btc.price",
+              "type": "TYPE_INTEGER",
+              "numberDecimalPlaces": 8
             },
-            "filters": [{
-                    "key": {
-                        "name": "btc.price",
-                        "type": "TYPE_INTEGER",
-                        "numberDecimalPlaces": 8
-                    },
-                    "conditions": [
-                        {
-                            "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
-                            "value": "0"
-                        }
-                    ]
-                }
-            ]
-        }
-    }
+            "conditions": [{
+              "operator": "OPERATOR_GREATER_THAN_OR_EQUAL",
+              "value": "0"
+            }]
+        }]
+      }
+  }
 }
 ```
 
-This will cause the network validators to read the result from the specified smart contract and submit the result to Vega. When the data is verified by enough validators, this price is accepted on to the network.
-
-This is unlike the other two Oracle types ([Open Oracle signed messages](#open-oracle-signed-messages) & [JSON signed message data](#json-signed-message-data)),which both rely on a third party submitting data to the network.
-
 ### ABI
-The `address` field in the specification tells the spec above which address to interact with on the chain. The `abi` ([Application Binary Interface](https://docs.soliditylang.org/en/develop/abi-spec.html#json) & `method` field on the spec above tells the settlement spec **how** to interact with it. EVM oracle settlement specifications use the JSON ABI of the smart contract to describe the method on the contract that will be called to fetch the data. The ABI will contain the function name, details of any paramters required, and the format of the response. 
+The `address` field in the specification tells the spec above which address to interact with on the chain. 
 
-For example, the [Chainlink BTC/USD oracle](https://data.chain.link/ethereum/mainnet/crypto-usd/btc-usd) has its JSON ABI [published on Etherscan](https://etherscan.io/address/0xf4030086522a5beea4988f8ca5b36dbc97bee88c#code). When defining the data source spec, you can populate the `abi` field with the full ABI, and then set the `method` to `latestRoundData`.
+The `abi` ([Application Binary Interface ↗](https://docs.soliditylang.org/en/develop/abi-spec.html#json) & `method` field on the specs above tell the settlement spec **how** to interact with it. 
+
+EVM oracle settlement specifications use the JSON ABI of the smart contract to describe the method on the contract that will be called to fetch the data. The ABI will contain the function name, details of any parameters required, and the format of the response.
+
+Examples: 
+
+You can see the Pyth data feed ABI on [Gnosisscan ↗](https://gnosisscan.io/address/0x2880ab155794e7179c9ee2e38200202908c17b43#readProxyContract). When defining the data source spec, you can populate the `abi` field with the full ABI, and then set the `method` to `getPrice`.
+
+The [Chainlink BTC/USD oracle ↗](https://data.chain.link/ethereum/mainnet/crypto-usd/btc-usd) has its JSON ABI [published on Etherscan ↗](https://etherscan.io/address/0xf4030086522a5beea4988f8ca5b36dbc97bee88c#code). When defining the data source spec, you can populate the `abi` field with the full ABI, and then set the `method` to `latestRoundData`.
 
 :::note Shrinking the ABI
-When populating the `abi` field on your data source spec, you can remove the methods and other fields that are not required by the oracle. We've done that in the sample data source above - only the `latestRoundData` method and its inputs and outputs are in the `abi` field.
+When populating the `abi` field on your data source spec, you can remove the methods and other fields that are not required by the oracle.
 :::
 
 ### Time trigger
-As it says above, with EVM data source specs the validators will read the specified smart contract and method detailed in the ABI. The `trigger` instructs the validators when to do this. In the smple above, it will be called every 30 seconds.
+As it says above, with EVM data source specs the validators will read the specified smart contract and method detailed in the ABI. The `trigger` instructs the validators when to do this.
 
 ### Normaliser
-A [JSONPath](https://datatracker.ietf.org/wg/jsonpath/about/) expression use to extract data from the JSON returned from the method call. In the spec above, `expression` is set to `$[0]`, which returns the first item in an array. `$` would return the complete result.
+A [JSONPath](https://datatracker.ietf.org/wg/jsonpath/about/) expression use to extract data from the JSON returned from the method call. In the examples above, `expression` is set to `$[0]`, which returns the first item in an array. `$` would return the complete result.
 
 ## Open Oracle signed messages
 Vega's data sourcing framework supports signed ABI-encoded [Open Oracle ↗](https://github.com/compound-finance/open-oracle) or JSON messages. ABI-encoded signed messages can be verified to have come from the public key that signed them, which allows markets on Vega to use pricing data sourced from Ethereum.

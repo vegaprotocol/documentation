@@ -97,7 +97,7 @@ An instrument contains the following properties:
 | `dataSourceSpecForSettlementData` | This defines the data source that will be used to identify the settlement price when the market expires. | prices.ORANGES.value |
 | `dataSourceSpecForTradingTermination` | The fields that define the data source used for terminating trading on the market. | vegaprotocol.builtin.timestamp |
 | `dataSourceSpecBinding` | The fields describe how specific information provided by the data source is used. For example, they can identify the specific name of the settlement price output, or the specific name of the trading termination property. |
-| `tickSize` | Sets the smallest possible change in the price in the market. Tick size is in relation to the market `decimalPlaces`, as an integer. If a BTCUSDT market is configured with 5 mdp, tick size 1 would make the smallest tick size 0.00001. Tick size can help manage a market with 'too many' decimal places, or an asset's value dropping dramatically. | A value of 2000 with 5 `decimalPlaces` is a scaled tick size of 0.02. |
+| `tickSize` | Sets the smallest possible change in the price in the market. Tick size is in relation to the market `decimalPlaces`, as an integer. If a BTCUSDT market is configured with 5 mdp, tick size 1 would make the smallest tick size 0.00001. Tick size can help manage a market with 'too many' decimal places, or an asset's value dropping dramatically. A value of 2000 with 5 `decimalPlaces` is a scaled tick size of 0.02. A minimum of 10 is recommended. | 10 |
 
 For easy reading, the data source filters are separated out - see [Data source bindings](#data-source-bindings) below to see the fields for specifying data.
 
@@ -234,6 +234,8 @@ If you want the community to vote on the verified price used to settle the marke
 After the market has terminated, update the price by: 
 1. Submitting an [update market proposal](./update-market-proposal.md#submitting-a-verified-settlement-price) with the verified price 
 2. Sending the [settlement transaction](../using-data-sources.md#1-define-your-json-structure).
+
+## Submitting proposals in a batch
 
 <Batch />
 

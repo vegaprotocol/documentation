@@ -65,6 +65,8 @@ Under `dataSourceSpecForSettlementData`:
 
 Once the proposal passes the governance vote, the nominated Vega key (`dataSourceSpecForSettlementData` -> `signers` -> `pubkey`) will need to [submit the price to the network](../using-data-sources.md#submitting-JSON-data).
 
+## Submitting proposals in a batch
+
 <Batch />
 
 ## Templates and submitting

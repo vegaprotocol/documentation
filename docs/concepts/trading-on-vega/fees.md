@@ -25,6 +25,13 @@ The amount a trader pays in fees for each order is the same regardless of how ma
 
 During a market's opening auction, no fees are collected. If a market is in a price monitoring auction, each side of a matched trade contributes 50% of the infrastructure and liquidity fees. Maker fees are not collected.
 
+### Asset fees are paid in
+Derivatives markets' fees are charged in the market's settlement asset. 
+
+Spot markets' fees are charged in the market's quote asset. 
+
+The aggressor *buying* the base asset for the quote asset pays more in their trade to cover the fees. The aggressor *selling* the base asset has the fees deducted from the quote asset amount they receive.
+
 ### Fee distribution and breakdown
 Fees are calculated when a trade is filled, and paid in the market's settlement currency. The fees due are taken from the collateral in the trader's general account. 
 
