@@ -53,8 +53,8 @@ You can use the below snippet for contract and ABI details in your proposal. The
       "trigger": {
         "timeTrigger": {
           "every": "60"
-                    }
-                  },
+         }
+      },
       "requiredConfirmations": "3",
       "filters": [
         {
