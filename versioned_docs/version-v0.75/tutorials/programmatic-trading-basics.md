@@ -22,7 +22,7 @@ This guide covers how to:
 7.  [Submit an order to place a trade](#submit-an-order-to-place-a-trade)
 8.  [Cancel an order](#cancel-an-order)
 9.  [Monitor trades and overall positions](#monitor-trades-and-overall-positions)
-10. [See example bot code in Go](#example-bot-code-in-go)
+10. [See example bot code in Go](#bot-code)
 
 This tutorial uses Linux commands. The overall guide will also work for Windows and MacOS, but you may need to update the command format. Each example command with a file path has a `$HOME` variable, which you should replace with your home path.
 
