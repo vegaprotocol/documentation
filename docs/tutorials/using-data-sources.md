@@ -36,15 +36,15 @@ Vega supports using Pyth price feeds, with data published to Gnosis or other EVM
 
 When considering a market to propose, check the [Pyth price feed IDs ↗](https://pyth.network/developers/price-feed-ids) to determine if Pyth provides the required price data feed.
 
-The following spec would read from the Gnosis contract at `0x28...17b43` to pull data from the Pyth price feed `0xe6...5b43` every 60 seconds, and fetch the Bitcoin price value from the returned object. 
+The following spec would read from the Gnosis contract at `0x71...17b43` to pull data from the Pyth price feed `0xe6...5b43` every 60 seconds, and fetch the Bitcoin price value from the returned object. 
 
-You can use the below snippet for contract and ABI details in your proposal. The ABI won't change as long as the contract, which is managed by Pyth, doesn't change.
+You can use the below snippet for contract and ABI details in your proposal. The ABI is contract-specific and thus won't change.
 
 ```json
 "dataSourceSpecForSettlementData": {
   "external": {
     "ethOracle": {
-      "address": "0x2880ab155794e7179c9ee2e38200202908c17b43",
+      "address": "0x719abd606155442c21b7d561426d42bd0e40a776",
       "abi": "[{\n      \"inputs\" : [\n         {\n            \"internalType\" : \"bytes32\",\n            \"name\" : \"id\",\n            \"type\" : \"bytes32\"\n         }\n      ],\n      \"name\" : \"getPrice\",\n      \"outputs\" : [\n         {\n            \"components\" : [\n               {\n                  \"internalType\" : \"int64\",\n                  \"name\" : \"price\",\n                  \"type\" : \"int64\"\n               },\n               {\n                  \"internalType\" : \"uint64\",\n                  \"name\" : \"conf\",\n                  \"type\" : \"uint64\"\n               },\n               {\n                  \"internalType\" : \"int32\",\n                  \"name\" : \"expo\",\n                  \"type\" : \"int32\"\n               },\n               {\n                  \"internalType\" : \"uint256\",\n                  \"name\" : \"publishTime\",\n                  \"type\" : \"uint256\"\n               }\n            ],\n            \"internalType\" : \"struct PythStructs.Price\",\n            \"name\" : \"price\",\n            \"type\" : \"tuple\"\n         }\n      ],\n      \"stateMutability\" : \"view\",\n      \"type\" : \"function\"\n   }]",
       "method": "getPrice",
       "args": [
@@ -124,7 +124,7 @@ EVM oracle settlement specifications use the JSON ABI of the smart contract to d
 
 Examples: 
 
-You can see the Pyth data feed ABI on [Gnosisscan ↗](https://gnosisscan.io/address/0x2880ab155794e7179c9ee2e38200202908c17b43#readProxyContract). When defining the data source spec, you can populate the `abi` field with the full ABI, and then set the `method` to `getPrice`.
+You can see the Pyth data feed ABI on [Gnosisscan ↗](https://gnosisscan.io/address/0x719abd606155442c21b7d561426d42bd0e40a776#readProxyContract). When defining the data source spec, you can populate the `abi` field with the full ABI, and then set the `method` to `getPrice`.
 
 The [Chainlink BTC/USD oracle ↗](https://data.chain.link/ethereum/mainnet/crypto-usd/btc-usd) has its JSON ABI [published on Etherscan ↗](https://etherscan.io/address/0xf4030086522a5beea4988f8ca5b36dbc97bee88c#code). When defining the data source spec, you can populate the `abi` field with the full ABI, and then set the `method` to `latestRoundData`.
 
