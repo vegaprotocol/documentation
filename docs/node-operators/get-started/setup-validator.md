@@ -204,6 +204,34 @@ Some RPC providers include:
 ...
 ```
 
+### Point to Arbitrum node
+In order to validate events happening on the Arbitrum bridge, each Vega validator node needs to be connected to an **Arbitrum archive node** (not a full node). This allows the Vega node to verify that an event happened on Arbitrum.
+
+The Arbitrum node address for the RPC endpoint is set in the configuration. 
+
+Once you have an Arbitrum archive node, insert the URL in `YOUR_VEGA_HOME_PATH/config/node/config.toml`, in the section:
+
+```toml
+[Ethereum]
+  Level = "Info"
+  RPCEndpoint = "ETH-RPC-ENDPOINT"
+  RetryDelay = "15s"
+
+  [[Ethereum.EVMBridgeConfigs]]
+    ChainID = "42161" << use this chain ID
+    RPCEndpoint = "ARBITRUM_RPC" <<< set your archival node RPC endpoint here
+```
+
+When a Vega validator node is watching for Ethereum events it will call the `eth_getLogs` endpoint over a set of Ethereum blocks for particular contracts. By default, the maximum block span Vega will use when making this call is 10,000 blocks. The maximum block span allowed by some Ethereum node providers can be less than this. The configuration option `MaxEthereumBlocks` can be used to reduce the block span used by Vega so that it does not exceed the maxmimum limit imposed by an Ethereum node provider:
+
+```
+[EvtForward.Ethereum]
+  Level = "Info"
+  MaxEthereumBlocks = 10000
+  PollEventRetryDuration = "20s"
+```
+
+
 ## Set up the node wallet
 Each validator node requires two cryptographic wallets to operate properly:
 * Ethereum wallet: Used to sign transactions going through the ERC20 bridge

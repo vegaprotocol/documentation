@@ -1,20 +1,36 @@
 ---
-title: Upgrade to 0.75
-sidebar_label: Upgrade to 0.75
+title: Upgrade to 0.76
+sidebar_label: Upgrade to 0.76
 ---
 
-This guide describes the steps to upgrade from v0.74.10 to v0.75.1 using the protocol upgrade mechanism. See the changelogs for [v0.75.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0), [v0.75.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.1) (and 0.75.2 coming soon) for information about breaking changes and new features.
+This guide describes the steps to upgrade from v0.75.6 to v0.76.1 using the protocol upgrade mechanism. See the changelog for  [v0.76.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.76.0) and [v0.76.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.76.1) for information about breaking changes and new features.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems.
 
 The guide assumes you are using systemd commands (`systemctl` and `journalctl`) to control binaries. If you are using something different, your system's commands may vary.
 
-This guide is specifically intended for those who are already running a validator node with version `v0.74.10`.
+This guide is specifically intended for those who are already running a validator node with version `v0.75.6`.
 
 ## Study the changes between versions
 
-Before upgrading your node software, **review the changelogs** for [v0.75.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.0), [v0.75.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.1), [v0.75.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.2), [v0.75.3 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.3), [v0.75.4 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.4) and [v0.75.5 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.5) for a list of breaking API changes compared to the previously released version.
+Before upgrading your node software, **review the changelogs** for [v0.76.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.76.0) and [v0.76.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.76.1) for a list of breaking API changes compared to the previously released version.
+
+## Required changes
+To support the new bridge you must run an **archival** Arbitrum node. We recommend setting this up in advance of your intended upgrade time so you are prepared.
+
+Ahead of the upgrade, insert the URL for your Arbitrum archive node in `YOUR_VEGA_HOME_PATH/config/node/config.toml`, in the section:
+
+```toml
+[Ethereum]
+  Level = "Info"
+  RPCEndpoint = "ETH-RPC-ENDPOINT"
+  RetryDelay = "15s"
+
+  [[Ethereum.EVMBridgeConfigs]]
+    ChainID = "42161" << use this chain ID
+    RPCEndpoint = "ARBITRUM_RPC" <<< set your archival node RPC endpoint here
+```
 
 ## Before you upgrade
 
@@ -44,7 +60,7 @@ The default locations for configuration files:
 - vega-core: `YOUR_VEGA_HOME/config/node/config.toml`
 - comet BFT: `YOUR_COMET_BFT_HOME/config/config.toml`
 
-Add the following new parameters to the configuration files.
+Add the following new parameter to the configuration file.
 
 We recommend checking all of the changes on your own. Follow the below instructions to do it, and read through every description to understand the changes:
 
@@ -55,9 +71,15 @@ We recommend checking all of the changes on your own. Follow the below instructi
   - data-node config
 3. Compare the new generated file in the temp location and the old file to see the differences.
 
-
 ## Upgrade your node
 To upgrade the network follow the [protocol upgrade documentation](../how-to/upgrade-network.md).
+
+## After you upgrade
+
+1. There is a new network parameter for `evmbridgeconfigs`. This value is hard-coded as it needs to be available when your node starts up.
+Once your node starts, map the network ID to the config as seen in the [bridge mapping file ↗](https://github.com/vegaprotocol/vega/blob/develop/core/netparams/bridge_mapping.go). This includes the contracts that will be deployed. 
+
+2. After upgrading, one of the validator set will need to remove the party that deployed the bridge from the signer set. 
 
 ## Common issues
 If you come across any problems, please refer to the [frequent issues](../how-to/solve-frequent-issues.md) solutions before requesting help.
