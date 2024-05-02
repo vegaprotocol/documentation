@@ -61,18 +61,18 @@ When a market leaves its opening auction, it will use the mid-price within the r
 
 When a [successor market](../governance/market.md#propose-a-successor-market) leaves its opening auction, the insurance pool fraction (multiplied by the parent market's insurance pool balance) that was defined in its market proposal is transferred to the successor market's insurance pool.
 
-### Auction type: Price monitoring
+### Auction type: Protective
 Sometimes low liquidity and/or a large quantity of order volume can cause a market's price to diverge from the true price. The Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be. The market's risk model and price monitoring settings are used to determine what the boundaries are between small, acceptable moves and large, unrealistic ones.
 
 If a price move breaches the price monitoring bounds, a market will go into a price monitoring auction.
 
-#### Entry into price monitoring auction 
-A market will go into a price monitoring auction if generating a trade would result in a price that is larger than the theoretical bounds implied by the risk model, and the market's price monitoring settings. The trade is not generated, the orders that instigated that trade remain on the order book, and the market goes into an auction.
+#### Entry into protective auction 
+A market will go into a protective auction if generating a trade would result in a price that is larger than the theoretical bounds implied by the risk model, and the market's price monitoring settings. The trade is not generated, the orders that instigated that trade remain on the order book, and the market goes into an auction.
 
-#### Exit from price monitoring auction 
-A price monitoring auction's exit depends on how large the price move was, and relies on the market's risk model. For a relatively (contextually) small price move, it would be as long as <NetworkParameter frontMatter={frontMatter} param="market.auction.minimumDuration" hideName={true} />. The market's risk model informs  how many multiples of that time the auction would be extended by.
+#### Exit from protective auction 
+A protective auction's exit depends on how large the price move was, and relies on the market's risk model. For a relatively (contextually) small price move, it would be as long as <NetworkParameter frontMatter={frontMatter} param="market.auction.minimumDuration" hideName={true} />. The market's risk model informs  how many multiples of that time the auction would be extended by.
 
-If no one places orders in the price monitoring auction, the auction is exited and the original order is executed.  
+If no one places orders in the protective auction, the auction is exited and the original order is executed.  
 
 :::note Read more
 [Concept: Price monitoring](./market-protections#price-monitoring)

@@ -28,29 +28,29 @@ The dynamics of market price movements mean that prices don't always represent t
 
 Sometimes low liquidity and/or a large quantity of order volume can cause the price to diverge from the true market price. The Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be. 
 
-Price monitoring exists to determine the real price, in the case that price moves are extreme and unrealistic. If the move is deemed to be large, the market's trading mode is temporarily changed into auction mode to get more information from market participants before any trades are generated.
+Price monitoring exists to determine the real price, in the case that price moves are extreme and unrealistic. If the move is deemed to be large, the market's trading mode is temporarily changed to a protective auction to get more information from market participants before any trades are generated.
 
 Distinguishing between small and large moves can be highly subjective and market-dependent. The protocol relies on risk models and price monitoring triggers to formalise this process.
 
-A market's risk model can be used to obtain the price distribution at a future point in time, given the current price and the model parameter. A price monitoring auction trigger can be constructed using a projected fixed time horizon and probability level.
+A market's risk model can be used to obtain the price distribution at a future point in time, given the current price and the model parameter. A protective auction trigger can be constructed using a projected fixed time horizon and probability level.
 
 Note: A market's risk model is defined within the market proposal.
 
 ### Price monitoring triggers
-Each market has a set of price monitoring triggers. When those points are breached, the market will enter a price monitoring auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders. Each market can have a maximum of 5 sets of price monitoring triggers for a market.
+Each market has a set of price monitoring triggers. When those points are breached, the market will enter a protective auction. Price monitoring triggers are defined in a market's proposal, and a governance proposal to change them can be raised and voted on by tokenholders. Each market can have a maximum of 5 sets of price monitoring triggers for a market.
 
 Each trigger contains:
 * *Horizon*: Time horizon of the price projection in seconds
 * *Probability*: The probability level for price projection. For example, a value of 0.95 will result in a price range such that over the specified horizon, the prices observed in the market should be in that range 95% of the time
 * *Auction extension*: Auction extension duration in seconds. Should the price breach its theoretical level over the specified horizon at the specified probability level, the market will continue in auction for the time specified
 
-If the market did not have any triggers specified in its market proposal, then the default triggers will be used (defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} />). If the triggers are set to an empty array, either explicitly or if they are omitted and that's what the network parameter is set to, then price monitoring is effectively switched off, and the market will never go into price monitoring auction.
+If the market did not have any triggers specified in its market proposal, then the default triggers will be used (defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} />). If the triggers are set to an empty array, either explicitly or if they are omitted and that's what the network parameter is set to, then price monitoring is effectively switched off, and the market will never go into protective auction.
 
-In case of multiple monitoring triggers, each trigger is checked separately and the resulting price monitoring auction length will be the sum of auction durations from all the triggers that were breached.
+In case of multiple monitoring triggers, each trigger is checked separately and the resulting protective auction length will be the sum of auction durations from all the triggers that were breached.
 
-There could be a situation where only a single trigger is breached to begin with, but as the initial price monitoring auction period comes to an end, the indicative uncrossing price breaches one or more of the other triggers, resulting in an auction extension. This process continues until no more triggers are breached after the appropriate auction extension period elapses. This can be because price doesn't breach any other triggers, or all triggers have already been breached. Once a given trigger is activated, it's not checked again until the price monitoring auction is resolved and the market goes back into its default trading mode.
+There could be a situation where only a single trigger is breached to begin with, but as the initial protective auction period comes to an end, the indicative uncrossing price breaches one or more of the other triggers, resulting in an auction extension. This process continues until no more triggers are breached after the appropriate auction extension period elapses. This can be because price doesn't breach any other triggers, or all triggers have already been breached. Once a given trigger is activated, it's not checked again until the protective auction is resolved and the market goes back into its default trading mode.
 
-Price monitoring is meant to stop large market movements that are not 'real' from occurring, rather than just detect them after the fact. To achieve that, the module works preemptively: a transaction that would've caused the price monitoring bounds to be breached doesn't get processed in the default trading mode. The market first switches to price monitoring auction mode, and then that transaction (and any subsequent ones until the auction time elapses) get processed. 
+Price monitoring is meant to stop large market movements that are not 'real' from occurring, rather than just detect them after the fact. To achieve that, the module works preemptively: a transaction that would've caused the price monitoring bounds to be breached doesn't get processed in the default trading mode. The market first switches to a protective auction, and then that transaction (and any subsequent ones until the auction time elapses) get processed. 
 
 The market can still make a large move within the auction, as long as crossing orders from both buy and sell side get submitted. 
 
@@ -71,10 +71,10 @@ Use the [price monitoring python notebook ↗](https://github.com/vegaprotocol/r
 * Any trades with prices greater than or equal to `95` and less than or equal to `105` will be generated as per the default trading mode of the market.
 
 Now:
-  * If an incoming order would get matched so that the price of any of the resulting trades is less than `90` or more than `110`, then that order won't be processed in the default trading mode, the market will go into a price monitoring auction, the order will get processed in the auction mode (if order type is valid for an auction), and after 6 minutes the relevant (if any) trades will be generated as per the order book state at that time. The market will return to its default trading mode and price monitoring bounds will be reset, with price ranges depending on the last mark price available.
-  * If an incoming order would get matched so that the price in any of the resulting trades is in the `[90,95]` or `[105,110]` range, the market goes into a price monitoring auction with the initial duration of 1 minute.
-    * If after 1 minute has passed there are no trades resulting from the auction or the indicative price of the auction, then if in the `[95,105]` the trades are generated and the price monitoring auction concludes.
-    * If after 1 minute has passed the indicative price of the auction is outside the `[95,105]`, the auction gets extended by 5 minutes, as concluding the auction at the 1 minute mark would breach the valid ranges implied by the second trigger. After the 5 minutes, trades (if any) are generated irrespective of their price, as there are no more active triggers, and the price monitoring auction concludes.
+  * If an incoming order would get matched so that the price of any of the resulting trades is less than `90` or more than `110`, then that order won't be processed in the default trading mode, the market will go into a protective auction, the order will get processed in the auction mode (if order type is valid for an auction), and after 6 minutes the relevant (if any) trades will be generated as per the order book state at that time. The market will return to its default trading mode and price monitoring bounds will be reset, with price ranges depending on the last mark price available.
+  * If an incoming order would get matched so that the price in any of the resulting trades is in the `[90,95]` or `[105,110]` range, the market goes into a protective auction with the initial duration of 1 minute.
+    * If after 1 minute has passed there are no trades resulting from the auction or the indicative price of the auction, then if in the `[95,105]` the trades are generated and the protective auction concludes.
+    * If after 1 minute has passed the indicative price of the auction is outside the `[95,105]`, the auction gets extended by 5 minutes, as concluding the auction at the 1 minute mark would breach the valid ranges implied by the second trigger. After the 5 minutes, trades (if any) are generated irrespective of their price, as there are no more active triggers, and the protective auction concludes.
 
 The images below show how according to the risk model, 90%, 95%, or 99% of the price moves from the current price of 10 over the time horizon are in the green area under the density function. Anything outside the green area is considered unlikely and would trigger an auction.
 

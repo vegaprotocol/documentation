@@ -23,7 +23,7 @@ Fees are incurred on every trade on a market in continuous trading, but it's the
 
 The amount a trader pays in fees for each order is the same regardless of how many trades it takes to fill the order. Even though, if an order crosses with more than one other order, multiple trades are created and multiple fees are incurred, in the end they would balance out. See an example fee calculation below.
 
-During a market's opening auction, no fees are collected. If a market is in a price monitoring auction, each side of a matched trade contributes 50% of the infrastructure and liquidity fees. Maker fees are not collected.
+During a market's opening auction, no fees are collected. If a market is in a protective auction, each side of a matched trade contributes 50% of the infrastructure and liquidity fees. Maker fees are not collected.
 
 ### Asset fees are paid in
 Derivatives markets' fees are charged in the market's settlement asset. 
