@@ -3,7 +3,7 @@ title: Upgrade to 0.76
 sidebar_label: Upgrade to 0.76
 ---
 
-This guide describes the steps to upgrade from v0.75.6 to v0.76.1 using the protocol upgrade mechanism. See the changelog for  [v0.76.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.76.0) and [v0.76.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.76.1) for information about breaking changes and new features.
+This guide describes the steps to upgrade from v0.75.6 to v0.76.1 using the protocol upgrade mechanism. See the changelog for  [v0.76.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.76.0) and v0.76.1 (coming soon) for information about breaking changes and new features.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems.
@@ -14,7 +14,7 @@ This guide is specifically intended for those who are already running a validato
 
 ## Study the changes between versions
 
-Before upgrading your node software, **review the changelogs** for [v0.76.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.76.0) and [v0.76.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.76.1) for a list of breaking API changes compared to the previously released version.
+Before upgrading your node software, **review the changelog** for [v0.76.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.76.0) for a list of breaking API changes compared to the previously released version. Version 0.76.1 will include the new bridge address for validator testnet.
 
 ## Required changes
 To support the new bridge you must run an **archival** Arbitrum node. We recommend setting this up in advance of your intended upgrade time so you are prepared.
@@ -64,7 +64,7 @@ Manipulate the `fromBlock` and `toBlock` values to find the correct allowed bloc
 
 ## Before you upgrade
 
-Please read the changelogs to see all the changes. Below you can find a list of the changes you must perform before the upgrade to [v0.75.6 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.6).
+Please read the changelogs to see all the changes. Below you can find a list of the changes you must perform before the upgrade to [v0.76.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.76.0).
 
 ### When should I upgrade config?
 
@@ -106,7 +106,7 @@ To upgrade the network follow the [protocol upgrade documentation](../how-to/upg
 
 ## After you upgrade
 
-1. There is a new network parameter for `evmbridgeconfigs`. This value is hard-coded as it needs to be available when your node starts up.
+1. There is a new network parameter for `blockchains.evmBridgeConfigs`. This value is hard-coded as it needs to be available when your node starts up.
 Once your node starts, map the network ID to the config as seen in the [bridge mapping file ↗](https://github.com/vegaprotocol/vega/blob/develop/core/netparams/bridge_mapping.go). This includes the contracts that will be deployed. 
 
 2. After upgrading, one of the validator set will need to remove the party that deployed the bridge from the signer set. 
