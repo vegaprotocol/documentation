@@ -87,8 +87,8 @@ If you want to submit this proposal as part of a larger batch of proposals, foll
             "closingTimestamp": "123",
             "changes": [
                 {
-                   "enactmentTimestamp": 123,
-                    "validationTimestamp": 654,
+                   "enactmentTimestamp": "123",
+                    "validationTimestamp": "654",
                        "terms": {
                          "newAsset": {
                           "changes": {
@@ -106,7 +106,7 @@ If you want to submit this proposal as part of a larger batch of proposals, foll
                                   }
                   },
                 {
-                    "enactmentTimestamp": 123,
+                    "enactmentTimestamp": "123",
                     "cancelTransfer": {
                         "changes": {
                             "transferId": "789"
