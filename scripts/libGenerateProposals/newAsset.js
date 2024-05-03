@@ -30,6 +30,7 @@ function newAsset(skeleton, proposalSoFar) {
           decimals: '18',
           quantum: '1',
           erc20: {
+            chainId: "1",
             contractAddress: asset.contractAddress,
             withdrawThreshold: '10',
             lifetimeLimit: '10'
@@ -55,6 +56,8 @@ function newAsset(skeleton, proposalSoFar) {
             quantum: "${result.terms.newAsset.changes.quantum}",
             // ${skeleton.properties.changes.properties.erc20.title}
             erc20: {
+              // ${skeleton.properties.changes.properties.erc20.properties.chainId.description} (${skeleton.properties.changes.properties.erc20.properties.chainId.type})
+              chainId: "${result.terms.newAsset.changes.erc20.chainId}",
               // ${skeleton.properties.changes.properties.erc20.properties.contractAddress.description} (${skeleton.properties.changes.properties.erc20.properties.contractAddress.type})
               contractAddress: "${result.terms.newAsset.changes.erc20.contractAddress}",
               // ${withdrawThresholdSplit[0]}

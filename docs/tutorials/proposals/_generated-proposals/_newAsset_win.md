@@ -15,15 +15,16 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     \"decimals\": \"18\",^
     \"quantum\": \"1\",^
     \"erc20\": {^
+     \"chainId\": \"1\",^
      \"contractAddress\": \"0x26223f9C67871CFcEa329975f7BC0C9cB8FBDb9b\",^
      \"withdrawThreshold\": \"10\",^
      \"lifetimeLimit\": \"10\"^
     }^
    }^
   },^
-  \"closingTimestamp\": 1715617473,^
-  \"enactmentTimestamp\": 1715703873,^
-  \"validationTimestamp\": 1715703873^
+  \"closingTimestamp\": 1716385893,^
+  \"enactmentTimestamp\": 1716472293,^
+  \"validationTimestamp\": 1716472293^
  }^
 }^
 }"
