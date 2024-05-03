@@ -232,14 +232,14 @@ When a Vega validator node is watching for Ethereum events it will call the `eth
 ```
 
 
-:::warning
+:::warning Max blocks
 You must select a big enough value for the `MaxEthereumBlocks` because Arbitrum produces about five blocks per second. If the range is too small, your node will not keep up with the rest of the network.
 :::
 
-:::note Find blocks spam for your RPC provider
+:::note Find blocks span for your RPC provider
 You must check how big the span of the blocks you can use with your provider. Otherwise, your validator won't be able to validate events from the Arbitrum network.
 
-The default value(10000) is usually more than enough. If your provider limits it, you should use the maximum allowed range. 
+The default value(500) is usually more than enough. If your provider limits it, you should use the maximum allowed range. 
 
 To find the block span allowed by your RPC provider call the following query:
 
