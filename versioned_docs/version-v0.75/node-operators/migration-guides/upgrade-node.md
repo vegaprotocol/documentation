@@ -106,7 +106,7 @@ To upgrade the network follow the [protocol upgrade documentation](../how-to/upg
 
 ## After you upgrade
 
-1. There is a new network parameter for `evmbridgeconfigs`. This value is hard-coded as it needs to be available when your node starts up.
+1. There is a new network parameter for `blockchains.evmBridgeConfigs`. This value is hard-coded as it needs to be available when your node starts up.
 Once your node starts, map the network ID to the config as seen in the [bridge mapping file ↗](https://github.com/vegaprotocol/vega/blob/develop/core/netparams/bridge_mapping.go). This includes the contracts that will be deployed. 
 
 2. After upgrading, one of the validator set will need to remove the party that deployed the bridge from the signer set. 
