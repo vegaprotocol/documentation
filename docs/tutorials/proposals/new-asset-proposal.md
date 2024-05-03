@@ -76,47 +76,46 @@ At top level, one closing timestamp. Inside batch each proposal has own enactmen
 
 If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
 
-```
+```json
 {
-    "batchProposalSubmission": {
-        "rationale": {
-            "title": "High level title",
-            "description": "Description of all parts of this batch of proposals"
+  "batchProposalSubmission": {
+    "rationale": {
+      "title": "High level title",
+      "description": "Description of all parts of this batch of proposals"
+    },
+    "terms": {
+      "closingTimestamp": "123",
+      "changes": [
+        {
+          "enactmentTimestamp": "123",
+          "validationTimestamp": "654",
+          "newAsset": {
+            "changes": {
+              "name": "asset",
+              "symbol": "tSYM",
+              "decimals": "18",
+              "quantum": "1",
+              "erc20": {
+                "chainId": "1",
+                "contractAddress": "0xaddress",
+                "withdrawThreshold": "10",
+                "lifetimeLimit": "10"
+              }
+            }
+          }
         },
-        "terms": {
-            "closingTimestamp": "123",
-            "changes": [
-                {
-                   "enactmentTimestamp": "123",
-                    "validationTimestamp": "654",
-                       "terms": {
-                         "newAsset": {
-                          "changes": {
-                            "name": "asset",
-                            "symbol": "tSYM",
-                            "decimals": "18",
-                            "quantum": "1",
-                            "erc20": {
-                              "contractAddress": "0xaddress",
-                              "withdrawThreshold": "10",
-                              "lifetimeLimit": "10"
-                                      }
-                                    }
-                                    }
-                                  }
-                  },
-                {
-                    "enactmentTimestamp": "123",
-                    "cancelTransfer": {
-                        "changes": {
-                            "transferId": "789"
-                        }
-                    }
-                }
-            ]
+        {
+          "enactmentTimestamp": "123",
+          "cancelTransfer": {
+            "changes": {
+              "transferId": "789"
+            }
+          }
         }
+      ]
     }
   }
+}
 ```
 
 ## Templates and submitting
