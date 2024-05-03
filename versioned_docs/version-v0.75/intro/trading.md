@@ -1,7 +1,7 @@
 ---
 sidebar_position: 8
 title: Trading
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 
@@ -18,7 +18,7 @@ Markets can be in one of two trading modes: continuous trading or auction.
 
 Continuous trading uses a continuous limit order book, and traders can place limit or market orders, and use other more complex market instructions such as stop orders, pegged orders, and iceberg orders. 
 
-Markets enter into auctions when a market first opens, or if price monitoring bounds are breached because of large price moves. When an auction ends, the orders are sorted, and a price range at which the highest total quantity of trades can occur is derived. The mid-price of that range is used for uncrossing. 
+Markets enter into auctions when a market first opens, or if price monitoring bounds are breached because of large price moves. When an auction ends, the orders are sorted, and a price range at which the highest total quantity of trades can occur is derived. The mid-price of that range is used for uncrossing.
 
 :::note Dive deeper
 [Concepts: Order types](../concepts/trading-on-vega/orders.md)

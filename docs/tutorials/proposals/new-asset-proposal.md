@@ -56,6 +56,7 @@ The contents of a `changes` object specifies what will be different after the pr
 | `name` | Name of the asset (string) | Testnet DAI |
 | `symbol` | Symbol of the asset (string)  | tDAI |
 | `decimals` | Number of decimal / precision handled by this asset (string)  | 18 |
+| `chainID` | ID of the asset's originating chain (string)  |  |
 | `quantum` | The minimum economically meaningful amount of the asset (string). This should be the amount of the asset roughly equal to 1 USD. It is used in a number of ways by the protocol but only requires precision to an order of magnitude level.  For example, if one BTC = 26,583 USD, then in this case a quantum of 1 / 25,000 or 0.00004 is sufficient. Converted to asset decimals it would be 40000000000000. | 1000000000000000000 |
 | `withdrawThreshold` | The maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the ERC-20 bridge per asset. Setting this to 1 means all withdrawals will be subject to the delay. It's measured in asset decimals, so 1 is the smallest increment of the market's asset. | 1 |
 | `lifetimeLimit` | The lifetime deposit limit per public key, in asset decimals. Users are able to opt out of this functionality using the `exempt_depositor` write function on the ERC20 contract if they wish to. Suggested value: equivalent of 10,000 USD | 10000000000000000000000 |
@@ -67,6 +68,56 @@ When adding an ERC-20 asset to the bridge, the key details are compared to the s
 - There cannot be multiple assets on a Vega network for the same ERC-20 asset
 
 Validation happens according to the `validationTimestamp` parameter.  The validation timestamp must be within the range between 1 second and 2 days from the time of submission. In most situations, this should be early on in the voting period so that any validation errors are caught before token holders start voting. However you could push the validation later in that range if the contract is not yet deployed. 
+
+## Submitting proposals in a batch
+When including a new asset proposal in a batch, the entire proposal will not be enacted until the asset's validation has succeeded. If the asset validation fails, the entire proposal fails.
+
+At top level, one closing timestamp. Inside batch each proposal has own enactment. Now a new asset has a validation stamp, only if new asset. If it’s there, there’s a new validation flow, and then once that passes, the whole batch goes through. So the whole batch is on standby. 
+
+
+If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
+
+```json
+{
+  "batchProposalSubmission": {
+    "rationale": {
+      "title": "High level title",
+      "description": "Description of all parts of this batch of proposals"
+    },
+    "terms": {
+      "closingTimestamp": "123",
+      "changes": [
+        {
+          "enactmentTimestamp": "123",
+          "validationTimestamp": "654",
+          "newAsset": {
+            "changes": {
+              "name": "asset",
+              "symbol": "tSYM",
+              "decimals": "18",
+              "quantum": "1",
+              "erc20": {
+                "chainId": "1",
+                "contractAddress": "0xaddress",
+                "withdrawThreshold": "10",
+                "lifetimeLimit": "10"
+              }
+            }
+          }
+        },
+        {
+          "enactmentTimestamp": "123",
+          "cancelTransfer": {
+            "changes": {
+              "transferId": "789"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
 
 ## Templates and submitting
 In the tabs below you'll see:
