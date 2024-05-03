@@ -21,7 +21,7 @@ To support the new bridge you must run an **archival** Arbitrum node. We recomme
 
 Ahead of the upgrade, insert the URL for your Arbitrum archive node in `YOUR_VEGA_HOME_PATH/config/node/config.toml`, in the section:
 
-```toml
+```toml title="YOUR_VEGA_HOME_PATH/config/node/config.toml"
 [Ethereum]
   Level = "Info"
   RPCEndpoint = "ETH-RPC-ENDPOINT"
@@ -30,7 +30,37 @@ Ahead of the upgrade, insert the URL for your Arbitrum archive node in `YOUR_VEG
   [[Ethereum.EVMBridgeConfigs]]
     ChainID = "42161" << use this chain ID
     RPCEndpoint = "ARBITRUM_RPC" <<< set your archival node RPC endpoint here
+
+  [EvtForward.Ethereum]
+  ...
+  ...
+  [[EvtForward.EVMBridges]]
+    Level = "Info"
+    PollEventRetryDuration = "500ms"
+    MaxEthereumBlocks = 10000
+    ChainID = "42161"
 ```
+
+:::warning
+You must select a big enough value for the `MaxEthereumBlocks` because Arbitrum produces about five blocks per second. If the range is too small, your node will not keep up with the rest of the network.
+:::
+
+:::note Find blocks spam for your RPC provider
+You must check how big the span of the blocks you can use with your provider. Otherwise, your validator won't be able to validate events from the Arbitrum network.
+
+The default value(10000) is usually more than enough. If your provider limits it, you should use the maximum allowed range. 
+
+To find the block span allowed by your RPC provider call the following query:
+
+```
+curl https://RPC_URL_FOR_ARBITRUM \
+  -X POST \
+  -H "Content-Type: application/json" \
+  --data '{"method":"eth_getLogs","params":[{"address": "0xE4D5c6aE46ADFAF04313081e8C0052A30b6Dd724", "fromBlock": "207349352", "toBlock": "207349392"}],"id":1,"jsonrpc":"2.0"}'
+```
+
+Manipulate the `fromBlock` and `toBlock` values to find the correct allowed block range.
+:::
 
 ## Before you upgrade
 
