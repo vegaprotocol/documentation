@@ -79,8 +79,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"metadata\": [^
-     \"enactment:2024-05-14T17:24:33Z\",^
-     \"settlement:2024-05-13T17:24:33Z\",^
+     \"enactment:2024-05-29T17:21:55Z\",^
+     \"settlement:2024-05-28T17:21:55Z\",^
      \"source:docs.vega.xyz\"^
     ],^
     \"priceMonitoringParameters\": {^
@@ -111,7 +111,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"disposalTimeStep\": \"500\",^
      \"disposalFraction\": \"1\",^
      \"fullDisposalSize\": \"18446744073709551615\",^
-     \"maxFractionConsumed\": \"1\"^
+     \"maxFractionConsumed\": \"1\",^
+     \"disposalSlippageRange\": \"0.1\"^
     },^
     \"liquidityFeeSettings\": {^
      \"method\": \"METHOD_CONSTANT\",^
@@ -144,8 +145,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     \"tickSize\": \"1\"^
    }^
   },^
-  \"closingTimestamp\": 1715617473,^
-  \"enactmentTimestamp\": 1715703873^
+  \"closingTimestamp\": 1716913315,^
+  \"enactmentTimestamp\": 1716999715^
  }^
 }^
 }"

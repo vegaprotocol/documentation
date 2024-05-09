@@ -236,8 +236,8 @@
 
       // Optional new futures market metadata, tags.
       metadata: [
-       "enactment:2024-05-14T17:24:33Z",
-       "settlement:2024-05-13T17:24:33Z",
+       "enactment:2024-05-29T17:21:55Z",
+       "settlement:2024-05-28T17:21:55Z",
        "source:docs.vega.xyz"
       ],
 
@@ -312,6 +312,11 @@
 
        // Max fraction of the total volume of the orderbook, within liquidity bounds, that the network can use to close its position; range 0 through 1. (string)
        maxFractionConsumed: "1",
+
+
+       /* Decimal > 0 specifying the range range above and below the mid price within which the network will trade to dispose of its position.
+        * The value can be > 1. For example, if set to 1.5, the minimum price will be 0, ie max(0, mid_price * (1 - 1.5)), and the maximum price will be mid_price * (1 + 1.5). (string) */
+       disposalSlippageRange: "0.1",
       },
 
       // Specifies how the liquidity fee for the market will be calculated.
@@ -377,11 +382,11 @@
 
     // Timestamp as Unix time in seconds when voting closes for this proposal,
     // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-    closingTimestamp: 1715617473,
+    closingTimestamp: 1716913315,
 
     // Timestamp as Unix time in seconds when proposal gets enacted if passed,
     // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-    enactmentTimestamp: 1715703873,
+    enactmentTimestamp: 1716999715,
    }
   }
  }
