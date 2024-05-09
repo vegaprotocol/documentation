@@ -22,6 +22,13 @@ The Vega core software is public and open source under the [AGPL ↗](https://ww
 This version was released to the Vega testnet on 9 May 2024.
 
 ### New features
+
+**Spot markets**
+The protocol now supports proposing spot markets, which will let users buy or sell assets using assets they own. Spot markets have no margin or leverage.
+
+**New bridge support**
+There is now support for an Arbitrum bridge so that users can bridge assets easily from Arbitrum to Vega and avoid Ethereum gas fees.
+
 A new reward metric has been added that rewards based on the highest realised return. [Read more on the rewards page](../concepts/trading-on-vega/discounts-rewards.md#highest-realised-return). This has been done in [issue 11167 ↗](https://github.com/vegaprotocol/vega/issues/11167).
 
 The most profitable trader reward has been extended to include losses in the calculation. This has been done in [issue 11165 ↗](https://github.com/vegaprotocol/vega/issues/11165).
@@ -30,14 +37,8 @@ Batch governance proposals now support including new asset proposals. This was c
 
 Transfers for rewards now allow for setting exactly when the reward is paid out using the field `transferInterval`. If this optional field is not included, it continues to default to paying out at every epoch. This was completed in [11170 ↗](https://github.com/vegaprotocol/vega/issues/11170).
 
-#### Spot markets
-The protocol now supports proposing spot markets, which will let users buy or sell assets using assets they own. Spot markets have no margin or leverage.
-
-#### New bridge support
-There is now support for an Arbitrum bridge so that users can bridge assets easily from Arbitrum to Vega and avoid Ethereum gas fees.
-
 ### Breaking change
-New futures and derivatives market proposals now require a new field for liquidation strategy: `disposalSlippageRange`. This field sets  the range above and below the mid price within which the network will trade to dispose of a position it acquired because of a liquidation. This was done in [10995 ↗](https://github.com/vegaprotocol/vega/issues/10995).
+* New futures and derivatives market proposals now require a new field for liquidation strategy: `disposalSlippageRange`. This field sets  the range above and below the mid price within which the network will trade to dispose of a position it acquired because of a liquidation. This was done in [10995 ↗](https://github.com/vegaprotocol/vega/issues/10995).
 * `chainId` is now required when submitting new asset proposal and `IssueSignature` transactions.
 * `chainId`/`chain_id` and `sourceChainId`/`source_chain_id` are now returned when querying assets, withdrawals and chain events.  
 * a `list games` request's epoch filter parameters have changed. If `from epoch` or `to epoch` is omitted, only the last 30 epochs are provided, and there is a limit of a 30 epoch range for each request.
