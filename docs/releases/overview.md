@@ -18,10 +18,17 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-## Pre-release version v0.76.0-preview.6  | 2024-04-25
-This version was released to the Vega testnet on 25 April 2024.
+## Version v0.76.1 | 2024-05-09
+This version was released to the Vega testnet on 9 May 2024.
 
 ### New features
+
+**Spot markets**
+The protocol now supports proposing spot markets, which will let users buy or sell assets using assets they own. Spot markets have no margin or leverage.
+
+**New bridge support**
+There is now support for an Arbitrum bridge so that users can bridge assets easily from Arbitrum to Vega and avoid Ethereum gas fees.
+
 A new reward metric has been added that rewards based on the highest realised return. [Read more on the rewards page](../concepts/trading-on-vega/discounts-rewards.md#highest-realised-return). This has been done in [issue 11167 ↗](https://github.com/vegaprotocol/vega/issues/11167).
 
 The most profitable trader reward has been extended to include losses in the calculation. This has been done in [issue 11165 ↗](https://github.com/vegaprotocol/vega/issues/11165).
@@ -31,7 +38,10 @@ Batch governance proposals now support including new asset proposals. This was c
 Transfers for rewards now allow for setting exactly when the reward is paid out using the field `transferInterval`. If this optional field is not included, it continues to default to paying out at every epoch. This was completed in [11170 ↗](https://github.com/vegaprotocol/vega/issues/11170).
 
 ### Breaking change
-New futures and derivatives market proposals now require a new field for liquidation strategy: `disposalSlippageRange`. This field sets  the range above and below the mid price within which the network will trade to dispose of a position it acquired because of a liquidation. This was done in [10995 ↗](https://github.com/vegaprotocol/vega/issues/10995).
+* New futures and derivatives market proposals now require a new field for liquidation strategy: `disposalSlippageRange`. This field sets  the range above and below the mid price within which the network will trade to dispose of a position it acquired because of a liquidation. This was done in [10995 ↗](https://github.com/vegaprotocol/vega/issues/10995).
+* `chainId` is now required when submitting new asset proposal and `IssueSignature` transactions.
+* `chainId`/`chain_id` and `sourceChainId`/`source_chain_id` are now returned when querying assets, withdrawals and chain events.  
+* a `list games` request's epoch filter parameters have changed. If `from epoch` or `to epoch` is omitted, only the last 30 epochs are provided, and there is a limit of a 30 epoch range for each request.
 
 ### Improvements
 - Reward cap was erroneously only counting the maker fees paid, rather than total fees a trader was paying. This was resolved in [issue 11105 ↗](https://github.com/vegaprotocol/vega/issues/11105).
@@ -41,29 +51,7 @@ New futures and derivatives market proposals now require a new field for liquida
 - Realised PnL is now calculated differently depending on whether the position was long or short. This was resolved in [11177 ↗](https://github.com/vegaprotocol/vega/issues/11177).
 - Transfers are not as strictly restricted when it comes to validating whether a transfer is the 'same', and thus likely spam. This was done in [11184 ↗](https://github.com/vegaprotocol/vega/issues/11184).
 - The spot market feature also had several issues fixed in this release.
-
-To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/release/v0.76.0-preview.6...v0.76.0-preview.3).
-
-## Pre-release version v0.76.0-preview.3  | 2024-04-15
-This version was released to the Vega testnet on 15 April 2024.
-
-### Spot markets
-The protocol now supports proposing spot markets, which will let users buy or sell assets using assets they own. Spot markets have no margin or leverage.
-
-### New bridge support
-There is now support for an Arbitrum bridge so that users can bridge assets easily from Arbitrum to Vega and avoid Ethereum gas fees.
-
-### API changes
-* `chainId` is now required when submitting new asset proposal and `IssueSignature` transactions.
-* `chainId`/`chain_id` and `sourceChainId`/`source_chain_id` are now returned when querying assets, withdrawals and chain events.  
-* a `list games` request's epoch filter parameters have changed. If `from epoch` or `to epoch` is omitted, only the last 30 epochs are provided, and there is a limit of a 30 epoch range for each request.
-
-### Improvements
-
-The minimum epochs in a team network parameter can now be set to 0, so team members can take part in games immediately. This has been done in [issue 10994 ↗](https://github.com/vegaprotocol/vega/issues/10994).
-
-### Bug fixes
-
+- The minimum epochs in a team network parameter can now be set to 0, so team members can take part in games immediately. This has been done in [issue 10994 ↗](https://github.com/vegaprotocol/vega/issues/10994).
 - Market decimal validation in governance is now market decimals + position decimals >= asset decimals. This ensures it’s not possible to be in a situation where small price moves don’t register but big ones do. This has been done in [issue 11009 ↗](https://github.com/vegaprotocol/vega/issues/11009).
 - Auctions in cross-margin mode now use max(order price, auction price) for margin calculation. This was done in [11036 ↗](https://github.com/vegaprotocol/vega/issues/11036).
 - Querying recurring governance transfers now includes the dispatch strategy. This was done in [10946 ↗](https://github.com/vegaprotocol/vega/issues/10945).
@@ -84,7 +72,7 @@ The minimum epochs in a team network parameter can now be set to 0, so team memb
 - When querying historic ledger movements, an error would be received. This was fixed in [11059 ↗](https://github.com/vegaprotocol/vega/issues/11059).
 - The error for rejected batch proposals was not included in GraphQL. This was resolved in [11052 ↗](https://github.com/vegaprotocol/vega/pull/11052).
 
-To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/release/v0.75.8...v0.76.0-preview.3).
+To review these changes in the last released version, see [GitHub](https://github.com/vegaprotocol/vega/compare/release/v0.75.7...v0.76.1).
 
 ## Pre-release version v0.75.7  | 2024-03-28
 This version was released to the Vega testnet on 28 March 2024.
