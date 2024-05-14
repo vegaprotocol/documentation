@@ -247,7 +247,7 @@ To find the block span allowed by your RPC provider call the following query:
 curl https://RPC_URL_FOR_ARBITRUM \
   -X POST \
   -H "Content-Type: application/json" \
-  --data '{"method":"eth_getLogs","params":[{"address": "0xE4D5c6aE46ADFAF04313081e8C0052A30b6Dd724", "fromBlock": "207349352", "toBlock": "207349392"}],"id":1,"jsonrpc":"2.0"}'
+  --data '{"method":"eth_getLogs","params":[{"address": "0xE4D5c6aE46ADFAF04313081e8C0052A30b6Dd724", "fromBlock": "0xC5BE668", "toBlock": "0xC5BE6F4"}],"id":1,"jsonrpc":"2.0"}'
 ```
 
 Manipulate the `fromBlock` and `toBlock` values to find the correct allowed block range.
