@@ -47,6 +47,7 @@ A recurring transfer transaction needs to contain the following:
 * The percentage of the full amount to pay each epoch, which is defined using the factor - a decimal
   - The amount paid at the end of each epoch is calculated using the following formula: `amount = start amount x factor ^ (current epoch - start epoch)`
 * Optional: When used to fund a reward pool, the [distribution method](../trading-on-vega/discounts-rewards.md#how-rewards-are-scaled) - pro-rata or based on rank
+* Optional: How often the reward should be paid out, if not once per epoch, known as the transfer interval
 
 ### Recurring transfer limits
 While a party (public key) can have multiple transfers set up to move assets to different accounts, each party can only have one recurring transfer between two given accounts at the same time. For example, a party can transfer from their general account to Public Key A and Public Key B, but they cannot set up two recurring transfers of different amounts both going to Public Key B.
