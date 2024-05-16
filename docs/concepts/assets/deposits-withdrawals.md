@@ -42,7 +42,7 @@ During alpha mainnet, the ERC-20 bridge smart contract limits how much can ever 
 If, however, a user wanted to bypass those limits and understood the risks to their assets, they could run `exempt_depositor()` for an asset on the [ERC-20 bridge contract](../../api/bridge/index.md), after which transactions greater than deposit limit for the asset would be allowed.
 
 ### Depositing ERC-20 assets
-Deposits go through one of the ERC-20 bridge smart contracts.
+Deposits go through one of the ERC-20 bridge smart contracts: Ethereum or Arbitrum.
 
 When a participant wants to deposit assets onto a Vega key, they need to call a deposit function on one of the ERC20 bridges specifying the Vega public key to deposit to, and the quantity of the specified asset that the Vega key should receive. For this to succeed, the bridge contract must be [approved ↗](https://docs.openzeppelin.com/contracts/2.x/api/token/erc20#IERC20-approve-address-uint256-) for at least the amount of the deposit.
 
