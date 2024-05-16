@@ -6,7 +6,7 @@ hide_title: false
 ---
 
 ## Markets
-Vega supports markets for trading cash-settled futures and perpetuals. 
+Vega supports markets for trading cash-settled futures and perpetuals, as well as spot/swaps.
 
 [See a full list of available markets on Console. ↗](https://console.vega.xyz)
 

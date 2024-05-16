@@ -38,9 +38,7 @@ An asset's quantum is set in the governance proposal that enabled the asset for 
 When a quantum is used, it will rely on a configurable multiplier so that an asset's volatility doesn't negatively impact the relevant feature.
 
 ## Asset bridges 
-There are thousands of tokens, coins, and assets that could potentially be used to settle markets created on Vega. However, because none of them are native to the Vega chain, there needs to be a mechanism for allowing at least a subset of those assets to be used with Vega.
-
-Asset bridges facilitate using assets from blockchains that aren't Vega. Bridges allow for managing assets in a fully decentralised and extensible way.
+Asset bridges facilitate using assets from blockchains that aren't Vega. Bridges allow for managing assets in a fully decentralised and extensible way. Vega has bridges for assets on the Ethereum and Arbitrum networks.
 
 When an asset has successfully been proposed and approved through governance, the asset bridge will then need to be updated. Vega validators automatically create a multisig bundle - a collection of signatures indicating their approval of the update. That bundle is then submitted to the bridge before the asset can be deposited and used.
 
@@ -70,7 +68,6 @@ See the [positions and margin](../trading-on-vega/margin.md) page for details on
 See the [settlement](../trading-on-vega/settlement.md) page for information on how settlement is handled.
 
 See the section on [liquidity provision](../liquidity/index.md) for details on the liquidity provision mechanics.
-
 
 ## On-chain network treasury 
 Some of the rewards for nominating a validator will be distributed from the on-chain network treasury, in the form of VEGA tokens.

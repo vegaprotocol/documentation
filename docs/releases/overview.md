@@ -24,7 +24,7 @@ This version was released to the Vega testnet on 9 May 2024.
 ### New features
 
 **Spot markets**
-The protocol now supports proposing spot markets, which will let users buy or sell assets using assets they own. Spot markets have no margin or leverage.
+The protocol now supports [proposing spot markets](../tutorials/proposals/new-spot-market.md), which will let users buy or sell assets using assets they own. [Spot](../concepts/trading-on-vega/market-types.md#spot) markets have no margin or leverage.
 
 **New bridge support**
 There is now support for an Arbitrum bridge so that users can bridge assets easily from Arbitrum to Vega and avoid Ethereum gas fees.
@@ -33,7 +33,7 @@ A new reward metric has been added that rewards based on the highest realised re
 
 The most profitable trader reward has been extended to include losses in the calculation. This has been done in [issue 11165 ↗](https://github.com/vegaprotocol/vega/issues/11165).
 
-Batch governance proposals now support including new asset proposals. This was completed in [11143 ↗](https://github.com/vegaprotocol/vega/issues/11143).
+Batch governance proposals now support including [new asset proposals](../tutorials/proposals/new-asset-proposal.md). This was completed in [11143 ↗](https://github.com/vegaprotocol/vega/issues/11143).
 
 Transfers for rewards now allow for setting exactly when the reward is paid out using the field `transferInterval`. If this optional field is not included, it continues to default to paying out at every epoch. This was completed in [11170 ↗](https://github.com/vegaprotocol/vega/issues/11170).
 
