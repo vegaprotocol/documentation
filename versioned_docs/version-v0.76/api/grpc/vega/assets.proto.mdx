@@ -1,0 +1,53 @@
+---
+title: assets.proto
+hide_title: true
+---
+
+import { ProtoMessage, ProtoServiceMethod, ProtoEnum } from '@theme/ProtoFile';
+
+# `assets.proto`
+_**path** vega/assets.proto_
+
+_**package** vega_
+
+
+
+---
+
+## Messages
+
+
+### `Asset`
+<ProtoMessage key={0} message={{"name":"Asset","longName":"Asset","fullName":"vega.Asset","description":"Vega representation of an external asset","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"id","description":"Internal identifier of the asset.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"details","description":"Definition of the external source for this asset.","label":"","type":"AssetDetails","longType":"AssetDetails","fullType":"vega.AssetDetails","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/testnet/api/grpc/vega/assets.proto#assetdetails"},{"name":"status","description":"Status of the asset.","label":"","type":"Status","longType":"Asset.Status","fullType":"vega.Asset.Status","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":"","typeLink":"/testnet/api/grpc/vega/assets.proto#assetstatus"}]}} />
+
+
+### `AssetDetails`
+<ProtoMessage key={1} message={{"name":"AssetDetails","longName":"AssetDetails","fullName":"vega.AssetDetails","description":"Vega representation of an external asset","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"name","description":"Name of the asset (e.g: Great British Pound).","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"symbol","description":"Symbol of the asset (e.g: GBP).","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"decimals","description":"Number of decimal / precision handled by this asset.","label":"","type":"uint64","longType":"uint64","fullType":"uint64","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"quantum","description":"Minimum economically meaningful amount in the asset.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"builtin_asset","description":"Vega built-in asset.","label":"","type":"BuiltinAsset","longType":"BuiltinAsset","fullType":"vega.BuiltinAsset","ismap":false,"isoneof":true,"oneofdecl":"source","defaultValue":"","typeLink":"/testnet/api/grpc/vega/assets.proto#builtinasset"},{"name":"erc20","description":"Ethereum ERC20 asset.","label":"","type":"ERC20","longType":"ERC20","fullType":"vega.ERC20","ismap":false,"isoneof":true,"oneofdecl":"source","defaultValue":"","typeLink":"/testnet/api/grpc/vega/assets.proto#erc20"}]}} />
+
+
+### `AssetDetailsUpdate`
+<ProtoMessage key={2} message={{"name":"AssetDetailsUpdate","longName":"AssetDetailsUpdate","fullName":"vega.AssetDetailsUpdate","description":"Changes to apply on an existing asset.","hasExtensions":false,"hasFields":true,"hasOneofs":true,"extensions":[],"fields":[{"name":"quantum","description":"Minimum economically meaningful amount in the asset.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"erc20","description":"Ethereum ERC20 asset update.","label":"","type":"ERC20Update","longType":"ERC20Update","fullType":"vega.ERC20Update","ismap":false,"isoneof":true,"oneofdecl":"source","defaultValue":"","typeLink":"/testnet/api/grpc/vega/assets.proto#erc20update"}]}} />
+
+
+### `BuiltinAsset`
+<ProtoMessage key={3} message={{"name":"BuiltinAsset","longName":"BuiltinAsset","fullName":"vega.BuiltinAsset","description":"Vega internal asset","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"max_faucet_amount_mint","description":"Maximum amount that can be requested by a party through the built-in asset faucet at a time.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ERC20`
+<ProtoMessage key={4} message={{"name":"ERC20","longName":"ERC20","fullName":"vega.ERC20","description":"ERC20 token based asset, living on the ethereum network","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"contract_address","description":"Address of the contract for the token, on the ethereum network.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"lifetime_limit","description":"Lifetime limits deposit per address\nnote: this is a temporary measure that can be changed by governance.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"withdraw_threshold","description":"Maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay.\nThere’s no limit on the size of a withdrawal\nnote: this is a temporary measure that can be changed by governance.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"chain_id","description":"Chain ID the asset originated from.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+
+### `ERC20Update`
+<ProtoMessage key={5} message={{"name":"ERC20Update","longName":"ERC20Update","fullName":"vega.ERC20Update","description":"","hasExtensions":false,"hasFields":true,"hasOneofs":false,"extensions":[],"fields":[{"name":"lifetime_limit","description":"Lifetime limits deposit per address.\nThis will be interpreted against the asset decimals.\nnote: this is a temporary measure that can be changed by governance.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""},{"name":"withdraw_threshold","description":"Maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay.\nThere’s no limit on the size of a withdrawal\nnote: this is a temporary measure that can be changed by governance.","label":"","type":"string","longType":"string","fullType":"string","ismap":false,"isoneof":false,"oneofdecl":"","defaultValue":""}]}} />
+
+---
+## Enums
+
+
+### `Asset.Status`
+<ProtoEnum key={0} enumb={{"name":"Status","longName":"Asset.Status","fullName":"vega.Asset.Status","description":"","values":[{"name":"STATUS_UNSPECIFIED","number":"0","description":"Default value, always invalid"},{"name":"STATUS_PROPOSED","number":"1","description":"Asset is proposed and under vote"},{"name":"STATUS_REJECTED","number":"2","description":"Asset has been rejected from governance"},{"name":"STATUS_PENDING_LISTING","number":"3","description":"Asset is pending listing from the bridge"},{"name":"STATUS_ENABLED","number":"4","description":"Asset is fully usable in the network"}]}} />
+
+---
+
+
+  
