@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 title: Fees
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Trades and transfers can incur fees.
 ---

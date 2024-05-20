@@ -2,7 +2,7 @@
 sidebar_position: 2
 title: Change a spot market
 hide_title: true
-vega_network: TESTNET
+vega_network: MAINNET
 toc: true
 keywords:
   - proposal

@@ -3,7 +3,7 @@ title: Basic endpoints
 sidebar_position: 4
 hide_title: false
 description: Building blocks of data and their APIs.
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 While there are hundreds of available endpoints, the categories below cover the basics to get you started with understanding what you need to interact with Vega. 

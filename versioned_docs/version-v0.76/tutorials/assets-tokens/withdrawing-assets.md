@@ -3,7 +3,7 @@ title: Withdraw assets
 sidebar_position: 4
 hide_title: false
 description: How to withdraw assets from Vega back to an Ethereum wallet.
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 import Tabs from '@theme/Tabs';
@@ -31,7 +31,7 @@ If you want to use Etherscan instead for ERC-20 assets on Ethereum, follow the [
 ## Withdraw your rewards
 Assets received as rewards may be locked for a time. Each epoch, a percentage of the locked amount begins vesting. Any amount that is vested is moved into a vested account. From there, you can redeem vested tokens by transferring them into your general account. Then, they can be withdrawn to an Ethereum address.
 
-1. You can check the status of all your assets using the [Explorer dApp](https://explorer.fairground.wtf) by providing your public key. 
+1. You can check the status of all your assets using the [Explorer dApp](https://explorer.vega.xyz) by providing your public key. 
 
 2. Any assets that are listed on Explorer as in the "Vested account" need to be redeemed. Assets that are locked or vesting can't be moved *yet*. To redeem your vested rewards, go to the rewards page on [Console](https://console.fairground.wtf/#/rewards). From there you can transfer those tokens from your vested account into your general account by clicking on "redeem rewards".
 

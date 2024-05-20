@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 title: Assets
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Add assets or move network-held funds.
 ---

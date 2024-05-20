@@ -3,7 +3,7 @@ title: WebSocket streams
 sidebar_label: WebSocket streams
 hide_title: false
 description: Learn how to use the available WebSocket APIs.
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';

@@ -1,7 +1,7 @@
 ---
 title: Before you start
 sidebar_position: 1
-vega_network: TESTNET
+vega_network: MAINNET
 ---
 
 import Topic from '/docs/topics/_topic-development.mdx'

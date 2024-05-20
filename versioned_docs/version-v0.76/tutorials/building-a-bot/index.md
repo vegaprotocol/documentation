@@ -1,6 +1,6 @@
 ---
 title: Building a bot
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 import DocCardList from '@theme/DocCardList';

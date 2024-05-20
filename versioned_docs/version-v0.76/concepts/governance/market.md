@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
 title: Markets
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Add new markets or change existing ones.
 ---

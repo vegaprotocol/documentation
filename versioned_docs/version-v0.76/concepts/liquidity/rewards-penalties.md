@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
 title: Rewards and penalties
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 

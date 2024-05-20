@@ -1,7 +1,7 @@
 ---
 sidebar_position: 1
 title: Markets on Vega
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Understand the products supported by the network.
 ---

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 7
 title: Teams & competitions
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 

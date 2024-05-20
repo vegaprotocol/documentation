@@ -2,7 +2,7 @@
 sidebar_position: 5
 title: Update an asset
 hide_title: true
-vega_network: TESTNET
+vega_network: MAINNET
 keywords:
   - proposal
   - governance

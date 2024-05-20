@@ -1,7 +1,7 @@
 ---
 sidebar_position: 4
 title: Transactions
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 
@@ -10,7 +10,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 A transaction is an instruction (command) issued to the network, bundled with a signature, the submitter’s public key, a small proof-of-work calculation, and the target block height. A transaction that doesn't pass [validation](#validation) (for example, an order without enough assets to cover it) will be rejected.
 
 :::note Viewing transactions
-**[Vega block explorer](https://explorer.fairground.wtf)**: See transactions and their status, plus lots more data about the network.
+**[Vega block explorer](https://explorer.vega.xyz)**: See transactions and their status, plus lots more data about the network.
 :::
 
 When a transaction is submitted, it goes to the validators’ mempools - which is is an organised queue where the transactions are stored, sorted, and verified before being added to a newly started block. A validated transaction enters a block based on the priority assigned to the transaction type, and the order in which it arrived. Vega does not have any gas-type charges that can boost priority or cause a transaction to be lower priority.
@@ -47,7 +47,7 @@ There are several levels of validation:
    Once the transaction is in the mempool, the validator nodes check if the request looks valid, and can be enacted/completed based on the state of the network, and confirms that all the details in the transaction are valid. For example, to vote on a proposal: ensuring the proposal is still live, and that the key has enough tokens to vote. For an order, it confirms, for example, that the assets to cover margin are available, the state of the market is relevant for the order, etc.
 
 :::note View your transaction
-Once your transaction hash is reported by the wallet, you can track your transaction’s progress on the [Vega block explorer](https://explorer.fairground.wtf).
+Once your transaction hash is reported by the wallet, you can track your transaction’s progress on the [Vega block explorer](https://explorer.vega.xyz).
 :::
 
 ## Filling a block: Transaction gas value

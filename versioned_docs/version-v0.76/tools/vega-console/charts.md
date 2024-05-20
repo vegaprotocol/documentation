@@ -1,7 +1,7 @@
 ---
 sidebar_position: 2
 title: Charts
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: Console's charts in a nutshell.
 ---

@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: Network
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 ---
 
@@ -33,7 +33,7 @@ Loosely, network parameters fall into several categories:
 These parameters can differ between networks. In other words, the same network parameter key could have different values on mainnet, Fairground, and the validator-run testnet.
 
 :::note Go deeper
-* [Network parameters: See full list on the block explorer  ↗](https://explorer.fairground.wtf/network-parameters)
+* [Network parameters: See full list on the block explorer  ↗](https://explorer.vega.xyz/network-parameters)
 * [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
 :::
 
