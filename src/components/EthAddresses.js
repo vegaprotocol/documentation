@@ -3,10 +3,16 @@ import mainnetContracts from "../../specs/mainnet_contracts.json";
 import testnetContracts from "../../specs/testnet_contracts.json";
 
 const etherscanBase = {
-  ropsten: "https://ropsten.etherscan.io/address/",
-  sepolia: "https://sepolia.etherscan.io/address/",
-  mainnet: "https://etherscan.io/address/",
+  "11155111": "https://sepolia.etherscan.io/address/",
+  "1": "https://etherscan.io/address/",
 };
+
+const networkName = {
+  "11155111": "Ethereum (Sepolia)",
+  "1": "Ethereum Mainnet",
+  "42161": "Arbitrum",
+  "421614": "Arbitrum (Sepolia)"
+}
 
 // Budget version of frontend-monorepo's EtherscanLink
 function etherscanLink(contractAddress, network) {
@@ -54,7 +60,6 @@ export default function EthAddresses({ frontMatter, show }) {
   }
 
   const addresses = vega_network.toLowerCase() === 'mainnet' ? mainnetContracts : testnetContracts
-  const ethereum_network = addresses.network
 
   if (!addresses) {
     throw new Error("Could not load addresses");
@@ -66,7 +71,7 @@ export default function EthAddresses({ frontMatter, show }) {
         <tr>
           <th>Name</th>
           <th>Address</th>
-          <th>Ethereum network</th>
+          <th>Network</th>
         </tr>
       </thead>
       <tbody>
@@ -77,16 +82,17 @@ export default function EthAddresses({ frontMatter, show }) {
             }
           )
           .map((key) => {
+            const contract = addresses[key]
             return (
               <tr>
                 <td>
                   <strong>{contractNames[key]}</strong>
                 </td>
                 <td>
-                  <code>{addresses[key].address}</code>{" "}
-                  {etherscanLink(addresses[key].address, ethereum_network)}
+                  <code>{contract.address}</code>{" "}
+                  {etherscanLink(contract.address, contract.chainId)}
                 </td>
-                <td align="center">{ethereum_network}</td>
+                <td align="center">{networkName[contract.chainId]}</td>
               </tr>
             );
           })}
