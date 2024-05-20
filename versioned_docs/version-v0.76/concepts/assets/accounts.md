@@ -23,7 +23,7 @@ Any assets that are in a general account can be withdrawn or transferred.
 You'll see references to your general account in various places, including under collateral in Console, the trading interface.
 
 :::tip Query for data
-**[Vega Console](https://console.fairground.wtf)**: See how much is allocated to the accounts for your public key.
+**[Vega Console](https://console.vega.xyz)**: See how much is allocated to the accounts for your public key.
 
 **[REST](../../api/rest/data-v2/trading-data-service-get-party.api.mdx)**: Use the API to check your public key for the accounts your assets are allocated to.
 :::

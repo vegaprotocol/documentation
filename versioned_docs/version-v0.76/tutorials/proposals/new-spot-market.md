@@ -126,7 +126,7 @@ The risk model uses the following properties:
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
 * Command line examples for different operating systems that can be submitted with a Vega Wallet app.
 
 **Replace the example data with the relevant details before submitting.**
@@ -381,11 +381,9 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
 ## Voting
 All proposals are voted on by the community. 
 
-<!--
 Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
--->
 
-A vote can be submitted with a [transaction](../../api/grpc/vega/commands/v1/commands.proto.mdx#votesubmission) on the command line, or by using the [governance dApp](https://governance.fairground.wtf/proposals).
+A vote can be submitted with a [transaction](../../api/grpc/vega/commands/v1/commands.proto.mdx#votesubmission) on the command line, or by using the [governance dApp](https://governance.vega.xyz/proposals).
 
 To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
 

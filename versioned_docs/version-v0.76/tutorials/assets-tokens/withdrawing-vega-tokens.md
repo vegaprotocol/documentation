@@ -16,7 +16,7 @@ If your tokens are in the *vesting contract*, they will need to be unlocked befo
 
 If you received them as *trading rewards*, each epoch, a percentage of locked tokens begin vesting. Once they're vested, they are moved into a vested account. From there, you can redeem vested tokens by transferring them into your general account, at which point they can be withdrawn.
 
-1. Search for your Ethereum address into the redeem page on the [governance dApp](https://governance.fairground.wtf/token/redeem). 
+1. Search for your Ethereum address into the redeem page on the [governance dApp](https://governance.vega.xyz/token/redeem). 
 
 2. If you are connected to your Ethereum and Vega wallets, you can also see a breakdown of your tokens and their status in the wallet sidebar.
 
@@ -27,10 +27,10 @@ For tokens that are already in your Ethereum wallet, and not locked, vesting or 
 ### Remove staked VEGA
 If your tokens are associated to a Vega key and staked to a validator: 
 
-1. To remove your tokens immediately, use the governance dApp to [disassociate](https://governance.fairground.wtf/token/disassociate) the tokens from your Vega key. This will also remove any validator nominations you have. You'll lose any accrued staking rewards for the current epoch.
+1. To remove your tokens immediately, use the governance dApp to [disassociate](https://governance.vega.xyz/token/disassociate) the tokens from your Vega key. This will also remove any validator nominations you have. You'll lose any accrued staking rewards for the current epoch.
 
 2. To receive the current epoch's staking rewards, use the governance dApp. 
-    a. Visit the [validators](https://governance.fairground.wtf/validators) page.
+    a. Visit the [validators](https://governance.vega.xyz/validators) page.
 
     b. Click on "Staked by me". 
     
@@ -41,26 +41,26 @@ If your tokens are associated to a Vega key and staked to a validator:
 ### Remove unstaked VEGA
 Tokens that are not held in a tranche and are associated to a Vega key, but not used for staking validators are easy to remove from the Vega network.
 
-All you need to do is [disassociate](https://governance.fairground.wtf/token/disassociate) the tokens from your Vega key.
+All you need to do is [disassociate](https://governance.vega.xyz/token/disassociate) the tokens from your Vega key.
 
 ## Withdraw VEGA from the vesting contract
 
 For VEGA tokens that are in the vesting contract and are now unlocked, you will need to disassociate and then redeem them. This moves the VEGA directly to your Ethereum address.
 
-1. [Disassociate](https://governance.fairground.wtf/token/disassociate) your vested tokens. If you have nominated validators, disassociating without removing your nomination means you'll lose any staking rewards for that epoch. You can choose to un-nominate at the end of the epoch if you'd rather not lose rewards.
+1. [Disassociate](https://governance.vega.xyz/token/disassociate) your vested tokens. If you have nominated validators, disassociating without removing your nomination means you'll lose any staking rewards for that epoch. You can choose to un-nominate at the end of the epoch if you'd rather not lose rewards.
 
-2. Redeem your tokens to move them to your Ethereum address. Visit the Redeem page on the [Governance dApp](https://governance.fairground.wtf/token/redeem), enter the Ethereum address you used for those VEGA tokens, and follow the instructions.
+2. Redeem your tokens to move them to your Ethereum address. Visit the Redeem page on the [Governance dApp](https://governance.vega.xyz/token/redeem), enter the Ethereum address you used for those VEGA tokens, and follow the instructions.
 
 ## Withdraw VEGA received as rewards
 
 Rewards also go through a vesting process, which is different from tokens in the vesting contract. Those tokens are held in accounts on Vega until they become vested. At that point, they can be moved into your general account on Vega, after which they can be withdrawn from the Vega network to the Ethereum network.
 
-1. If you have associated your tokens to your Vega key for staking purposes, [disassociate](https://governance.fairground.wtf/token/disassociate) them. Disassociating without removing your validator nominations means you'll lose any staking rewards for that epoch. You can choose to un-nominate at the end of the epoch if you'd rather not lose rewards.
+1. If you have associated your tokens to your Vega key for staking purposes, [disassociate](https://governance.vega.xyz/token/disassociate) them. Disassociating without removing your validator nominations means you'll lose any staking rewards for that epoch. You can choose to un-nominate at the end of the epoch if you'd rather not lose rewards.
 
 2. Redeem your tokens to move them to your general account on Vega. You can redeem using either the Governance dApp or Console.
 
-    a. On the [Governance dApp](https://governance.fairground.wtf), you can click on Redeem on the wallet sidebar, which will take you to Console where you can transfer those tokens to your general account.
+    a. On the [Governance dApp](https://governance.vega.xyz), you can click on Redeem on the wallet sidebar, which will take you to Console where you can transfer those tokens to your general account.
 
-    b. On [Console](https://console.fairground.wtf/#/rewards) under Rewards, you can see any tokens or assets that are available to redeem. From there you can transfer those tokens from your vested account into your general account.
+    b. On [Console](https://console.vega.xyz/#/rewards) under Rewards, you can see any tokens or assets that are available to redeem. From there you can transfer those tokens from your vested account into your general account.
 
 3. Withdraw tokens from Vega to your Ethereum wallet. In Console, you can use the Withdraw icon in the right sidebar to initiate your withdrawal into your Ethereum address. To use Etherscan, follow the [withdrawing assets tutorial](./withdrawing-assets.md).

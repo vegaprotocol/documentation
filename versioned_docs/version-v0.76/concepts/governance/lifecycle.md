@@ -10,7 +10,7 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 ## Voting
 Proposals are enacted if they get enough votes from VEGA holders. There's no limit to how many active proposals you can vote on. 
 
-Your tokens must be associated with a Vega public key. The tokens need to be associated to your Vega key, but they don't need to be nominated to validators. To check if your tokens are associated, connect to your Vega wallet on the [governance dApp ↗](https://governance.fairground.wtf).
+Your tokens must be associated with a Vega public key. The tokens need to be associated to your Vega key, but they don't need to be nominated to validators. To check if your tokens are associated, connect to your Vega wallet on the [governance dApp ↗](https://governance.vega.xyz).
 
 You can vote as soon as the proposal passes validation and is active, and it can be voted on until the proposal's closing date/time.
 
@@ -60,7 +60,7 @@ Including as much detail as possible gives other community members the opportuni
 When formalising the proposal, it is worth ensuring that any fields that are dependent on a range set by network parameters are correctly defined. See the network parameters and their values on the [Vega block explorer ↗](https://explorer.vega.xyz/network-parameters).
 
 ### 3. Submitting proposal and telling the community (on-chain and off-chain)
-You can submit a governance proposal to the network using the command line, a script, or the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
+You can submit a governance proposal to the network using the command line, a script, or the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw).
 
 Your Vega key must have enough VEGA associated to submit a proposal. For a 'market parameter change' proposal, you'll also need enough equity-like share in the market from your liquidity commitment. This is defined in the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerEquityLikeShare" />.
 

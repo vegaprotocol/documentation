@@ -27,7 +27,7 @@ To use assets on the Vega network, for example to take part in markets, you'll n
 
 
 :::info Try it out
-Deposit assets using the **[Console trading interface ↗](https://console.fairground.wtf)**, in the Portfolio section.
+Deposit assets using the **[Console trading interface ↗](https://console.vega.xyz)**, in the Portfolio section.
 :::
 
 Vega supports ERC-20 assets. An asset's ERC-20 token contract needs to be available on one of the bridge before it can be used, which happens in the governance and enactment process for new assets.
@@ -101,7 +101,7 @@ If you choose an amount to withdraw that is higher than the withdrawal threshold
 Once the delay time has passed, and the bundle is valid, **the withdrawal must be completed by submitting the bundle to Ethereum and paying the gas fee required. Usually this will be done by the party wishing to receive the funds**. This can be done using Vega Console or another user interface, or manually using the [smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic.md) and an Ethereum RPC node.
 
 :::tip Query for data
-See the threshold and delay for withdrawals in **[Vega Console ↗](https://console.fairground.wtf)**.
+See the threshold and delay for withdrawals in **[Vega Console ↗](https://console.vega.xyz)**.
 
 Otherwise, **[use the API](../../api/rest/data-v2/trading-data-service-get-asset.api.mdx)** to see the withdrawal threshold.
 :::
@@ -119,7 +119,7 @@ VEGA (an ERC20 token) used for staking is associated with a Vega key. To withdra
 Rewards accrued through staking are not associated automatically. To stake those tokens or transfer them, they need to be withdrawn from the Vega key that the rewards are credited to, and sent to a web3 wallet.
 
 :::tip Try it
-**[Vega token withdrawals page for testnet ↗](https://governance.fairground.wtf/token/withdraw)**: Track and withdraw testnet staking rewards.
+**[Vega token withdrawals page for testnet ↗](https://governance.vega.xyz/token/withdraw)**: Track and withdraw testnet staking rewards.
 
 Alternatively, use the **[smart contract](../../api/bridge/contracts/ERC20_Bridge_Logic#withdraw_asset)** and an Ethereum RPC node to run the withdraw function.
 :::

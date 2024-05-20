@@ -22,7 +22,7 @@ Vega supports on-chain proposals for governing:
 * **Freeform** - Exploring community sentiment for actions that may or may not be enacted on-chain
 
 :::tip Try it out
-**[Vega governance dApp ↗](https://governance.fairground.wtf)**: Read through and vote on active proposals.
+**[Vega governance dApp ↗](https://governance.vega.xyz)**: Read through and vote on active proposals.
 :::
 
 :::note Looking for proposal templates?

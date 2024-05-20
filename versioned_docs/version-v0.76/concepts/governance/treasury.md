@@ -88,8 +88,3 @@ Examples of actions that can be coordinated together in a batch include:
 :::note Read more
 [Batch proposals](./lifecycle.md/#submitting-proposals-in-a-batch)
 :::
-
-
-
-
-

@@ -59,7 +59,7 @@ Note that some network parameters may differ, such as the limits on how long the
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
 * Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
@@ -299,9 +299,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
 ## Voting
 All proposals are voted on by the community. 
 
-<!--
 Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
--->
 
 To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minVoterBalance" formatter="governanceToken" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated to their Vega key.
 
