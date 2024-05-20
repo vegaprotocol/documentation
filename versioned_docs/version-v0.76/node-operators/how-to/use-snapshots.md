@@ -45,7 +45,7 @@ To start a node from a network snapshot you will need the following:
 - The block height and hash of a recent block
 - The RPC server addresses of at least two nodes currently part of the network
 
-A recent block height and block hash can be found by using the [Statistics](../../api/rest/core/core-service-statistics.api.mdx) API of a data node. Below is an example of the two relevant fields from the API response
+A recent block height and block hash can be found by using the [Statistics](../../api/rest/transaction/transaction-statistics.api.mdx) API of a data node. Below is an example of the two relevant fields from the API response
 ```json
 {
   "blockHeight": "569531",

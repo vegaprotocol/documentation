@@ -63,7 +63,7 @@ The Vega Wallet software prevents you from sending in a transaction that will tr
 The values of all [spam protection network parameters](#spam-protection-parameters) can be changed through a governance vote. If a parameter change passes governance, it takes effect in the epoch after it passes.
 
 :::tip Query for data
-**[API: Spam statistics](../../api/rest/core/core-service-get-spam-statistics.api.mdx)**: Query for a public key's spam count. This could be useful if you're building wallet software for use with Vega, to stop accidental spamming.
+**[API: Spam statistics](../../api/rest/transaction/transaction-get-spam-statistics.api.mdx)**: Query for a public key's spam count. This could be useful if you're building wallet software for use with Vega, to stop accidental spamming.
 :::
 
 ### Spam limits: Governance

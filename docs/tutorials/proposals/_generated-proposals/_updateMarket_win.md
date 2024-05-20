@@ -89,7 +89,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.5^
+      \"sigma\": 1.25^
      }^
     },^
     \"liquiditySlaParameters\": {^
@@ -101,8 +101,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     \"tickSize\": \"1\"^
    }^
   },^
-  \"closingTimestamp\": 1717849670,^
-  \"enactmentTimestamp\": 1717936070^
+  \"closingTimestamp\": 1717853834,^
+  \"enactmentTimestamp\": 1717940234^
  }^
 }^
 }"
