@@ -46,9 +46,9 @@ module.exports = {
           id: 'api/rest/overview',
           label: 'Using REST'
         },
+        core,
         datav2,
         explorer,
-        core,
         state
       ]
     },
