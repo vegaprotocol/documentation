@@ -6,7 +6,6 @@ vega_network: TESTNET
 
 import Topic from '/docs/topics/_topic-development.mdx'
 import DataNodes from '@site/src/components/DataNodes';
-import EthAddresses from '@site/src/components/EthAddresses';
 
 <Topic />
 

@@ -35,5 +35,13 @@
 		"version": "TokenBase",
 		"minter": "0x3c9BCb0B5BE9D1c4D75024BAA0d5D55aD354fa77",
 		"chainId": "11155111"
+	},
+	"ArbitrumMultisigControl": {
+		"address": "0x752faCb1e1EEf7A5a154db5Bf54988E80b0e96Da",
+		"chainId": "421614"
+	},
+	"ArbitrumBridge": {
+ 		"address": "0x927067717B0A9bd553fC421Ae63b3377694b4166",
+		"chainId": "421614"
 	}
 }

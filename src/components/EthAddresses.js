@@ -5,11 +5,13 @@ import testnetContracts from "../../specs/testnet_contracts.json";
 const etherscanBase = {
   "11155111": "https://sepolia.etherscan.io/address/",
   "1": "https://etherscan.io/address/",
+  "42161": "https://arbiscan.io/address/",
+  "421614": "https://sepolia.arbiscan.io/address/",
 };
 
 const networkName = {
   "11155111": "Ethereum (Sepolia)",
-  "1": "Ethereum Mainnet",
+  "1": "Ethereum",
   "42161": "Arbitrum",
   "421614": "Arbitrum (Sepolia)"
 }
@@ -34,7 +36,9 @@ const contractNames = {
   VegaToken: "Vega token",
   VestingBridge: "Token vesting",
   StakingBridge: "Staking bridge",
-  ERC20Bridge: "ERC20 Bridge",
+  ERC20Bridge: "Ethereum ERC20 Bridge",
+  ArbitrumMultisigControl: "Arbitrum Multisig Control",
+  ArbitrumBridge: "Arbitrum Bridge",
 };
 
 const showOnlyDefault = [
@@ -42,6 +46,7 @@ const showOnlyDefault = [
   "VestingBridge",
   "StakingBridge",
   "ERC20Bridge",
+  "ArbitrumBridge"
 ];
 
 /**
