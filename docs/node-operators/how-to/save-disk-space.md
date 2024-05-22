@@ -5,7 +5,7 @@ sidebar_label: Save disk space
 hide_title: false
 ---
 
-## Tendermint `tx_index.db`
+## Cleanup and disable the tendermint indexer db - `tx_index.db`
 
 * Suitable for: data-node
 * Downtime required: up to 2 min
