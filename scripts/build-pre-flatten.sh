@@ -38,7 +38,7 @@ trading_data_swagger2_dest="trading_data_v2.swagger.json"
 movePlease "$trading_data_swagger2" "$trading_data_swagger2_dest"
 
 core_swagger="./vega/swagger/vega/api/v1/core.swagger.json"
-core_swagger_dest="core.swagger.json"
+core_swagger_dest="transaction.swagger.json"
 movePlease "$core_swagger" "$core_swagger_dest"
 
 corestate_swagger="./vega/swagger/vega/api/v1/corestate.swagger.json"

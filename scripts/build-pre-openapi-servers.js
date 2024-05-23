@@ -133,7 +133,7 @@ serversForNetwork(generateForMainnet).then(servers => {
     } else if (!!s.match('wallet')) {
       console.log('**SPECIAL CASE FOR wallet: localhost**')
       spec.servers = [ { url: 'http://localhost:1789/api/', description: 'Local wallet' }]
-    } else if (!!s.match('core')) {
+    } else if (!!s.match('transfer')) {
       spec.servers = openApiServers.map(s => {
         return {
           url: s.url.replace('api.', ''),

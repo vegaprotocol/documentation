@@ -11,7 +11,7 @@
 
 const { protodocs } = require('./docs/api/grpc/sidebar')
 const datav2 = require('./docs/api/rest/data-v2/sidebar.js')
-const core = require('./docs/api/rest/core/sidebar.js')
+const transaction = require('./docs/api/rest/transaction/sidebar.js')
 const state = require('./docs/api/rest/state/sidebar.js')
 const explorer = require('./docs/api/rest/explorer/sidebar.js')
 
@@ -32,8 +32,8 @@ module.exports = {
     'api/overview',
     'api/using-the-apis',
     'api/architecture',
-    'api/building-blocks',
-    'api/public-endpoints',
+    'api/useful-endpoints',
+    'api/public-servers',
     'api/websocket',
 
     {
@@ -46,9 +46,9 @@ module.exports = {
           id: 'api/rest/overview',
           label: 'Using REST'
         },
+        transaction,
         datav2,
         explorer,
-        core,
         state
       ]
     },

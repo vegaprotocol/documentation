@@ -43,8 +43,8 @@ function getIdsFromFilename (version, filename) {
     return { id: `tradingv1v${ver}`, filename: 'data-v1' }
   } else if (filename.indexOf('corestate') !== -1) {
     return { id: `statev${ver}`, filename: 'state' }
-  } else if (filename.indexOf('core') !== -1) {
-    return { id: `corev${ver}`, filename: 'core' }
+  } else if (filename.indexOf('transaction') !== -1) {
+    return { id: `transactionv${ver}`, filename: 'transaction' }
   } else if (filename.indexOf('blockexplorer') !== -1) {
     return { id: `explorerv${ver}`, filename: 'explorer' }
   } else if (filename.indexOf('wallet') !== -1) {

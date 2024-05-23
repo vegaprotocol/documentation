@@ -23,6 +23,9 @@ echo "- Swagger: Give BlockExplorerService a better name"
 sed -i -E 's/"name": "BlockExplorerService"/"name": "Block Explorer"/' "specs/$doc_version/blockexplorer.swagger.json"
 sed -i -E 's/BlockExplorerService/BlockExplorer/' "specs/$doc_version/blockexplorer.swagger.json"
 
+echo "- Swagger: CoreService -> TransactionService"
+sed -i -E 's/CoreService/Transaction/' "specs/$doc_version/transaction.swagger.json"
+
 echo "- Swagger: Fix servers"
 find "specs/$doc_version/" -name "*.swagger.json" -exec sed -i -E 's/lb.testnet.vega.xyz/api.n10.testnet.vega.xyz/g' {} +
 find "specs/$doc_version/" -name "*.swagger.json" -exec sed -i -E 's/\/datanode\/rest//g' {} +

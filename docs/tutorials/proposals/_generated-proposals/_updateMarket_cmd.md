@@ -88,7 +88,7 @@
       "params": {
        "mu": 0,
        "r": 0.016,
-       "sigma": 0.3
+       "sigma": 1.25
       }
      },
      "liquiditySlaParameters": {
@@ -100,8 +100,8 @@
      "tickSize": "1"
     }
    },
-   "closingTimestamp": 1716913315,
-   "enactmentTimestamp": 1716999715
+   "closingTimestamp": 1718118736,
+   "enactmentTimestamp": 1718205136
   }
  }
 }'

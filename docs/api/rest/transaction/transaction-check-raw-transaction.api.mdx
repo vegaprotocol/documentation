@@ -1,0 +1,47 @@
+---
+id: transaction-check-raw-transaction
+title: "Check raw transaction"
+description: "Send a pre-serialised transaction containing a command to the network to be checked, but then not added to the chain's mempool.
+This is useful for checking the validity of a potential transaction before submitting it."
+sidebar_label: "Check raw transaction"
+hide_title: true
+hide_table_of_contents: true
+api: eJzdVk1v4zYQ/SuELm0Br+1ui2SRU7PFFthTg3x0D9mgGEljiRuKVEkqjmD4v+8byl7LdhC42J6aGLJEkW+G770ZepV5Dq2zgUN2screzufyVTgb2Ua5pbY1uqConZ19Cc7KWChqbkjuWu9a9lEPq7VdOPmOOhrOLrI72wUus0kW+1aeQ/TaVtl6ggAly8ySQ+F1K+h4/8F755W8U9EpbUsJjPualdxUzvfKLdSCtOk8K71Ir6InG6gQDLWkoKyLKnRFwSEsOmN6POSNjpHLKVJZON8QdoZk49mvu9zwyBV7Sa6kSMfJ/dF5RPOq5Ij4QQFILev+tBRAWPE4JHDERUXhTmg6ijjQ91rSeyCfCFt4AeaycZ2NQlxoqQBtVpHKjSsekTvF4w1oY9QCl6m6rXVQpeNhR55NksMpsr1qnAUTUKRwISY2Njwjo0PM0/ZgXHUa7YLe2ZK96SVYIfa1oQvKUI+pbvAFjN2ZuH06yOYo+Eau4wQ+1ZwSQFwh4ZCtlgJESsNp/yHIaNI7jALlzhkmm60Ralse15vKS3tKK2Q3pJ7YJxCqLKjVxV48fP7iinbILv/CRQSwOHdf+JEH1bbMp8nhvCBw8x2lvi3gsaq/vH25nAblUoOI3KQbKkstcchcjWExez/MbwPc6lCv9eH2d6wCILq8W1zaPttNI+8pPTfgg6p/iVk5Vxn2bXETKXbhRbItLMnPLRbCDpw62YhzAacKe7rPbndqZg+HMDdsS1ig9fwmsNdkdHLXyAAiGGk7WKVwTUNYgZoUB6Iil84/ymPO26YzUXmXfGuTgUE9f1tQ1ID6IaiGmxYOnX62qeTxQesR2+xZU1Y8ISVolxox8nRiHqS5l2LOWMbjfqCj1IIom+z1EW1qzMPfv0uIa1qOuZngaPqn4xDfu7L/DqvG5z2j5n3kDbb20i/vZcbDTuz3aC2GU7/UlQVXLfXGEWQB0TIEC2B3DflQkzGYALM76alAVsloE+FXImJ0TEzqt0vXmVL0+XYubdWQwh46c9LluE2tX8v7emDrv+smu1DRd5xqJ9ZOpGuBhDUtxRpPsxHizNNylqLjPRws0ZHqKuu8wdQ6xjZczGbU6qmdz6cRCcO00yckMfXYeMgOKwLT1I9yJMO9Jf+EGn4Z7Ow0sLOTwM5PAzs/CezdaWDv9sGgrDj7elcDH56paQ1vPT06vA5/eCUjFVKDl1cfJdbGBHj1NJ+en01/llWiIrqHLLTUyLpUhgoSjk1ymOqoEP/f7WpTEpGf46w1UpAgLQm82lgfJbjfsGiJ62B/6FdLmWDSapVT4Dtv1msZhqAeDe0et08E0nLR7P4B4DUTftWkennkXgQZmH5zK6nIdNOl0+yw/Yn1hhWXOPHb+Orch1ElX/15c4vJ+abFNulY3+xDrhfZZ/yn3i0IqaGm8VVmyFZdOkqzAVf+vgIdvlQN
+sidebar_class_name: "post api-method"
+info_path: api/rest/transaction/vega-core-apis
+custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Check raw transaction' (transaction-check-raw-transaction)"
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Check raw transaction</h1>
+
+<MethodEndpoint method={"post"} path={"/transaction/raw/check"}></MethodEndpoint>
+
+
+
+Send a pre-serialised transaction containing a command to the network to be checked, but then not added to the chain's mempool.
+This is useful for checking the validity of a potential transaction before submitting it.
+
+## Request
+
+<MimeTabs className={"openapi-tabs__mime"}><TabItem label={"application/json"} value={"application/json-schema"}><details style={{}} className={"openapi-markdown__details mime"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-mime"}><h3 className={"openapi-markdown__details-summary-header-body"}>Body</h3><strong className={"openapi-schema__required"}>required</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"tx"} required={true} schemaName={"byte"} qualifierMessage={undefined} schema={{"format":"byte","required":["tx"],"title":"Bundle of signed payload and signature marshalled into a byte array, to form a transaction that would be submitted to the Vega blockchain","type":"string"}}></SchemaItem></ul></details></TabItem></MimeTabs><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+A successful response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"info"} required={false} schemaName={"Unused"} qualifierMessage={undefined} schema={{"title":"Unused","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"code"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Error code to indicate the category of failure if the transaction was not successfully submitted.","format":"int64","type":"integer"}}></SchemaItem><SchemaItem collapsible={false} name={"data"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Further details for why the transaction was not successfully checked.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"gasUsed"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Unused.","format":"int64","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"gasWanted"} required={false} schemaName={"int64"} qualifierMessage={undefined} schema={{"description":"Amount of space in a block that the transaction will fill. This does not relate to any monetary cost for submitting the transaction.","format":"int64","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"log"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"Further details for the underlying consensus layer of the result of the transaction.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"success"} required={false} schemaName={"boolean"} qualifierMessage={undefined} schema={{"description":"Whether or not the transaction passed the submission checks.","type":"boolean"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"info\": \"string\",\n  \"code\": 0,\n  \"data\": \"string\",\n  \"gasUsed\": \"string\",\n  \"gasWanted\": \"string\",\n  \"log\": \"string\",\n  \"success\": true\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"default"} value={"default"}><div>
+
+An unexpected error response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaName={"int32"} qualifierMessage={undefined} schema={{"format":"int32","type":"integer"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>details</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"@type"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

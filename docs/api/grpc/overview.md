@@ -78,7 +78,7 @@ The latest protobuf definitions for the core node API can be found [on the Vega 
 As a data node acts as a proxy to its core node, all `CoreService` API such as sending in transactions are also available from the data node's RPC address.
 
 :::caution Make sure you use the correct version
-Before using the protobuf definitions linked above be sure to check out the version that matches the network you want to interact with. This can be found by using the [statistics endpoint](../rest/core/core-service-statistics.api.mdx) and reading the `appVersion` field. From Vega's git repository you can then do `git checkout ${appVersion}`.
+Before using the protobuf definitions linked above be sure to check out the version that matches the network you want to interact with. This can be found by using the [statistics endpoint](../rest/transaction/transaction-statistics.api.mdx) and reading the `appVersion` field. From Vega's git repository you can then do `git checkout ${appVersion}`.
 :::
 
 ## Client stub examples

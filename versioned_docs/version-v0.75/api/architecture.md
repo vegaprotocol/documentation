@@ -24,7 +24,7 @@ This guide will use a wallet server running on localhost to 'write' data, and a 
 -->
 
 ## Core nodes
-Vega's chain is built using the CometBFT (previously Tendermint) consensus mechanism. Read more about CometBFT in their [documentation](https://docs.cometbft.com/). You can see what version of Comet the Vega core is using by checking the [statistics endpoint](../api/rest/core/core-service-statistics.api.mdx) for the `chainVersion`.
+Vega's chain is built using the CometBFT (previously Tendermint) consensus mechanism. Read more about CometBFT in their [documentation](https://docs.cometbft.com/). You can see what version of Comet the Vega core is using by checking the [statistics endpoint](../api/rest/transaction/transaction-statistics.api.mdx) for the `chainVersion`.
 
 The Vega core processes each transaction in order, from a block that's been created by CometBFT, by validating and then executing the transaction. When the transaction is executed, it will trigger actions in the core. For example, an order submission could enter the order book, match other orders, create trades, etc. The core is comprised of the order books, risk engines, governance mechanisms, market lifecycle, and other essential protocol functions.
 
@@ -47,5 +47,5 @@ Once you have a high-level understanding, read through the following topics.
 
 * **[Building blocks](./building-blocks.md)**: The basic building blocks you should know about and their APIs.
 * **[Using the APIs](./using-the-apis.md)**: Quick intro to all the frameworks and smart contracts to help you find what you need.
-* **[Public endpoints](./public-endpoints.md)**: Public endpoints that are currently available for interacting with the APIs on the testnets.
+* **[Public servers](./public-servers.md)**: Public servers that are currently available for interacting with the APIs on the testnets.
 * **[Tutorials](../tutorials/index.md)**: Each tutorial includes info about the protocol that you need to use the guide, as well as instructions on how to interact with scripts, API calls, or other code.
