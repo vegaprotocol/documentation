@@ -2,11 +2,11 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega core APIs",
-    "version": "v0.76.0-preview.6"
+    "version": "v0.76.1"
   },
   "tags": [
     {
-      "name": "CoreService"
+      "name": "Transaction"
     }
   ],
   "host": "api.n10.testnet.vega.xyz",
@@ -25,7 +25,7 @@
       "get": {
         "summary": "Blockchain height",
         "description": "Get the height of the last tendermint block",
-        "operationId": "CoreService_LastBlockHeight",
+        "operationId": "Transaction_LastBlockHeight",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -41,7 +41,7 @@
           }
         },
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -49,7 +49,7 @@
       "get": {
         "summary": "Statistics",
         "description": "Get statistics on Vega",
-        "operationId": "CoreService_Statistics",
+        "operationId": "Transaction_Statistics",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -65,7 +65,7 @@
           }
         },
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -73,7 +73,7 @@
       "get": {
         "summary": "Get Spam statistics",
         "description": "Get the spam statistics for a given party.",
-        "operationId": "CoreService_GetSpamStatistics",
+        "operationId": "Transaction_GetSpamStatistics",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -98,7 +98,7 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -106,7 +106,7 @@
       "get": {
         "summary": "Events subscription",
         "description": "Subscribe to a stream of events from the core",
-        "operationId": "CoreService_ObserveEventBus",
+        "operationId": "Transaction_ObserveEventBus",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -260,7 +260,7 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -268,7 +268,7 @@
       "get": {
         "summary": "Vega time",
         "description": "Get current Vega time",
-        "operationId": "CoreService_GetVegaTime",
+        "operationId": "Transaction_GetVegaTime",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -284,7 +284,7 @@
           }
         },
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -292,7 +292,7 @@
       "post": {
         "summary": "Submit transaction",
         "description": "Submit a signed transaction to the network containing a command to be executed such that if the submission is successful then it will be included in the chain's mempool.\nThe network will then attempt to execute the transaction in the next available block, where the results of its execution can be seen on the EventBus.",
-        "operationId": "CoreService_SubmitTransaction",
+        "operationId": "Transaction_SubmitTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -318,7 +318,7 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -326,7 +326,7 @@
       "post": {
         "summary": "Check transaction",
         "description": "Send a signed transaction containing a command to the network to be checked, but not added to the chain's mempool.\nThis is useful for checking the validity of a potential transaction before submitting it.",
-        "operationId": "CoreService_CheckTransaction",
+        "operationId": "Transaction_CheckTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -352,7 +352,7 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -360,7 +360,7 @@
       "post": {
         "summary": "Submit raw transaction",
         "description": "Submit a pre-serialised signed transaction containing a command to the network to be executed, such that if the submission is successful then it will be included in the chain's mempool.\nThe network will then attempt to execute the transaction in the next available block, where the results of its execution can be seen on the EventBus.",
-        "operationId": "CoreService_SubmitRawTransaction",
+        "operationId": "Transaction_SubmitRawTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -386,7 +386,7 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -394,7 +394,7 @@
       "post": {
         "summary": "Check raw transaction",
         "description": "Send a pre-serialised transaction containing a command to the network to be checked, but then not added to the chain's mempool.\nThis is useful for checking the validity of a potential transaction before submitting it.",
-        "operationId": "CoreService_CheckRawTransaction",
+        "operationId": "Transaction_CheckRawTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -420,7 +420,7 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     }
