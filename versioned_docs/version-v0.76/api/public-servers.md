@@ -2,7 +2,7 @@
 sidebar_position: 5
 title: Public servers
 hide_title: false
-description: Vega's APIs are served by public servers.
+description: Vega's APIs are served over public addresses.
 vega_network: MAINNET
 ---
 
