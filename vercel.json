@@ -60,6 +60,14 @@
     {
       "source": "/testnet/concepts/trading-on-vega/positions-margin",
       "destination": "/testnet/concepts/trading-on-vega/margin"
+    }, 
+    {
+      "source": "/mainnet/api/public-endpoints",
+      "destination": "/mainnet/api/public-servers"
+    },
+    {
+      "source": "/testnet/api/public-endpoints",
+      "destination": "/testnet/api/public-servers"
     }
   ]
 }
