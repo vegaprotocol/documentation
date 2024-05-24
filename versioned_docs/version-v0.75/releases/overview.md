@@ -17,10 +17,10 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-## Release version 0.75.8 patch | 2024-05-23
+## Release version 0.75.8 patch | 2024-05-24
 This version was released by the validators to mainnet on 23 May 2024.
 
-This patch release resolves an issue where a snapshot of price monitoring price ranges was not sorted deterministically. This was fixed by using the existing price range component in the sorting order, such that if two entries have equal bounds they will be sorted by their "range" component. This was completed in [release 0.75.8-fix.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.8-fix.1).
+This patch release resolves an issue where a snapshot of price monitoring price ranges was not sorted deterministically. This was fixed by using the existing price range component in the sorting order, such that if two entries have equal bounds they will be sorted by their "range" component. This was completed in [release 0.75.8-fix.2 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.75.8-fix.2).
 
 ## Release version 0.75.8 | 2024-04-04
 This version was released by the validators to mainnet on 04 April 2024.
