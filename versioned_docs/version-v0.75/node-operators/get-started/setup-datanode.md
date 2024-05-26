@@ -322,6 +322,32 @@ To fix the issue follow the below steps:
 5. Start node
 6. When your node is stable, and it is running revert the change applied in step 4.
 
+### Potential error: wrong Block.Header.AppHash at block 47865000
+
+A bg crashed the mainnet network at block `47865000`. 
+
+You may see the following error:
+
+```
+wrong Block.Header.AppHash.  Expected B6BA31D32536F7BC87160D684057CE2EEE66771A2C32E0A39E3E3D39F319C64B, got 3440BABC92E9C57AA5AAA9F3829805F1A07AE1F9EE0639E58D5DDC70643B8830
+```
+
+To fix the issue follow the below steps:
+
+1. Stop your node.
+2. Run tm rollback for a single block: `vega tm rollback --home <tendermint_home>`
+3. Replace the vega binary with [0.74.10-fix.1](https://github.com/vegaprotocol/vega/releases/tag/v0.75.8-fix.2)
+4. Update the config/flag to your node from the one before the last snapshot.
+    a. If you use Visor you can add the following path to the run-config.toml(`<vegavisor_home>/current/run-config.toml`) file: `"--snapshot.load-from-block-height", "47864700"` 
+    b. If you do not use Visor, you can add the following flag to your start command: `--snapshot.load-from-block-height 47864700`
+    c. You can also update core config (`<vega_home>/config/node/config.toml`): `Snapshot.StartHeight = 47864700`
+5. Start node
+6. When your node is stable, and it is running revert the change applied in step 4.
+
+:::warning
+It may take a few minute to process single block after the block `47865000`.
+:::
+
 ## Starting the data node from network history
 
 If you're using network history to get the current state to start up your data node, you'll first need to start the non validator node using a snapshot. Follow the instructions in the [non validator node set up guide](./setup-non-validator.md#start-a-node-using-a-remote-snapshot).
