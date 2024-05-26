@@ -345,7 +345,7 @@ To fix the issue follow the below steps:
 6. When your node is stable, and it is running revert the change applied in step 4.
 
 :::warning
-It may take a few minute to process single block after the block `47865000`.
+It may take a few minutes to process a single block between blocks `47865000` - `47865500`.
 :::
 
 ## Starting the data node from network history
