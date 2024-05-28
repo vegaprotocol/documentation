@@ -324,7 +324,7 @@ To fix the issue follow the below steps:
 
 ### Potential error: wrong Block.Header.AppHash at block 47865000
 
-A bg crashed the mainnet network at block `47865000`. 
+A bug crashed the mainnet network at block `47865000`. 
 
 You may see the following error:
 
@@ -336,7 +336,7 @@ To fix the issue follow the below steps:
 
 1. Stop your node.
 2. Run tm rollback for a single block: `vega tm rollback --home <tendermint_home>`
-3. Replace the vega binary with [0.74.10-fix.1](https://github.com/vegaprotocol/vega/releases/tag/v0.75.8-fix.2)
+3. Replace the vega binary with [0.75.8-fix.2](https://github.com/vegaprotocol/vega/releases/tag/v0.75.8-fix.2)
 4. Update the config/flag to your node from the one before the last snapshot.
     a. If you use Visor you can add the following path to the run-config.toml(`<vegavisor_home>/current/run-config.toml`) file: `"--snapshot.load-from-block-height", "47864700"` 
     b. If you do not use Visor, you can add the following flag to your start command: `--snapshot.load-from-block-height 47864700`
@@ -503,4 +503,4 @@ After this is done you can repopulate the data node by replaying the chain or by
 
 ## Performance tuning
 
-Depening on how your servers are configured, your drives may be mounted without `noatime` being set. This can have a significant impact on the database performance and can cause deadlocks and database panics under certain conditions. It is therefore recommended that when setting up your Linux server for running a data node, you ensure that the drives are mounted with the `noatime` option set.
+Depending on how your servers are configured, your drives may be mounted without `noatime` being set. This can have a significant impact on the database performance and can cause deadlocks and database panics under certain conditions. It is therefore recommended that when setting up your Linux server for running a data node, you ensure that the drives are mounted with the `noatime` option set.
