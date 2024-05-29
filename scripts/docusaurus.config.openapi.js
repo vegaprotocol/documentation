@@ -41,8 +41,8 @@ function getIdsFromFilename (version, filename) {
   } else if (filename.indexOf('trading_data') !== -1) {
     // Special case: remove after v0.53 is no longer built
     return { id: `tradingv1v${ver}`, filename: 'data-v1' }
-  } else if (filename.indexOf('corestate') !== -1) {
-    return { id: `statev${ver}`, filename: 'state' }
+  } else if (filename.indexOf('transaction') !== -1) {
+    return { id: `transactionv${ver}`, filename: 'transaction' }
   } else if (filename.indexOf('core') !== -1) {
     return { id: `corev${ver}`, filename: 'core' }
   } else if (filename.indexOf('blockexplorer') !== -1) {

@@ -1,0 +1,46 @@
+---
+hide_send_button: true
+id: core-state-service-list-accounts
+title: "Accounts list"
+description: "Get a list of accounts. This endpoint may not be exposed by mainnet nodes."
+sidebar_label: "Accounts list"
+hide_title: true
+hide_table_of_contents: true
+api: eJytVU1v2zAM/SuCzpmTtsA25LRgGIoCOxRrt0sRDIzNOGplSZXorEaQ/z7Sdj6aeAOK7WRLfHyUHj+00QEiVEgYk54+bLRxeqqfa4yNHmnHFl4yhGQZ8bk2EQs9XYJNONIpX2EFerrR1ARBJorGlXq7HQ0zVRCfkN5GNRd0Ct4lTGK/nEzkk3tH6Eh+IQRrciDj3fgxeSd7B74QfcBIpvOGPPe1o/bfEFZpAJIS0sBJRnoBFlyOg7b+akOmTr8hS7cxIN9uxy8eMRfByJCVDQhmfTHrLnFg0BAjNH91XF98NYl6z/StV5Rd2KfAlEcTREBGzlSq8xxTWtZW7aTPdItbQm3pH+TPfdFeeOljBezNVUJXl3p/bF5iibELRmDs60RBURiJA/b2mFY0fhXm09uFZQLyi3o5c825rpxe1gPKN3KW3pcWY8jvCKhOg2I7VTt8CeyIhcIYfTzWXMihlNbUn31E4cE7jGvDVTg/5bpGUqAsp1n5pdpVeqbuVyYpdEXwLK+qoFHOk1qg4rg+cdhFw7vGOfZ3nKCU8R1EzjanN9ykZ8F/HheTFnlo5QVYtu0dgFa8GMMBkdhxN2TqaNm6IgppOh6vsYR3BRBkXfCyjvX0ajL5qE8vOITUMmteExYQLacm4/v88vHpjObUfs7QBuolycA1a7CmyHJfDR9pEDnMmu2wDKlqZ9rBek45AJNBaNzStyXYF9gPhqqcc6OSJEfNbm9EaxG655pkH95nV+0U8okqaLuzn8a7/LUlc3qMoxb/v4XVNwvhC42DZascrhVq09fNw2FK851XfG7Z22wWkPB7tNutbHcvi1RTYRIs7NFb8oTN0avFGaklYJuQP2D379IBPJdFNILmKHM+4wqh4NEkITsv1g/DsdfZJBSWfWtcf7nnhv4NPCeWmQ==
+sidebar_class_name: "get api-method"
+info_path: version-v0.76/api/rest/state/vega-core-state-apis
+custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Accounts list' (core-state-service-list-accounts)"
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Accounts list</h1>
+
+<MethodEndpoint method={"get"} path={"/accounts"}></MethodEndpoint>
+
+
+
+Get a list of accounts. This endpoint may not be exposed by mainnet nodes.
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"in":"query","name":"party","required":false,"schema":{"type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"in":"query","name":"market","required":false,"schema":{"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+A successful response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>accounts</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"asset"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"balance"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"market"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"party"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"type"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"accounts\": [\n    {\n      \"asset\": \"string\",\n      \"balance\": \"string\",\n      \"market\": \"string\",\n      \"party\": \"string\",\n      \"type\": \"string\"\n    }\n  ]\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"default"} value={"default"}><div>
+
+An unexpected error response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaName={"int32"} qualifierMessage={undefined} schema={{"format":"int32","type":"integer"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>details</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"@type"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>

@@ -31,8 +31,8 @@ trading_data_swagger2_dest="trading_data_v2.swagger.json"
 trading_data_openapi_dest="trading_data_v2.openapi.json"
 convert "$trading_data_swagger2_dest" "$trading_data_openapi_dest"
 
-core_swagger_dest="core.swagger.json"
-core_openapi_dest="core.openapi.json"
+core_swagger_dest="transaction.swagger.json"
+core_openapi_dest="transaction.openapi.json"
 convert "$core_swagger_dest" "$core_openapi_dest"
 
 corestate_swagger_dest="corestate.swagger.json"

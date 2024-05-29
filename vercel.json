@@ -22,6 +22,86 @@
       "destination": "/testnet/concepts/governance"
     },
     {
+      "source": "/mainnet/api/rest/core/core-service-last-block-height",
+      "destination": "/mainnet/api/rest/transaction/transaction-last-block-height"
+    },
+    {
+      "source": "/mainnet/api/rest/core/core-service-statistics",
+      "destination": "/mainnet/api/rest/transaction/transaction-statistics"
+    },
+    {
+      "source": "/mainnet/api/rest/core/core-service-get-spam-statistics",
+      "destination": "/mainnet/api/rest/transaction/transaction-get-spam-statistics"
+    },
+    {
+      "source": "/mainnet/api/rest/core/core-service-last-block-height",
+      "destination": "/mainnet/api/rest/transaction/transaction-observe-event-bus"
+    },
+    {
+      "source": "/mainnet/api/rest/core/core-service-get-vega-time",
+      "destination": "/mainnet/api/rest/transaction/transaction-get-vega-time"
+    },
+    {
+      "source": "/mainnet/api/rest/core/core-service-submit-transaction",
+      "destination": "/mainnet/api/rest/transaction/transaction-submit-transaction"
+    },
+    {
+      "source": "/mainnet/api/rest/core/core-service-check-transaction",
+      "destination": "/mainnet/api/rest/transaction/transaction-check-transaction"
+    },
+    {
+      "source": "/mainnet/api/rest/core/core-service-submit-raw-transaction",
+      "destination": "/mainnet/api/rest/transaction/transaction-submit-raw-transaction"
+    },
+    {
+      "source": "/mainnet/api/rest/core/core-service-check-raw-transaction",
+      "destination": "/mainnet/api/rest/transaction/transaction-check-raw-transaction"
+    },
+    {
+      "source": "/mainnet/category/api/rest/core/core-service",
+      "destination": "/mainnet/category/api/rest/transaction/transaction"
+    },
+    {
+      "source": "/testnet/api/rest/core/core-service-last-block-height",
+      "destination": "/testnet/api/rest/transaction/transaction-last-block-height"
+    },
+    {
+      "source": "/testnet/api/rest/core/core-service-statistics",
+      "destination": "/testnet/api/rest/transaction/transaction-statistics"
+    },
+    {
+      "source": "/testnet/api/rest/core/core-service-get-spam-statistics",
+      "destination": "/testnet/api/rest/transaction/transaction-get-spam-statistics"
+    },
+    {
+      "source": "/testnet/api/rest/core/core-service-last-block-height",
+      "destination": "/testnet/api/rest/transaction/transaction-observe-event-bus"
+    },
+    {
+      "source": "/testnet/api/rest/core/core-service-get-vega-time",
+      "destination": "/testnet/api/rest/transaction/transaction-get-vega-time"
+    },
+    {
+      "source": "/testnet/api/rest/core/core-service-submit-transaction",
+      "destination": "/testnet/api/rest/transaction/transaction-submit-transaction"
+    },
+    {
+      "source": "/testnet/api/rest/core/core-service-check-transaction",
+      "destination": "/testnet/api/rest/transaction/transaction-check-transaction"
+    },
+    {
+      "source": "/testnet/api/rest/core/core-service-submit-raw-transaction",
+      "destination": "/testnet/api/rest/transaction/transaction-submit-raw-transaction"
+    },
+    {
+      "source": "/testnet/api/rest/core/core-service-check-raw-transaction",
+      "destination": "/testnet/api/rest/transaction/transaction-check-raw-transaction"
+    },
+    {
+      "source": "/testnet/category/api/rest/core/core-service",
+      "destination": "/testnet/category/api/rest/transaction/transaction"
+    },
+    {
       "source": "/mainnet/concepts/vega-protocol",
       "destination": "/mainnet/concepts/governance"
     },
