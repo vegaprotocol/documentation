@@ -52,7 +52,7 @@ To read more about how the bridge works, [see this blog post ↗](https://blog.v
 Used to control the ownership of bridge contracts, allowing the validators of a Vega network to control which assets can be used with the bridge, and approve asset withdrawals.
 
 ## Arbritrum
-Assets can also be bridged from [Arbitrum](https://arbitrum.io/). The following contracts make up the Vega <-> Arbitrum interface.
+Assets can also be bridged from [Arbitrum ↗](https://arbitrum.io/). The following contracts make up the Vega <-> Arbitrum interface.
 
 ### [Bridge Logic](./interfaces/IERC20_Bridge_Logic.md)
 <EthAddresses frontMatter={frontMatter} show={["ArbitrumBridge"]} />
