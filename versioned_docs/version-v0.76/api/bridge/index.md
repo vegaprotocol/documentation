@@ -59,7 +59,7 @@ Assets can also be bridged from [Arbitrum ↗](https://arbitrum.io/). The follow
 
 Contains the functions necessary to deposit, withdraw, list assets, etc. 
 
-To read more about how the bridge works, [see the Vega ERC20 bridge blog post](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Abritrum (sepolia) on to the Fairground testnet, head over to [Console for Fairground](https://console.fairground.wtf).
+To read more about how the bridge works, see the [Vega ERC20 bridge blog post ↗](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Arbitrum (sepolia) on to the Fairground testnet, head over to [Console for Fairground ↗](https://console.fairground.wtf).
 
 ### [Multisig Control](./interfaces/IMultisigControl.md)
 
