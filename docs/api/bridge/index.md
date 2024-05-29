@@ -15,7 +15,7 @@ These are the smart contracts that make up the Vega <-> Ethereum interface
 
 Contains the functions necessary to deposit, withdraw, list assets, etc. It is controlled by Multisig Control and controls Asset Pool.
 
-To read more about how the bridge works, [see the Vega ERC20 bridge blog post](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Sepolia on to the Fairground testnet, head over to [Console for Fairground](https://console.fairground.wtf).
+To read more about how the bridge works, see the [Vega ERC20 bridge blog post ↗](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Sepolia on to the Fairground testnet, head over to [Console for Fairground ↗](https://console.fairground.wtf).
 
 ### ERC20 Asset Pool
 <EthAddresses frontMatter={frontMatter} show={["ERC20AssetPool"]} />
@@ -53,14 +53,14 @@ To read more about how the bridge works, [see this blog post ↗](https://blog.v
 Used to control the ownership of bridge contracts, allowing the validators of a Vega network to control which assets can be used with the bridge, and approve asset withdrawals.
 
 ## Arbritrum
-Assets can also be bridged from [Arbitrum](https://arbitrum.io/). The following contracts make up the Vega <-> Arbitrum interface.
+Assets can also be bridged from [Arbitrum ↗](https://arbitrum.io/). The following contracts make up the Vega <-> Arbitrum interface.
 
 ### [Bridge Logic](./interfaces/IERC20_Bridge_Logic.md)
 <EthAddresses frontMatter={frontMatter} show={["ArbitrumBridge"]} />
 
 Contains the functions necessary to deposit, withdraw, list assets, etc. 
 
-To read more about how the bridge works, [see the Vega ERC20 bridge blog post](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Abritrum (sepolia) on to the Fairground testnet, head over to [Console for Fairground](https://console.fairground.wtf).
+To read more about how the bridge works, see the [Vega ERC20 bridge blog post ↗](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Arbitrum (sepolia) on to the Fairground testnet, head over to [Console for Fairground ↗](https://console.fairground.wtf).
 
 ### [Multisig Control](./interfaces/IMultisigControl.md)
 
