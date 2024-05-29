@@ -104,5 +104,5 @@ With the signature bundle fetched above, the final step is to submit that withdr
 * `nonce` - the nonce from step 4
 * `signatures` - signature bundle from step 4
 
-### Ethereum addresses
+### Important addresses
 <EthAddresses frontMatter={frontMatter} />
