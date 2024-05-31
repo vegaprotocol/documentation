@@ -10,7 +10,7 @@ Markets supported by the Vega network are cash-settled. When a market expires or
 
 All markets created using Vega software are proposed through governance, by community members. Market proposals that pass a governance vote are then enacted and can be traded on.
 
-Currently, the network supports two types of derivatives markets: futures markets that expire, and perpetual futures markets that do not expire.
+The network supports two types of derivatives markets: futures markets that expire, and perpetual futures markets that do not expire. It also supports spot markets.
 
 :::tip Try it out
 [Console](https://console.fairground.wtf): See all the currently active markets.
@@ -31,6 +31,9 @@ Settlement, or the process of moving collateral between accounts, happens on a f
 * [Concept: Positions and margin](./margin.md)
 * [Tutorial: Propose a futures market](../../tutorials/proposals/new-market-proposal.md)
 :::
+
+### Prediction markets
+Prediction markets allow participants to bet on a specific outcome by holding a position on the market.
 
 ## Perpetual futures
 Perpetual futures markets do not have a final settlement date and so traders can hold a position on a perpetuals market indefinitely. Traders exchange cashflows each time the mark price for funding changes - this process is called mark-to-market settlement.

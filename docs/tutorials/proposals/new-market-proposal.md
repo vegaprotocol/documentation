@@ -38,7 +38,7 @@ Looking to propose a perpetuals market? See the [perpetual futures tutorial](./n
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>, (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
+* Enough VEGA associated with your public key. Have at least whichever is larger: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>, (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
 * Familiarity with [market governance](../../concepts/governance/market.md) on Vega
 
 <!--You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.-->
@@ -46,16 +46,12 @@ You will need:
 ## Anatomy of a market proposal
 In this section, the [full proposal template](#templates-and-submitting) has been divided into sections to provide more details on what you need to submit.
 
-There are a number of fields required for proposing a market to ensure that it has all the necessary details and research behind it to be a well-functioning market. 
-
 The general shape is as follows:
 <NewMarketJSONOverview />
 
-The contents of a `changes` object specifies what will be different after the proposal. In this case, these are the changes that will occur on the network, in the form of a new market.
-
 Instrument, liquidity monitoring parameters, price monitoring parameters, and data sources are all described in more detail below.
 
-**Rationale** requires a title and description, which are free-text fields that describe the purpose of the proposal.  Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market proposal. Formatting your rationale with markdown makes it easier to read when it's displayed.
+**Rationale** requires a title and description. Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market proposal. Formatting your rationale with markdown makes it easier to read when it's displayed.
 
 **Decimal places** need to be defined for both order sizes and the market. A market cannot specify more decimal places than its settlement asset supports. The values for these fields cannot be changed, even through governance.
 
@@ -225,6 +221,16 @@ Set up the liquidation strategy to minimise the impact of distressed traders on 
 | `fullDisposalSize` | Size of the position that the network will try to close in a single attempt  | 1 |
 | `maxFractionConsumed` | Maximum fraction of the order book's total volume, within the liquidity bounds, that the network can use to close its position. Range 0 through 1 | 0.05 |
 | `disposalSlippageRange` | Decimal number greater than 0 specifying the range above and below the mid price within which the network will trade to dispose of its position. | 0.1 |
+
+## Prediction markets
+Using the fields below, you can create a prediction market, or set a maximum settlement price, use binary settlement, require fully collateralised positions.
+
+| Field | Description | Possible value |
+| ----------- | ----------- | ----------- |
+| `cap`| Fields in this optional section determine if a market has a max price, binary settlement, and if positions must be fully collateralised. | |
+| `binarySettlement` | If set to true, the market's settlement price will be 0 or the max price. If set to false, any price up to max price can be considered for settlement. When a market settles, the payout (or lack thereof) is based on which side of the outcome a participant's position is on. | true or false |
+| `maxPrice` | Sets the highest possible settlement price. Use market decimal places to set this value. For example, 2 market decimals with a price cap of 3 would be 300. Must be greater than 0, if used. | 10000 |
+| `fullyCollateralised` | If set to true, the market will require participants' positions to be fully collateralised (no margin). | true or false |
 
 ## Submitting proposals in a batch
 

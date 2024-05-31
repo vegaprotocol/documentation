@@ -18,11 +18,13 @@ Hypothetical changes in a position's value are called unrealised profit and loss
 
 ## Margin modes
 
-There are two ways the protocol lets you manage your leverage: cross-market margin or isolated margin. You can switch between the margin modes as long as you have enough to support the margin requirement for your potential position in the new mode.
+There are two ways the protocol lets you manage your leverage: cross-market margin or isolated margin. You can switch between the margin modes as long as you have enough to support the margin requirement for your potential position in the new mode. Some market types don't allow margin/leverage: spot and fully collateralised futures.
 
 **Cross margining** provides a capital-efficient use of margin, particularly when trading on multiple markets using the same settlement asset. You can't control the amount of margin (and thus leverage) that you use on your position but the market sets money aside and returns it if it's not required.
 
 **Isolated margin** provides a way to control how much you set aside for margin and thus choose your leverage amount. The amount of margin set aside is static, unless you increase your position. If the market turns against your position, it could be closed out more quickly.
+
+**Fully collateralised** is a mode that can be set on certain futures markets. If a market is fully collateralised, your position will need to be completely supported with funds. In other words, fully collateralised markets do not allow margined positions.
 
 Cross margining is the default mode, so to use isolated margin you'll need to switch before submitting your order. Once you choose isolated margin on a market, your orders will continue to use that mode unless you update it to cross margining.
 
