@@ -222,7 +222,7 @@ Set up the liquidation strategy to minimise the impact of distressed traders on 
 | `maxFractionConsumed` | Maximum fraction of the order book's total volume, within the liquidity bounds, that the network can use to close its position. Range 0 through 1 | 0.05 |
 | `disposalSlippageRange` | Decimal number greater than 0 specifying the range above and below the mid price within which the network will trade to dispose of its position. | 0.1 |
 
-## Prediction markets
+### Prediction market
 Using the fields below, you can create a prediction market, or set a maximum settlement price, use binary settlement, require fully collateralised positions.
 
 | Field | Description | Possible value |
@@ -230,7 +230,7 @@ Using the fields below, you can create a prediction market, or set a maximum set
 | `cap`| Fields in this optional section determine if a market has a max price, binary settlement, and if positions must be fully collateralised. | |
 | `binarySettlement` | If set to true, the market's settlement price will be 0 or the max price. If set to false, any price up to max price can be considered for settlement. When a market settles, the payout (or lack thereof) is based on which side of the outcome a participant's position is on. | true or false |
 | `maxPrice` | Sets the highest possible settlement price. Use market decimal places to set this value. For example, 2 market decimals with a price cap of 3 would be 300. Must be greater than 0, if used. | 10000 |
-| `fullyCollateralised` | If set to true, the market will require participants' positions to be fully collateralised (no margin). | true or false |
+| `fullyCollateralised` | If set to true, the market will require participants' positions to be fully collateralised (no margin), and thus no market participants can be liquidated. | true or false |
 
 ## Submitting proposals in a batch
 
