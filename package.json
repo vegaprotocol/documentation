@@ -1,7 +1,7 @@
 {
   "name": "vega-documentation",
-  "version": "0.76.1",
-  "mainnetVersion": "0.75.0",
+  "version": "0.76.3",
+  "mainnetVersion": "0.76.3",
   "license": "MIT",
   "engines": {
     "node": ">=16.14"
