@@ -12,7 +12,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
 ## Servers for Vega APIs
-Due to the distributed nature of Vega, most of the APIs are served from a data node, and a few from a core node. This means there is no single API server, and users will need to choose a node to connect to.
+Due to the distributed nature of Vega, to submit API requests you'll need to choose a node address to connect to, as there is no single API server. You do not need an API key or authentication to connect.
 
 When you want to perform an action on the network you'll need to sign the message containing the transaction details with a [wallet app](../tools/vega-wallet/index.md) or a signer library.
 

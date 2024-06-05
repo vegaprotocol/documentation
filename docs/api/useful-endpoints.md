@@ -8,11 +8,10 @@ vega_network: TESTNET
 
 While there are hundreds of [available endpoints](../api/rest/overview.md), the categories below cover the basics to get you started. 
 
-## Submit transactions [WIP]
-You can submit a transaction with `POST /transaction`. 
+## Submit transactions
+You can submit a transaction with `POST /transaction`. You'll need a [Vega Wallet app](../tools/index.md) or signer library to prepare your transaction before sending.
 
-* You'll need a Vega Wallet app or signer library to sign your transaction before sending.
-* You'll need to take the transaction submission and SerializeToString before sending. 
+Note: The transaction bundle will need to be encoded and you need a Vega Wallet app or signer library to sign your transaction.
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |

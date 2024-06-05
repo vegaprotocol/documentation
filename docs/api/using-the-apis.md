@@ -1,5 +1,5 @@
 ---
-title: Using the APIs
+title: API tips
 sidebar_position: 2
 description: See the frameworks and how to use the APIs.
 vega_network: TESTNET
