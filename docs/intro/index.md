@@ -16,4 +16,4 @@ Learn more about Vega below.
 | [Token economics](./token-economics.md) | [Rewards and vesting](./rewards-vesting.md) |
 | [Fees](./fees.md) | [Activity streaks](./activity.md) |
 | [Liquidity provision](./liquidity-provision.md) | [Teams and competitions](./teams.md) |
-| [Referrals and volume discounts](./referral-program.md) |
+| [Referrals and volume discounts](./referral-program.md) | [Trading](./trading.md) |

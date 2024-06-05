@@ -39,7 +39,6 @@ Looking to propose a perpetuals market? See the [perpetual futures tutorial](./n
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * Enough VEGA associated with your public key. Have at least whichever is larger: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>, (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
-* Familiarity with [market governance](../../concepts/governance/market.md) on Vega
 
 <!--You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.-->
 
@@ -48,8 +47,6 @@ In this section, the [full proposal template](#templates-and-submitting) has bee
 
 The general shape is as follows:
 <NewMarketJSONOverview />
-
-Instrument, liquidity monitoring parameters, price monitoring parameters, and data sources are all described in more detail below.
 
 **Rationale** requires a title and description. Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the market proposal. Formatting your rationale with markdown makes it easier to read when it's displayed.
 
