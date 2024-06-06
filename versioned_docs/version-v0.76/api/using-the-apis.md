@@ -14,7 +14,7 @@ import EthAddresses from '@site/src/components/EthAddresses';
 ## Connecting to the APIs
 As most of the APIs are designed to be used for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. 
 
-The public endpoints differ between testnet and mainnet, as do the network configurations your Vega-compatible wallet needs in order to connect. See the [public endpoints page](./public-endpoints.md) for details. 
+The public endpoints differ between testnet and mainnet, as do the network configurations your Vega-compatible wallet needs in order to connect. See the [public endpoints page](./public-servers.md) for details. 
 
 To use the Vega APIs, a developer will need access to a network-compatible instance of the relevant software, depending on their goals: core node, data node, and/or Vega Wallet.
 
