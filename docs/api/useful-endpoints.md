@@ -9,9 +9,9 @@ vega_network: TESTNET
 While there are hundreds of [available endpoints](../api/rest/overview.md), the categories below cover the basics to get you started. 
 
 ## Submit transactions
-You can submit a transaction with `POST /transaction`. You'll need a [Vega Wallet app](../tools/index.md) or signer library to prepare your transaction before sending.
+You can submit a transaction with `POST /transaction`. You'll need a [Vega Wallet app](../tools/index.md) or [signer library](../tutorials/community-created.md#signer-libraries) to prepare your transaction before sending. 
 
-Note: The transaction bundle will need to be encoded and you need a Vega Wallet app or signer library to sign your transaction.
+If you use Go, you can import Vega as a dependency, and use the code under [wallet/pkg ↗](https://github.com/vegaprotocol/vega/blob/develop/wallet/pkg/send_transaction.go) to sign and send your transaction.
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |

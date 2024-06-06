@@ -21,5 +21,5 @@ Click on any topic to learn more.
 | [Activity streaks](./activity.md) | |
 
 See the protocol in action: 
-- [Console for trading](https://console.vega.xyz)
-- [Active governance proposals](https://governance.vega.xyz)
+- [Console for trading ↗ ](https://console.vega.xyz)
+- [Active governance proposals ↗ ](https://governance.vega.xyz)
