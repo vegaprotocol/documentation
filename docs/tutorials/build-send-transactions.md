@@ -241,6 +241,7 @@ vegawallet transaction sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" -
 ```bash
 ./vegawallet transaction sign --wallet "MY_WALLET_NAME" --pubkey "MY_PUBLIC_KEY" --tx-height "TRANSACTION_BLOCK_HEIGHT" "TRANSACTION"
 ```
+
 </TabItem>
 <TabItem value="linux" label="Linux">
 
@@ -275,12 +276,14 @@ Then, send the transaction using:
 ```bash
 vegawallet raw_transaction send --network "NETWORK" "BASE64_TRANSACTION"
 ```
+
 </TabItem>
 <TabItem value="mac" label="MacOS">
 
 ```bash
 ./vegawallet raw_transaction send --network "NETWORK" "BASE64_TRANSACTION"
 ```
+
 </TabItem>
 <TabItem value="linux" label="Linux">
 
