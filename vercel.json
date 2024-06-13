@@ -148,7 +148,7 @@
     {
       "source": "/testnet/api/public-endpoints",
       "destination": "/testnet/api/public-servers"
-    }
+    },
     {
       "source": "/mainnet/api/building-blocks",
       "destination": "/mainnet/api/useful-endpoints"
