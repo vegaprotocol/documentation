@@ -44,7 +44,7 @@ This release introduces the ability to create prediction markets, futures market
 - Ensures pegged order offsets are correctly verified with respect to tick size in the correct units. [Issue 11304 ↗](https://github.com/vegaprotocol/vega/issues/11304)
 - Adds a field to governance proposals for recurring transfers  for a decay factor, and reports the proposal amount rather than 0 when the proposal gets enacted. [Issue 11336 ↗](https://github.com/vegaprotocol/vega/issues/11336)
 - Adds support to REST to update vesting stats and fix summing the quantum balance for vesting stats. [Issue 11368 ↗](https://github.com/vegaprotocol/vega/issues/11368)
-- Fixes an issue with stop orders. [Issue 11380 ↗](https://github.com/vegaprotocol/vega/issues/11380)
+- Improves error handling for badly formed stop orders. [Issue 11380 ↗](https://github.com/vegaprotocol/vega/issues/11380)
 - Fixes an issue with the fee stats event reporting. [Issue 11136 ↗](https://github.com/vegaprotocol/vega/issues/11136)
 
 To review these changes in the last released version, see [GitHub ↗](https://github.com/vegaprotocol/vega/compare/release/v0.76.8...v0.77.0-preview.5).
