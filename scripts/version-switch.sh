@@ -8,7 +8,6 @@
 # Below, update the values where appropriate. For instance, when 'docs' was tagged to 'v0.50.2',
 # - 'mainnet' moved to version 'v0.50.2', which means replacing all the links in what was formerly 'testnet' to 'mainnet'
 # - Now that v0.47.0 is not deployed anywhere, it means removing its bespoke path and fixing all the links from 'mainnet' to 'v0.47.0'
-# - Pages that use <EthAddresses /> will need their frontmatter updated to reflect network
 # -----
 
 # Mainnet docs

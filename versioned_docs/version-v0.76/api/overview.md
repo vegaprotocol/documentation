@@ -95,6 +95,6 @@ To learn more about developing on Vega, read through the following topics.
 
 * **[Using the APIs](./using-the-apis.md)**: All the API frameworks and smart contracts in one place, plus tips on connecting.
 * **[Architecture](./architecture.md)**: Explore the architecture of the Vega network.
-* **[Building blocks](./building-blocks.md)**: The basic building blocks you should know about.
+* **[Useful endpoints](./useful-endpoints.md)**: The basic features you should know about and their APIs.
 * **[Public servers](./public-servers.md)**: Public servers that are currently available for interacting with the APIs on the testnets.
 * **[Tutorials](../tutorials/index.md)**: Each tutorial includes info about the protocol that you need to use the guide, as well as instructions on how to interact with scripts, API calls, or other code.
