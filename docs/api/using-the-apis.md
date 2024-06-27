@@ -1,5 +1,5 @@
 ---
-title: Using the APIs
+title: API tips
 sidebar_position: 2
 description: See the frameworks and how to use the APIs.
 vega_network: TESTNET
@@ -14,13 +14,13 @@ import EthAddresses from '@site/src/components/EthAddresses';
 ## Connecting to the APIs
 As most of the APIs are designed to be used for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. 
 
-The public endpoints differ between testnet and mainnet, as do the network configurations your Vega-compatible wallet needs in order to connect. See the [public endpoints page](./public-endpoints.md) for details. 
+The public servers differ between testnet and mainnet, as do the network configurations your Vega-compatible wallet needs in order to connect. See the [public servers page](./public-servers.md) for details. 
 
 To use the Vega APIs, a developer will need access to a network-compatible instance of the relevant software, depending on their goals: core node, data node, and/or Vega Wallet.
 
-**Mainnet**: Consensus validators may provide public endpoints for accessing the mainnet APIs, however that does not mean they should be relied upon for constant uptime and full access to all APIs. Each Vega Wallet release for mainnet wallet is pre-configured with any publicly announced nodes at the time of release.
+**Mainnet**: Consensus validators may provide public servers for accessing the mainnet APIs, however that does not mean they should be relied upon for constant uptime and full access to all APIs. Each Vega Wallet release for mainnet wallet is pre-configured with any publicly announced nodes at the time of release.
 
-**Validator testnet**: Some consensus validators may provide public endpoints for accessing the APIs on the validator testnet network, however that does not mean they should be relied on for constant uptime or full access to APIs.
+**Validator testnet**: Some consensus validators may provide public servers for accessing the APIs on the validator testnet network, however that does not mean they should be relied on for constant uptime or full access to APIs.
 
 **Fairground**: The project team operate a number of data nodes with publicly available endpoints for the Vega-run testnet, called Fairground. Each Fairground wallet app release is pre-configured with known nodes, including those operated by the project team, at the time of release.
 

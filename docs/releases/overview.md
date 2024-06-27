@@ -18,7 +18,38 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-## Version v0.76.1 | 2024-05-09
+## Version v0.77 | 2024-06-24
+This version was released to the Vega testnet on 26 June 2024.
+
+This release introduces the ability to create prediction markets, futures markets with a final settlement price cap, and fully collateralised futures markets. There are also a range of bug fixes and general improvements.
+
+### Improvements:
+
+- Adds the ability to publish data about games while the games are ongoing, rather than only after. [Issue 11209 ↗](https://github.com/vegaprotocol/vega/issues/11209)
+- Adds configuration to Visor to help improve binary retries. [Issue 11242 ↗](https://github.com/vegaprotocol/vega/issues/11242)
+- Adds a field in the price monitoring bounds details to make the bounds clearer. [Issue 11196 ↗](https://github.com/vegaprotocol/vega/issues/11196) 
+- Add support for allowing trading transaction ordering to be enabled or disabled. [Issue 11285 ↗](https://github.com/vegaprotocol/vega/issues/11285)
+- Enhance transaction reordering with per-market control and configurable delay. [Issue 11337 ↗](https://github.com/vegaprotocol/vega/issues/11337)
+- Add source chain ID when available to transaction event details. [Issue 11329 ↗](https://github.com/vegaprotocol/vega/issues/11329)
+- Add spam checks for orders/liquidity provision. [Issue 10634 ↗](https://github.com/vegaprotocol/vega/issues/10634)
+- Support querying for historical game scores. [Issue 11357 ↗](https://github.com/vegaprotocol/vega/issues/11357)
+
+### Fixes:
+
+- Ensures that vesting statistics match vesting accounts numbers. [Issue 11066 ↗](https://github.com/vegaprotocol/vega/issues/11066)
+- Multiple transfers were erroneously blocked when targeting the same game ID. [Issue 11279 ↗](https://github.com/vegaprotocol/vega/issues/11279)
+- Fixes an issue with the position estimate endpoint which could cause data nodes to crash. [Issue 11293 ↗](https://github.com/vegaprotocol/vega/issues/11293)
+- Adds source chain ID to GraphQL `Erc20WithdrawalApproval` endpoint. [Issue 11379 ↗](https://github.com/vegaprotocol/vega/issues/11379)
+- Handles when asset decimals are smaller than market decimals when uncrossing the order book upon leaving an auction. [Issue 11297 ↗](https://github.com/vegaprotocol/vega/issues/11297)
+- Ensures pegged order offsets are correctly verified with respect to tick size in the correct units. [Issue 11304 ↗](https://github.com/vegaprotocol/vega/issues/11304)
+- Adds a field to governance proposals for recurring transfers  for a decay factor, and reports the proposal amount rather than 0 when the proposal gets enacted. [Issue 11336 ↗](https://github.com/vegaprotocol/vega/issues/11336)
+- Adds support to REST to update vesting stats and fix summing the quantum balance for vesting stats. [Issue 11368 ↗](https://github.com/vegaprotocol/vega/issues/11368)
+- Improves error handling for badly formed stop orders. [Issue 11380 ↗](https://github.com/vegaprotocol/vega/issues/11380)
+- Fixes an issue with the fee stats event reporting. [Issue 11136 ↗](https://github.com/vegaprotocol/vega/issues/11136)
+
+To review these changes in the last released version, see [GitHub ↗](https://github.com/vegaprotocol/vega/compare/release/v0.76.8...v0.77.0-preview.5).
+
+## Version v0.76 | 2024-05-09
 This version was released to the Vega testnet on 9 May 2024.
 
 ### New features

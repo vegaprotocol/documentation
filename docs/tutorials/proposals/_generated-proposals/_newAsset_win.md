@@ -22,9 +22,9 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     }^
    }^
   },^
-  \"closingTimestamp\": 1717853834,^
-  \"enactmentTimestamp\": 1717940234,^
-  \"validationTimestamp\": 1717940234^
+  \"closingTimestamp\": 1721053584,^
+  \"enactmentTimestamp\": 1721139984,^
+  \"validationTimestamp\": 1721139984^
  }^
 }^
 }"

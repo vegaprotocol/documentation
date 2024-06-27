@@ -46,6 +46,7 @@ To access the Vega network, the wallet needs to be configured with the location 
 If you have a client that you want use to send a transaction using the Vega wallet API, it will construct the transaction in JSON and pass it to the wallet. The wallet performs a client-side proof-of-work calculation, signs the transaction and forwards it to a node on the network before it is added to a block. It is also possible to have the wallet sign a transaction without sending it, if needed. Alternatively, you can build the signer into your client, though you'll need to account for the PoW calculations.
 
 :::note Go deeper
+* **[Overview: Transactions for trading](./useful-endpoints.md#transaction-samples)**: See the commonly used transactions for trading.
 * **[Guide: How to build and send transactions](../tutorials/build-send-transactions.md)**: See how to build and send transactions using the Vega Wallet.
 * **[API: Commands](./grpc/vega/commands/v1/commands.proto)** See a full list of transaction types. 
 * **[Concept: Transactions](./../concepts/vega-chain/transactions.md)**: Learn about the concepts of transactions, commands, validation, and ordering.
@@ -94,6 +95,6 @@ To learn more about developing on Vega, read through the following topics.
 
 * **[Using the APIs](./using-the-apis.md)**: All the API frameworks and smart contracts in one place, plus tips on connecting.
 * **[Architecture](./architecture.md)**: Explore the architecture of the Vega network.
-* **[Building blocks](./building-blocks.md)**: The basic building blocks you should know about.
-* **[Public endpoints](./public-endpoints.md)**: Public endpoints that are currently available for interacting with the APIs on the testnets.
+* **[Building blocks](./useful-endpoints.md)**: The basic building blocks you should know about.
+* **[Public servers](./public-servers.md)**: Public server URLs for interacting with the APIs.
 * **[Tutorials](../tutorials/index.md)**: Each tutorial includes info about the protocol that you need to use the guide, as well as instructions on how to interact with scripts, API calls, or other code.

@@ -179,7 +179,7 @@ import rel
 import json
 import websocket
 
-url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId?=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338"
+url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338"
 
 def on_message(ws, message):
     print(json.loads(message))

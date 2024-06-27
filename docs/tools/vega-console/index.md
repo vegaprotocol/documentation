@@ -8,7 +8,7 @@ description: Learn about the Console trading interface
 import DocCardList from '@theme/DocCardList';
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
-[Vega Console ↗](https://console.vega.xyz) is a user interface designed for using the Vega protocol software to interact with markets. See existing markets, place trades and see your portfolio and positions.
+[Vega Console ↗](https://console.vega.xyz) is designed to use the Vega protocol software to interact with markets. See existing markets, place trades and see your portfolio and positions. Anyone can host it on IPFS.
 
 To run Console locally, check out [the Community Guides section for instructions](../tutorials/community-created#self-hosting-console).
 

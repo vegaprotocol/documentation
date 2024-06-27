@@ -2,11 +2,11 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega core APIs",
-    "version": "v0.76.0-preview.6"
+    "version": "v0.77.0-preview.5"
   },
   "tags": [
     {
-      "name": "CoreService"
+      "name": "Transaction"
     }
   ],
   "host": "api.n10.testnet.vega.xyz",
@@ -25,7 +25,7 @@
       "get": {
         "summary": "Blockchain height",
         "description": "Get the height of the last tendermint block",
-        "operationId": "CoreService_LastBlockHeight",
+        "operationId": "Transaction_LastBlockHeight",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -41,7 +41,7 @@
           }
         },
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -49,7 +49,7 @@
       "get": {
         "summary": "Statistics",
         "description": "Get statistics on Vega",
-        "operationId": "CoreService_Statistics",
+        "operationId": "Transaction_Statistics",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -65,7 +65,7 @@
           }
         },
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -73,7 +73,7 @@
       "get": {
         "summary": "Get Spam statistics",
         "description": "Get the spam statistics for a given party.",
-        "operationId": "CoreService_GetSpamStatistics",
+        "operationId": "Transaction_GetSpamStatistics",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -98,7 +98,7 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -106,7 +106,7 @@
       "get": {
         "summary": "Events subscription",
         "description": "Subscribe to a stream of events from the core",
-        "operationId": "CoreService_ObserveEventBus",
+        "operationId": "Transaction_ObserveEventBus",
         "responses": {
           "200": {
             "description": "A successful response.(streaming responses)",
@@ -133,7 +133,7 @@
         "parameters": [
           {
             "name": "type",
-            "description": "One or more types of event, required field.\n\n - BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_TRANSFER_FEES_PAID: Event used to link ledger entries to the transfer that triggered the fees being collected.\n - BUS_EVENT_TYPE_TRANSFER_FEES_DISCOUNT_UPDATED: Event indicating that a party's available transfer fee discount has changed, per asset.\n - BUS_EVENT_TYPE_PARTY_MARGIN_MODE_UPDATED: Event indicating that a party updated their margin mode on a market.\n - BUS_EVENT_TYPE_PARTY_PROFILE_UPDATED: Event indicating that a party updated their profile.\n - BUS_EVENT_TYPE_TEAMS_STATS_UPDATED: Event indicating that teams' statistics have been updated.\n - BUS_EVENT_TYPE_TIME_WEIGHTED_NOTIONAL_POSITION_UPDATED: Event indicating time weighted notional position has been updated.\n - BUS_EVENT_TYPE_CANCELLED_ORDERS: Event containing the IDs of orders cancelled by a party on a market.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
+            "description": "One or more types of event, required field.\n\n - BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_TRANSFER_FEES_PAID: Event used to link ledger entries to the transfer that triggered the fees being collected.\n - BUS_EVENT_TYPE_TRANSFER_FEES_DISCOUNT_UPDATED: Event indicating that a party's available transfer fee discount has changed, per asset.\n - BUS_EVENT_TYPE_PARTY_MARGIN_MODE_UPDATED: Event indicating that a party updated their margin mode on a market.\n - BUS_EVENT_TYPE_PARTY_PROFILE_UPDATED: Event indicating that a party updated their profile.\n - BUS_EVENT_TYPE_TEAMS_STATS_UPDATED: Event indicating that teams' statistics have been updated.\n - BUS_EVENT_TYPE_TIME_WEIGHTED_NOTIONAL_POSITION_UPDATED: Event indicating time weighted notional position has been updated.\n - BUS_EVENT_TYPE_CANCELLED_ORDERS: Event containing the IDs of orders cancelled by a party on a market.\n - BUS_EVENT_TYPE_GAME_SCORES: Event containing the near realtime game scores for parties and teams.\n - BUS_EVENT_TYPE_AMM: Event use to notify for an AMM update.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
             "in": "query",
             "required": false,
             "type": "array",
@@ -230,6 +230,8 @@
                 "BUS_EVENT_TYPE_TEAMS_STATS_UPDATED",
                 "BUS_EVENT_TYPE_TIME_WEIGHTED_NOTIONAL_POSITION_UPDATED",
                 "BUS_EVENT_TYPE_CANCELLED_ORDERS",
+                "BUS_EVENT_TYPE_GAME_SCORES",
+                "BUS_EVENT_TYPE_AMM",
                 "BUS_EVENT_TYPE_MARKET",
                 "BUS_EVENT_TYPE_TX_ERROR"
               ]
@@ -260,7 +262,7 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -268,7 +270,7 @@
       "get": {
         "summary": "Vega time",
         "description": "Get current Vega time",
-        "operationId": "CoreService_GetVegaTime",
+        "operationId": "Transaction_GetVegaTime",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -284,7 +286,7 @@
           }
         },
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -292,7 +294,7 @@
       "post": {
         "summary": "Submit transaction",
         "description": "Submit a signed transaction to the network containing a command to be executed such that if the submission is successful then it will be included in the chain's mempool.\nThe network will then attempt to execute the transaction in the next available block, where the results of its execution can be seen on the EventBus.",
-        "operationId": "CoreService_SubmitTransaction",
+        "operationId": "Transaction_SubmitTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -318,7 +320,7 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -326,7 +328,7 @@
       "post": {
         "summary": "Check transaction",
         "description": "Send a signed transaction containing a command to the network to be checked, but not added to the chain's mempool.\nThis is useful for checking the validity of a potential transaction before submitting it.",
-        "operationId": "CoreService_CheckTransaction",
+        "operationId": "Transaction_CheckTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -352,7 +354,7 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -360,7 +362,7 @@
       "post": {
         "summary": "Submit raw transaction",
         "description": "Submit a pre-serialised signed transaction containing a command to the network to be executed, such that if the submission is successful then it will be included in the chain's mempool.\nThe network will then attempt to execute the transaction in the next available block, where the results of its execution can be seen on the EventBus.",
-        "operationId": "CoreService_SubmitRawTransaction",
+        "operationId": "Transaction_SubmitRawTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -386,7 +388,7 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     },
@@ -394,7 +396,7 @@
       "post": {
         "summary": "Check raw transaction",
         "description": "Send a pre-serialised transaction containing a command to the network to be checked, but then not added to the chain's mempool.\nThis is useful for checking the validity of a potential transaction before submitting it.",
-        "operationId": "CoreService_CheckRawTransaction",
+        "operationId": "Transaction_CheckRawTransaction",
         "responses": {
           "200": {
             "description": "A successful response.",
@@ -420,12 +422,27 @@
           }
         ],
         "tags": [
-          "CoreService"
+          "Transaction"
         ]
       }
     }
   },
   "definitions": {
+    "AMMStatusReason": {
+      "type": "string",
+      "enum": [
+        "STATUS_REASON_UNSPECIFIED",
+        "STATUS_REASON_CANCELLED_BY_PARTY",
+        "STATUS_REASON_CANNOT_FILL_COMMITMENT",
+        "STATUS_REASON_PARTY_ALREADY_OWNS_AMM_FOR_MARKET",
+        "STATUS_REASON_PARTY_CLOSED_OUT",
+        "STATUS_REASON_MARKET_CLOSED",
+        "STATUS_REASON_COMMITMENT_TOO_LOW",
+        "STATUS_REASON_CANNOT_REBASE"
+      ],
+      "default": "STATUS_REASON_UNSPECIFIED",
+      "description": " - STATUS_REASON_CANCELLED_BY_PARTY: AMM was cancelled by its owner.\n - STATUS_REASON_CANNOT_FILL_COMMITMENT: Party does not have enough funds in their general account to meet the AMM's commitment.\n - STATUS_REASON_PARTY_ALREADY_OWNS_AMM_FOR_MARKET: Party already has an AMM operating on this market and cannot create another one.\n - STATUS_REASON_PARTY_CLOSED_OUT: AMM was liquidated and stopped by the network.\n - STATUS_REASON_MARKET_CLOSED: AMM was stopped by the network because the market it operated in was closed.\n - STATUS_REASON_COMMITMENT_TOO_LOW: Commitment amount was below the network wide minimum, or its price bounds are too wide, such that the volume is spread thinly creating zero-volume price-levels.\n - STATUS_REASON_CANNOT_REBASE: AMM was unable to rebase its fair-price such that it does not cross with existing orders."
+    },
     "ConditionOperator": {
       "type": "string",
       "enum": [
@@ -614,6 +631,138 @@
       ],
       "default": "NULL_VALUE",
       "description": "`NullValue` is a singleton enumeration to represent the null value for the\n`Value` type union.\n\n The JSON representation for `NullValue` is JSON `null`.\n\n - NULL_VALUE: Null value."
+    },
+    "v1AMM": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "ID of the AMM."
+        },
+        "partyId": {
+          "type": "string",
+          "description": "Party ID of the owner of the AMM."
+        },
+        "marketId": {
+          "type": "string",
+          "description": "Market ID that the AMM provides liquidity for."
+        },
+        "ammPartyId": {
+          "type": "string",
+          "description": "Party ID that the AMM operates as."
+        },
+        "commitment": {
+          "type": "string",
+          "description": "Amount committed to the AMM."
+        },
+        "parameters": {
+          "$ref": "#/definitions/v1AMMConcentratedLiquidityParameters",
+          "description": "Liquidity parameters that define the size and range of the AMM's tradeable volume."
+        },
+        "status": {
+          "$ref": "#/definitions/v1AMMStatus",
+          "description": "Current status of the AMM."
+        },
+        "statusReason": {
+          "$ref": "#/definitions/AMMStatusReason",
+          "description": "Reason for the AMM's current status."
+        },
+        "proposedFee": {
+          "type": "string",
+          "description": "Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market."
+        }
+      }
+    },
+    "v1AMMConcentratedLiquidityParameters": {
+      "type": "object",
+      "properties": {
+        "base": {
+          "type": "string",
+          "description": "Base price bound configuration for the AMM."
+        },
+        "lowerBound": {
+          "type": "string",
+          "description": "Upper price bound configuration for the AMM. If unset, the AMM will never hold a short position."
+        },
+        "upperBound": {
+          "type": "string",
+          "description": "Lower price bound configuration for the AMM. If unset, the AMM will never hold a long position."
+        },
+        "leverageAtUpperBound": {
+          "type": "string",
+          "description": "Leverage at upper bounds."
+        },
+        "leverageAtLowerBound": {
+          "type": "string",
+          "description": "Leverage at lower bounds."
+        }
+      },
+      "description": "Liquidity parameters that define the range and shape of the AMM's curve."
+    },
+    "v1AMMStatus": {
+      "type": "string",
+      "enum": [
+        "STATUS_UNSPECIFIED",
+        "STATUS_ACTIVE",
+        "STATUS_REJECTED",
+        "STATUS_CANCELLED",
+        "STATUS_STOPPED",
+        "STATUS_REDUCE_ONLY"
+      ],
+      "default": "STATUS_UNSPECIFIED",
+      "description": " - STATUS_ACTIVE: AMM is active on the market and is posting tradable volume.\n - STATUS_REJECTED: AMM submission was rejected.\n - STATUS_CANCELLED: AMM has been cancelled by the owner and is no longer trading.\n - STATUS_STOPPED: AMM has been stopped by the network and is no longer trading.\n - STATUS_REDUCE_ONLY: AMM will only trade such that it will reduce its position."
+    },
+    "v1AmendAMM": {
+      "type": "object",
+      "properties": {
+        "marketId": {
+          "type": "string",
+          "description": "Market ID for the AMM to be amended."
+        },
+        "commitmentAmount": {
+          "type": "string",
+          "description": "Amount to be committed to the AMM. If not supplied the commitment will remain unchanged."
+        },
+        "slippageTolerance": {
+          "type": "string",
+          "description": "Slippage tolerance for rebasing position when updating the AMM."
+        },
+        "concentratedLiquidityParameters": {
+          "$ref": "#/definitions/v1AmendAMMConcentratedLiquidityParameters",
+          "description": "Concentrated liquidity parameters defining the shape of the AMM's volume curves. If not supplied the parameters will remain unchanged."
+        },
+        "proposedFee": {
+          "type": "string",
+          "description": "Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market. If not supplied the proposed fee will remain unchanged."
+        }
+      },
+      "description": "Command to amend an existing automated market maker on a market."
+    },
+    "v1AmendAMMConcentratedLiquidityParameters": {
+      "type": "object",
+      "properties": {
+        "upperBound": {
+          "type": "string",
+          "description": "Price at which the AMM will stop quoting sell volume. If not supplied the AMM will never hold a short position."
+        },
+        "lowerBound": {
+          "type": "string",
+          "description": "Price at which the AMM will stop quoting buy volume. If not supplied the AMM will never hold a long position."
+        },
+        "base": {
+          "type": "string",
+          "description": "Price that the AMM will quote as its \"fair price\" when its position is zero."
+        },
+        "leverageAtUpperBound": {
+          "type": "string",
+          "description": "Leverage at upper bound. If not set the markets risk-factors will be used to calculate leverage."
+        },
+        "leverageAtLowerBound": {
+          "type": "string",
+          "description": "Leverage at lower bound. If not set the markets risk-factors will be used to calculate leverage."
+        }
+      },
+      "description": "Liquidity parameters that define the size and range of the AMM's tradeable volume."
     },
     "v1AnnounceNode": {
       "type": "object",
@@ -1181,6 +1330,14 @@
           "$ref": "#/definitions/v1CancelledOrders",
           "description": "Event notifying of multiple orders being cancelled for a given party, on a given market."
         },
+        "gameScores": {
+          "$ref": "#/definitions/v1GameScores",
+          "description": "Event notifying on near realtime game scores for parties and teams."
+        },
+        "amm": {
+          "$ref": "#/definitions/v1AMM",
+          "description": "Event notifying of AMM updates."
+        },
         "market": {
           "$ref": "#/definitions/v1MarketEvent",
           "title": "Market tick events"
@@ -1296,12 +1453,38 @@
         "BUS_EVENT_TYPE_TEAMS_STATS_UPDATED",
         "BUS_EVENT_TYPE_TIME_WEIGHTED_NOTIONAL_POSITION_UPDATED",
         "BUS_EVENT_TYPE_CANCELLED_ORDERS",
+        "BUS_EVENT_TYPE_GAME_SCORES",
+        "BUS_EVENT_TYPE_AMM",
         "BUS_EVENT_TYPE_MARKET",
         "BUS_EVENT_TYPE_TX_ERROR"
       ],
       "default": "BUS_EVENT_TYPE_UNSPECIFIED",
-      "description": "- BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_TRANSFER_FEES_PAID: Event used to link ledger entries to the transfer that triggered the fees being collected.\n - BUS_EVENT_TYPE_TRANSFER_FEES_DISCOUNT_UPDATED: Event indicating that a party's available transfer fee discount has changed, per asset.\n - BUS_EVENT_TYPE_PARTY_MARGIN_MODE_UPDATED: Event indicating that a party updated their margin mode on a market.\n - BUS_EVENT_TYPE_PARTY_PROFILE_UPDATED: Event indicating that a party updated their profile.\n - BUS_EVENT_TYPE_TEAMS_STATS_UPDATED: Event indicating that teams' statistics have been updated.\n - BUS_EVENT_TYPE_TIME_WEIGHTED_NOTIONAL_POSITION_UPDATED: Event indicating time weighted notional position has been updated.\n - BUS_EVENT_TYPE_CANCELLED_ORDERS: Event containing the IDs of orders cancelled by a party on a market.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
+      "description": "- BUS_EVENT_TYPE_UNSPECIFIED: Default value, always invalid\n - BUS_EVENT_TYPE_ALL: Events of ALL event types, used when filtering stream from event bus\n - BUS_EVENT_TYPE_TIME_UPDATE: Event for blockchain time updates\n - BUS_EVENT_TYPE_LEDGER_MOVEMENTS: Event for when a transfer happens internally, contains the transfer information\n - BUS_EVENT_TYPE_POSITION_RESOLUTION: Event indicating position resolution has occurred\n - BUS_EVENT_TYPE_ORDER: Event for order updates, both new and existing orders\n - BUS_EVENT_TYPE_ACCOUNT: Event for account updates\n - BUS_EVENT_TYPE_PARTY: Event for party updates\n - BUS_EVENT_TYPE_TRADE: Event indicating a new trade has occurred\n - BUS_EVENT_TYPE_MARGIN_LEVELS: Event indicating margin levels have changed for a party\n - BUS_EVENT_TYPE_PROPOSAL: Event for proposal updates (for governance)\n - BUS_EVENT_TYPE_VOTE: Event indicating a new vote has occurred (for governance)\n - BUS_EVENT_TYPE_MARKET_DATA: Event for market data updates\n - BUS_EVENT_TYPE_NODE_SIGNATURE: Event for a new signature for a Vega node\n - BUS_EVENT_TYPE_LOSS_SOCIALIZATION: Event indicating loss socialisation occurred for a party\n - BUS_EVENT_TYPE_SETTLE_POSITION: Event for when a position is being settled\n - BUS_EVENT_TYPE_SETTLE_DISTRESSED: Event for when a position is distressed\n - BUS_EVENT_TYPE_MARKET_CREATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ASSET: Event for when an asset is added to Vega\n - BUS_EVENT_TYPE_MARKET_TICK: Event indicating a market tick event\n - BUS_EVENT_TYPE_WITHDRAWAL: Event for when a withdrawal occurs\n - BUS_EVENT_TYPE_DEPOSIT: Event for when a deposit occurs\n - BUS_EVENT_TYPE_AUCTION: Event indicating a change in auction state, for example starting or ending an auction\n - BUS_EVENT_TYPE_RISK_FACTOR: Event indicating a risk factor has been updated\n - BUS_EVENT_TYPE_NETWORK_PARAMETER: Event indicating a network parameter has been added or updated\n - BUS_EVENT_TYPE_LIQUIDITY_PROVISION: Event indicating a liquidity provision has been created or updated\n - BUS_EVENT_TYPE_MARKET_UPDATED: Event indicating a new market was created\n - BUS_EVENT_TYPE_ORACLE_SPEC: Event indicating an oracle spec has been created or updated\n - BUS_EVENT_TYPE_ORACLE_DATA: Event indicating that an oracle data has been broadcast\n - BUS_EVENT_TYPE_DELEGATION_BALANCE: Event indicating that an delegation balance of a party to a node for current epoch has changed\n - BUS_EVENT_TYPE_VALIDATOR_SCORE: Event indicating the validator score for the given epoch\n - BUS_EVENT_TYPE_EPOCH_UPDATE: Event indicating the start or end of an epoch\n - BUS_EVENT_TYPE_VALIDATOR_UPDATE: Event indicating that validator node has been updated\n - BUS_EVENT_TYPE_STAKE_LINKING: Event indicating a new staking event have been processed by the network\n - BUS_EVENT_TYPE_REWARD_PAYOUT_EVENT: Event indicating the payout of a reward has been initiated\n - BUS_EVENT_TYPE_CHECKPOINT: Event indicating a new checkpoint was created\n - BUS_EVENT_TYPE_STREAM_START: Event indicating stream is starting\n - BUS_EVENT_TYPE_KEY_ROTATION: Event indicating key rotation took place\n - BUS_EVENT_TYPE_STATE_VAR: Event indicating state transitions in state variable consensus\n - BUS_EVENT_TYPE_NETWORK_LIMITS: Event indicating network limits set or updated\n - BUS_EVENT_TYPE_TRANSFER: Event indicating a update for a transfer\n - BUS_EVENT_TYPE_VALIDATOR_RANKING: Event indicating the ranking of validator and their status in Vega\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_EVENT: Event indicating a new multi sig signer event have been processed\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SET_THRESHOLD: Event indicating the erc20 multi sig threshold have been updated\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_ADDED: Event indicating a new signer has been added to the ERC-20 multisig\n - BUS_EVENT_TYPE_ERC20_MULTI_SIG_SIGNER_REMOVED: Event indicating a signer has been removed from the ERC-20 multisig\n - BUS_EVENT_TYPE_POSITION_STATE: Event indicating that a party's position has changed\n - BUS_EVENT_TYPE_ETHEREUM_KEY_ROTATION: Event indicating Ethereum key rotation took place\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_PROPOSAL: Event indicating protocol upgrade proposal updates\n - BUS_EVENT_TYPE_BEGIN_BLOCK: Event indicating the core is starting to process a new block\n - BUS_EVENT_TYPE_END_BLOCK: Event indicating the core finished to process a block\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_STARTED: Event indicating the core is starting a protocol upgrade\n - BUS_EVENT_TYPE_SETTLE_MARKET: Event indicating the market has stopped and settled\n - BUS_EVENT_TYPE_TRANSACTION_RESULT: Event indicating the result of a transaction processed by the network\n - BUS_EVENT_TYPE_SNAPSHOT_TAKEN: Event indicating a snapshot was taken at this block height\n - BUS_EVENT_TYPE_PROTOCOL_UPGRADE_DATA_NODE_READY: Event data node uses to notify that it is ready to upgrade\n - BUS_EVENT_TYPE_DISTRESSED_ORDERS_CLOSED: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_EXPIRED_ORDERS: Event indicating parties had orders closed because they were distressed, but were not closed out.\n - BUS_EVENT_TYPE_DISTRESSED_POSITIONS: Event indicating parties have become, or were, distressed but still have an active position.\n - BUS_EVENT_TYPE_SPOT_LIQUIDITY_PROVISION: Event indicating a spot liquidity provision has been created or updated.\n - BUS_EVENT_TYPE_STOP_ORDER: Event indicating a stop order has been submitted or updated.\n - BUS_EVENT_TYPE_FUNDING_PERIOD: Event indicating the start or end of a funding period.\n - BUS_EVENT_TYPE_FUNDING_PERIOD_DATA_POINT: Event indicating a data point for a funding period has been received.\n - BUS_EVENT_TYPE_TEAM_CREATED: Event indicating a team has been created.\n - BUS_EVENT_TYPE_TEAM_UPDATED: Event indicating a team has been updated.\n - BUS_EVENT_TYPE_REFEREE_SWITCHED_TEAM: Event indicating a referee switched team.\n - BUS_EVENT_TYPE_REFEREE_JOINED_TEAM: Event indicating a referee joined a team.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_STARTED: Event indicating a referral program started.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_UPDATED: Event indicating a referral program has been updated.\n - BUS_EVENT_TYPE_REFERRAL_PROGRAM_ENDED: Event indicating a referral program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_CREATED: Event indicating a set has been created.\n - BUS_EVENT_TYPE_REFEREE_JOINED_REFERRAL_SET: Event indicating a referee joined a set.\n - BUS_EVENT_TYPE_PARTY_ACTIVITY_STREAK: Event indicating the updated activity streak for a party\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_STARTED: Event indicating a volume discount program started.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_UPDATED: Event indicating a volume discount program has been updated.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_PROGRAM_ENDED: Event indicating a volume discount program ended.\n - BUS_EVENT_TYPE_REFERRAL_SET_STATS_UPDATED: Event indicating the updated statistics for a referral set.\n - BUS_EVENT_TYPE_VESTING_STATS_UPDATED: Event indicating the updated statistics for the vesting program.\n - BUS_EVENT_TYPE_VOLUME_DISCOUNT_STATS_UPDATED: Event indicating the updated statistics for the volume discount.\n - BUS_EVENT_TYPE_FEES_STATS_UPDATED: Event indicating the fees statistics per market at end of epoch\n - BUS_EVENT_TYPE_FUNDING_PAYMENTS: Event indicating a funding period has ended and resulted in funding payment transfers.\n - BUS_EVENT_TYPE_PAID_LIQUIDITY_FEES_STATS_UPDATED: Event used to report the updated paid liquidity fee statistics for the market at the end of the epoch\n - BUS_EVENT_TYPE_VESTING_SUMMARY: Event used to report the summary of vesting and locked balances at the end of the epoch\n - BUS_EVENT_TYPE_TRANSFER_FEES_PAID: Event used to link ledger entries to the transfer that triggered the fees being collected.\n - BUS_EVENT_TYPE_TRANSFER_FEES_DISCOUNT_UPDATED: Event indicating that a party's available transfer fee discount has changed, per asset.\n - BUS_EVENT_TYPE_PARTY_MARGIN_MODE_UPDATED: Event indicating that a party updated their margin mode on a market.\n - BUS_EVENT_TYPE_PARTY_PROFILE_UPDATED: Event indicating that a party updated their profile.\n - BUS_EVENT_TYPE_TEAMS_STATS_UPDATED: Event indicating that teams' statistics have been updated.\n - BUS_EVENT_TYPE_TIME_WEIGHTED_NOTIONAL_POSITION_UPDATED: Event indicating time weighted notional position has been updated.\n - BUS_EVENT_TYPE_CANCELLED_ORDERS: Event containing the IDs of orders cancelled by a party on a market.\n - BUS_EVENT_TYPE_GAME_SCORES: Event containing the near realtime game scores for parties and teams.\n - BUS_EVENT_TYPE_AMM: Event use to notify for an AMM update.\n - BUS_EVENT_TYPE_MARKET: Event indicating a market related event, for example when a market opens\n - BUS_EVENT_TYPE_TX_ERROR: Event used to report failed transactions back to a user, this is excluded from the ALL type",
       "title": "Bus event type is used to specify a type of event\nIt has 2 styles of event:\nSingle values (e.g. BUS_EVENT_TYPE_ORDER) where they represent one data item\nGroup values (e.g. BUS_EVENT_TYPE_AUCTION) where they represent a group of data items"
+    },
+    "v1CancelAMM": {
+      "type": "object",
+      "properties": {
+        "marketId": {
+          "type": "string",
+          "description": "Market ID to cancel an AMM for."
+        },
+        "method": {
+          "$ref": "#/definitions/v1CancelAMMMethod",
+          "description": "Method to use to cancel the AMM."
+        }
+      },
+      "description": "Command to cancel an automated market maker for a given market."
+    },
+    "v1CancelAMMMethod": {
+      "type": "string",
+      "enum": [
+        "METHOD_UNSPECIFIED",
+        "METHOD_IMMEDIATE",
+        "METHOD_REDUCE_ONLY"
+      ],
+      "default": "METHOD_UNSPECIFIED",
+      "description": " - METHOD_IMMEDIATE: Cancellation will be immediate and any open positions will be transferred to the network for liquidation.\n - METHOD_REDUCE_ONLY: AMM will only trade to reduce its position, and will be cancelled once its position reaches zero."
     },
     "v1CancelledOrders": {
       "type": "object",
@@ -2113,6 +2296,103 @@
       },
       "description": "Event notifying a data point for a funding period."
     },
+    "v1GamePartyScore": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "description": "Game ID."
+        },
+        "party": {
+          "type": "string",
+          "description": "The party ID."
+        },
+        "teamId": {
+          "type": "string",
+          "description": "Team the party belongs to. Unset if the party is not part of a team."
+        },
+        "epoch": {
+          "type": "string",
+          "format": "int64",
+          "description": "Epoch when these scores were generated."
+        },
+        "time": {
+          "type": "string",
+          "format": "int64",
+          "description": "Timestamp in Unix nanoseconds when these scores were generated."
+        },
+        "score": {
+          "type": "string",
+          "description": "Party's current score in the game."
+        },
+        "stakingBalance": {
+          "type": "string",
+          "description": "Party's current staking balance. Only populated if the game has a requirement for it."
+        },
+        "openVolume": {
+          "type": "string",
+          "description": "Party's current open volume. Only populated if the game has a requirement for it."
+        },
+        "totalFeesPaid": {
+          "type": "string",
+          "description": "Total fees paid by the party during the relevant period."
+        },
+        "isEligible": {
+          "type": "boolean",
+          "description": "If the party is eligible for a reward for this game based on the current information."
+        },
+        "rank": {
+          "type": "string",
+          "format": "uint64",
+          "description": "If the party is a member of a team, this is their relative position in the sorting order of the team.\nEmpty if not a team, or if the party is not eligible."
+        }
+      },
+      "description": "Scores per party per game with eligibility context."
+    },
+    "v1GameScores": {
+      "type": "object",
+      "properties": {
+        "teamScores": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GameTeamScore"
+          }
+        },
+        "partyScores": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/v1GamePartyScore"
+          }
+        }
+      }
+    },
+    "v1GameTeamScore": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string",
+          "description": "Game ID."
+        },
+        "teamId": {
+          "type": "string",
+          "title": "Team ID"
+        },
+        "epoch": {
+          "type": "string",
+          "format": "int64",
+          "description": "Epoch when these scores were generated."
+        },
+        "time": {
+          "type": "string",
+          "format": "int64",
+          "description": "Timestamp in Unix nanoseconds when these scores were generated."
+        },
+        "score": {
+          "type": "string",
+          "description": "Team's current collective score in the game."
+        }
+      }
+    },
     "v1GetSpamStatisticsResponse": {
       "type": "object",
       "properties": {
@@ -2789,6 +3069,14 @@
         "quantumBalance": {
           "type": "string",
           "description": "The balance of the party, in quantum."
+        },
+        "summedRewardBonusMultiplier": {
+          "type": "string",
+          "description": "Bonus multiplier applied on the reward, summed across all derived accounts."
+        },
+        "summedQuantumBalance": {
+          "type": "string",
+          "description": "The balance of the party and derived keys, in quantum."
         }
       },
       "description": "The vesting stats for a given party."
@@ -3142,6 +3430,9 @@
         },
         "dispatchStrategy": {
           "$ref": "#/definitions/vegaDispatchStrategy"
+        },
+        "factor": {
+          "type": "string"
         }
       }
     },
@@ -3956,6 +4247,58 @@
       },
       "description": "A command that allows a party to submit a stop order for a given market.\nA stop order is a normal order that remains off the order book and is only submitted if a given trigger is breached from a particular direction.\nIf both rises-above and falls-below are configured, then if one is triggered the other will be cancelled (OCO)."
     },
+    "v1SubmitAMM": {
+      "type": "object",
+      "properties": {
+        "marketId": {
+          "type": "string",
+          "description": "Market ID for which to create an AMM."
+        },
+        "commitmentAmount": {
+          "type": "string",
+          "description": "Amount to be committed to the AMM."
+        },
+        "slippageTolerance": {
+          "type": "string",
+          "title": "Slippage tolerance used for rebasing the AMM if its base price crosses with existing order"
+        },
+        "concentratedLiquidityParameters": {
+          "$ref": "#/definitions/v1SubmitAMMConcentratedLiquidityParameters",
+          "description": "Concentrated liquidity parameters defining the shape of the AMM's volume curves."
+        },
+        "proposedFee": {
+          "type": "string",
+          "description": "Nominated liquidity fee factor, which is an input to the calculation of taker fees on the market."
+        }
+      },
+      "description": "Command to create an automated market maker for a given market."
+    },
+    "v1SubmitAMMConcentratedLiquidityParameters": {
+      "type": "object",
+      "properties": {
+        "upperBound": {
+          "type": "string",
+          "description": "Price at which the AMM will stop quoting sell volume. If not supplied the AMM will never hold a short position."
+        },
+        "lowerBound": {
+          "type": "string",
+          "description": "Price at which the AMM will stop quoting buy volume. If not supplied the AMM will never hold a long position."
+        },
+        "base": {
+          "type": "string",
+          "description": "Price that the AMM will quote as its \"fair price\" when its position is zero."
+        },
+        "leverageAtUpperBound": {
+          "type": "string",
+          "description": "Leverage at upper bound. If not set the markets risk-factors will be used to calculate leverage."
+        },
+        "leverageAtLowerBound": {
+          "type": "string",
+          "description": "Leverage at lower bound. If not set the markets risk-factors will be used to calculate leverage."
+        }
+      },
+      "description": "Liquidity parameters that define the size and range of the AMM's tradeable volume."
+    },
     "v1SubmitRawTransactionRequest": {
       "type": "object",
       "properties": {
@@ -4392,6 +4735,15 @@
         },
         "updatePartyProfile": {
           "$ref": "#/definitions/v1UpdatePartyProfile"
+        },
+        "submitAmm": {
+          "$ref": "#/definitions/v1SubmitAMM"
+        },
+        "amendAmm": {
+          "$ref": "#/definitions/v1AmendAMM"
+        },
+        "cancelAmm": {
+          "$ref": "#/definitions/v1CancelAMM"
         },
         "success": {
           "$ref": "#/definitions/TransactionResultSuccessDetails"
@@ -5966,9 +6318,30 @@
         "dataSourceSpecBinding": {
           "$ref": "#/definitions/vegaDataSourceSpecToFutureBinding",
           "description": "Binding between the data spec and the data source."
+        },
+        "cap": {
+          "$ref": "#/definitions/vegaFutureCap",
+          "description": "If set, this product represents a capped future market."
         }
       },
       "title": "Future product definition"
+    },
+    "vegaFutureCap": {
+      "type": "object",
+      "properties": {
+        "maxPrice": {
+          "type": "string",
+          "description": "Set the maximum price for orders, and settlement data in market decimals."
+        },
+        "binarySettlement": {
+          "type": "boolean",
+          "description": "If set to true, the settlement price must either be zero, or equal to the max price."
+        },
+        "fullyCollateralised": {
+          "type": "boolean",
+          "description": "If set to true, positions must be fully collateralised so there is no default risk for any party."
+        }
+      }
     },
     "vegaFutureProduct": {
       "type": "object",
@@ -5992,6 +6365,10 @@
         "dataSourceSpecBinding": {
           "$ref": "#/definitions/vegaDataSourceSpecToFutureBinding",
           "description": "Binding between the data source spec and the settlement data."
+        },
+        "cap": {
+          "$ref": "#/definitions/vegaFutureCap",
+          "description": "If set, this product creates a capped future market."
         }
       },
       "title": "Future product configuration"
@@ -6032,10 +6409,11 @@
         "INDIVIDUAL_SCOPE_UNSPECIFIED",
         "INDIVIDUAL_SCOPE_ALL",
         "INDIVIDUAL_SCOPE_IN_TEAM",
-        "INDIVIDUAL_SCOPE_NOT_IN_TEAM"
+        "INDIVIDUAL_SCOPE_NOT_IN_TEAM",
+        "INDIVIDUAL_SCOPE_AMM"
       ],
       "default": "INDIVIDUAL_SCOPE_UNSPECIFIED",
-      "description": " - INDIVIDUAL_SCOPE_ALL: All parties on the network are within the scope of this reward.\n - INDIVIDUAL_SCOPE_IN_TEAM: All parties that are part of a team are within the scope of this reward.\n - INDIVIDUAL_SCOPE_NOT_IN_TEAM: All parties that are not part of a team are within the scope of this reward."
+      "description": " - INDIVIDUAL_SCOPE_ALL: All parties on the network are within the scope of this reward.\n - INDIVIDUAL_SCOPE_IN_TEAM: All parties that are part of a team are within the scope of this reward.\n - INDIVIDUAL_SCOPE_NOT_IN_TEAM: All parties that are not part of a team are within the scope of this reward.\n - INDIVIDUAL_SCOPE_AMM: All keys representing AMMs are within the scope of this reward."
     },
     "vegaInstrument": {
       "type": "object",
@@ -6479,6 +6857,10 @@
         "params": {
           "$ref": "#/definitions/vegaLogNormalModelParams",
           "description": "Risk model parameters for log normal."
+        },
+        "riskFactorOverride": {
+          "$ref": "#/definitions/vegaRiskFactorOverride",
+          "description": "And optional override for the risk factor calculated by the risk model."
         }
       },
       "title": "Risk model for log normal"
@@ -6489,6 +6871,10 @@
         "scalingFactors": {
           "$ref": "#/definitions/vegaScalingFactors",
           "description": "Scaling factors for margin calculation."
+        },
+        "fullyCollateralised": {
+          "type": "boolean",
+          "description": "If set to true, positions must be fully collateralised so there is no default risk for any party (capped futures)."
         }
       },
       "title": "Margin Calculator definition"
@@ -6642,6 +7028,10 @@
         "tickSize": {
           "type": "string",
           "title": "The market tick size defines the minimum change in quote price for the market"
+        },
+        "enableTransactionReordering": {
+          "type": "boolean",
+          "title": "If enabled aggressive orders sent to the market will be delayed by the configured number of blocks"
         }
       },
       "title": "Market definition"
@@ -6922,6 +7312,10 @@
         "canProposePerpetualMarket": {
           "type": "boolean",
           "description": "Are perpetual market proposals allowed at this point in time."
+        },
+        "canUseAmm": {
+          "type": "boolean",
+          "description": "Can parties use AMM related transactions."
         }
       },
       "title": "Network limits, defined in the genesis file"
@@ -7039,6 +7433,10 @@
         "tickSize": {
           "type": "string",
           "title": "The market tick size defines the minimum change in quote price for the market"
+        },
+        "enableTransactionReordering": {
+          "type": "boolean",
+          "title": "If enabled aggressive orders sent to the market will be delayed by the configured number of blocks"
         }
       },
       "title": "Configuration for a new futures market on Vega"
@@ -7104,6 +7502,10 @@
         "tickSize": {
           "type": "string",
           "title": "The market tick size defines the minimum change in quote price for the market"
+        },
+        "enableTransactionReordering": {
+          "type": "boolean",
+          "title": "If enabled aggressive orders sent to the market will be delayed by the configured number of blocks"
         }
       },
       "title": "Configuration for a new spot market on Vega"
@@ -7355,10 +7757,11 @@
         "ORDER_ERROR_REDUCE_ONLY_ORDER_WOULD_NOT_REDUCE_POSITION",
         "ORDER_ERROR_ISOLATED_MARGIN_CHECK_FAILED",
         "ORDER_ERROR_PEGGED_ORDERS_NOT_ALLOWED_IN_ISOLATED_MARGIN_MODE",
-        "ORDER_ERROR_PRICE_NOT_IN_TICK_SIZE"
+        "ORDER_ERROR_PRICE_NOT_IN_TICK_SIZE",
+        "ORDER_ERROR_PRICE_MUST_BE_LESS_THAN_OR_EQUAL_TO_MAX_PRICE"
       ],
       "default": "ORDER_ERROR_UNSPECIFIED",
-      "description": "- ORDER_ERROR_UNSPECIFIED: Default value, no error reported\n - ORDER_ERROR_INVALID_MARKET_ID: Order was submitted for a market that does not exist\n - ORDER_ERROR_INVALID_ORDER_ID: Order was submitted with an invalid ID\n - ORDER_ERROR_OUT_OF_SEQUENCE: Order was amended with a sequence number that was not previous version + 1\n - ORDER_ERROR_INVALID_REMAINING_SIZE: Order was amended with an invalid remaining size (e.g. remaining greater than total size)\n - ORDER_ERROR_TIME_FAILURE: Node was unable to get Vega (blockchain) time\n - ORDER_ERROR_REMOVAL_FAILURE: Failed to remove an order from the book\n - ORDER_ERROR_INVALID_EXPIRATION_DATETIME: Order with `TimeInForce.TIME_IN_FORCE_GTT` was submitted or amended\nwith an expiration that was badly formatted or otherwise invalid\n - ORDER_ERROR_INVALID_ORDER_REFERENCE: Order was submitted or amended with an invalid reference field\n - ORDER_ERROR_EDIT_NOT_ALLOWED: Order amend was submitted for an order field that cannot not be amended (e.g. order ID)\n - ORDER_ERROR_AMEND_FAILURE: Amend failure because amend details do not match original order\n - ORDER_ERROR_NOT_FOUND: Order not found in an order book or store\n - ORDER_ERROR_INVALID_PARTY_ID: Order was submitted with an invalid or missing party ID\n - ORDER_ERROR_MARKET_CLOSED: Order was submitted for a market that has closed\n - ORDER_ERROR_MARGIN_CHECK_FAILED: Order was submitted, but the party did not have enough collateral to cover the order\n - ORDER_ERROR_MISSING_GENERAL_ACCOUNT: Order was submitted, but the party did not have an account for this asset\n - ORDER_ERROR_INTERNAL_ERROR: Unspecified internal error\n - ORDER_ERROR_INVALID_SIZE: Order was submitted with an invalid or missing size (e.g. 0)\n - ORDER_ERROR_INVALID_PERSISTENCE: Order was submitted with an invalid persistence for its type\n - ORDER_ERROR_INVALID_TYPE: Order was submitted with an invalid type field\n - ORDER_ERROR_SELF_TRADING: Order was stopped as it would have traded with another order submitted from the same party\n - ORDER_ERROR_INSUFFICIENT_FUNDS_TO_PAY_FEES: Order was submitted, but the party did not have enough collateral to cover the fees for the order\n - ORDER_ERROR_INCORRECT_MARKET_TYPE: Order was submitted with an incorrect or invalid market type\n - ORDER_ERROR_INVALID_TIME_IN_FORCE: Order was submitted with invalid time in force\n - ORDER_ERROR_CANNOT_SEND_GFN_ORDER_DURING_AN_AUCTION: Good For Normal order has reached the market when it is in auction mode\n - ORDER_ERROR_CANNOT_SEND_GFA_ORDER_DURING_CONTINUOUS_TRADING: Good For Auction order has reached the market when it is in continuous trading mode\n - ORDER_ERROR_CANNOT_AMEND_TO_GTT_WITHOUT_EXPIRYAT: Attempt to amend order to GTT without ExpiryAt\n - ORDER_ERROR_EXPIRYAT_BEFORE_CREATEDAT: Attempt to amend ExpiryAt to a value before CreatedAt\n - ORDER_ERROR_CANNOT_HAVE_GTC_AND_EXPIRYAT: Attempt to amend to GTC without an ExpiryAt value\n - ORDER_ERROR_CANNOT_AMEND_TO_FOK_OR_IOC: Amending to FOK or IOC is invalid\n - ORDER_ERROR_CANNOT_AMEND_TO_GFA_OR_GFN: Amending to GFA or GFN is invalid\n - ORDER_ERROR_CANNOT_AMEND_FROM_GFA_OR_GFN: Amending from GFA or GFN is invalid\n - ORDER_ERROR_CANNOT_SEND_IOC_ORDER_DURING_AUCTION: IOC orders are not allowed during auction\n - ORDER_ERROR_CANNOT_SEND_FOK_ORDER_DURING_AUCTION: FOK orders are not allowed during auction\n - ORDER_ERROR_MUST_BE_LIMIT_ORDER: Pegged orders must be LIMIT orders\n - ORDER_ERROR_MUST_BE_GTT_OR_GTC: Pegged orders can only have TIF GTC or GTT\n - ORDER_ERROR_WITHOUT_REFERENCE_PRICE: Pegged order must have a reference price\n - ORDER_ERROR_BUY_CANNOT_REFERENCE_BEST_ASK_PRICE: Buy pegged order cannot reference best ask price\n - ORDER_ERROR_OFFSET_MUST_BE_GREATER_OR_EQUAL_TO_ZERO: Pegged order offset must be \u003e= 0\n - ORDER_ERROR_SELL_CANNOT_REFERENCE_BEST_BID_PRICE: Sell pegged order cannot reference best bid price\n - ORDER_ERROR_OFFSET_MUST_BE_GREATER_THAN_ZERO: Pegged order offset must be \u003e zero\n - ORDER_ERROR_INSUFFICIENT_ASSET_BALANCE: Party has an insufficient balance, or does not have\na general account to submit the order (no deposits made\nfor the required asset)\n - ORDER_ERROR_CANNOT_AMEND_PEGGED_ORDER_DETAILS_ON_NON_PEGGED_ORDER: Cannot amend details of a non pegged details\n - ORDER_ERROR_UNABLE_TO_REPRICE_PEGGED_ORDER: Could not re-price a pegged order because a market price is unavailable\n - ORDER_ERROR_UNABLE_TO_AMEND_PRICE_ON_PEGGED_ORDER: It is not possible to amend the price of an existing pegged order\n - ORDER_ERROR_NON_PERSISTENT_ORDER_OUT_OF_PRICE_BOUNDS: FOK, IOC, or GFN order was rejected because it resulted in trades outside the price bounds\n - ORDER_ERROR_TOO_MANY_PEGGED_ORDERS: Unable to submit pegged order, temporarily too many pegged orders across all markets\n - ORDER_ERROR_POST_ONLY_ORDER_WOULD_TRADE: Post order would trade\n - ORDER_ERROR_REDUCE_ONLY_ORDER_WOULD_NOT_REDUCE_POSITION: Post order would trade\n - ORDER_ERROR_ISOLATED_MARGIN_CHECK_FAILED: Isolated margin check failed\n - ORDER_ERROR_PEGGED_ORDERS_NOT_ALLOWED_IN_ISOLATED_MARGIN_MODE: In isolated margin pegged orders are rejected\n - ORDER_ERROR_PRICE_NOT_IN_TICK_SIZE: Order price does not respect market's required tick size",
+      "description": "- ORDER_ERROR_UNSPECIFIED: Default value, no error reported\n - ORDER_ERROR_INVALID_MARKET_ID: Order was submitted for a market that does not exist\n - ORDER_ERROR_INVALID_ORDER_ID: Order was submitted with an invalid ID\n - ORDER_ERROR_OUT_OF_SEQUENCE: Order was amended with a sequence number that was not previous version + 1\n - ORDER_ERROR_INVALID_REMAINING_SIZE: Order was amended with an invalid remaining size (e.g. remaining greater than total size)\n - ORDER_ERROR_TIME_FAILURE: Node was unable to get Vega (blockchain) time\n - ORDER_ERROR_REMOVAL_FAILURE: Failed to remove an order from the book\n - ORDER_ERROR_INVALID_EXPIRATION_DATETIME: Order with `TimeInForce.TIME_IN_FORCE_GTT` was submitted or amended\nwith an expiration that was badly formatted or otherwise invalid\n - ORDER_ERROR_INVALID_ORDER_REFERENCE: Order was submitted or amended with an invalid reference field\n - ORDER_ERROR_EDIT_NOT_ALLOWED: Order amend was submitted for an order field that cannot not be amended (e.g. order ID)\n - ORDER_ERROR_AMEND_FAILURE: Amend failure because amend details do not match original order\n - ORDER_ERROR_NOT_FOUND: Order not found in an order book or store\n - ORDER_ERROR_INVALID_PARTY_ID: Order was submitted with an invalid or missing party ID\n - ORDER_ERROR_MARKET_CLOSED: Order was submitted for a market that has closed\n - ORDER_ERROR_MARGIN_CHECK_FAILED: Order was submitted, but the party did not have enough collateral to cover the order\n - ORDER_ERROR_MISSING_GENERAL_ACCOUNT: Order was submitted, but the party did not have an account for this asset\n - ORDER_ERROR_INTERNAL_ERROR: Unspecified internal error\n - ORDER_ERROR_INVALID_SIZE: Order was submitted with an invalid or missing size (e.g. 0)\n - ORDER_ERROR_INVALID_PERSISTENCE: Order was submitted with an invalid persistence for its type\n - ORDER_ERROR_INVALID_TYPE: Order was submitted with an invalid type field\n - ORDER_ERROR_SELF_TRADING: Order was stopped as it would have traded with another order submitted from the same party\n - ORDER_ERROR_INSUFFICIENT_FUNDS_TO_PAY_FEES: Order was submitted, but the party did not have enough collateral to cover the fees for the order\n - ORDER_ERROR_INCORRECT_MARKET_TYPE: Order was submitted with an incorrect or invalid market type\n - ORDER_ERROR_INVALID_TIME_IN_FORCE: Order was submitted with invalid time in force\n - ORDER_ERROR_CANNOT_SEND_GFN_ORDER_DURING_AN_AUCTION: Good For Normal order has reached the market when it is in auction mode\n - ORDER_ERROR_CANNOT_SEND_GFA_ORDER_DURING_CONTINUOUS_TRADING: Good For Auction order has reached the market when it is in continuous trading mode\n - ORDER_ERROR_CANNOT_AMEND_TO_GTT_WITHOUT_EXPIRYAT: Attempt to amend order to GTT without ExpiryAt\n - ORDER_ERROR_EXPIRYAT_BEFORE_CREATEDAT: Attempt to amend ExpiryAt to a value before CreatedAt\n - ORDER_ERROR_CANNOT_HAVE_GTC_AND_EXPIRYAT: Attempt to amend to GTC without an ExpiryAt value\n - ORDER_ERROR_CANNOT_AMEND_TO_FOK_OR_IOC: Amending to FOK or IOC is invalid\n - ORDER_ERROR_CANNOT_AMEND_TO_GFA_OR_GFN: Amending to GFA or GFN is invalid\n - ORDER_ERROR_CANNOT_AMEND_FROM_GFA_OR_GFN: Amending from GFA or GFN is invalid\n - ORDER_ERROR_CANNOT_SEND_IOC_ORDER_DURING_AUCTION: IOC orders are not allowed during auction\n - ORDER_ERROR_CANNOT_SEND_FOK_ORDER_DURING_AUCTION: FOK orders are not allowed during auction\n - ORDER_ERROR_MUST_BE_LIMIT_ORDER: Pegged orders must be LIMIT orders\n - ORDER_ERROR_MUST_BE_GTT_OR_GTC: Pegged orders can only have TIF GTC or GTT\n - ORDER_ERROR_WITHOUT_REFERENCE_PRICE: Pegged order must have a reference price\n - ORDER_ERROR_BUY_CANNOT_REFERENCE_BEST_ASK_PRICE: Buy pegged order cannot reference best ask price\n - ORDER_ERROR_OFFSET_MUST_BE_GREATER_OR_EQUAL_TO_ZERO: Pegged order offset must be \u003e= 0\n - ORDER_ERROR_SELL_CANNOT_REFERENCE_BEST_BID_PRICE: Sell pegged order cannot reference best bid price\n - ORDER_ERROR_OFFSET_MUST_BE_GREATER_THAN_ZERO: Pegged order offset must be \u003e zero\n - ORDER_ERROR_INSUFFICIENT_ASSET_BALANCE: Party has an insufficient balance, or does not have\na general account to submit the order (no deposits made\nfor the required asset)\n - ORDER_ERROR_CANNOT_AMEND_PEGGED_ORDER_DETAILS_ON_NON_PEGGED_ORDER: Cannot amend details of a non pegged details\n - ORDER_ERROR_UNABLE_TO_REPRICE_PEGGED_ORDER: Could not re-price a pegged order because a market price is unavailable\n - ORDER_ERROR_UNABLE_TO_AMEND_PRICE_ON_PEGGED_ORDER: It is not possible to amend the price of an existing pegged order\n - ORDER_ERROR_NON_PERSISTENT_ORDER_OUT_OF_PRICE_BOUNDS: FOK, IOC, or GFN order was rejected because it resulted in trades outside the price bounds\n - ORDER_ERROR_TOO_MANY_PEGGED_ORDERS: Unable to submit pegged order, temporarily too many pegged orders across all markets\n - ORDER_ERROR_POST_ONLY_ORDER_WOULD_TRADE: Post order would trade\n - ORDER_ERROR_REDUCE_ONLY_ORDER_WOULD_NOT_REDUCE_POSITION: Post order would trade\n - ORDER_ERROR_ISOLATED_MARGIN_CHECK_FAILED: Isolated margin check failed\n - ORDER_ERROR_PEGGED_ORDERS_NOT_ALLOWED_IN_ISOLATED_MARGIN_MODE: In isolated margin pegged orders are rejected\n - ORDER_ERROR_PRICE_NOT_IN_TICK_SIZE: Order price does not respect market's required tick size\n - ORDER_ERROR_PRICE_MUST_BE_LESS_THAN_OR_EQUAL_TO_MAX_PRICE: Order price exceeds the max price of the capped future market",
       "title": "OrderError codes are returned in the Order.reason field - If there is an issue\nwith an order during its life-cycle, it will be marked with `status.ORDER_STATUS_REJECTED`"
     },
     "vegaOrderStatus": {
@@ -7428,6 +7831,13 @@
             "$ref": "#/definitions/vegaMetadata"
           },
           "description": "Metadata to associate to a party, in a key/value format where the key\ndescribes the type of metadata in the value field."
+        },
+        "derivedKeys": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Derived keys for the party."
         }
       },
       "description": "Holds metadata associated to a party."
@@ -7659,6 +8069,10 @@
         "referencePrice": {
           "type": "string",
           "description": "Reference price used to calculate the valid price range. This field is an unsigned integer scaled to the market's decimal places."
+        },
+        "active": {
+          "type": "boolean",
+          "description": "Has this bound been triggered yet or is it still active."
         }
       },
       "title": "Represents a list of valid (at the current timestamp) price ranges per associated trigger"
@@ -8028,6 +8442,10 @@
         "dispatchStrategy": {
           "$ref": "#/definitions/vegaDispatchStrategy",
           "description": "Optional parameter defining how a transfer is dispatched."
+        },
+        "factor": {
+          "type": "string",
+          "description": "Factor that the initial transfer amount is multiplied by for each epoch that it is executed.\nFor example if the initial transfer amount is 1000 and the factor is 0.5, then the amounts transferred per epoch will be 1000, 500, 250, 125, etc."
         }
       },
       "title": "Specific details for a recurring transfer"
@@ -8116,6 +8534,20 @@
         }
       },
       "title": "Risk factors are used to calculate the current risk associated with orders trading on a given market"
+    },
+    "vegaRiskFactorOverride": {
+      "type": "object",
+      "properties": {
+        "short": {
+          "type": "string",
+          "description": "Short Risk factor value."
+        },
+        "long": {
+          "type": "string",
+          "description": "Long Risk factor value."
+        }
+      },
+      "title": "Risk factor override to control stable leverage"
     },
     "vegaScalingFactors": {
       "type": "object",
@@ -8510,10 +8942,13 @@
         "TRANSFER_TYPE_ORDER_MARGIN_LOW",
         "TRANSFER_TYPE_ORDER_MARGIN_HIGH",
         "TRANSFER_TYPE_ISOLATED_MARGIN_LOW",
-        "TRANSFER_TYPE_ISOLATED_MARGIN_HIGH"
+        "TRANSFER_TYPE_ISOLATED_MARGIN_HIGH",
+        "TRANSFER_TYPE_AMM_LOW",
+        "TRANSFER_TYPE_AMM_HIGH",
+        "TRANSFER_TYPE_AMM_RELEASE"
       ],
       "default": "TRANSFER_TYPE_UNSPECIFIED",
-      "description": "- TRANSFER_TYPE_UNSPECIFIED: Default value, always invalid\n - TRANSFER_TYPE_LOSS: Funds deducted after final settlement loss\n - TRANSFER_TYPE_WIN: Funds added to general account after final settlement gain\n - TRANSFER_TYPE_MTM_LOSS: Funds deducted from margin account after mark to market loss\n - TRANSFER_TYPE_MTM_WIN: Funds added to margin account after mark to market gain\n - TRANSFER_TYPE_MARGIN_LOW: Funds transferred from general account to meet margin requirement\n - TRANSFER_TYPE_MARGIN_HIGH: Excess margin amount returned to general account\n - TRANSFER_TYPE_MARGIN_CONFISCATED: Margin confiscated from margin account to fulfil closeout\n - TRANSFER_TYPE_MAKER_FEE_PAY: Maker fee paid from general account\n - TRANSFER_TYPE_MAKER_FEE_RECEIVE: Maker fee received into general account\n - TRANSFER_TYPE_INFRASTRUCTURE_FEE_PAY: Infrastructure fee paid from general account\n - TRANSFER_TYPE_INFRASTRUCTURE_FEE_DISTRIBUTE: Infrastructure fee received into general account\n - TRANSFER_TYPE_LIQUIDITY_FEE_PAY: Liquidity fee paid from general account\n - TRANSFER_TYPE_LIQUIDITY_FEE_DISTRIBUTE: Liquidity fee received into general account\n - TRANSFER_TYPE_BOND_LOW: Bond account funded from general account to meet required bond amount\n - TRANSFER_TYPE_BOND_HIGH: Bond returned to general account after liquidity commitment was reduced\n - TRANSFER_TYPE_WITHDRAW: Funds withdrawn from general account\n - TRANSFER_TYPE_DEPOSIT: Funds deposited to general account\n - TRANSFER_TYPE_BOND_SLASHING: Bond account penalised when liquidity commitment not met\n - TRANSFER_TYPE_REWARD_PAYOUT: Reward payout received\n - TRANSFER_TYPE_TRANSFER_FUNDS_SEND: Internal Vega network instruction for the collateral engine to move funds from a user's general account into the pending transfers pool\n - TRANSFER_TYPE_TRANSFER_FUNDS_DISTRIBUTE: Internal Vega network instruction for the collateral engine to move funds from the pending transfers pool account into the destination account\n - TRANSFER_TYPE_CLEAR_ACCOUNT: Market-related accounts emptied because market has closed\n - TRANSFER_TYPE_CHECKPOINT_BALANCE_RESTORE: Balances restored after network restart\n - TRANSFER_TYPE_SPOT: Spot trade delivery\n - TRANSFER_TYPE_HOLDING_LOCK: An internal instruction to transfer a quantity corresponding to an active spot order from a general account into a party holding account.\n - TRANSFER_TYPE_HOLDING_RELEASE: An internal instruction to transfer an excess quantity corresponding to an active spot order from a holding account into a party general account.\n - TRANSFER_TYPE_SUCCESSOR_INSURANCE_FRACTION: Insurance pool fraction transfer from parent to successor market.\n - TRANSFER_TYPE_LIQUIDITY_FEE_ALLOCATE: Allocates liquidity fee earnings to each liquidity provider's network controlled liquidity fee account.\n - TRANSFER_TYPE_LIQUIDITY_FEE_NET_DISTRIBUTE: Distributes net fee earnings from liquidity provider's fee account to their general account.\n - TRANSFER_TYPE_SLA_PENALTY_BOND_APPLY: Applies SLA penalty by moving funds from party's bond account to market's insurance pool.\n - TRANSFER_TYPE_SLA_PENALTY_LP_FEE_APPLY: Applies SLA penalty by moving funds from the liquidity provider's fee account to market insurance pool.\n - TRANSFER_TYPE_LIQUIDITY_FEE_UNPAID_COLLECT: Collects penalties from the liquidity provider's fee account before the fee revenue is paid, and transfers it to the market's bonus distribution account.\n - TRANSFER_TYPE_SLA_PERFORMANCE_BONUS_DISTRIBUTE: Distributes performance bonus from market bonus to liquidity provider's general account.\n - TRANSFER_TYPE_PERPETUALS_FUNDING_LOSS: Funds deducted from margin account after a perpetuals funding loss.\n - TRANSFER_TYPE_PERPETUALS_FUNDING_WIN: Funds added to margin account after a perpetuals funding gain.\n - TRANSFER_TYPE_REWARDS_VESTED: Funds moved from the vesting account to the vested account once the vesting period is reached.\n - TRANSFER_TYPE_FEE_REFERRER_REWARD_PAY: Fee referrer reward paid from general account.\n - TRANSFER_TYPE_FEE_REFERRER_REWARD_DISTRIBUTE: Fee referrer reward received into general account of the referrer.\n - TRANSFER_TYPE_ORDER_MARGIN_LOW: Funds transferred from general account to meet order margin requirement in isolated margin mode.\n - TRANSFER_TYPE_ORDER_MARGIN_HIGH: Excess order margin amount returned to general account.\n - TRANSFER_TYPE_ISOLATED_MARGIN_LOW: Transfer from order margin account to margin account due to increase of position.\n - TRANSFER_TYPE_ISOLATED_MARGIN_HIGH: Transfer from excess order margin account to general account.",
+      "description": "- TRANSFER_TYPE_UNSPECIFIED: Default value, always invalid\n - TRANSFER_TYPE_LOSS: Funds deducted after final settlement loss\n - TRANSFER_TYPE_WIN: Funds added to general account after final settlement gain\n - TRANSFER_TYPE_MTM_LOSS: Funds deducted from margin account after mark to market loss\n - TRANSFER_TYPE_MTM_WIN: Funds added to margin account after mark to market gain\n - TRANSFER_TYPE_MARGIN_LOW: Funds transferred from general account to meet margin requirement\n - TRANSFER_TYPE_MARGIN_HIGH: Excess margin amount returned to general account\n - TRANSFER_TYPE_MARGIN_CONFISCATED: Margin confiscated from margin account to fulfil closeout\n - TRANSFER_TYPE_MAKER_FEE_PAY: Maker fee paid from general account\n - TRANSFER_TYPE_MAKER_FEE_RECEIVE: Maker fee received into general account\n - TRANSFER_TYPE_INFRASTRUCTURE_FEE_PAY: Infrastructure fee paid from general account\n - TRANSFER_TYPE_INFRASTRUCTURE_FEE_DISTRIBUTE: Infrastructure fee received into general account\n - TRANSFER_TYPE_LIQUIDITY_FEE_PAY: Liquidity fee paid from general account\n - TRANSFER_TYPE_LIQUIDITY_FEE_DISTRIBUTE: Liquidity fee received into general account\n - TRANSFER_TYPE_BOND_LOW: Bond account funded from general account to meet required bond amount\n - TRANSFER_TYPE_BOND_HIGH: Bond returned to general account after liquidity commitment was reduced\n - TRANSFER_TYPE_WITHDRAW: Funds withdrawn from general account\n - TRANSFER_TYPE_DEPOSIT: Funds deposited to general account\n - TRANSFER_TYPE_BOND_SLASHING: Bond account penalised when liquidity commitment not met\n - TRANSFER_TYPE_REWARD_PAYOUT: Reward payout received\n - TRANSFER_TYPE_TRANSFER_FUNDS_SEND: Internal Vega network instruction for the collateral engine to move funds from a user's general account into the pending transfers pool\n - TRANSFER_TYPE_TRANSFER_FUNDS_DISTRIBUTE: Internal Vega network instruction for the collateral engine to move funds from the pending transfers pool account into the destination account\n - TRANSFER_TYPE_CLEAR_ACCOUNT: Market-related accounts emptied because market has closed\n - TRANSFER_TYPE_CHECKPOINT_BALANCE_RESTORE: Balances restored after network restart\n - TRANSFER_TYPE_SPOT: Spot trade delivery\n - TRANSFER_TYPE_HOLDING_LOCK: An internal instruction to transfer a quantity corresponding to an active spot order from a general account into a party holding account.\n - TRANSFER_TYPE_HOLDING_RELEASE: An internal instruction to transfer an excess quantity corresponding to an active spot order from a holding account into a party general account.\n - TRANSFER_TYPE_SUCCESSOR_INSURANCE_FRACTION: Insurance pool fraction transfer from parent to successor market.\n - TRANSFER_TYPE_LIQUIDITY_FEE_ALLOCATE: Allocates liquidity fee earnings to each liquidity provider's network controlled liquidity fee account.\n - TRANSFER_TYPE_LIQUIDITY_FEE_NET_DISTRIBUTE: Distributes net fee earnings from liquidity provider's fee account to their general account.\n - TRANSFER_TYPE_SLA_PENALTY_BOND_APPLY: Applies SLA penalty by moving funds from party's bond account to market's insurance pool.\n - TRANSFER_TYPE_SLA_PENALTY_LP_FEE_APPLY: Applies SLA penalty by moving funds from the liquidity provider's fee account to market insurance pool.\n - TRANSFER_TYPE_LIQUIDITY_FEE_UNPAID_COLLECT: Collects penalties from the liquidity provider's fee account before the fee revenue is paid, and transfers it to the market's bonus distribution account.\n - TRANSFER_TYPE_SLA_PERFORMANCE_BONUS_DISTRIBUTE: Distributes performance bonus from market bonus to liquidity provider's general account.\n - TRANSFER_TYPE_PERPETUALS_FUNDING_LOSS: Funds deducted from margin account after a perpetuals funding loss.\n - TRANSFER_TYPE_PERPETUALS_FUNDING_WIN: Funds added to margin account after a perpetuals funding gain.\n - TRANSFER_TYPE_REWARDS_VESTED: Funds moved from the vesting account to the vested account once the vesting period is reached.\n - TRANSFER_TYPE_FEE_REFERRER_REWARD_PAY: Fee referrer reward paid from general account.\n - TRANSFER_TYPE_FEE_REFERRER_REWARD_DISTRIBUTE: Fee referrer reward received into general account of the referrer.\n - TRANSFER_TYPE_ORDER_MARGIN_LOW: Funds transferred from general account to meet order margin requirement in isolated margin mode.\n - TRANSFER_TYPE_ORDER_MARGIN_HIGH: Excess order margin amount returned to general account.\n - TRANSFER_TYPE_ISOLATED_MARGIN_LOW: Transfer from order margin account to margin account due to increase of position.\n - TRANSFER_TYPE_ISOLATED_MARGIN_HIGH: Transfer from excess order margin account to general account.\n - TRANSFER_TYPE_AMM_LOW: Transfer from a party's general account to their AMM's general account.\n - TRANSFER_TYPE_AMM_HIGH: Transfer from an AMM's general account to their owner's general account.\n - TRANSFER_TYPE_AMM_RELEASE: Transfer releasing an AMM's general account upon closure.",
       "title": "Transfers can occur between parties on Vega, these are the types that indicate why a transfer took place"
     },
     "vegaUpdateAsset": {
@@ -8649,6 +9084,10 @@
         "tickSize": {
           "type": "string",
           "title": "The market tick size defines the minimum change in quote price for the market"
+        },
+        "enableTransactionReordering": {
+          "type": "boolean",
+          "title": "If enabled aggressive orders sent to the market will be delayed by the configured number of blocks"
         }
       },
       "title": "Configuration to update a futures market on Vega"
@@ -8820,6 +9259,10 @@
         "instrument": {
           "$ref": "#/definitions/vegaUpdateSpotInstrumentConfiguration",
           "description": "Specifies the name and code of the spot instrument."
+        },
+        "enableTransactionReordering": {
+          "type": "boolean",
+          "title": "If enabled aggressive orders sent to the market will be delayed by the configured number of blocks"
         }
       },
       "title": "Configuration to update a spot market on Vega"
@@ -9096,6 +9539,10 @@
         "reference": {
           "type": "string",
           "description": "Reference to be attached to the transfer."
+        },
+        "from": {
+          "type": "string",
+          "description": "AMM key from which assets are to be transferred, if applicable.\nThe submitter of the transaction must be the owner of this AMM key.\nIf provided, the 'from_account_type' must be REWARDS_VESTED, and the asset in this account\nmust match the asset specified in the transfer."
         },
         "oneOff": {
           "$ref": "#/definitions/vegacommandsv1OneOffTransfer",
