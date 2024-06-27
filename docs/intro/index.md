@@ -15,10 +15,10 @@ Click on any topic to learn more.
 
 |                                             |  |                                                                                                 | |
 | ----------------------------------------------------------------------|--------|
-| [Token economics](./token-economics.md) | [Liquidity provision](./liquidity-provision.md) |
-| [Fees](./fees.md) | [Referrals and fee discounts](./referral-program.md)|
+| [Token economics](./token-economics.md) | [Trading](./trading.md) |
+| [Liquidity provision](./liquidity-provision.md) | [Fees](./fees.md) |
 | [Competitions and teams](./teams.md) | [Trading rewards](./rewards-vesting.md)  |
-| [Activity streaks](./activity.md) | |
+| [Referrals and fee discounts](./referral-program.md)| [Activity streaks](./activity.md) | 
 
 See the protocol in action: 
 - [Console for trading ↗ ](https://console.vega.xyz)
