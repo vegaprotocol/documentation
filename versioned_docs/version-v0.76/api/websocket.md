@@ -170,7 +170,7 @@ Most of the WebSocket endpoints support filtering such as by-party or by-market.
 <TabItem value="bash" label="Bash">
 
 ```bash
-curl -L -X GET 'https://api.n07.testnet.vega.xyz/api/v2/stream/trades?api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId?=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338'
+curl -L -X GET 'https://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338'
 ```
 
 </TabItem>
@@ -183,7 +183,7 @@ import rel
 import json
 import websocket
 
-url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId?=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338"
+url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338"
 
 def on_message(ws, message):
     print(json.loads(message))
@@ -205,7 +205,7 @@ rel.dispatch()
 
 ```js
 import { WebSocket } from 'ws';
-const url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId?=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338";
+const url = "wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338";
 const client = new WebSocket(url);
 
 client.on('message', message => {
@@ -217,7 +217,7 @@ client.on('message', message => {
 <TabItem value="js" label="Browser">
 
 ```javascript
-const client = new WebSocket("wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId?=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338");
+const client = new WebSocket("wss://api.n07.testnet.vega.xyz/api/v2/stream/trades?partyId=faf83ce0533a2321ba2c0570844c631d4d888f6cc0e549e5222c1964ed764338");
 
 client.onmessage = console.dir;
 ```
@@ -235,15 +235,16 @@ The available WebSocket APIs are listed below.
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |
-| Stream account details | [Accounts](./rest/data-v2/trading-data-service-observe-accounts.api.mdx)| `/api/v2/stream/accounts`
-| Stream candles data | [Candles](./rest/data-v2/trading-data-service-observe-candle-data.api.mdx) | `/api/v2/stream/candles/data`
-| Stream liquidity provisions for a given market and party | [Liquidity provisions](./rest/data-v2/trading-data-service-observe-liquidity-provisions.api.mdx) | `/api/v2/stream/liquidity-provisions`
-| Stream margin levels for a given party (and optionally market) | [Margin levels](./rest/data-v2/trading-data-service-observe-margin-levels.api.mdx) | `/api/v2/stream/margin/levels`
-| Stream data for given markets | [Markets depth](./rest/data-v2/trading-data-service-observe-markets-depth.api.mdx) | `/api/v2/stream/markets/depth`
-| Stream updates of market depth for given markets | [Markets depth updates](./rest/data-v2/trading-data-service-observe-markets-depth-updates.api.mdx) | `/api/v2/stream/markets/depth/updates`
-| Stream data about given markets | [Markets data](./rest/data-v2/trading-data-service-observe-markets-data.api.mdx) | `/api/v2/stream/markets/data`
-| Stream all orders, or optionally for a given market and party | [Orders](./rest/data-v2/trading-data-service-observe-orders.api.mdx) | `/api/v2/stream/orders`
-| Stream all positions, or optionally for a given market and party | [Positions](./rest/data-v2/trading-data-service-observe-positions.api.mdx) | `/api/v2/stream/positions`
-| Stream all trades, or optionally for a given market and party | [Trades](./rest/data-v2/trading-data-service-observe-trades.api.mdx) | `/api/v2/stream/trades`
-| Stream governance proposals | [Governance proposals](./rest/data-v2/trading-data-service-observe-governance.api.mdx) | `/api/v2/stream/governance`
-| Stream governance votes for a party | [Governance votes](./rest/data-v2/trading-data-service-observe-votes.api.mdx) | `/api/v2/stream/votes`
+| Stream account details | [Accounts](./rest/data-v2/trading-data-service-observe-accounts.api.mdx)| `/api/v2/stream/accounts` |
+| Stream candles data | [Candles](./rest/data-v2/trading-data-service-observe-candle-data.api.mdx) | `/api/v2/stream/candles/data` |
+| Stream liquidity provisions for a given market and party | [Liquidity provisions](./rest/data-v2/trading-data-service-observe-liquidity-provisions.api.mdx) | `/api/v2/stream/liquidity-provisions` |
+| Stream margin levels for a given party (and optionally market) | [Margin levels](./rest/data-v2/trading-data-service-observe-margin-levels.api.mdx) | `/api/v2/stream/margin/levels` |
+| Stream data for given markets | [Markets depth](./rest/data-v2/trading-data-service-observe-markets-depth.api.mdx) | `/api/v2/stream/markets/depth` |
+| Stream updates of market depth for given markets | [Markets depth updates](./rest/data-v2/trading-data-service-observe-markets-depth-updates.api.mdx) | `/api/v2/stream/markets/depth/updates` |
+| Stream data about given markets | [Markets data](./rest/data-v2/trading-data-service-observe-markets-data.api.mdx) | `/api/v2/stream/markets/data` |
+| Stream all orders, or optionally for a given market and party | [Orders](./rest/data-v2/trading-data-service-observe-orders.api.mdx) | `/api/v2/stream/orders` |
+| Stream all positions, or optionally for a given market and party | [Positions](./rest/data-v2/trading-data-service-observe-positions.api.mdx) | `/api/v2/stream/positions`|
+| Stream all trades, or optionally for a given market and party | [Trades](./rest/data-v2/trading-data-service-observe-trades.api.mdx) | `/api/v2/stream/trades` |
+| Stream all ledger movements | [Ledger movements](./rest/data-v2/trading-data-service-observe-ledger-movements.api.mdx) | `/api/v2/stream/ledger/movements` |
+| Stream governance proposals | [Governance proposals](./rest/data-v2/trading-data-service-observe-governance.api.mdx) | `/api/v2/stream/governance` |
+| Stream governance votes for a party | [Governance votes](./rest/data-v2/trading-data-service-observe-votes.api.mdx) | `/api/v2/stream/votes`|

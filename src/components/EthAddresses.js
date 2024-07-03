@@ -53,7 +53,7 @@ const showOnlyDefault = [
  * Display ETH addresses without having to hardcode them
  *
  * @param show String[] Show a subset of showOnly
- * @param frontMatter Object The frontmatter of the page. Should contain vega_network and ethereum_network
+ * @param frontMatter Object The frontmatter of the page. Should contain vega_network
  * @returns
  */
 export default function EthAddresses({ frontMatter, show }) {
