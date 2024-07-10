@@ -15,7 +15,7 @@ The Vega Wallet browser extension is an early stage implementation of the Vega W
 
 **[Chrome extension ↗](https://chrome.google.com/webstore/detail/vega-wallet-fairground/nmmjkiafpmphlikhefgjbblebfgclikn)**
 
-**[Firefox extension ↗](https://addons.mozilla.org/en-GB/firefox/addon/vega-wallet-fairground/)**
+**[Firefox extension ↗](https://addons.mozilla.org/en-GB/firefox/addon/vega-wallet-beta/)**
 
 The browser extension lets you connect to a Vega Wallet right in your browser, rather than having to install a separate app. It allows you to:
 * Create a new wallet and public keys
