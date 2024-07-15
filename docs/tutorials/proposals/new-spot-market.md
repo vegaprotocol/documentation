@@ -157,6 +157,7 @@ In the tabs below you'll see:
           }
         },
         "tickSize": "10",        
+        "enableTransactionReordering": true,
         "priceDecimalPlaces": "2",
         "metadata": [
           "base:BTC",
@@ -242,6 +243,7 @@ In the tabs below you'll see:
           }
         },
         "tickSize": "10",        
+        "enableTransactionReordering": true,
         "priceDecimalPlaces": "2",
         "metadata": [
           "base:BTC",
@@ -366,7 +368,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      }^
     },^
     \"tickSize\": \"1\",^
-    \"enableTransactionReordering\": \"true\"^
+    \"enableTransactionReordering\": \true\^
 
    }^
   },^
