@@ -92,14 +92,16 @@
      dataSourcesSpecBinding: []
     },
     // The market tick size defines the minimum change in quote price for the market
-    tickSize: "1"
+    tickSize: "1",
+    /* If enabled aggressive orders sent to the market will be delayed by the configured number of blocks */
+    enableTransactionReordering: true
    },
    // Timestamp as Unix time in seconds when voting closes for this proposal,
    // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-   closingTimestamp: 1721053584,
+   closingTimestamp: 1722682569,
    // Timestamp as Unix time in seconds when proposal gets enacted if passed,
    // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-   enactmentTimestamp: 1721139984,
+   enactmentTimestamp: 1722768969,
   }
  }
 ```
