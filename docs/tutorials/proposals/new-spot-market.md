@@ -365,7 +365,9 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
       \"scalingFactor\": \"0.05\"^
      }^
     },^
-    \"tickSize\": \"1\"^
+    \"tickSize\": \"1\",^
+    \"enableTransactionReordering\": \"true\"^
+
    }^
   },^
   \"closingTimestamp\": 1713795243,^
