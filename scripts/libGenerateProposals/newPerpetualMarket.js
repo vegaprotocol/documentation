@@ -374,7 +374,8 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
           markPriceConfiguration: generateMarkPriceConfiguration(
             skeleton.properties.changes.properties.markPriceConfiguration
           ),
-          tickSize: "1"
+          tickSize: "1",
+          enableTransactionReordering: true
         },
       },
     },
@@ -457,7 +458,11 @@ function newPerpetualMarket(skeleton, proposalSoFar) {
       // ${
       skeleton.properties.changes.properties.tickSize.title
     }
-    "tickSize": "1"
+    "tickSize": "1",
+    /* ${
+      skeleton.properties.changes.properties.enableTransactionReordering.title
+    } */
+    "enableTransactionReordering": true
     }
 }`;
 };

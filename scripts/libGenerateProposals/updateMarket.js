@@ -172,7 +172,8 @@ function updateMarket(skeleton, proposalSoFar) {
           liquiditySlaParameters: generateLiquiditySlaParameters(
             skeleton.properties.changes.properties.liquiditySlaParameters
           ),
-          tickSize: "1"
+          tickSize: "1",
+          enableTransactionReordering: true
         },
       }
     }
@@ -201,7 +202,11 @@ function updateMarket(skeleton, proposalSoFar) {
      // ${
       skeleton.properties.changes.properties.tickSize.title
     }
-    "tickSize": "1"
+    "tickSize": "1",
+    /* ${
+      skeleton.properties.changes.properties.enableTransactionReordering.title
+    } */
+    "enableTransactionReordering": true
         },
     }`
   }

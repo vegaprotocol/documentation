@@ -60,6 +60,7 @@ An instrument contains the following properties:
 | `quoteAsset` | Quote specifies the asset which can be exchanged for the base asset. This field requires the asset ID. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `baseAsset` | Base asset specifies the asset to be bought or sold on the market. Requires the asset ID. You can get a list of supported assets by querying REST, GraphQL, or gRPC, and then selecting the asset ID. |  |
 | `tickSize` | Sets the smallest possible change in the price in the market. Tick size is in relation to the market `decimalPlaces`, as an integer. If a BTCUSDT market is configured with 5 mdp, tick size 1 would make the smallest tick size 0.00001. Tick size can help manage a market with 'too many' decimal places, or an asset's value dropping dramatically. | A value of 2000 with 5 `decimalPlaces` is a scaled tick size of 0.02. |
+| `enableTransactionReordering` | Sets whether or not aggressive orders sent to the market are delayed by the number of blocks configured by the network parameter `market.aggressiveOrderBlockDelay` | true / false |
 
 **Decimal places** need to be defined for both order sizes and the market. A market cannot specify more decimal places than its settlement asset supports. The values for these fields cannot be changed, even through governance.
 
@@ -156,6 +157,7 @@ In the tabs below you'll see:
           }
         },
         "tickSize": "10",        
+        "enableTransactionReordering": true,
         "priceDecimalPlaces": "2",
         "metadata": [
           "base:BTC",
@@ -241,6 +243,7 @@ In the tabs below you'll see:
           }
         },
         "tickSize": "10",        
+        "enableTransactionReordering": true,
         "priceDecimalPlaces": "2",
         "metadata": [
           "base:BTC",
@@ -364,7 +367,9 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
       \"scalingFactor\": \"0.05\"^
      }^
     },^
-    \"tickSize\": \"1\"^
+    \"tickSize\": \"1\",^
+    \"enableTransactionReordering\": \true\^
+
    }^
   },^
   \"closingTimestamp\": 1713795243,^

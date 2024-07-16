@@ -97,11 +97,12 @@
       "performanceHysteresisEpochs": "10",
       "slaCompetitionFactor": "0.2"
      },
-     "tickSize": "1"
+     "tickSize": "1",
+     "enableTransactionReordering": true
     }
    },
-   "closingTimestamp": 1721053584,
-   "enactmentTimestamp": 1721139984
+   "closingTimestamp": 1722765763,
+   "enactmentTimestamp": 1722852163
   }
  }
 }'

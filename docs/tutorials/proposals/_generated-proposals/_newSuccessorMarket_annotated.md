@@ -146,8 +146,8 @@
 
        // Optional new futures market metadata, tags.
        metadata: [
-        "enactment:2024-07-16T15:26:24Z",
-        "settlement:2024-07-15T15:26:24Z",
+        "enactment:2024-08-05T11:02:43Z",
+        "settlement:2024-08-04T11:02:43Z",
         "source:docs.vega.xyz"
        ],
 
@@ -285,16 +285,20 @@
        },
 
        // The market tick size defines the minimum change in quote price for the market
-       tickSize: "1"
+       tickSize: "1",
+
+
+       /* If enabled aggressive orders sent to the market will be delayed by the configured number of blocks */
+       enableTransactionReordering: true
       },
 
       // Timestamp as Unix time in seconds when voting closes for this proposal,
       // constrained by `minClose` and `maxClose` network parameters. (int64 as string)
-      closingTimestamp: 1721053584,
+      closingTimestamp: 1722765763,
 
       // Timestamp as Unix time in seconds when proposal gets enacted if passed,
       // constrained by `minEnact` and `maxEnact` network parameters. (int64 as string)
-      enactmentTimestamp: 1721139984,
+      enactmentTimestamp: 1722852163,
      }
     }
    }
