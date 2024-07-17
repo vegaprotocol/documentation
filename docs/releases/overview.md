@@ -26,13 +26,17 @@ This release introduces the ability to create prediction markets, futures market
 ### Improvements:
 
 - Adds the ability to publish data about games while the games are ongoing, rather than only after. [Issue 11209 ↗](https://github.com/vegaprotocol/vega/issues/11209)
+- Introduces auctions during times of long block processing. [Issue 11400 ↗](https://github.com/vegaprotocol/vega/issues/11400)
+- Relaxes finality check to allow instant deposits using the Arbitrum bridge. [Issue 11408 ↗](https://github.com/vegaprotocol/vega/issues/11408)
+- Adds optional parameters to manually set risk factors for new markets. [Issue 11234 ↗](https://github.com/vegaprotocol/vega/issues/11234)
+- Adds an Ethereum heartbeat chain event if no event-logs are seen on a contract for over an hour. [Issue 11334 ↗](https://github.com/vegaprotocol/vega/issues/11334)
 - Adds configuration to Visor to help improve binary retries. [Issue 11242 ↗](https://github.com/vegaprotocol/vega/issues/11242)
-- Adds a field in the price monitoring bounds details to make the bounds clearer. [Issue 11196 ↗](https://github.com/vegaprotocol/vega/issues/11196) 
+- Adds a field in the price monitoring bounds details to make the bounds clearer. [Issue 11196 ↗](https://github.com/vegaprotocol/vega/issues/11196)
 - Add support for allowing trading transaction ordering to be enabled or disabled. [Issue 11285 ↗](https://github.com/vegaprotocol/vega/issues/11285)
-- Enhance transaction reordering with per-market control and configurable delay. [Issue 11337 ↗](https://github.com/vegaprotocol/vega/issues/11337)
-- Add source chain ID when available to transaction event details. [Issue 11329 ↗](https://github.com/vegaprotocol/vega/issues/11329)
-- Add spam checks for orders/liquidity provision. [Issue 10634 ↗](https://github.com/vegaprotocol/vega/issues/10634)
-- Support querying for historical game scores. [Issue 11357 ↗](https://github.com/vegaprotocol/vega/issues/11357)
+- Enhances transaction reordering with per-market control and configurable delay. [Issue 11337 ↗](https://github.com/vegaprotocol/vega/issues/11337)
+- Adds source chain ID when available to transaction event details. [Issue 11329 ↗](https://github.com/vegaprotocol/vega/issues/11329)
+- Adds spam checks for orders/liquidity provision. [Issue 10634 ↗](https://github.com/vegaprotocol/vega/issues/10634)
+- Supports querying for historical game scores. [Issue 11357 ↗](https://github.com/vegaprotocol/vega/issues/11357)
 
 ### Fixes:
 
@@ -46,8 +50,10 @@ This release introduces the ability to create prediction markets, futures market
 - Adds support to REST to update vesting stats and fix summing the quantum balance for vesting stats. [Issue 11368 ↗](https://github.com/vegaprotocol/vega/issues/11368)
 - Improves error handling for badly formed stop orders. [Issue 11380 ↗](https://github.com/vegaprotocol/vega/issues/11380)
 - Fixes an issue with the fee stats event reporting. [Issue 11136 ↗](https://github.com/vegaprotocol/vega/issues/11136)
+- Fixes broken snapshots when dispatch strategies are cancelled mid-epoch. [Issue 11401 ↗](https://github.com/vegaprotocol/vega/issues/11401)
+- Fixes the epoch filters for `gameTeamScores`. [Issue 11438 ↗](https://github.com/vegaprotocol/vega/issues/11438)
 
-To review these changes in the last released version, see [GitHub ↗](https://github.com/vegaprotocol/vega/compare/release/v0.76.8...v0.77.0-preview.5).
+To review these changes in the last released version, see [GitHub ↗](https://github.com/vegaprotocol/vega/compare/release/v0.76.8...v0.77.0-preview.10).
 
 ## Version v0.76 | 2024-05-09
 This version was released to the Vega testnet on 9 May 2024.
