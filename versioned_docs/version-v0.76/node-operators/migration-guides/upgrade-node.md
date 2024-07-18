@@ -3,7 +3,7 @@ title: Upgrade to 0.77
 sidebar_label: Upgrade to 0.77
 ---
 
-This guide describes the steps to upgrade from v0.76.8 to v0.77.0 using the protocol upgrade mechanism. See the changelog for  [v0.77.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.77.0) for information about breaking changes and new features.
+This guide describes the steps to upgrade from v0.76.8 to v0.77.0 using the protocol upgrade mechanism. See the changelog for  [v0.77.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.77.1) for information about breaking changes and new features.
 
 ## Assumptions for the guide
 The instructions below are written for Debian-like Linux operating systems.
@@ -14,14 +14,14 @@ This guide is specifically intended for those who are already running a validato
 
 ## Study the changes between versions
 
-Before upgrading your node software, **review the changelog** for [v0.77.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.77.0) for a list of breaking API changes compared to the previously released version.
+Before upgrading your node software, **review the changelog** for [v0.77.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.77.1) for a list of breaking API changes compared to the previously released version.
 
 ## Required changes
 There are no extra required changes for this release.
 
 ## Before you upgrade
 
-Please read the changelogs to see all the changes. Below you can find a list of the changes you must perform before the upgrade to [v0.77.0 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.77.0).
+Please read the changelogs to see all the changes. Below you can find a list of the changes you must perform before the upgrade to [v0.77.1 ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.77.1).
 
 ### When should I upgrade config?
 
@@ -47,16 +47,16 @@ The default locations for configuration files:
 - vega-core: `YOUR_VEGA_HOME/config/node/config.toml`
 - comet BFT: `YOUR_COMET_BFT_HOME/config/config.toml`
 
-Add the following new parameter to the configuration file.
-
 We recommend checking all of the changes on your own. Follow the below instructions to do it, and read through every description to understand the changes:
 
-1. Download vega `v0.77.0`
+1. Download vega `v0.77.1`
 2. Generate config files within the temp home directory
   - vega config
   - comet BFT config
   - data-node config
 3. Compare the new generated file in the temp location and the old file to see the differences.
+
+There is a new parameter `max_request_batch_size`, set to a default of 10, the value of which does not need to be updated.
 
 ## Upgrade your node
 To upgrade the network follow the [protocol upgrade documentation](../how-to/upgrade-network.md).
