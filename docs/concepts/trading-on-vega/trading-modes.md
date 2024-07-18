@@ -78,6 +78,17 @@ If no one places orders in the protective auction, the auction is exited and the
 [Concept: Price monitoring](./market-protections#price-monitoring)
 :::
 
+### Auction type: Block time
+When the network experiences particularly slow block times - more than 10 seconds per block - all markets are moved into auction. The slowdowns can occur in situations such as after a network upgrade, or downtime. 
+
+#### Entry into block time auction
+A slow block that exceeds the threshold will trigger auctions on all markets.
+
+The duration of the auction depends on how long the previous block took to be processed. The relationship between the two is set as a network parameter: <NetworkParameter frontMatter={frontMatter} param="auction.LongBlock" hideValue={true} />.
+
+#### Exit from block time auction
+When the auction duration time has passed, all markets will leave the block time auction.
+
 ### Auction call period
 During the auction call period, no trades are created, but all orders are queued.
 
