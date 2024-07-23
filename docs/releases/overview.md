@@ -18,10 +18,21 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-## Version v0.77 | 2024-06-24
-This version was released to the Vega testnet on 26 June 2024.
+## Version v0.77 | 2024-07-23
+This updated version was released to the Vega testnet on 23 July 2024.
 
 This release introduces the ability to create prediction markets, futures markets with a final settlement price cap, and fully collateralised futures markets. There are also a range of bug fixes and general improvements.
+
+Included in this release are a series of new network parameters. Below is a list with their default values.
+
+| New parameter | Description | Default value |
+|---------------|---------------|----------------|
+| `auction.LongBlock` | Determines the length of block auctions based on block times | `{"threshold_and_duration": [{"threshold":"10s","duration":"1m"}, {"threshold":"1m","duration":"5m"}, {"threshold":"10m","duration":"1h"}, {"threshold":"1h","duration":"1h"}, {"threshold":"6h","duration":"3h"}, {"threshold":"24h","duration":"6h"}]}`|
+| `spam.order.minimumMarginQuantumMultiple` | Sets a minimum order size for future/perp markets. At 0.01, an order must use at least 1 cent (equivalent) of margin to be executed | 0.01 | 
+| `spam.order.minimumHoldingQuantumMultiple` | Sets a minimum order size for spot markets. At 0.01, an order must have at least 1 cent of value | 0.01 |
+| `market.liquidity.equityLikeShareFeeFraction` | Sets weight of liquidity score vs the equity-like share score when calculating LP fee allocation. | 0.1 |
+| `market.aggressiveOrderBlockDelay` | Sets the number of blocks by which aggressive (taker) orders are delayed relative to passive (maker) orders. | 1 |
+| `rewards.updateFrequency` | Sets how frequently the live game scores are updated. | 10m |
 
 ### Improvements:
 
