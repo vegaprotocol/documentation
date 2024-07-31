@@ -18,8 +18,8 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
-## Version v0.77 | 2024-07-23
-This updated version was released to the Vega testnet on 23 July 2024.
+## Version v0.77 | 2024-07-31
+This updated version was released to the Vega testnet on 31 July 2024.
 
 This release introduces the ability to create prediction markets, futures markets with a final settlement price cap, and fully collateralised futures markets. There are also a range of bug fixes and general improvements.
 
