@@ -89,7 +89,7 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
      \"params\": {^
       \"mu\": 0,^
       \"r\": 0.016,^
-      \"sigma\": 0.8^
+      \"sigma\": 0.3^
      }^
     },^
     \"liquiditySlaParameters\": {^
@@ -102,8 +102,8 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
     \"enableTransactionReordering\": true^
    }^
   },^
-  \"closingTimestamp\": 1722765763,^
-  \"enactmentTimestamp\": 1722852163^
+  \"closingTimestamp\": 1724602886,^
+  \"enactmentTimestamp\": 1724689286^
  }^
 }^
 }"
