@@ -1,0 +1,216 @@
+---
+id: trading-data-service-export-network-history
+title: "Export network history as CSV"
+description: "Export CSV table data from network history between two block heights.
+
+The requested block heights must fall on network history segment boundaries, which can
+be discovered by calling the API to list all network history segments. By default
+segments contain 1000 blocks. In that case ranges such as (1, 1000), (1001, 2000), (1, 3000)
+would all fall on segment boundaries and be valid.
+
+The generated CSV file is compressed into a ZIP file and returned, with the file name
+in the following format: `[chain id]-[table name]-[start block]-[end block].zip`
+
+In gRPC, results are returned in a chunked stream of base64 encoded data.
+
+Through the REST gateway, the base64 data chunks are decoded and streamed as a
+`content-type: application/zip` HTTP response.
+
+The CSV exported data uses a comma as a DELIMITER between fields, and ' for QUOTE-ing fields.
+
+If a value contains any of: DELIMITER, QUOTE, carriage return, or line feed then the whole
+value is prefixed and suffixed by the QUOTE character and any occurrence within
+the value of a QUOTE character preceded by another QUOTE.
+
+A NULL is output as the NULL parameter string and is not quoted, while a non-NULL value
+matching the NULL parameter string is quoted.
+
+For example, with the default settings, a NULL is written as an unquoted empty string,
+while an empty string data value is written with double quotes.
+
+Note that CSV files produced may contain quoted values containing embedded carriage returns and line feeds.
+Thus the files are not strictly one line per table row like text-format files.
+
+The first row of the CSV file is a header that describes the contents of each column
+in subsequent rows.
+
+Usually the ZIP file will contain only a single CSV file. However it is possible that
+the (from_block, to_block) request spans over a range of blocks in which the underlying
+schema of the database changes. For example, a column may have been added, removed, or renamed.
+
+If this happens, the CSV file will be split at the point of the schema change and the zip
+file will contain multiple CSV files, with a potentially different set of headers. The
+'version' number of the database schema is part of the in the CSV filename:
+
+ `[chain id]-[table name]-[schema version]-[start block]-[end block].zip`
+
+For example, a zip file might be called mainnet-sometable-000001-003000.zip
+
+And contain two CSV files: `mainnet-sometable-1-000001-002000.csv`:
+
+timestamp, value
+1, foo
+2, bar
+
+And `mainnet-sometable-2-002001-003000.csv`:
+
+timestamp, value, extra_value
+3, baz, apple
+
+It is worth noting that the schema will not change within a single network history segment.
+buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE"
+sidebar_label: "Export network history as CSV"
+hide_title: true
+hide_table_of_contents: true
+api: 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
+sidebar_class_name: "get api-method"
+info_path: version-v0.77/api/rest/data-v2/vega-data-node-apis
+custom_edit_url: "https://github.com/vegaprotocol/documentation/issues/new?labels=documentation&title=[Documentation] Requesting changes to 'Export network history as CSV' (trading-data-service-export-network-history)"
+---
+
+import ApiTabs from "@theme/ApiTabs";
+import DiscriminatorTabs from "@theme/DiscriminatorTabs";
+import MethodEndpoint from "@theme/ApiExplorer/MethodEndpoint";
+import SecuritySchemes from "@theme/ApiExplorer/SecuritySchemes";
+import MimeTabs from "@theme/MimeTabs";
+import ParamsItem from "@theme/ParamsItem";
+import ResponseSamples from "@theme/ResponseSamples";
+import SchemaItem from "@theme/SchemaItem";
+import SchemaTabs from "@theme/SchemaTabs";
+import Markdown from "@theme/Markdown";
+import OperationTabs from "@theme/OperationTabs";
+import TabItem from "@theme/TabItem";
+
+<h1 className={"openapi__heading"}>Export network history as CSV</h1>
+
+<MethodEndpoint method={"get"} path={"/api/v2/networkhistory/export"}></MethodEndpoint>
+
+
+
+Export CSV table data from network history between two block heights.
+
+The requested block heights must fall on network history segment boundaries, which can
+be discovered by calling the API to list all network history segments. By default
+segments contain 1000 blocks. In that case ranges such as (1, 1000), (1001, 2000), (1, 3000)
+would all fall on segment boundaries and be valid.
+
+The generated CSV file is compressed into a ZIP file and returned, with the file name
+in the following format: `[chain id]-[table name]-[start block]-[end block].zip`
+
+In gRPC, results are returned in a chunked stream of base64 encoded data.
+
+Through the REST gateway, the base64 data chunks are decoded and streamed as a
+`content-type: application/zip` HTTP response.
+
+The CSV exported data uses a comma as a DELIMITER between fields, and " for QUOTE-ing fields.
+
+If a value contains any of: DELIMITER, QUOTE, carriage return, or line feed then the whole
+value is prefixed and suffixed by the QUOTE character and any occurrence within
+the value of a QUOTE character preceded by another QUOTE.
+
+A NULL is output as the NULL parameter string and is not quoted, while a non-NULL value
+matching the NULL parameter string is quoted.
+
+For example, with the default settings, a NULL is written as an unquoted empty string,
+while an empty string data value is written with double quotes.
+
+Note that CSV files produced may contain quoted values containing embedded carriage returns and line feeds.
+Thus the files are not strictly one line per table row like text-format files.
+
+The first row of the CSV file is a header that describes the contents of each column
+in subsequent rows.
+
+Usually the ZIP file will contain only a single CSV file. However it is possible that
+the (from_block, to_block) request spans over a range of blocks in which the underlying
+schema of the database changes. For example, a column may have been added, removed, or renamed.
+
+If this happens, the CSV file will be split at the point of the schema change and the zip
+file will contain multiple CSV files, with a potentially different set of headers. The
+'version' number of the database schema is part of the in the CSV filename:
+
+ `[chain id]-[table name]-[schema version]-[start block]-[end block].zip`
+
+For example, a zip file might be called mainnet-sometable-000001-003000.zip
+
+And contain two CSV files: `mainnet-sometable-1-000001-002000.csv`:
+
+timestamp, value
+1, foo
+2, bar
+
+And `mainnet-sometable-2-002001-003000.csv`:
+
+timestamp, value, extra_value
+3, baz, apple
+
+It is worth noting that the schema will not change within a single network history segment.
+buf:lint:ignore RPC_RESPONSE_STANDARD_NAME
+buf:lint:ignore RPC_REQUEST_RESPONSE_UNIQUE
+
+## Request
+
+<details style={{"marginBottom":"1rem"}} className={"openapi-markdown__details"} data-collapsed={false} open={true}><summary style={{}}><h3 className={"openapi-markdown__details-summary-header-params"}>Query Parameters</h3></summary><div><ul><ParamsItem className={"paramsItem"} param={{"description":"Block to begin exporting from. Must be the first block of a history segment,\nwhich by default are 1000 blocks each; in that case - 1, 1001, 2001 etc. are valid values.\nThis can be checked by first calling the API to list all network history segments.","in":"query","name":"fromBlock","required":false,"schema":{"format":"int64","type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"description":"Last block to export up to and including. Must be the last block of a history segment\nwhich by default are 1000 blocks each; in that case - 1000, 2000, 3000 etc. are valid values.\nThis can be checked by first calling the API to list all network history segments.","in":"query","name":"toBlock","required":false,"schema":{"format":"int64","type":"string"}}}></ParamsItem><ParamsItem className={"paramsItem"} param={{"description":"Table to export data from.","in":"query","name":"table","required":false,"schema":{"default":"TABLE_UNSPECIFIED","enum":["TABLE_UNSPECIFIED","TABLE_BALANCES","TABLE_CHECKPOINTS","TABLE_DELEGATIONS","TABLE_LEDGER","TABLE_ORDERS","TABLE_TRADES","TABLE_MARKET_DATA","TABLE_MARGIN_LEVELS","TABLE_POSITIONS","TABLE_LIQUIDITY_PROVISIONS","TABLE_MARKETS","TABLE_DEPOSITS","TABLE_WITHDRAWALS","TABLE_BLOCKS","TABLE_REWARDS"],"type":"string"}}}></ParamsItem></ul></div></details><div><div><ApiTabs label={undefined} id={undefined}><TabItem label={"200"} value={"200"}><div>
+
+A successful response.(streaming responses)
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>error</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaName={"int32"} qualifierMessage={undefined} schema={{"format":"int32","type":"integer"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>details</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"@type"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics.","type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></div></details></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>result</strong><span className={"openapi-schema__name"}> object</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+Message that represents an arbitrary HTTP body. It should only be used for
+payload formats that can't be represented as JSON, such as raw binary or
+an HTML page.
+
+
+This message can be used both in streaming and non-streaming API methods in
+the request as well as the response.
+
+It can be used as a top-level request field, which is convenient if one
+wants to extract parameters from either the URL or HTTP template into the
+request fields and also want access to the raw HTTP body.
+
+Example:
+
+    message GetResourceRequest {
+      // A unique request id.
+      string request_id = 1;
+
+      // The raw HTTP body is bound to this field.
+      google.api.HttpBody http_body = 2;
+
+    }
+
+    service ResourceService {
+      rpc GetResource(GetResourceRequest)
+        returns (google.api.HttpBody);
+      rpc UpdateResource(google.api.HttpBody)
+        returns (google.protobuf.Empty);
+
+    }
+
+Example with streaming methods:
+
+    service CaldavService {
+      rpc GetCalendar(stream google.api.HttpBody)
+        returns (stream google.api.HttpBody);
+      rpc UpdateCalendar(stream google.api.HttpBody)
+        returns (stream google.api.HttpBody);
+
+    }
+
+Use of this type only changes how the request and response bodies are
+handled, all other features will continue to work unchanged.
+
+</div><SchemaItem collapsible={false} name={"contentType"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"The HTTP Content-Type header value specifying the content type of the body.","type":"string"}}></SchemaItem><SchemaItem collapsible={false} name={"data"} required={false} schemaName={"byte"} qualifierMessage={undefined} schema={{"description":"The HTTP request/response body as raw binary.","format":"byte","type":"string"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>extensions</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><div style={{"marginTop":".5rem","marginBottom":".5rem"}}>
+
+Application specific response metadata. Must be set in the first response
+for streaming APIs.
+
+</div><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"@type"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics.","type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem></div></details></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"error\": {\n    \"code\": 0,\n    \"details\": [\n      {\n        \"@type\": \"string\"\n      }\n    ],\n    \"message\": \"string\"\n  },\n  \"result\": {\n    \"contentType\": \"string\",\n    \"data\": \"string\",\n    \"extensions\": [\n      {\n        \"@type\": \"string\"\n      }\n    ]\n  }\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"500"} value={"500"}><div>
+
+An internal server error
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaName={"int32"} qualifierMessage={undefined} schema={{"format":"int32","type":"integer"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>details</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"@type"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics.","type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem><TabItem label={"default"} value={"default"}><div>
+
+An unexpected error response.
+
+</div><div><MimeTabs className={"openapi-tabs__mime"} schemaType={"response"}><TabItem label={"application/json"} value={"application/json"}><SchemaTabs className={"openapi-tabs__schema"}><TabItem label={"Schema"} value={"Schema"}><details style={{}} className={"openapi-markdown__details response"} data-collapsed={false} open={true}><summary style={{}} className={"openapi-markdown__details-summary-response"}><strong>Schema</strong></summary><div style={{"textAlign":"left","marginLeft":"1rem"}}></div><ul style={{"marginLeft":"1rem"}}><SchemaItem collapsible={false} name={"code"} required={false} schemaName={"int32"} qualifierMessage={undefined} schema={{"format":"int32","type":"integer"}}></SchemaItem><SchemaItem collapsible={true} className={"schemaItem"}><details style={{}} className={"openapi-markdown__details"}><summary style={{}}><span className={"openapi-schema__container"}><strong className={"openapi-schema__property"}>details</strong><span className={"openapi-schema__name"}> object[]</span></span></summary><div style={{"marginLeft":"1rem"}}><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem","paddingBottom":".5rem"}}>Array [</div></li><SchemaItem collapsible={false} name={"@type"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"description":"A URL/resource name that uniquely identifies the type of the serialized\nprotocol buffer message. This string must contain at least\none \"/\" character. The last segment of the URL's path must represent\nthe fully qualified name of the type (as in\n`path/google.protobuf.Duration`). The name should be in a canonical form\n(e.g., leading \".\" is not accepted).\n\nIn practice, teams usually precompile into the binary all types that they\nexpect it to use in the context of Any. However, for URLs which use the\nscheme `http`, `https`, or no scheme, one can optionally set up a type\nserver that maps type URLs to message definitions as follows:\n\n* If no scheme is provided, `https` is assumed.\n* An HTTP GET on the URL must yield a [google.protobuf.Type][]\n  value in binary format, or produce an error.\n* Applications are allowed to cache lookup results based on the\n  URL, or have them precompiled into a binary to avoid any\n  lookup. Therefore, binary compatibility needs to be preserved\n  on changes to types. (Use versioned type names to manage\n  breaking changes.)\n\nNote: this functionality is not currently available in the official\nprotobuf release, and it is not used for type URLs beginning with\ntype.googleapis.com.\n\nSchemes other than `http`, `https` (or the empty scheme) might be\nused with implementation specific semantics.","type":"string"}}></SchemaItem><li><div style={{"fontSize":"var(--ifm-code-font-size)","opacity":"0.6","marginLeft":"-.5rem"}}>]</div></li></div></details></SchemaItem><SchemaItem collapsible={false} name={"message"} required={false} schemaName={"string"} qualifierMessage={undefined} schema={{"type":"string"}}></SchemaItem></ul></details></TabItem><TabItem label={"Example (from schema)"} value={"Example (from schema)"}><ResponseSamples responseExample={"{\n  \"code\": 0,\n  \"details\": [\n    {\n      \"@type\": \"string\"\n    }\n  ],\n  \"message\": \"string\"\n}"} language={"json"}></ResponseSamples></TabItem></SchemaTabs></TabItem></MimeTabs></div></TabItem></ApiTabs></div></div>
