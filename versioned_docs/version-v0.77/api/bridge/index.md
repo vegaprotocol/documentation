@@ -15,7 +15,7 @@ These are the smart contracts that make up the Vega <-> Ethereum interface
 
 Contains the functions necessary to deposit, withdraw, list assets, etc. It is controlled by Multisig Control and controls Asset Pool.
 
-To read more about how the bridge works, see the [Vega ERC20 bridge blog post ↗](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Sepolia on to the Fairground testnet, head over to [Console for Fairground ↗](https://console.fairground.wtf).
+To read more about how the bridge works, see the [Vega ERC20 bridge blog post ↗](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2).
 
 ### ERC20 Asset Pool
 <EthAddresses frontMatter={frontMatter} show={["ERC20AssetPool"]} />
@@ -44,7 +44,7 @@ The ERC20 token smart contract for VEGA token.
 
 All VEGA tokens are issued through this. Handles the linear vesting of VEGA tokens and allows users to stake VEGA they hold within the vesting contract, regardless of whether they have already vested or not.
 
-To read more about how the bridge works, [see this blog post ↗](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2). If you're looking for a way to deposit tokens from Sepolia on to the Fairground testnet, head over to [Console for Fairground ↗](https://console.fairground.wtf).
+To read more about how the bridge works, [see this blog post ↗](https://blog.vega.xyz/vega-erc20-bridge-331a5235efa2).
 
 ### [Multisig Control](./interfaces/IMultisigControl.md)
 

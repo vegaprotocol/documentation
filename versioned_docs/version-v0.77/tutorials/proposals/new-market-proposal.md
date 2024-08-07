@@ -40,7 +40,7 @@ You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * Enough VEGA associated with your public key. Have at least whichever is larger: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>, (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
 
-<!--You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.-->
+You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.
 
 ## Anatomy of a market proposal
 In this section, the [full proposal template](#templates-and-submitting) has been divided into sections to provide more details on what you need to submit.
@@ -230,6 +230,14 @@ Using the fields below, you can create a prediction market, or set a maximum set
 | `maxPrice` | Sets the highest possible settlement price. Use market decimal places to set this value. For example, 2 market decimals with a price cap of 3 would be 300. Must be greater than 0, if used. | 10000 |
 | `fullyCollateralised` | If set to true, the market will require participants' positions to be fully collateralised, and thus no market participants can be liquidated. | true or false |
 
+### Submitting a verified settlement price
+If you want the community to vote on the verified price used to settle the market:
+* Supply your own Vega public key as the oracle signer under `pubkeys`
+* Set the `conditions` to `OPERATOR_GREATER_THAN` 0 **and** `OPERATOR_LESS_THAN` 0 so no price will be accepted
+After the market has terminated, update the price by: 
+1. Submitting an [update market proposal](./update-market-proposal.md#submitting-a-verified-settlement-price) with the verified price 
+2. Sending the [settlement transaction](../using-data-sources.md#1-define-your-json-structure).
+
 ## Submitting proposals in a batch
 
 <Batch />
@@ -238,7 +246,7 @@ Using the fields below, you can create a prediction market, or set a maximum set
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
 * Command line examples for different operating systems that can be submitted with a Vega Wallet app.
 
 **Replace the example data with the relevant details before submitting.**
@@ -264,11 +272,9 @@ In the tabs below you'll see:
 ## Voting
 All proposals are voted on by the community. 
 
-<!--
 Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
--->
 
-A vote can be submitted with a [transaction](../../api/grpc/vega/commands/v1/commands.proto.mdx#votesubmission) on the command line, or by using the [governance dApp](https://governance.fairground.wtf/proposals).
+A vote can be submitted with a [transaction](../../api/grpc/vega/commands/v1/commands.proto.mdx#votesubmission) on the command line, or by using the [governance dApp](https://governance.vega.xyz/proposals).
 
 To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
 

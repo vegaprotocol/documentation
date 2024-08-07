@@ -11,9 +11,9 @@ A Vega Wallet is essential for interacting with Vega, whether it's for staking o
 You can interact with a Vega wallet and its keys through a browser extension, two different apps, or integrate using the API.
 
 ## Browser extension
-The Vega Wallet browser extension is an early stage implementation of the Vega Wallet, available for Chrome and Firefox. The extensions linked are only for use with the Fairground network.
+The Vega Wallet browser extension is an early stage implementation of the Vega Wallet, available for Chrome and Firefox.
 
-**[Chrome extension ↗](https://chrome.google.com/webstore/detail/vega-wallet-fairground/nmmjkiafpmphlikhefgjbblebfgclikn)**
+**[Chrome extension ↗](https://chromewebstore.google.com/detail/vega-wallet/codfcglpplgmmlokgilfkpcjnmkbfiel)**
 
 **[Firefox extension ↗](https://addons.mozilla.org/en-GB/firefox/addon/vega-wallet-beta/)**
 
