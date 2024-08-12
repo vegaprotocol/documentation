@@ -212,10 +212,10 @@ The total maker fees paid by all parties in that market is *$10,000*.
 
 Party A would receive $100 / $10,000 = 1% of the rewards for that epoch.
 
-### Largest traders by position size
-The largest traders by position size category rewards traders with consistenly larger positions that rank higher in the standings than other traders, as long as they can keep the positions open.
+### Largest traders by notional size
+The _largest traders by notional size_ category rewards traders whose positions have consistently higher notional that rank higher in the standings than other traders, as long as they can keep the positions open.
 
-It measures a trader's time-weighted average position over a set number of epochs to determine how long each trader is able to manage a position that's larger than the positions of other traders, without being closed out. It's also known as the "average position metric".
+It measures a trader's time-weighted average position over a set number of epochs to determine how long each trader is able to manage a position that's larger than the positions of other traders, without being closed out. Your final average position size will be multiplied by the mark price at the end of the epoch to allow positions across different markets to be compared. It's also known as the "average notional metric".
 
 This reward is applicable to trading on derivatives markets, not spot markets.
 
