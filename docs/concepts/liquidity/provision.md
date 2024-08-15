@@ -1,43 +1,24 @@
 ---
 sidebar_position: 5
-title: Providing liquidity
+title: Providing active liquidity
 vega_network: TESTNET
 hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Each market has its own liquidity. Liquidity providers earn fee revenue from participants trading on the market they're providing liquidity to. LPs receive a cut of the liquidity fee paid by traders on the market. In addition, they can receive [rewards funded by members of the community](./rewards-penalties.md#community-funded-lp-rewards).
-
-LPs who take a bigger risk on newer markets with less liquidity are rewarded for taking a bigger risk because you can earn more per trade. Markets where there are many participants committing liquidity benefit from lower fees for traders, because there is more competition for the fee percentage paid by traders.
-
-**[Liquidity fees](rewards-penalties.md#earning-liquidity-fees)** are determined based on the commitments and proposed fee levels chosen by the providers, not by the protocol.
-
-To be eligible to receive any liquidity fee revenue, you will need to submit a [liquidity commitment transaction](#liquidity-commitments), and then place orders to support that commitment.
+To be eligible to receive liquidity fee revenue using an active liquidity strategy, you will need to submit a [liquidity commitment transaction](#liquidity-commitments), and then place orders to support that commitment.
 
 Once you commit to a market, to receive fee revenue, you need to have a certain percentage of your commitment amount on the order book for a minimum amount of time in each [epoch](../vega-chain/network.md#epochs). 
 
 These minimums are known as the [liquidity SLA](./rewards-penalties.md#liquidity-sla). The better your performance is against the SLA, the more fee revenue you'll receive. Not meeting the SLA will result in fee payments being withheld for that epoch, and it will have an impact on [future fee revenue earnings](./rewards-penalties.md#penalties-for-not-meeting-sla). 
-
-## Tactics for providing liquidity
-Providing liquidity can be done using: 
-* Standard limit orders, which give you the most control over your strategy. The [batch orders transaction](./../trading-on-vega/orders#batch-order) is designed to enable this efficiently
-* [Iceberg orders](../trading-on-vega/orders.md#iceberg-order) allow LPs to remain competitively present on the order book without needing to supply excessive volume to a large aggressive order
-
-Anyone that supplies limit orders is eligible to receive maker fees when volume you place on the book is hit. However, a liquidity commitment also makes an LP eligible to receive a portion of the liquidity fee from every trade in the market, on top of the maker fee.
-
-:::info Read more
-**[Concept: Rewards and penalties](rewards-penalties.md)**: LPs receive rewards (through fees paid by traders) when they meet their commitment. Fees are withheld, and they can be further penalised for not meeting their commitment.
-:::
-
-You need to have enough available assets to cover the margin for your orders and the positions that will be generated from trades.
 
 ## Liquidity commitments
 If you want to provide liquidity and receive a portion of liquidity fees paid, you need to submit a [liquidity commitment transaction](../../tutorials/committing-liquidity.md). The commitment is the amount of stake an LP places as bond on the market, to earn rewards.
 
 You will need enough of the settlement asset to set aside as bond and then to fulfill the orders to meet your commitment. 
 
-**Liquidity providers will need to actively manage their commitment.** 
+**Liquidity providers using this method will need to actively manage their commitment.** 
 
 The commitment transaction needs to contain:
 * Market ID
