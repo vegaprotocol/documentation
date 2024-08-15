@@ -20,7 +20,7 @@ LPs who take a bigger risk on newer markets with less liquidity are rewarded for
 ## Tactics for providing liquidity
 Providing liquidity can be done using:
 * [Automated market making](./amm.md) strategy
-* Standard limit orders, which give you the most control over your strategy. The [batch orders transaction](./../trading-on-vega/orders#batch-order) is designed to enable this efficiently
+* Standard limit orders, which give you the most control over your strategy. The [batch orders transaction](../trading-on-vega/orders.md#batch-order) is designed to enable this efficiently
 * [Iceberg orders](../trading-on-vega/orders.md#iceberg-order) allow LPs to remain competitively present on the order book without needing to supply excessive volume to a large aggressive order
 
 Anyone that supplies limit orders is eligible to receive maker fees when volume you place on the book is hit. A liquidity commitment also makes an LP eligible to receive a portion of the liquidity fee from every trade in the market, on top of the maker fee.
