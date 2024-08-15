@@ -1,6 +1,6 @@
 ---
 sidebar_position: 11
-title: Enable or replace volume discount program
+title: Enable or replace maker rebate program
 hide_title: false
 vega_network: TESTNET
 keywords:
@@ -15,23 +15,23 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Batch from './_batch-sample.md';
 
-When a volume discount program is enabled, traders can receive discounts on their fees. The higher their taker volume over the discount program's window length, the greater the discount traders can receive.
+When a high-volume maker rebate program is enabled, market makers can receive a rebate of a portion of their paid fees. The higher their maker volume over the program's window length, the greater the rebate that makers can receive.
 
-The volume discount program needs to be enabled by governance. Once it's enabled, both the requirements and the benefits can also be replaced with a new program.
+The program needs to be enabled by governance. Once it's enabled, both the requirements and the benefits can also be replaced with a new program.
 
-This page describes what you need to propose enabling or replacing the volume discount program, and provides example proposal templates that you will need to edit before sharing and submitting.
+This page describes what you need to propose enabling or replacing the program, and provides example proposal templates that you will need to edit before sharing and submitting.
 
-## Requirements
+## Requirements [WIP]
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeDiscountProgram.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeDiscountProgram.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
 * Familiarity with [governance on Vega](../../concepts/governance/index.md)
 
-## Anatomy of a volume discount program proposal
-The fields below all need to be defined to enable the volume discount program or replace an existing one. 
+## Anatomy of a maker rebate program proposal
+The fields below all need to be defined to enable the program or replace an existing one. 
 
-If you are suggesting a replacement program, you'll need to include all the fields, even if you don't want to change their values. Just use the existing values from the current volume discount program.
+If you are suggesting a replacement program, you'll need to include all the fields, even if you don't want to change their values. Just use the existing values from the current maker rebate program program.
 
 **End of program timestamp**: Date and time after which, when the current epoch ends, the program will end and discounts will be disabled.
 
@@ -39,22 +39,27 @@ If you are suggesting a replacement program, you'll need to include all the fiel
 
 To end an existing program early, set your proposal up with the exact same parameters. Set the *end of program timestamp* to be the same as the proposal's *enactment* timestamp. 
 
-#### Benefit tier fields
+#### Benefit tier fields [WIP]
 
 | Benefit tier field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
 | `benefitTiers` | List of values defining the discount factors for the program | Holds the details of each tier of discounts, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxBenefitTiers" hideName={true}/> tiers |
-| `minimumRunningNotionalTakerVolume` | The notional volume of aggressive trades that a trader is required to have across the aggregation window, to access the discount in this tier | Integer greater than or equal to 1 |
-| `makerVolumeDiscountFactor` | Proportion of each trader's maker fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
+
+...
+
+
 | `lpVolumeDiscountFactor` | Proportion of each trader's liquidity fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
 | `infrastructureVolumeDiscountFactor` | Proportion of each trader's infrastructure fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
 
+
+- `minimum_party_maker_volume_fraction`: the required `party_maker_volume_fraction` for a party to access this tier
+  - `additional_maker_rebate`: the additional rebate factor (in percentage of `trade_value_for_fee_purposes`) a party at this tier will receive when they are the maker side of a trade
 
 ## Submitting proposals in a batch
 
 <Batch />
 
-## Templates and submitting
+## Templates and submitting [WIP]
 
 Below you will find: 
 * JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)

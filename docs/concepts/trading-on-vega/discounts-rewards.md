@@ -65,6 +65,11 @@ All of the details for the volume discount program are proposed and accepted thr
 * [Spec: Technical design of the volume discount program ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0084-VDPR-volume_discount_program.md).
 :::
 
+## Rebate for high-volume market makers
+Market makers who are involved in a significant fraction of all trading can receive a rebate on their trading fees from trades in which they're involved.
+
+This program must be set up using a governance proposal. 
+
 ## Trading rewards
 Market participants can also receive rewards for their trading activity, liquidity provision, and for proposing actively traded markets.
 

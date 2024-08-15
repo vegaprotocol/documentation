@@ -35,7 +35,7 @@ The aggressor *buying* the base asset for the quote asset pays more in their tra
 ### Fee distribution and breakdown
 Fees are calculated when a trade is filled, and paid in the market's settlement currency. The fees due are taken from the collateral in the trader's general account. 
 
-The fee is divided between the maker for the trade, the infrastructure providers, and the liquidity provider(s) for each market.
+The fee is divided between the maker for the trade, the infrastructure providers, the liquidity provider(s) for each market, and the network treasury.
 
 ### Maker fee
 The maker portion of the fee is paid by the aggressive party in a trade (the taker), and transferred to the non-aggressive, or passive party in the trade (the maker, as opposed to the taker). This is done as soon as the trade settles.
@@ -60,19 +60,29 @@ The fees paid are transferred to a liquidity fee account, and distributed to eac
 [How the liquidity fee is set](../liquidity/rewards-penalties.md#determining-the-liquidity-fee-percentage)
 :::
 
+### Network treasury fee
+The network treasury fee is collected from takers and transferred to the [network treasury](../assets/accounts.md#network-treasury-accounts).
+
+The amount charged for this fee is set by a network parameter.
+
+### Buyback fee
+The buyback fee is collected from takers and is used to buy VEGA tokens on a spot market via regular auctions. If there is no relevant spot market, and the fee is set to a value higher than 0, the accrued fee payments are transferred to the [network treasury](../assets/accounts.md#network-treasury-accounts).
+
+The amount charged for this fee is set by a network parameter.
+
 ### Fee calculations
 At a high level, the trading fee that someone pays is calculated using the following formulas:
 
-* Total fee = (infrastructure fee factor + maker fee factor + liquidity fee factor) x trade value for fee purposes
+* Total fee = (infrastructure fee factor + maker fee factor + liquidity fee factor + buyback fee + network treasury fee) x trade value for fee purposes
 * Trade value for fee purposes = notional value of the trade = size of trade x price of trade
   
 #### Fee calculation example
 * Trade value for fee purposes: If you were to place an order for 100 at USDC50, the trade value for fee purposes is: *100 x USDC50 = USDC5000*. 
-* Fee factor: For this example, each of the 3 fees is *0.001*, meaning total fee factor is *0.003*.
-* Trade value and fee factor: *USDC5000 x 0.003 = USDC15*
+* Fee factor: For this example, each of the 5 fees is *0.001*, meaning total fee factor is *0.005*.
+* Trade value and fee factor: *USDC5000 x 0.005 = USDC25*
 * The fee is the same regardless of the number of transactions the order needs to be completely filled, as long as they trade at the same price.
 
-Two of the three fee factors are set through network parameters: <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.infrastructureFee" />, <NetworkParameter frontMatter={frontMatter} param="market.fee.factors.makerFee" />. The liquidity fee is set by the liquidity providers on the market.
+Four of the five fee factors are set through network parameters. The liquidity fee is set by the liquidity providers on the market.
 
 ## Transfer fees
 You may need to pay a fee to transfer assets, whether from one Vega key to another, or from a Vega key to a reward pool to fund trading rewards. The fee amount is taken when the transfer is executed, on top of the total amount to be transferred. It's charged in the same asset that is being transferred.
