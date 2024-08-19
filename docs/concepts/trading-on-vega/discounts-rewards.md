@@ -169,7 +169,7 @@ Since rewards can only be provided if they're funded, the [recurring transfer](.
 
 **Rank**: A participant's reward is scaled based on where their score lands on a rank table, which is also set in the transfer. The rank table determines a rank group, for example 1-8, and what ratio of the reward amount that group would receive.
 
-**Lottery**: Each eligible participant is randomly assigned a position in the rank table. If the lottery distribution is used for a trading reward (i.e., s not the eligible entities reward), the probability of a participant being selected is based on their score towards that trading reward. 
+**Lottery**: Each eligible participant is randomly assigned a position in the rank table. If the lottery distribution is used for a trading reward (i.e., not the eligible entities reward), the probability of a participant being selected is based on their score towards that trading reward. 
 
 If you have *multipliers* from the activity streak and/or the reward hoarder bonus, your share of the reward grows in proportion to those multipliers.
 
@@ -225,7 +225,7 @@ Party A would receive $100 / $10,000 = 1% of the rewards for that epoch.
 ### Largest traders by notional size
 The _largest traders by notional size_ category rewards traders whose positions have consistently higher notional that rank higher in the standings than other traders, as long as they can keep the positions open.
 
-It measures a trader's time-weighted average position over a set number of epochs to determine how long each trader is able to manage a position that's larger than the positions of other traders, without being closed out. Your final average position size will be multiplied by the mark price at the end of the epoch to allow positions across different markets to be compared. It's also known as the "average notional metric".
+It measures a trader's time-weighted average notional position over a set number of epochs to determine how long each trader is able to manage a position that's larger than the positions of other traders, without being closed out. It's also known as the "average notional metric".
 
 This reward is applicable to trading on derivatives markets, not spot markets.
 
