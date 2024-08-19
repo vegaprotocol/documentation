@@ -39,33 +39,25 @@ If you are suggesting a replacement program, you'll need to include all the fiel
 
 To end an existing program early, set your proposal up with the exact same parameters. Set the *end of program timestamp* to be the same as the proposal's *enactment* timestamp. 
 
-#### Benefit tier fields [WIP]
+#### Benefit tier fields
 
 | Benefit tier field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
-| `benefitTiers` | List of values defining the discount factors for the program | Holds the details of each tier of discounts, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxBenefitTiers" hideName={true}/> tiers |
-
-...
-
-
-| `lpVolumeDiscountFactor` | Proportion of each trader's liquidity fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
-| `infrastructureVolumeDiscountFactor` | Proportion of each trader's infrastructure fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
-
-
-- `minimum_party_maker_volume_fraction`: the required `party_maker_volume_fraction` for a party to access this tier
-  - `additional_maker_rebate`: the additional rebate factor (in percentage of `trade_value_for_fee_purposes`) a party at this tier will receive when they are the maker side of a trade
+| `benefitTiers` | List of values defining the discount factors for the program | Holds the details of each tier of rebates, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxBenefitTiers" hideName={true}/> tiers |
+| `minimumPartyMakerVolumeFraction` | The required maker volume a party needs to have to access this tier, as a fraction. |  Greater than 0 and up to 1, inclusive |
+| `additionalMakerRebate` | Additional fraction of fees a party will receive as a rebate when they are on the maker side of a trade. | Greater than 0 and up to 1, inclusive |
 
 ## Submitting proposals in a batch
 
 <Batch />
 
-## Templates and submitting [WIP]
+## Templates and submitting
 
 Below you will find: 
 * JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
 * Command line examples for different operating systems
 
-<Tabs groupId="volumeDiscountProgramParameters">
+<Tabs groupId="UpdateVolumeRebateProgram">
 <TabItem value="json" label="Governance dApp (JSON)">
 <JSONInstructions />
 
@@ -73,28 +65,23 @@ Below you will find:
 {
     "proposalSubmission": {
     "rationale": {
-      "title": "Volume discount proposal title",
-      "description": "This enacts or replaces the volume discount program"
+      "title": "Maker volume rebate proposal title",
+      "description": "This enacts or replaces the maker volume rebate program"
     },
     "terms": {
-        "updateVolumeDiscountProgram": {
+        "UpdateVolumeRebateProgram": {
           "changes": {
-            "end_of_program_timestamp": 1234567890,
+            "endOfProgramTimestamp": 1234567890,
 
             "window_length": 11,
             "benefitTiers": [
               {
-                "minimumRunningNotionalTakerVolume": "10000",
-                "makerVolumeDiscountFactor": "0.002",
-                "lpVolumeDiscountFactor": "0.002",
-                "infrastructureVolumeDiscountFactor": "0.002"
-
+                "minimumPartyMakerVolumeFraction": "10000",
+                "additionalMakerRebate": "0.002"
               },
               {
-                "minimumRunningNotionalTakerVolume": "10198",
-                "makerVolumeDiscountFactor": "0.098",
-                "lpVolumeDiscountFactor": "0.098",
-                "infrastructureVolumeDiscountFactor": "0.098"
+                "minimumPartyMakerVolumeFraction": "10198",
+                "additionalMakerRebate": "0.098"
               }
             ],
           }
@@ -118,23 +105,20 @@ Below you will find:
       "description": "This enacts or replaces the volume discount program"
     },
     "terms": {
-        "updateVolumeDiscountProgram": {
+        "UpdateVolumeRebateProgram": {
           "changes": {
             "end_of_program_timestamp": 1234567890,
 
             "window_length": 3,
             "benefitTiers": [
               {
-                "minimumRunningNotionalTakerVolume": "10020",
-                "makerVolumeDiscountFactor": "0.001",
-                "infrastructureVolumeDiscountFactor": "0.001",
-                "lpVolumeDiscountFactor": "0.001"
+                "minimumPartyMakerVolumeFraction": "10020",
+                "additionalMakerRebate": "0.001"
               },
               {
-                "minimumRunningNotionalTakerVolume": "10198",
-                "makerVolumeDiscountFactor": "0.098",
-                "infrastructureVolumeDiscountFactor": "0.098",
-                "lpVolumeDiscountFactor": "0.098"              }
+                "minimumPartyMakerVolumeFraction": "10198",
+                "additionalMakerRebate": "0.098"
+            }
             ],
           }
       },
@@ -159,24 +143,20 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
  },^
  \"terms\": {^
  : {
-        \"updateVolumeDiscountProgram\":^ {
+        \"UpdateVolumeRebateProgram\":^ {
          \"changes\": {^
             \"end_of_program_timestamp\": \"1234567890\",:^
 
             \"window_length\": \"3\",
             \"benefitTiers\": [
               {
-                \"minimumRunningNotionalTakerVolume\": \"10100\",^
-                \"makerVolumeDiscountFactor\": \"0.001\",^
-                \"infrastructureVolumeDiscountFactor\": \"0.001\",^
-                \"lpVolumeDiscountFactor\": \"0.001\"^
+                \"minimumPartyMakerVolumeFraction\": \"10100\",^
+                \"additionalMakerRebate\": \"0.001\"^
 
               },
               {
-                \"minimumRunningNotionalTakerVolume\": \"11000\",^
-                \"makerVolumeDiscountFactor\": \"0.098\",^
-                \"infrastructureVolumeDiscountFactor\": \"0.098\",^
-                \"lpVolumeDiscountFactor\": \"0.098\"^
+                \"minimumPartyMakerVolumeFraction\": \"11000\",^
+                \"additionalMakerRebate\": \"0.098\"^
               }
             ],
           }

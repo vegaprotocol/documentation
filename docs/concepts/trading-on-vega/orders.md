@@ -149,7 +149,7 @@ Your stop order can be set to have a [time in force](#times-in-force), and it ca
 
 If the trigger is breached, an order is submitted with the parameters that you provided, and with your existing position's size if it's linked to the position. Your position isn't affected unless the order is filled.
 
-A stop order can be set with a fixed size or have its size dictated by your open position. A stop order must reduce your position, and will be rejected otherwise.
+A stop order can be set with a fixed size or have its size dictated by your open position.
 
 Once the last traded price "rises above" or "falls below" the given stop price/percentage move, depending on your instruction, your order is executed.
 
