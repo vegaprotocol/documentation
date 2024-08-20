@@ -8,7 +8,7 @@ description: Trades and transfers can incur fees.
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Participants in the Vega network who place orders on the order book, provide liquidity and run the network infrastructure receive the fees that traders pay on filled trades and transfers. The protocol does not charge gas fees for interacting with the network.
+Participants who place orders on the order book, provide liquidity and run the network infrastructure receive the fees that traders pay on filled trades and transfers. The protocol does not charge gas fees for interacting with the network.
 
 You can offset some of those fees, or earn even more, by receiving discounts or getting rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. See the rewards that are currently available on [Console ↗](https://console.fairground.wtf/#/rewards).
 
@@ -66,7 +66,7 @@ The network treasury fee is collected from takers and transferred to the [networ
 The amount charged for this fee is set by a network parameter.
 
 ### Buyback fee
-The buyback fee is collected from takers and is used to buy VEGA tokens on a spot market via regular auctions. If there is no relevant spot market, and the fee is set to a value higher than 0, the accrued fee payments are transferred to the [network treasury](../assets/accounts.md#network-treasury-accounts).
+The buyback fee is collected from takers and is used to buy governance tokens on a spot market via regular auctions. If there is no relevant spot market, and the fee is set to a value higher than 0, the accrued fee payments are transferred to the [network treasury](../assets/accounts.md#network-treasury-accounts).
 
 The amount charged for this fee is set by a network parameter.
 
