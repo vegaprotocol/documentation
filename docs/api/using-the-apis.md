@@ -84,7 +84,7 @@ REST is easy to get started with, and Vega supports nearly all the functionality
 **[Using REST](./rest/overview.md)**: Read the REST overview for everything you need to know before using the endpoints, like the default rate limits and how to paginate results.
 
 ### WebSockets for streaming
-**[WebSocket endpoints](./websocket.md)** offer real-time updates to changes in the state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
+**[WebSocket endpoints](./websocket.md)** offer real-time updates to changes in state, allowing subscriptions to events such as per-market trades or changes to a party's position.
 
 ### gRPC for fast interactions
 **[gRPC](./grpc/overview.md)** provides fast and efficient communication, and supports near real time streaming of updates from Vega.

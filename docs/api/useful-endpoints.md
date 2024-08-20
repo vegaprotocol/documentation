@@ -141,7 +141,7 @@ Assets can only be added to the network to be used as collateral through a succe
 | Show a specific asset's details | [Asset](../api/rest/data-v2/trading-data-service-get-asset.api.mdx) | `GET /api/v2/asset/:assetId` |
 
 ## Deposits and withdrawals
-Assets used on the Vega network can be deposited using a web3 wallet:
+Assets can be deposited using a web3 wallet:
 - Via the Ethereum bridge contract, for ERC-20 assets on Ethereum mainnet
 - Via the Arbitrum bridge, for assets on the Arbitrum mainnet network
 

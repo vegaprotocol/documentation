@@ -12,15 +12,54 @@ The Vega software is publicly available on [GitHub ↗](https://github.com/vegap
 
 See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/releases).
 
-<!--[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.-->
-
 ## Vega core software
 
-The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version.
+
+## Version v0.78 | 2024-08-??
+
+### New features
+AMM - 
+
+**Stop orders** can now be used to create or increase a position. Previously stop orders could only be used to reduce an existing position. This enhancement allows you to use a stop order much more flexibly. [Issue 8777 ↗](https://github.com/vegaprotocol/vega/issues/8777)
+
+There are **two new fee types**: treasury and buyback. These fees are set by network parameters, thus their values are determined through governance, and they default to 0. Along with this change, the discount and reward factors have been made more granular, so they can target specific fee types, rather than total collective fees. [Issue 11428 ↗](https://github.com/vegaprotocol/vega/issues/11428)
+
+A new program option has been added to provide a fee rebate for high-volume market makers. The volume rebate program can be set up or replaced using a governance proposal. [Issue 11468 ↗](https://github.com/vegaprotocol/vega/issues/11468)
+
+A new reward type has been added that can target eligible participants based on criteria that is not specific to trading gains. This reward type can be enabled by submitting a self-funded transfer or proposing a transfer using treasury funds. [Issue 11528 ↗](https://github.com/vegaprotocol/vega/issues/11528)
+
+A new distribution strategy option has been added to allow rewards to be distributed as a lottery between participants who are eligible for a given reward. [Issue 11535 ↗](https://github.com/vegaprotocol/vega/issues/11535)
+
+The reward targeting time-weighted average position has been replaced with one that targets time-weighted notional value. [11459 ↗](https://github.com/vegaprotocol/vega/issues/11459)
+
+### Improvements
+
+- [Issue 11523 ↗](https://github.com/vegaprotocol/vega/issues/11523) - Change method of caching to improve AMM snapshot performance.
+- [Issue 11426 ↗](https://github.com/vegaprotocol/vega/issues/11426) - EstimateAMMBounds now reports issues with commitment.
+- [Issue 11372 ↗](https://github.com/vegaprotocol/vega/issues/11372) - Support combined filters for the AMM API.
+- [Issue 11536 ↗](https://github.com/vegaprotocol/vega/issues/11536) - Make the batch market instructions errors programmatically usable.
+- [Issue 11546 ↗](https://github.com/vegaprotocol/vega/issues/11546) - Add validation to market proposals' metadata.
+- [Issue 11533 ↗](https://github.com/vegaprotocol/vega/issues/11533) - Support per party fee discounts in fee estimation.
+
+### Fixes
+
+- [Issue 11521 ↗](https://github.com/vegaprotocol/vega/issues/11521) - Restore AMM position factor when loading from a snapshot.
+- [Issue 11526 ↗](https://github.com/vegaprotocol/vega/issues/11526) - EstimateAMMBounds now respects the market's decimal places.
+- [Issue 11486 ↗](https://github.com/vegaprotocol/vega/issues/11486) - AMMs can now be submitted on markets with more decimal places than asset decimal places.
+- [Issue 11561 ↗](https://github.com/vegaprotocol/vega/issues/11561) - Failing amends on AMMs now restore original properly.
+- [Issue 11583 ↗](https://github.com/vegaprotocol/vega/issues/11583) - Remove AMMs entirely from engine when market closes.
+- [Issue 11568 ↗](https://github.com/vegaprotocol/vega/issues/11568) - order book shape on closing AMM no longer panics.
+- [Issue 11540 ↗](https://github.com/vegaprotocol/vega/issues/11540) - Fix spam check for spots to use not double count quantum.
+- [Issue 11544 ↗](https://github.com/vegaprotocol/vega/issues/11544) - Fix empty candles stream.
+- [Issue 11579 ↗](https://github.com/vegaprotocol/vega/issues/11579) - Spot calculate fee on amend, use order price if no amended price is provided.
+- [Issue 11585 ↗](https://github.com/vegaprotocol/vega/issues/11585) - Initialise rebate stats service in API.
+- [Issue 11592 ↗](https://github.com/vegaprotocol/vega/issues/11592) - Fix the order of calls at end of epoch between rebate engine and market tracker.
 
 ## Version v0.77 | 2024-08-01
 This updated version was released to the Vega testnet on 1 August 2024.
 
+### New features
 This release introduces the ability to create prediction markets, futures markets with a final settlement price cap, and fully collateralised futures markets. There are also a range of bug fixes and general improvements.
 
 Included in this release are a series of new network parameters. Below is a list with their default values.
@@ -34,7 +73,7 @@ Included in this release are a series of new network parameters. Below is a list
 | `market.aggressiveOrderBlockDelay` | Sets the number of blocks by which aggressive (taker) orders are delayed relative to passive (maker) orders. | 1 |
 | `rewards.updateFrequency` | Sets how frequently the live game scores are updated. | 10m |
 
-### Improvements:
+### Improvements
 
 - Adds the ability to publish data about games while the games are ongoing, rather than only after. [Issue 11209 ↗](https://github.com/vegaprotocol/vega/issues/11209)
 - Introduces auctions during times of long block processing. [Issue 11400 ↗](https://github.com/vegaprotocol/vega/issues/11400)
@@ -49,7 +88,7 @@ Included in this release are a series of new network parameters. Below is a list
 - Adds spam checks for orders/liquidity provision. [Issue 10634 ↗](https://github.com/vegaprotocol/vega/issues/10634)
 - Supports querying for historical game scores. [Issue 11357 ↗](https://github.com/vegaprotocol/vega/issues/11357)
 
-### Fixes:
+### Fixes
 
 - Ensures that vesting statistics match vesting accounts numbers. [Issue 11066 ↗](https://github.com/vegaprotocol/vega/issues/11066)
 - Multiple transfers were erroneously blocked when targeting the same game ID. [Issue 11279 ↗](https://github.com/vegaprotocol/vega/issues/11279)
