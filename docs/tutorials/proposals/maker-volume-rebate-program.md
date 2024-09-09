@@ -15,7 +15,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Batch from './_batch-sample.md';
 
-When a high-volume maker rebate program is enabled, market makers can receive a rebate of a portion of their paid fees. The higher their maker volume over the program's window length, the greater the rebate that makers can receive.
+When a high-volume maker rebate program is enabled, market makers can receive a rebate of a portion of their paid fees. The higher their maker volume across all markets over the program's window length, the greater the rebate that makers can receive.
 
 The program needs to be enabled by governance. Once it's enabled, both the requirements and the benefits can also be replaced with a new program.
 
@@ -35,7 +35,7 @@ If you are suggesting a replacement program, you'll need to include all the fiel
 
 **End of program timestamp**: Date and time after which, when the current epoch ends, the program will end and rebates will be disabled.
 
-**Window length**: Number of epochs over which to evaluate LPs' volume of maker trades.
+**Window length**: Number of epochs over which to evaluate each participant's volume of maker trades across all markets.
 
 To end an existing program early, set your proposal up with the exact same parameters. Set the *end of program timestamp* to be the same as the proposal's *enactment* timestamp. 
 
@@ -44,7 +44,7 @@ To end an existing program early, set your proposal up with the exact same param
 | Benefit tier field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
 | `benefitTiers` | List of values defining the rebate factors for the program | Holds the details of each tier of rebates, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="volumeRebateProgram.maxBenefitTiers" hideName={true}/> tiers |
-| `minimumPartyMakerVolumeFraction` | The required maker volume a party needs to have to access this tier, as a fraction. |  Greater than 0 and up to 1, inclusive |
+| `minimumPartyMakerVolumeFraction` | To access this tier, the required percentage of trading volume, across all markets, that a party was the maker for, in the window length. This is expresssed as a fraction. |  Greater than 0 and up to 1, inclusive |
 | `additionalMakerRebate` | Additional fraction of fees a party will receive as a rebate when they are on the maker side of a trade. | Greater than 0 and up to 1, inclusive |
 
 ## Submitting proposals in a batch
