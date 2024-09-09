@@ -16,9 +16,9 @@ If you use Go, you can import Vega as a dependency, and use the code under [wall
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |
 | Submit a transaction | [Submit transaction](../api/rest/data-v2/trading-data-service-list-parties.api.mdx) |  `POST /transaction` |
-| Get blockchain height | [List parties](../api/rest/data-v2/trading-data-service-list-parties.api.mdx) |  `GET /blockchain/height` |
-| Get the current Vega time | [List parties](../api/rest/data-v2/trading-data-service-list-parties.api.mdx) |  `GET /time` |
-| Check your spam statistics | [List parties](../api/rest/data-v2/trading-data-service-list-parties.api.mdx) |  `GET /spam/statistics` |
+| Get blockchain height | [Get height](../api/rest/transaction/transaction-last-block-height.api.mdx) |  `GET /blockchain/height` |
+| Get the current Vega time | [Get Vega time](../api/rest/data-v2/trading-data-service-get-vega-time.api.mdx) |  `GET /time` |
+| Check your spam statistics | [Get spam statistics](../api/rest/transaction/transaction-get-spam-statistics.api.mdx) |  `GET /spam/statistics` |
 
 ### Transaction samples
 Follow the [guide to sending transactions](../tutorials/build-send-transactions.md) to sign and send using the command line wallet.

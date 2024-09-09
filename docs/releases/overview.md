@@ -16,10 +16,9 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version.
 
-## Version v0.78 | 2024-08-??
+## Version v0.78.2 | 2024-08-06
 
 ### New features
-AMM - 
 
 **Stop orders** can now be used to create or increase a position. Previously stop orders could only be used to reduce an existing position. This enhancement allows you to use a stop order much more flexibly. [Issue 8777 ↗](https://github.com/vegaprotocol/vega/issues/8777)
 
@@ -35,26 +34,22 @@ The reward targeting time-weighted average position has been replaced with one t
 
 ### Improvements
 
-- [Issue 11523 ↗](https://github.com/vegaprotocol/vega/issues/11523) - Change method of caching to improve AMM snapshot performance.
-- [Issue 11426 ↗](https://github.com/vegaprotocol/vega/issues/11426) - EstimateAMMBounds now reports issues with commitment.
-- [Issue 11372 ↗](https://github.com/vegaprotocol/vega/issues/11372) - Support combined filters for the AMM API.
-- [Issue 11536 ↗](https://github.com/vegaprotocol/vega/issues/11536) - Make the batch market instructions errors programmatically usable.
-- [Issue 11546 ↗](https://github.com/vegaprotocol/vega/issues/11546) - Add validation to market proposals' metadata.
-- [Issue 11533 ↗](https://github.com/vegaprotocol/vega/issues/11533) - Support per party fee discounts in fee estimation.
+- Add core-derived tier numbers to API. [Issue 11646 ↗](https://github.com/vegaprotocol/vega/issues/11646)
+- Fix panic caused by pegged orders. [Issue 11641 ↗](https://github.com/vegaprotocol/vega/issues/11641)
+- Support 'no results' option for party discount stats API. [Issue 11645 ↗](https://github.com/vegaprotocol/vega/issues/11645)
+- Make the batch market instructions errors programmatically usable.[Issue 11536 ↗](https://github.com/vegaprotocol/vega/issues/11536)
+- Add validation to market proposals' metadata. [Issue 11546 ↗](https://github.com/vegaprotocol/vega/issues/11546)
+- Support per party fee discounts in fee estimation. [Issue 11533 ↗](https://github.com/vegaprotocol/vega/issues/11533)
+- Enhance `EstimatePositions` API for capped futures. [Issue 11619 ↗](https://github.com/vegaprotocol/vega/issues/11619)
 
 ### Fixes
 
-- [Issue 11521 ↗](https://github.com/vegaprotocol/vega/issues/11521) - Restore AMM position factor when loading from a snapshot.
-- [Issue 11526 ↗](https://github.com/vegaprotocol/vega/issues/11526) - EstimateAMMBounds now respects the market's decimal places.
-- [Issue 11486 ↗](https://github.com/vegaprotocol/vega/issues/11486) - AMMs can now be submitted on markets with more decimal places than asset decimal places.
-- [Issue 11561 ↗](https://github.com/vegaprotocol/vega/issues/11561) - Failing amends on AMMs now restore original properly.
-- [Issue 11583 ↗](https://github.com/vegaprotocol/vega/issues/11583) - Remove AMMs entirely from engine when market closes.
-- [Issue 11568 ↗](https://github.com/vegaprotocol/vega/issues/11568) - order book shape on closing AMM no longer panics.
-- [Issue 11540 ↗](https://github.com/vegaprotocol/vega/issues/11540) - Fix spam check for spots to use not double count quantum.
-- [Issue 11544 ↗](https://github.com/vegaprotocol/vega/issues/11544) - Fix empty candles stream.
-- [Issue 11579 ↗](https://github.com/vegaprotocol/vega/issues/11579) - Spot calculate fee on amend, use order price if no amended price is provided.
-- [Issue 11585 ↗](https://github.com/vegaprotocol/vega/issues/11585) - Initialise rebate stats service in API.
-- [Issue 11592 ↗](https://github.com/vegaprotocol/vega/issues/11592) - Fix the order of calls at end of epoch between rebate engine and market tracker.
+- Fix spam check for spot markets to use not double count quantum. [Issue 11540 ↗](https://github.com/vegaprotocol/vega/issues/11540)
+- Fix empty candles stream. [Issue 11544 ↗](https://github.com/vegaprotocol/vega/issues/11544) 
+- Spot calculate fee on amend, use order price if no amended price is provided. [Issue 11579 ↗](https://github.com/vegaprotocol/vega/issues/11579) 
+- Initialise rebate stats service in API. [Issue 11585 ↗](https://github.com/vegaprotocol/vega/issues/11585)
+- Fix the order of calls at end of epoch between rebate engine and market tracker. [Issue 11592 ↗](https://github.com/vegaprotocol/vega/issues/11592) 
+- Apply fees and discounts on network disposal trades for more predictable rebates. [Issue 11652 ↗](https://github.com/vegaprotocol/vega/issues/11652)
 
 ## Version v0.77 | 2024-08-01
 This updated version was released to the Vega testnet on 1 August 2024.
