@@ -36,7 +36,6 @@ The reward targeting time-weighted average position has been replaced with one t
 
 - Add core-derived tier numbers to API. [Issue 11646 ↗](https://github.com/vegaprotocol/vega/issues/11646)
 - Fix panic caused by pegged orders. [Issue 11641 ↗](https://github.com/vegaprotocol/vega/issues/11641)
-- Support 'no results' option for party discount stats API. [Issue 11645 ↗](https://github.com/vegaprotocol/vega/issues/11645)
 - Make the batch market instructions errors programmatically usable.[Issue 11536 ↗](https://github.com/vegaprotocol/vega/issues/11536)
 - Add validation to market proposals' metadata. [Issue 11546 ↗](https://github.com/vegaprotocol/vega/issues/11546)
 - Support per party fee discounts in fee estimation. [Issue 11533 ↗](https://github.com/vegaprotocol/vega/issues/11533)
