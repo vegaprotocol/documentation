@@ -33,7 +33,7 @@ The current version of mainnet is the second decentralised phase of the Vega net
 * **Tokenholders can nominate validators** - Earn staking rewards for securing the network using the [governance dApp](https://governance.vega.xyz). <br/>
 * **Take part in network governance** - Tokenholders can propose and vote on new markets, as well as changes to existing markets and network configuration. <br/>
 
-You'll need a wallet that connects to the Vega network to trade, nominate validators, and take part in governance. See all the options under [apps](../tools/index.md).
+You'll need a wallet that connects to the network to trade, nominate validators, and take part in governance. See all the options under [apps](../tools/index.md).
 
 **[Mainnet incidents](https://blog.vega.xyz/tagged/vega-incident-reports)**: Vega publishes information about mainnet incidents and their resolutions on the blog.
 

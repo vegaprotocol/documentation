@@ -10,7 +10,7 @@ import DocCardList from '@theme/DocCardList';
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
 ## Overview
-Governance allows the Vega network to arrive at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. Contribute to the network by voting or submitting proposals.
+Governance allows for arriving at on-chain decisions, where tokenholders can create proposals that other tokenholders can vote to approve or reject. Contribute to the network by voting or submitting proposals.
 
 Proposals are enacted if they get enough votes from VEGA holders. There's no limit to how many active proposals you can vote on.
 

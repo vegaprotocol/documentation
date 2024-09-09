@@ -16,9 +16,9 @@ If you use Go, you can import Vega as a dependency, and use the code under [wall
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |
 | Submit a transaction | [Submit transaction](../api/rest/data-v2/trading-data-service-list-parties.api.mdx) |  `POST /transaction` |
-| Get blockchain height | [List parties](../api/rest/data-v2/trading-data-service-list-parties.api.mdx) |  `GET /blockchain/height` |
-| Get the current Vega time | [List parties](../api/rest/data-v2/trading-data-service-list-parties.api.mdx) |  `GET /time` |
-| Check your spam statistics | [List parties](../api/rest/data-v2/trading-data-service-list-parties.api.mdx) |  `GET /spam/statistics` |
+| Get blockchain height | [Get height](../api/rest/transaction/transaction-last-block-height.api.mdx) |  `GET /blockchain/height` |
+| Get the current Vega time | [Get Vega time](../api/rest/data-v2/trading-data-service-get-vega-time.api.mdx) |  `GET /time` |
+| Check your spam statistics | [Get spam statistics](../api/rest/transaction/transaction-get-spam-statistics.api.mdx) |  `GET /spam/statistics` |
 
 ### Transaction samples
 Follow the [guide to sending transactions](../tutorials/build-send-transactions.md) to sign and send using the command line wallet.
@@ -141,7 +141,7 @@ Assets can only be added to the network to be used as collateral through a succe
 | Show a specific asset's details | [Asset](../api/rest/data-v2/trading-data-service-get-asset.api.mdx) | `GET /api/v2/asset/:assetId` |
 
 ## Deposits and withdrawals
-Assets used on the Vega network can be deposited using a web3 wallet:
+Assets can be deposited using a web3 wallet:
 - Via the Ethereum bridge contract, for ERC-20 assets on Ethereum mainnet
 - Via the Arbitrum bridge, for assets on the Arbitrum mainnet network
 

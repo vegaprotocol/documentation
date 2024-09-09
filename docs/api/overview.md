@@ -39,9 +39,9 @@ However, if you want to integrate the official Vega wallet implementation with y
 :::
 
 ## Sending transactions to the chain
-When sending transactions, you'll need a Vega Wallet with at least one keypair, and have the wallet service running. You'll need to have your Vega public key (also known as a party ID) to hand, as well as the relevant transaction data, in order to submit your transaction.
+When sending transactions, you'll need a Vega Wallet with at least one keypair. You'll need to have your Vega public key (also known as a party ID) to hand, as well as the relevant transaction data, in order to submit your transaction.
 
-To access the Vega network, the wallet needs to be configured with the location of one of more [data nodes](./architecture.md#data-nodes).
+To access a Vega network, the wallet needs to be configured with the location of one of more [data nodes](./architecture.md#data-nodes).
 
 If you have a client that you want use to send a transaction using the Vega wallet API, it will construct the transaction in JSON and pass it to the wallet. The wallet performs a client-side proof-of-work calculation, signs the transaction and forwards it to a node on the network before it is added to a block. It is also possible to have the wallet sign a transaction without sending it, if needed. Alternatively, you can build the signer into your client, though you'll need to account for the PoW calculations.
 
@@ -94,7 +94,7 @@ See the [releases page](../releases/overview.md) for a summary of each software 
 To learn more about developing on Vega, read through the following topics.
 
 * **[Using the APIs](./using-the-apis.md)**: All the API frameworks and smart contracts in one place, plus tips on connecting.
-* **[Architecture](./architecture.md)**: Explore the architecture of the Vega network.
+* **[Architecture](./architecture.md)**: Explore the architecture of the Vega protocol.
 * **[Building blocks](./useful-endpoints.md)**: The basic building blocks you should know about.
 * **[Public servers](./public-servers.md)**: Public server URLs for interacting with the APIs.
 * **[Tutorials](../tutorials/index.md)**: Each tutorial includes info about the protocol that you need to use the guide, as well as instructions on how to interact with scripts, API calls, or other code.

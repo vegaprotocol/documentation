@@ -18,7 +18,7 @@ To deposit or withdraw, you'll need a **[Vega Wallet](../../tools/vega-wallet/in
 :::
 
 ## Deposits
-Only assets that have been proposed and enacted through governance can be used on the Vega network.
+Only assets that have been proposed and enacted through governance can be used.
 
 To use assets on the Vega network, for example to take part in markets, you'll need to deposit them: 
 * The assets need to be available in a web3 wallet that you have access to
