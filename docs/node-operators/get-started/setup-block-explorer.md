@@ -6,26 +6,26 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-A Vega block explorer is a powerful tool for navigating and understanding the blockchain. It is an essential component for anyone looking to interact with a blockchain network, especially if you want to explore transaction history, monitor network activity, or verify the integrity of the blockchain's data.
+A block explorer is a powerful tool for navigating and understanding the blockchain. It is an essential component for anyone looking to interact with a blockchain network, especially if you want to explore transaction history, monitor network activity, or verify the integrity of the blockchain's data.
 
-The source code for the block explorer is part of the Vega binary, and is available on the [GitHub repo](https://github.com/vegaprotocol/vega/tree/develop/blockexplorer). The application provides users a comprehensive view of the Vega network through REST and gRPC APIs.
+The source code for the block explorer is part of the Vega binary, and is available on the [GitHub repo](https://github.com/vegaprotocol/vega/tree/develop/blockexplorer). The application can provide users with a comprehensive view of any network utilising the Vega protocol through REST and gRPC APIs.
 
-The Vega block explorer offers transaction tracking so you can search using transaction IDs, public keys, or other relevant criteria. 
+The block explorer can offer transaction tracking so you can search using transaction IDs, public keys, or other relevant criteria. 
 
-Combining the block explorer API with the Tendermint API gives you  much more information about the Vega network, and this guide describes how to set that up.
+Combining the block explorer API with the CometBFT API gives you much more information about a network, and this guide describes how to set that up.
 
 ## Block explorer design
 
-The Vega block explorer is strictly related to Tendermint, and the block explorer sources all data from the Tendermint database.
+The block explorer software is strictly related to CometBFT, and the block explorer sources all data from the CometBFT database.
 
-Tendermint has two back-ends for indexing transactions, `KV` and `psql` but only `psql` is supported by the Vega block explorer.
+CometBFT has two back-ends for indexing transactions, `KV` and `psql` but only `psql` is supported by the block explorer software.
 
 The `psql` indexer lets an operator enable block and transaction event indexing by proxying it to an external PostgreSQL instance, allowing events to be stored in relational models. Since the events are stored in a relational database management system, operators can leverage SQL to perform a series of rich and complex queries that are not supported by the KV indexer. 
 
-Since operators can leverage SQL directly, searching is not enabled for the `psql` indexer type via Tendermint's RPC - any such query will fail.
+Since operators can leverage SQL directly, searching is not enabled for the `psql` indexer type via CometBFT's RPC - any such query will fail.
 
-:::note Tendermint config change
-You will need to change the default value in the Tendermint configuration to use `psql`.
+:::note CometBFT config change
+You will need to change the default value in the CometBFT configuration to use `psql`.
 :::
 
 ## Requirements
@@ -37,7 +37,6 @@ You will need to change the default value in the Tendermint configuration to use
 This guide does not cover PostgreSQL installation. Please see:
 - [Official PostgreSQL install documentation](https://www.postgresql.org/docs/current/tutorial-install.html)
 - [Official docs to install PostgreSQL on ubuntu](https://www.postgresql.org/download/linux/ubuntu/)
-
 
 ## Limitations
 If you want your block explorer to include the full chain history, you must replay the entire chain from block 0. Do not modify the config of any already-running nodes. If you do not need full network history, you can start your non-validator node from the last remote snapshop. **[Read more detailed instructions below.](#full-history-vs-specific-history-span)**
@@ -73,20 +72,12 @@ As described in the limitations section, for full chain history your node must r
 
 If you don't need full chain history, you can start your node from a specific remote snapshot (block height). Each validator node creates snapshots every few hundred blocks. The exact number is defined by a network parameter, so the exact number may change. 
 
-To start your node from a snapshot, you need access to a node that has the specific snapshot you want to use. Example mainnet nodes/endpoints you can use to find snapshots are:
-
-- [api0.vega.community/api/v2/snapshots](https://api0.vega.community/api/v2/snapshots)
-- [api1.vega.community/api/v2/snapshots](https://api1.vega.community/api/v2/snapshots)
-- [api3.vega.community/api/v2/snapshots](https://api3.vega.community/api/v2/snapshots)
+To start your node from a snapshot, you need access to a node that has the specific snapshot you want to use. Speak to the network operator for node information.
 
 To do this, see the instructions to [start a node using snapshots](../how-to/use-snapshots.md#start-a-new-node-using-network-snapshots).
 
-:::note Publicly available nodes
-You may find more publicly available nodes on the [GitHub repository](https://github.com/vegaprotocol/networks/blob/master/mainnet1/mainnet1.toml).
-:::
-
-:::caution Tendermint limitations
-Due to limitations of the Tendermint, you can only restart the network from block 0 or **the ten last snapshots**. 
+:::caution CometBFT limitations
+Due to CometBFT limitations, you can only restart the network from block 0 or **the ten last snapshots**. 
 
 We recommend selecting the latest possible snapshots for restart. If the setup process takes too long and the snapshot is not in the pool of the last ten snapshots, you need to choose a newer snapshot again. 
 :::
@@ -100,7 +91,7 @@ We recommend selecting the latest possible snapshots for restart. If the setup p
 
 Download the Vega binary from the [Vega release page](https://github.com/vegaprotocol/vega/releases).
 
-You have to download the binary for the specific version in which the network has been started from block 0. For mainnet, that binary is [v0.71.4](https://github.com/vegaprotocol/vega/releases/tag/v0.71.4).
+You have to download the binary for the specific version in which the network has been started from block 0.
 
 ```shell
 wget https://github.com/vegaprotocol/vega/releases/download/v0.71.4/vega-linux-amd64.zip
@@ -125,7 +116,7 @@ Vega Visor CLI v0.71.4 (61d1f77ee360bf1679d5eb0e0efdb1cce977c9db)
 
 Download the Vega binary from the [Vega release page](https://github.com/vegaprotocol/vega/releases).
 
-To find the version required for restart, first you must select the restart block. Visit the [/api/v2/snapshots](https://api0.vega.community/api/v2/snapshots) endpoint using the data node API and find the block you want to restart from.
+To find the version required for restart, first you must select the restart block. Visit the network's `/api/v2/snapshots` endpoint to find the block you want to restart from.
 
 Below is an example response. Do not use this!
 
@@ -161,7 +152,7 @@ Below is an example response. Do not use this!
 
 For the purposes of this tutorial, let's assume we want to start the node from block `18591101`. The software version you need to download for that block is `v0.72.14`. 
 
-You must also note the `blockHash` value, which will go in the Tendermint config later in this guide.
+You must also note the `blockHash` value, which will go in the CometBFT config later in this guide.
 
 ```shell
 wget https://github.com/vegaprotocol/vega/releases/download/v0.72.14/vega-linux-amd64.zip
@@ -198,10 +189,10 @@ mkdir vega_home tendermint_home blockexplorer_home
 
 ### 3. Download the genesis file
 
-You need to download the [genesis.json](https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json) file and put it in the Tendermint home.
+You need to download the network's genesis.json file and put it in the CometBFT home.
 
 ```shell
-wget --output-document ./tendermint_home/config/genesis.json https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/
+wget --output-document ./tendermint_home/config/genesis.json [insert-genesis-link-here]
 genesis.json
 ```
 
@@ -229,7 +220,7 @@ name = "genesis"
     args = [
       "start",
       "--home", "ABSOLUTE_PATH_TO_YOUR_VEGA_HOME",
-      "--tendermint-home", "ABSOLUTE_PATH_TO_YOUR_TENDERMINT_HOME",
+      "--tendermint-home", "ABSOLUTE_PATH_TO_YOUR_COMETBFT_HOME",
           ]
   [vega.rpc]
     socketPath = "/tmp/vega.sock"
@@ -262,7 +253,7 @@ name = "v0.72.14"
     args = [
       "start",
       "--home", "ABSOLUTE_PATH_TO_YOUR_VEGA_HOME",
-      "--tendermint-home", "ABSOLUTE_PATH_TO_YOUR_TENDERMINT_HOME",
+      "--tendermint-home", "ABSOLUTE_PATH_TO_YOUR_COMETBFT_HOME",
           ]
   [vega.rpc]
     socketPath = "/tmp/vega.sock"
@@ -323,17 +314,17 @@ Update the following parameters in the block explorer config file located at: `P
     SocketDir = ""
 ```
 
-### 8. Update the Tendermint config
+### 8. Update the CometBFT config
 
-Update the following parameters in the Tendermint config file located at `PATH_TO_YOUR_TENDERMINT_HOME/config/config.toml`:
+Update the following parameters in the CometBFT config file located at `PATH_TO_YOUR_COMETBFT_HOME/config/config.toml`:
 
-```toml title="PATH_TO_YOUR_TENDERMINT_HOME/config/config.toml"
+```toml title="PATH_TO_YOUR_COMETBFT_HOME/config/config.toml"
 [rpc]
 cors_allowed_origins = ["*"]
 
 [p2p]
 max_incoming_connection_attempts = 100
-seeds = "b0db58f5651c85385f588bd5238b42bedbe57073@13.125.55.240:26656,da2c4771f2aec1749cbc8db545b2af89099cdcb7@168.119.147.148:40656,13ce7373381072bc575566e702fabef0db64ffdb@20.82.255.140:26656,5d02699874ea6a1e14df948b2e9f1198d23b95a7@51.222.80.128:26656,abe207dae9367995526812d42207aeab73fd6418@18.158.4.175:26656,198ecd046ebb9da0fc5a3270ee9a1aeef57a76ff@144.76.105.240:26656,80fda55eeaa6036e5b61c11b423b073681a2b6b4@3.25.100.39:26656,211e435c2162aedb6d687409d5d7f67399d198a9@65.21.60.252:26656,c5b11e1d819115c4f3974d14f76269e802f3417b@34.88.191.54:26656,e2379bca600a528de55e845b77de5ff480c9631c@185.146.148.107:26656,0a972d61a57532ea8b521b01238bdf125fcd52b1@141.94.162.118:26656,9bcebff7664a3310bf4b31a76e5547f44ffb94cc@80.190.132.234:26656,61051c21f083ee30c835a34a0c17c5d1ceef3c62@51.178.75.45:26656"
+seeds = "insert-network-seeds"
 persistent_peers = ""
 unconditional_peer_ids = ""
 max_packet_msg_payload_size = 16384
@@ -350,7 +341,7 @@ cache_size = 20000
 max_batch_bytes = 10485760
 
 [statesync]
-rpc_servers = "api0.vega.community:26657,api1.vega.community:26657,api2.vega.community:26657,api3.vega.community:26657"
+rpc_servers = "insert-rpc-servers"
 trust_period = "744h0m0s"
 discovery_time = "30s"
 chunk_request_timeout = "30s"
@@ -375,7 +366,7 @@ index_all_keys = false
 #### Snapshot restart
 When you restart from the remote snapshot at specific block, also include the following values:
 
-```toml title="PATH_TO_YOUR_TENDERMINT_HOME/config/config.toml"
+```toml title="PATH_TO_YOUR_COMETBFT_HOME/config/config.toml"
 [statesync]
 enable = true
 trust_hash = "BLOCK_HASH_FOR_SELECTED_SNAPSHOT"
@@ -384,7 +375,7 @@ trust_height = BLOCK_HEIGHT_FOR_SELECTED_SNAPSHOT
 
 In step 1 of this tutorial, we selected the following sample values:
 
-```toml title="PATH_TO_YOUR_TENDERMINT_HOME/config/config.toml"
+```toml title="PATH_TO_YOUR_COMETBFT_HOME/config/config.toml"
 [statesync]
 enable = true
 trust_hash = "11a12f24de801d8c21dae5372e3914a05d15fe15a1316276d7af27896127d246"
@@ -430,7 +421,7 @@ The `vega blockexplorer init-db` command creates a database schema and prepares 
 ./vega blockexplorer init-db --home ./blockexplorer_home 
 ```
 
-### 11. Start Vega node with Visor command
+### 11. Start node with Visor command
 
 ```shell
 ./visor run --home ./vegavisor_home
@@ -438,7 +429,7 @@ The `vega blockexplorer init-db` command creates a database schema and prepares 
 
 Wait a few minutes until your node starts processing blocks before going on to the next step.
 
-See the [code snippets](#useful-code-snippets) below to set up `systemd` for your Vega node.
+See the [code snippets](#useful-code-snippets) below to set up `systemd` for your node.
 
 :::caution Replay time
 It will take at least several hours to replay entire network.
@@ -470,7 +461,7 @@ You do not need to execute this step for replaying from block 0.
 
 For the Vega config located at `PATH_TO_YOUR_VEGA_HOME/config/node/config.toml`, restore the original default value for the `Snapshot.StartHeight`.
 
-Disable state sync by setting `statesync.enable = false` in the Tendermint config located at `PATH_TO_YOUR_TENDERMINT_HOME/config/config.toml`.
+Disable state sync by setting `statesync.enable = false` in the CometBFT config located at `PATH_TO_YOUR_COMETBFT_HOME/config/config.toml`.
 
 </TabItem>
 </Tabs>
@@ -531,7 +522,7 @@ WantedBy=multi-user.target
 
 ### Caddy config
 
-The Caddy file provides TLS termination for the Tendermint and block explorer APIs.
+The Caddy file provides TLS termination for the CometBFT and block explorer APIs.
 
 ```caddyfile title="Caddyfile"
 {
