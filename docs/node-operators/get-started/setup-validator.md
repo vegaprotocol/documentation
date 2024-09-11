@@ -417,7 +417,7 @@ The association will need to be confirmed by both the Ethereum and Vega blockcha
 Below are the instructions to self-nominate (self-stake) to your node.
 
 ## Announce node on-chain
-You'll need to know the [current epoch]() (api endpoint), and have the following data to hand: the URL for your validator website, and the URL for the avatar that you want to associate with your node.
+You'll need to know the [current epoch](../../api/rest/data-v2/trading-data-service-get-epoch.api.mdx), and have the following data to hand: the URL for your validator website, and the URL for the avatar that you want to associate with your node.
 
 ```shell
 vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" --avatar-url="YOUR_AVATAR_URL" --country="UK" --name="YOUR_NODE_NAME" --from-epoch="CURRENT_EPOCH"
@@ -426,9 +426,9 @@ vega announce_node --home="YOUR_VEGA_HOME_PATH" --info-url="YOUR_VALIDATOR_URL" 
 Setting the optional argument `--submitter-address` triggers a network to automatically issue signature bundles that can be used to update signer set changes on the Multisig Control contract. This means if your node is promoted to a consensus validator it is easier for you to add your node's Ethereum key to the contract and to continue receiving rewards. See [maintaining the multisig contract](../how-to/maintain-multisig-contract.md) for more information.
 
 ## Stake to your node
-To move on to self-staking, wait until you see your node on the validator list by [querying the API](../../api/rest/data-v2/trading-data-service-list-nodes.api.mdx).
+To move on to self-staking, wait until you see your node on the validator list by querying the list nodes API: `api/v2/nodes`.
 
-Then, add your tokens and stake your node using the network's governance site (if there is one), or by interacting directly with the smart contract using the contract address, which you can find on the API endpoint: `/api/v2/network/parameters`.
+Then, add your tokens and stake your node using the network's governance site (if there is one), or by interacting directly with the smart contract using the contract address, which you can find on the network parameters API endpoint: `/api/v2/network/parameters`.
 
 Your node will be visible on the core API endpoint `/validators` in the epoch after you self-stake.
 
