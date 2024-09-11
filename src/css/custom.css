@@ -207,25 +207,12 @@ html[data-theme="dark"] .hero--primary {
   text-decoration: none;
 }
 
-.networkparameter--live {
-  border: 1px solid var(--vega-pink-faded);
-}
-
-.networkparameter--buildtime {
-  border: 1px dotted var(--vega-pink-faded);
-}
-
 .networkparameter:hover {
   text-decoration: none;
 }
 
 .networkparametername {
   font-weight: bold;
-}
-
-.networkparametericon {
-  display: inline-block;
-  margin-right: 0.2em;
 }
 
 /* External links */
