@@ -464,7 +464,6 @@ Once your validator node is up and running, you will eventually need to upgrade 
 See the following guides to learn how to: 
 
 * [Propose and enact an upgrade](../how-to/upgrade-network.md)
-* [Restart the network](../how-to/restart-network.md)
 * [Rotate Ethereum keys](../how-to/rotate-ethereum-keys.md)
 * [Rotate Vega keys](../how-to/rotate-vega-keys.md)
 * [Use snapshots](../how-to/use-snapshots.md)

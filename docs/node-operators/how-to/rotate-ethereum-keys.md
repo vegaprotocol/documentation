@@ -8,7 +8,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Ethereum key rotation is a safety feature that allows validator nodes to manage their Ethereum keys. Every validator node in the network needs three keys: Ethereum, Tendermint and Vega. This section described to how to dynamically rotate a node's Ethereum key.
+Ethereum key rotation is a safety feature that allows validator nodes to manage their Ethereum keys. Every validator node in the network needs three keys: Ethereum, CometBFT and Vega. This section described to how to dynamically rotate a node's Ethereum key.
 
 Key rotation is a cryptographic best practise that allows a current in-use key to be replaced by a new, different key. It is an activity that should be performed regularly to guard against an in-use key being unknowingly compromised.
 
