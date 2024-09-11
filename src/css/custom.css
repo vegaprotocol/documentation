@@ -198,13 +198,14 @@ html[data-theme="dark"] .hero--primary {
 .networkparameter {
   position: relative;
   display: inline-block;
-  background: rgb(251, 231, 241);
+  background: rgb(230, 230, 230);
   border-radius: 3px;
   padding: 0 0.2em;
   border: 1px solid transparent;
   cursor: pointer;
   color: #000;
   text-decoration: none;
+  border: 1px dotted var(--vega-pink-faded);
 }
 
 .networkparameter:hover {
@@ -213,6 +214,11 @@ html[data-theme="dark"] .hero--primary {
 
 .networkparametername {
   font-weight: bold;
+}
+
+.networkparametericon {
+  display: inline-block;
+  margin-right: 0.2em;
 }
 
 /* External links */
