@@ -141,4 +141,4 @@ Using the node's Vega wallet, the below command can be sent to the network to pr
 }
 ```
 
-These can then also be retrieved from a datanode.
+These can then also be retrieved from a data node.
