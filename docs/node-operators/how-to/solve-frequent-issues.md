@@ -201,7 +201,7 @@ maxNumberOfFirstConnectionRetries = 1800
 failed to initialize datanode from network history: failed to load history into the datanode: failed to load snapshot data:failed to load segments for database version 22: failed to load history segments: failed to load history segment {Network History Segment for Chain ID:vega-mainnet-0011 Height From:18710202 Height To:18710501}: failed to copy data into the database vega-mainnet-0011-22-18710202-18710501.zip : failed to copy data into table market_data: failed to copy history table data into database: failed to copy data into hyper-table market_data: ERROR: extra data after last expected column (SQLSTATE 22P04)
 ```
 
-The error usually occurs when you are loading a specific history segment (e.g: the last one) into an incorrect version of Vega, for example an old version of the binary.
+The error usually occurs when you are loading a specific history segment (e.g: the last one) into an incorrect version of Vega software, for example an old version of the binary.
 
 Vega adds/modifies/removes SQL schemas during the migration between versions. You must load data from specific segment into the corresponding version of the database that the segment was created for.
 
@@ -267,28 +267,6 @@ vega data node stopped with error: failed to flush subscriber:flushing ledger: f
 2. Restart your PostgreSQL server
 3. Start your data node.
 
-## Problem: CONSENSUS FAILURE at block `26439343`
-
-Your node may fail with the following error: `panic: cannot unregister order with potential sell + size change < 0` at block `26439343`.
-If the block is different, this is a different issue.
-
-There was a mainnet bug that crashed the network.
-
-### Solution: Apply patches to the mainnet network
-
-See the following procedure: [Apply patches for the consensus failure at block 26439343](../get-started/setup-datanode.md#potential-error-cannot-unregister-order).
-
-## Problem: CONSENSUS FAILURE at block `34669654`
-
-Your node may fail with the following error: `runtime error: invalid memory address or nil pointer dereference` at block `34669654`.
-If the block is different, this is a different issue.
-
-There was a mainnet bug that crashed the network.
-
-### Solution: Apply patches to the mainnet network
-
-See the following procedure: [Apply patches for the consensus failure at block 26439343](../get-started/setup-datanode.md#potential-error-invalid-memory-address).
-
 ## Problem: You encounter deadlocking issues with the Postgres database causing it to crash.
 
 We have found during testing that for some scenarios, such as snapshot restores, Postgres can encounter deadlocks when refreshing the continuous aggregates. This leads to Postgres panics and causes the data node to crash.
@@ -296,27 +274,3 @@ We have found during testing that for some scenarios, such as snapshot restores,
 ### Solution: Ensure you have the `noatime` flag set for your mounted drives.
 
 Ubuntu defaults do not set the `noatime` flag for mounted drives, this can have a significant performance impact for the database and causes the deadlocking issues. While not a panacea for all deadlocking issues, it is a good first step to take.
-
-## Problem: Wrong Block.Header.AppHash at block 41090347
-
-A bug crashed the mainnet network at block `41090347`.
-
-You may see the following error:
-
-```
-wrong Block.Header.AppHash.  Expected E02A8186F254267A97D069DEFE0DE1EB581B952ACE04CA9C73F5C930EFD581E2, got 24808BBEF33F7B7DDB59F814621A9AC587000D7E4191646256DADD2345A8BB56
-```
-
-### Solution: Roll back, update config and restart
-
-To fix the issue follow the below steps:
-
-1. Stop your node.
-2. Run tm rollback for a single block: `vega tm rollback --home <tendermint_home>`
-3. Replace the vega binary with [0.74.10-fix.1](https://github.com/vegaprotocol/vega/releases/tag/v0.74.10-fix.1)
-4. Update the config/flag to your node from the one before the last snapshot.
-    a. If you use Visor you can add the following path to the run-config.toml(`<vegavisor_home>/current/run-config.toml`) file: `"--snapshot.load-from-block-height", "41090047"` 
-    b. If you do not use Visor, you can add the following flag to your start command: `--snapshot.load-from-block-height 41090047`
-    c. You can also update core config (`<vega_home>/config/node/config.toml`): `Snapshot.StartHeight = 41090047`
-5. Start node
-6. When your node is stable, and it is running revert the change applied in step 4.

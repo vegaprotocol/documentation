@@ -192,11 +192,7 @@ LNL checkpoints happen at defined intervals, and on every deposit and withdrawal
 * **Deposits**: Event ID of the **last processed deposit** event for all bridged chains, last block height of any confirmed ERC-20 deposits on the Ethereum chain, including number of confirmations; all pending ERC-20 deposits (not confirmed before last block) on the ethereum bridge
 * Hash of the **last block** 
 * **Snapshot block number and transaction ID** of the block from which a snapshot is derived
-* **Stake**: Last block of confirmed stake deposits on the staking bridge and vesting contracts, along with the number of confirmations, plus all completed and pending staking events on both contracts
-
-:::note Try it out
-[How to restart a network using a checkpoint](../../node-operators/how-to/restart-network.md)
-:::
+* **Stake**: Last block of confirmed stake deposits on the staking bridge and vesting contracts, along with the number of confirmations, plus all completed and pending staking events on both contract
 
 <!-- ### ***Further reading*** 
 ## Tendermint consensus

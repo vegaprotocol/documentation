@@ -33,7 +33,6 @@ Loosely, network parameters fall into several categories:
 These parameters can differ between networks. In other words, the same network parameter key could have different values on mainnet, Fairground, and the validator-run testnet.
 
 :::note Go deeper
-* [Network parameters: See full list on the block explorer  ↗](https://explorer.fairground.wtf/network-parameters)
 * [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
 :::
 
@@ -193,10 +192,6 @@ LNL checkpoints happen at defined intervals, and on every deposit and withdrawal
 * Hash of the **last block** 
 * **Snapshot block number and transaction ID** of the block from which a snapshot is derived
 * **Stake**: Last block of confirmed stake deposits on the staking bridge and vesting contracts, along with the number of confirmations, plus all completed and pending staking events on both contracts
-
-:::note Try it out
-[How to restart a network using a checkpoint](../../node-operators/how-to/restart-network.md)
-:::
 
 <!-- ### ***Further reading*** 
 ## Tendermint consensus

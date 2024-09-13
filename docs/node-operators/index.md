@@ -37,7 +37,6 @@ To keep your node and its related components functioning and up-to-date, refer t
 
 | Topic                       |  Description                                                                                                        |
 | ----------------------------------------------------------------------| -------------------------------------------------------------------------------------------------------- |
-| [Restart network with checkpoints](./how-to/restart-network.md)                               | This explains how to manage network restarts. |
 | [Restart from snapshots](./how-to/use-snapshots.md)                               | This guide will take you through using the state snapshots. |
 | [Propose and execute a protocol upgrade](./how-to/upgrade-network.md) | This guide describes how to propose a protocol software upgrade and then upgrade the network using Visor or manually. |
 | [Rotate Ethereum keys](./how-to/rotate-ethereum-keys.md) | This guide will take you through rotating your Ethereum key for security purposes. |

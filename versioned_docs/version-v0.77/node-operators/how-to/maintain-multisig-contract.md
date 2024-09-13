@@ -17,7 +17,7 @@ The [Multisig Control](../../api/bridge/interfaces/IMultisigControl.md) contract
 The consensus set of validators on the Vega network can change because of the following:
 * The amounts staked to validators change such that a consensus validator is demoted and replaced by a standby validator with more stake
 * A consensus validator is showing poor performance and they are demoted and replaced by a more performant standby validator
-* The value of the network parameter <NetworkParameter frontMatter={frontMatter} param="network.validators.tendermint.number" hideValue={true} /> changes causing the size of the consensus set to increase or decrease
+* The value of the network parameter <NetworkParameter frontMatter={frontMatter} param="network.validators.tendermint.number" hideValue={true} /> changes, causing the size of the consensus set to increase or decrease
 
 Changes to the validator set only occur at the end of an epoch. Whether a node has moved into or out of the consensus set can be tracked using the [list nodes](../../api/rest/data-v2/trading-data-service-list-nodes.api.mdx) API. The values of a node's `rankingScore.status` and `rankingScore.previousStatus` indicates whether it has been promoted or demoted, and what set it is now part of.
 
@@ -66,7 +66,7 @@ KIND: a value that represents whether the node is to be added or removed. It can
 ```
 
 :::note 
-This command *does not allow* the generation of arbitrary add and remove signatures requests. The Vega network is aware of which nodes need to be added or removed and the transaction will fail if submitted when it's not required.
+This command *does not allow* the generation of arbitrary add and remove signatures requests. Any network running Vega software will be aware of which nodes need to be added or removed and the transaction will fail if submitted when it's not required.
 :::
 
 ### Submit the signatures to the contract

@@ -17,7 +17,7 @@ Anyone with a Vega public key and assets can set up a transfer. Those transfers 
 
 **Transfers can incur a fee.** How much you pay depends on if you've already paid or accrued trading fee revenue in past epochs. The trading fees you've paid or accrued act like a discount balance that's subtracted from with every transfer. If you use up your fee discount balance, you'll pay the full transfer fee amount.
 
-The un-discounted amount is set by the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />. The fee amount is a proportion of the total transfer amount. The fee's subtracted immediately on execution, and is taken on top of the transfer amount. 
+The un-discounted amount is set by the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" hideValue={true} />. The fee amount is a proportion of the total transfer amount. The fee's subtracted immediately on execution, and is taken on top of the transfer amount. 
 
 The fee is paid to the validators who run the network infrastructure.
 
@@ -31,8 +31,8 @@ Transfers can be set up to happen [only once](#one-off-transfers), or can happen
 :::
 
 ### Transfer limits
-* Each party has a max number of transfers per epoch that they can send, set by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.maxUserTransfersPerEpoch" />. Once the max transfers limit is reached for a key, any subsequent transactions are rejected until the epoch switches over.
-* A minimum transfer amount is controlled by the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" />, which is dependent on the quantum (smallest possible amount) specified for the asset. To calculate the smallest a transfer can be, multiply the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" hideValue={true} /> by the asset's quantum.
+* Each party has a max number of transfers per epoch that they can send, set by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.maxUserTransfersPerEpoch" hideValue={true} />. Once the max transfers limit is reached for a key, any subsequent transactions are rejected until the epoch switches over.
+* A minimum transfer amount is controlled by the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" hideValue={true} />, which is dependent on the quantum (smallest possible amount) specified for the asset. To calculate the smallest a transfer can be, multiply the value of the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" hideValue={true} /> by the asset's quantum.
 
 ## One-off transfers
 A one-off transfer can happen immediately (as soon as it is validated), or be set to happen at a specific time. When you set a delay, the transfer funds are removed from the account immediately and stored in a pool, and then distributed to the destination account once the time you chose is reached.
