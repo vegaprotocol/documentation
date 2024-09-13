@@ -322,22 +322,17 @@ Update the following parameters in the CometBFT config file located at `PATH_TO_
 [rpc]
 cors_allowed_origins = ["*"]
 
-[p2p]
+[P2P]
 max_incoming_connection_attempts = 100
 seeds = "insert-network-seeds"
 persistent_peers = ""
 unconditional_peer_ids = ""
-max_packet_msg_payload_size = 16384
-send_rate = 20000000
-recv_rate = 20000000
 pex = true
 private_peer_ids = ""
 allow_duplicate_ip = false
 
 [mempool]
 version = "v1"
-size = 10000
-cache_size = 20000
 max_batch_bytes = 10485760
 
 [statesync]
@@ -349,13 +344,7 @@ chunk_request_timeout = "30s"
 [consensus]
 timeout_prevote = "1s"
 timeout_precommit = "1s"
-timeout_commit = "0s"
-skip_timeout_commit = true
 create_empty_blocks = true
-create_empty_blocks_interval = "1s"
-
-[storage]
-discard_abci_responses = true
 
 [tx_index]
 indexer = "psql"

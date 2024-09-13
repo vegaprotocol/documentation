@@ -57,11 +57,9 @@ This creates a set of configuration files which you then need to alter for your 
 
 7. Open the config file `$YOUR_TENDERMINT_HOME_PATH/config/config.toml` and update the value `persistent_peers` with the list created above.
 
-8. Change the following fields, if needed:
+8. Change the following field, if needed:
 
 ```toml
-  [p2p]
-    max_packet_msg_payload_size=16384
   [Mempool Configuration Option]
     broadcast = true
 ``` 
