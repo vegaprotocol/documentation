@@ -103,7 +103,7 @@ This creates a set of configuration files which you then need to alter for your 
 ```toml
   [p2p]
     pex = true
-    seeds = "insert-network-seeds-here"
+    persistent_peers = "insert-network-peers-here"
   [mempool]
     broadcast = true
   [statesync]
