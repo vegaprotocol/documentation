@@ -96,7 +96,7 @@ Example of configuration you may want to customise:
   restartsDelaySeconds = 10
   
   [autoInstall]
-	  enabled = false
+    enabled = false
 ```
 ### Prepare initial Visor run
 Prepare the first run configuration in `YOUR_VISOR_HOME_PATH/genesis/run-config.toml`. The configuration allows you to specify what binaries and their arguments will be run in a specific upgrade. 
@@ -111,13 +111,13 @@ name = "genesis"
 
 [vega]
   [vega.binary]
-	path = "/path/vega-binary"
-	args = ["node",
-		"--home", "YOUR_VEGA_HOME_PATH",
-		"--tendermint-home", "YOUR_COMETBFT_HOME_PATH" ]
+  path = "/path/vega-binary"
+  args = ["node",
+    "--home", "YOUR_VEGA_HOME_PATH",
+    "--tendermint-home", "YOUR_COMETBFT_HOME_PATH" ]
 [vega.rpc]
-	socketPath = "VEGA_ADMIN_SOCKET_PATH/vega.sock"
-	httpPath = "/rpc"
+  socketPath = "VEGA_ADMIN_SOCKET_PATH/vega.sock"
+  httpPath = "/rpc"
 ```
 
 ### Visor service manager
@@ -219,6 +219,23 @@ Once you have an Arbitrum archive node, insert the URL in `YOUR_VEGA_HOME_PATH/c
   [[Ethereum.EVMBridgeConfigs]]
     ChainID = "42161" << use this chain ID
     RPCEndpoint = "ARBITRUM_RPC" <<< set your archival node RPC endpoint here
+```
+
+Add config for the Event Forwarding for the Arbitrum endpoint:
+
+```
+...
+[EvtForward]
+...
+
+
+  [[EvtForward.EVMBridges]]
+    Level = "Info"
+    MaxEthereumBlocks = 500
+    PollEventRetryDuration = "500ms"
+    ChainID = "421614"
+    SkipClientVerification = true
+    HeartbeatIntervalForTestOnlyDoNotChange = "0s"
 ```
 
 When a Vega validator node is watching for Ethereum events it will call the `eth_getLogs` endpoint over a set of Ethereum blocks for particular contracts. By default, the maximum block span Vega will use when making this call is 10,000 blocks. The maximum block span allowed by some Ethereum node providers can be less than this. The configuration option `MaxEthereumBlocks` can be used to reduce the block span used by Vega so that it does not exceed the maxmimum limit imposed by an Ethereum node provider:
@@ -357,7 +374,7 @@ Here's an example:
 persistent_peers = "55b8ac477ddd6c0c9bae411dfa6ebfb46e7b4022@nodeoperator.com:26656,2d1bbf1229bd7f8e57e89c61346ab6928d61881b@127.0.0.1:26656"
 ```
 
-Under `Mempool Configuration Option`, ensure that `broadcast = true`.
+Under `mempool`, ensure that `broadcast = true`.
 
 ### Update CometBFT genesis
 To start successfully, CometBFT needs the genesis file from the network you will be trying to join. This file need to be located in `YOUR_COMETBFT_HOME_PATH/config/genesis.json`. Download the genesis file and use it to replace the genesis in your config.
