@@ -324,8 +324,7 @@ cors_allowed_origins = ["*"]
 
 [P2P]
 max_incoming_connection_attempts = 100
-seeds = "insert-network-seeds"
-persistent_peers = ""
+persistent_peers = "insert-persistent-peers"
 unconditional_peer_ids = ""
 pex = true
 private_peer_ids = ""
