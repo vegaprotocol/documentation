@@ -34,7 +34,7 @@ Vega CLI [version-number] (commit-hash)
 3. Initialise the node 
 
 ```
-vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_COMETBFT_HOME_PATH full
+vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_COMETBFT_HOME_PATH validator
 ```
 
 This creates a set of configuration files which you then need to alter for your specific instance.
