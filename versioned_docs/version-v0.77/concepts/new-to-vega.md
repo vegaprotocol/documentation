@@ -7,7 +7,7 @@ hide_title: false
 # Welcome! 
 Welcome to Vega! 
 
-You are currently on the documenation for Vega's testnet network, called Fairground. Documentation you see will be for the Vega software version that Fairground is currently running. If you want to see info for a different version, switch network in the top bar of this page.
+You are currently on the documentation for Vega's testnet network, called Fairground. Documentation you see will be for the Vega software version that Fairground is currently running. If you want to see info for a different version, switch network in the top bar of this page.
 
 ## What is Vega?
 Vega is a protocol for creating and trading derivatives and / or spot on a decentralised network. The Vega software is open source and available for anyone who wants to create a network. 

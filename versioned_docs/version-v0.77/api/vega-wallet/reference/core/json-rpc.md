@@ -2185,7 +2185,7 @@ undefined
     "value": {
         "activeConnections": [
             {
-                "hostname": "site.web.com",
+                "hostname": "example.com",
                 "wallet": "my-btc-wallet"
             },
             {
