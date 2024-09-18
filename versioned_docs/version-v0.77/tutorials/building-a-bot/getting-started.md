@@ -27,7 +27,7 @@ If you don't have Python installed already, follow the [Python instructions ↗]
 Once installed, ensure everything is set up correctly by checking the version:
 `python --version`
 
-Next, follow the Vega Wallet setup instructions within the [programmatic trading basics](../programmatic-trading-basics.md#set-up-your-vega-wallet) tutorial to ensure you have a working Vega Wallet and API token. Take a note of your token as you will need it for configuring the bot. If lost, the token can be retrieved by calling `vegawallet api-token list`.
+Next, set up a Vega wallet and ensure you have a working Vega Wallet and API token. Take a note of your token as you will need it for configuring the bot. If lost, the token can be retrieved by calling `vegawallet api-token list`.
 
 ## Setup
 Navigate to the folder you want to place your project folder in and run:
@@ -93,8 +93,8 @@ If later in the guide you find you have a connection error to `api.n11.testnet.v
 Populate the rest of the fields like so:
 
 - `PARTY_ID`: This should be your public key (without a `0x` prefix). You can find it using your Vega Wallet. 
-- `WALLET_TOKEN`: This is the token you received when setting up the steps in [programmatic trading basics](../programmatic-trading-basics.md#set-up-your-vega-wallet)
-- `MARKET_ID`: For this, use the API endpoint [list markets](../../api/rest/data-v2/trading-data-service-list-markets.api.mdx) and select a market. Ideally choose one with a `Trading mode` of `continuous` as it will have active trading. Once you've chosen a market, navigate to the `Info` tab and within `Market Specification` -> `Key details` take the `Market ID` value and paste it into that section of the config. If you wish to follow the section of this guide in which we place orders, ensure it is a market trading with an asset you hold on the Fairground testnet, or follow the [deposit section](../programmatic-trading-basics.md#deposit-assets) in the programmatic trading basics tutorial.
+- `WALLET_TOKEN`: You can get this token when setting up a wallet.
+- `MARKET_ID`: For this, use the API endpoint [list markets](../../api/rest/data-v2/trading-data-service-list-markets.api.mdx) and select a market. Ideally choose one with a `Trading mode` of `continuous` as it will have active trading. Once you've chosen a market, navigate to the `Info` tab and within `Market Specification` -> `Key details` take the `Market ID` value and paste it into that section of the config. If you wish to follow the section of this guide in which we place orders, ensure it is a market trading with an asset you hold on the Fairground testnet.
 
 :::tip Query for data
 You can also query for market information by using the [markets endpoint](../../api/rest/data-v2/trading-data-service-list-markets.api.mdx) on REST.
