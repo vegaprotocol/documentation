@@ -26,39 +26,26 @@ specs.forEach(s => {
     }]
   } else if (!!s.match('wallet')) {
     console.log('**SPECIAL CASE FOR wallet: localhost**')
-    spec.servers = [ {
+    spec.servers = [{
       url: '{Server}',
       description: 'Local wallet',
       variables: {
       Server: {
-        default: 'http://localhost:1789/api/',
+        default: 'http://localhost:1789/api',
         description: 'Base URL of the wallet'
       }
     }}]
-  } else if (!!s.match('transfer')) {
-    spec.servers = {
-        url: '{Server}',
-        description: 'Data node',
-        variables: {
-          Server: {
-            default: 'https://api.testnet.vega.rocks/',
-            description: 'Base URL of the data node',
-          }
-        }
-      }
-    console.log(`Updating ${s} with`)
-    console.dir(spec.servers)
   } else {
-    spec.servers = {
+    spec.servers = [{
         url: '{Server}',
         description: 'Data node',
         variables: {
           Server: {
-            default: 'https://api.testnet.vega.rocks/',
+            default: 'https://api.testnet.vega.rocks',
             description: 'Base URL of the data node',
           }
         }
-      }
+      }]
   }
 
   console.log('Writing server list...')

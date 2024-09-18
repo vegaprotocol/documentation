@@ -88,7 +88,7 @@
             "params": {
               "mu": 0,
               "r": 0.016,
-              "sigma": 0.5
+              "sigma": 0.3
             }
           },
           "liquiditySlaParameters": {
@@ -101,8 +101,8 @@
           "enableTransactionReordering": true
         }
       },
-      "closingTimestamp": 1728303143,
-      "enactmentTimestamp": 1728389543
+      "closingTimestamp": 1728307042,
+      "enactmentTimestamp": 1728393442
     }
   }
 }
