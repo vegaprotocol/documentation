@@ -115,7 +115,7 @@ Please consult a member of the Vega engineering team if you are unsure about res
 
 ## Inspect the contents of a snapshot
  
-A debug tool exists that allows the contents of a snapshot for a particular block to be written to a json file. This can contain useful information that can help to understand problems with the Vega network and something a member of the development team may ask for to help debug an issue.
+A debug tool exists that allows the contents of a snapshot for a particular block to be written to a json file. This can contain useful information that can help to understand problems with a network and something a member of the development team may ask for to help debug an issue.
 
 
 The below command will create a file called `snapshot.json` containing all of the core state for the given block height.

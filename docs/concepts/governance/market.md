@@ -1,20 +1,18 @@
 ---
 sidebar_position: 5
 title: Markets
-vega_network: TESTNET
 hide_title: false
 description: Add new markets or change existing ones.
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Markets are proposed and voted into existence by Vega tokenholders. The parameters for a market all need to be defined in the proposal.
+Markets can be proposed and voted into existence by governance tokenholders. The parameters for a market all need to be defined in the proposal.
 
 Some market parameters can also be changed. They can only be proposed by a liquidity provider with enough equity-like share in the market, and need to be voted for by a sufficient number of tokenholders and/or liquidity providers.
 
 When creating a market governance proposal, whether it is for a new dated futures market, a new perpetual futures market, a new spot market, or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
 
 Read more:
-* [Vega community forum ↗](https://community.vega.xyz): Share your draft proposals for community discussion.
 * [New perpetual futures market proposal ↗](../../tutorials/proposals/new-perpetuals-market.md): Guide to submitting a proposal for a new market
 * [New futures market proposal ↗](../../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market
 * [New spot market proposal ↗](../../tutorials/proposals/new-spot-market.md): Guide to submitting a proposal for a new market
@@ -22,9 +20,9 @@ Read more:
 * [Update market proposal ↗](../../tutorials/proposals/update-market-proposal.md): Guide to submitting a proposal to change a market using the command line
 
 ### Propose a new market
-Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} suffix="tokens" />, associated with the public key you're using to propose the market, and staked to a validator. Note, this amount is set through the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true} />.
+Tokenholders can propose new markets, which then need to be voted on by other tokenholders. The proposer will need to have at least the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" />, associated with the public key used to propose the market, and staked to a validator.
 
-If the market proposal gets a <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideName={true} formatter="percent"/> majority of tokenholder support, then it will be enacted. The required majority is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" hideValue={true} />.
+If the market proposal gets at least the value of the network parameter<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" /> majority of tokenholder support, then it will be enacted.
 
 To propose a market, you'll need to provide the details required for the market to begin trading right away. While some of the fields are free-text, others are constrained by a range set through network parameters, to ensure that the values provided are fit for purpose.
 

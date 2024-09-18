@@ -2,7 +2,7 @@
 
 This repo includes documentation about the Vega protocol.
 
-If you have any questions, drop them into Vega's [Discord](https://vega.xyz/discord), [Telegram](https://t.me/vegacommunity), or [Forum](https://community.vega.xyz).
+If you have any questions, drop them into Vega's [Discord](https://vega.xyz/discord) or [Forum](https://community.vega.xyz).
 
 # Software
 

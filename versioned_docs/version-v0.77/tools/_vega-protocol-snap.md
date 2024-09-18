@@ -8,7 +8,7 @@ A snap lets you use your existing MetaMask account to quickly set up a Vega keyp
 ## Set up your Vega snap
 Once you have MetaMask installed, the easiest way to set up your new Vega key with MetaMask is with [Vega Console ↗](https://console.vega.xyz) or the Vega [governance dApp ↗](https://governance.vega.xyz).
 
-You'll be creating a new Vega key, so if you have assets or VEGA tokens on an existing key, you'll need to transfer them to the new key to use them.
+You'll be creating a new Vega key, so if you have assets on an existing key, you'll need to transfer them to the new key to use them.
 
 1. Open the `Connect` dialog in Vega Console or the governance dApp. 
 2. If you have a version of MetaMask that supports Snaps, you'll see a button labelled `Install Vega MetaMask Snap`.

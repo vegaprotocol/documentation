@@ -5,9 +5,6 @@ description: How to access the right APIs for your purposes.
 sidebar_position: 3
 ---
 
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
 
 ## How to access this API
 

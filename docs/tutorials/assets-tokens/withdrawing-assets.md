@@ -24,9 +24,7 @@ To remove all assets from your public key, you'll need to close all your open po
 
 If you plan to stop using the key entirely, check if you have any [VEGA tokens](./withdrawing-vega-tokens.md#check-the-status-of-your-vega) connected to it.
 
-Console has a step-by-step process to move your assets out of Vega; this is the easiest way to withdraw them. 
-
-If you want to use Etherscan instead for ERC-20 assets on Ethereum, follow the [instructions](#withdraw-using-etherscan) below.
+If you want to use Etherscan for ERC-20 assets on Ethereum, follow the [instructions](#withdraw-using-etherscan) below.
 
 ## Withdraw your rewards
 Assets received as rewards may be locked for a time. Each epoch, a percentage of the locked amount begins vesting. Any amount that is vested is moved into a vested account. From there, you can redeem vested tokens by transferring them into your general account. Then, they can be withdrawn to an Ethereum address.

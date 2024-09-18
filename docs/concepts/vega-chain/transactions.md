@@ -1,7 +1,6 @@
 ---
 sidebar_position: 4
 title: Transactions
-vega_network: TESTNET
 hide_title: false
 ---
 
@@ -9,11 +8,8 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 A transaction is an instruction (command) issued to the network, bundled with a signature, the submitter’s public key, a small proof-of-work calculation, and the target block height. A transaction that doesn't pass [validation](#validation) (for example, an order without enough assets to cover it) will be rejected.
 
-:::note Viewing transactions
-**[Vega block explorer](https://explorer.fairground.wtf)**: See transactions and their status, plus lots more data about the network.
-:::
 
-When a transaction is submitted, it goes to the validators’ mempools - which is is an organised queue where the transactions are stored, sorted, and verified before being added to a newly started block. A validated transaction enters a block based on the priority assigned to the transaction type, and the order in which it arrived. Vega does not have any gas-type charges that can boost priority or cause a transaction to be lower priority.
+When a transaction is submitted, it goes to the validators’ mempools - which is is an organised queue where the transactions are stored, sorted, and verified before being added to a newly started block. A validated transaction enters a block based on the priority assigned to the transaction type, and the order in which it arrived. Vega is not built to support having any gas-type charges that can boost priority or cause a transaction to be lower priority.
 
 ## Commands
 A command is the specific instruction issued to the network within a transaction.
@@ -46,16 +42,13 @@ There are several levels of validation:
 3. Validator node consensus check: 
    Once the transaction is in the mempool, the validator nodes check if the request looks valid, and can be enacted/completed based on the state of the network, and confirms that all the details in the transaction are valid. For example, to vote on a proposal: ensuring the proposal is still live, and that the key has enough tokens to vote. For an order, it confirms, for example, that the assets to cover margin are available, the state of the market is relevant for the order, etc.
 
-:::note View your transaction
-Once your transaction hash is reported by the wallet, you can track your transaction’s progress on the [Vega block explorer](https://explorer.fairground.wtf).
-:::
 
 ## Filling a block: Transaction gas value
-The proposer of a block takes transactions from their mempool and puts them into a block until the block reaches a maximum total gas amount. This value, <NetworkParameter frontMatter={frontMatter} param="network.transactions.maxgasperblock" hideName={true} />, comes from the max gas per block network parameter.
+The proposer of a block takes transactions from their mempool and puts them into a block until the block reaches a maximum total gas amount. This value comes from the max gas per block network parameter: <NetworkParameter frontMatter={frontMatter} param="network.transactions.maxgasperblock" hideName={true} />.
 
 Every transaction has a Tendermint gas value assigned to it, which goes into determining how many transactions enter each block.
 
-Most transactions will have a set gas value of <NetworkParameter frontMatter={frontMatter} param="network.transaction.defaultgas" hideName={true} />, set through a network parameter - though the gas values of orders-related transactions can vary.
+Most transactions will have a gas value set through a network parameter <NetworkParameter frontMatter={frontMatter} param="network.transaction.defaultgas" hideName={true} /> - though the gas values of orders-related transactions can vary.
 
 The gas for order-related transactions is calculated based on current market factors, such as existing orders and positions already on the market.
 

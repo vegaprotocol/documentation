@@ -141,7 +141,7 @@ Assets can only be added to the network to be used as collateral through a succe
 | Show a specific asset's details | [Asset](../api/rest/data-v2/trading-data-service-get-asset.api.mdx) | `GET /api/v2/asset/:assetId` |
 
 ## Deposits and withdrawals
-Assets used on the Vega network can be deposited using a web3 wallet:
+Assets can be deposited using a web3 wallet:
 - Via the Ethereum bridge contract, for ERC-20 assets on Ethereum mainnet
 - Via the Arbitrum bridge, for assets on the Arbitrum mainnet network
 
@@ -167,7 +167,7 @@ Vega relies on accounts to ensure funds are never lost or double spent. The amou
 | Understanding the concepts: accounts | [Accounts](../concepts/assets/accounts.md) | 
 
 ## Governance proposals and voting
-Governance proposals used to add new assets and markets, as well as to suggest changes to assets, markets, and network parameters, as well as off-chain suggestions. VEGA tokens need to be associated to the Vega public key that wants to take part in governance.
+Governance proposals used to add new assets and markets, as well as to suggest changes to assets, markets, and network parameters, as well as off-chain suggestions. 
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |
@@ -175,14 +175,14 @@ Governance proposals used to add new assets and markets, as well as to suggest c
 | Get detailed information about a specific governance proposal using its ID | [Proposal](../api/rest/data-v2/trading-data-service-get-governance-data.api.mdx) | `GET /api/v2/governance`
 |||
 | How to submit proposals using command line | [Submitting proposals](../tutorials/proposals/index.md) | |
-| Understanding the concepts: Governance | [Vega governance](../concepts/governance/index.md) | 
+| Understanding the concepts | [Governance](../concepts/governance/index.md) | 
 
 ### Governance token
-VEGA token are used for taking part in network, market, asset and freeform governance, and to secure the network by nominating validators that run the network.
+Governance tokens are used for taking part in network, market, asset and freeform governance, and to secure the network by nominating validators that run the network.
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |
 | See a list of votes | [List votes](../api/rest/data-v2/trading-data-service-list-votes.api.mdx) | `GET /api/v2/votes` |
 |||
 | How to nominate validators using the smart contracts | [Stake tokens](../tutorials/assets-tokens/staking-tokens.md) | 
-| Understand the concepts: Governance | [Vega governance](../concepts/governance/index.md) | 
+| Understand the concepts | [Governance](../concepts/governance/index.md) | 

@@ -5,9 +5,6 @@ description: What you need to know about JSON-RPC for the wallet.
 sidebar_position: 1
 ---
 
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
 
 ## JSON-RPC API introduction
 

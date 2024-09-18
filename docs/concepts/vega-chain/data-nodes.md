@@ -5,7 +5,7 @@ vega_network: TESTNET
 hide_title: false
 ---
 
-import Topic from '/docs/topics/_topic-data-nodes.mdx'
+ from '/docs/topics/_topic-data-nodes.mdx'
 
 <Topic />
 

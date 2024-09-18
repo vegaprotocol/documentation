@@ -1,7 +1,6 @@
 ---
 sidebar_position: 8
 title: Market lifecycle
-vega_network: MAINNET
 hide_title: false
 description: See every stage possible for a proposed or live market.
 ---
@@ -78,7 +77,7 @@ When a market proposal is successful at the end of the voting period, the market
 A market can be `cancelled` if it cannot leave `pending` before the maximum opening auction duration is reached, or if an update market proposal changes the market's parameters such that it enters [trading terminated](#market-status-trading-terminated) before it leaves `pending`.
 
 ### Enters cancelled state
-- Market does not have enough trading to leave opening auction before <NetworkParameter frontMatter={frontMatter} param="market.auction.maximumDuration" hideValue={true} />
+- Market does not have enough trading to leave opening auction before the time set in the network parameter <NetworkParameter frontMatter={frontMatter} param="market.auction.maximumDuration" hideValue={true} />
 - Market's enactment date has passed without trading, and parameters that would lead to trading terminated are triggered
 - An update governance proposal with a market parameter change that would result in the market being closed passes its governance vote
 - Auction orders are cancelled and no uncrossing occurs

@@ -35,7 +35,8 @@ The underlying contract, asset name and symbol cannot be changed. They are not i
 You will need:
 
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)- Familiarity with [governance on Vega](../../concepts/governance/asset.md), particularly [assets at a protocol level](../../concepts/governance/asset.md)
+* A minimum of whichever is larger, associated with that public key: based on the network parameter values for <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" /> 
+- Familiarity with [governance](../../concepts/governance/asset.md), particularly [assets at a protocol level](../../concepts/governance/asset.md)
 
 After a new asset vote passes, the change has to be submitted to the asset bridge on Ethereum. See the [tutorial](./update-asset-bridge.md) for how to do that.
 
@@ -50,8 +51,8 @@ In addition to the parameters you want to change, you must include the existing 
 | ----------- | ----------- | ----------- |
 | `asset ID` | Unique Vega ID for the asset to be changed. (string) | |
 | `quantum` | The minimum economically meaningful amount of the asset (string). This should be the amount of the asset roughly equal to 1 USD. It is used in a number of ways by the protocol but only requires precision to an order of magnitude level.  For example, if one BTC = 26,583 USD, then in this case a quantum of 1 / 25,000 or 0.00004 is sufficient. Converted to asset decimals it would be 40000000000000. | 1000000000000000000 |
-| `withdrawThreshold` | The maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the ERC-20 bridge per asset. Setting this to 1 means all withdrawals will be subject to the delay. It's measured in asset decimals, so 1 is the smallest increment of the market's asset. | 1 |
-| `lifetimeLimit` | The lifetime deposit limit per public key, in asset decimals. Users are able to opt out of this functionality using the `exempt_depositor` write function on the ERC20 contract if they wish to. Suggested value: equivalent of 10,000 USD | 10000000000000000000000 |
+| `withdrawThreshold` | The maximum you can withdraw instantly. All withdrawals over the threshold will be delayed by the withdrawal delay, which can be seen on the network's ERC-20 bridge per asset. Setting this to 1 means all withdrawals will be subject to the delay. It's measured in asset decimals, so 1 is the smallest increment of the market's asset. | 1 |
+| `lifetimeLimit` | The lifetime deposit limit per public key, in asset decimals. Users are able to opt out of this functionality using the `exempt_depositor` write function on the network's ERC20 contract if they wish to. Suggested value: equivalent of 10,000 USD | 10000000000000000000000 |
 
 ## Submitting proposals in a batch
 
@@ -61,7 +62,7 @@ In addition to the parameters you want to change, you must include the existing 
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example
 * Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
@@ -70,7 +71,7 @@ In the tabs below you'll see:
   <TabItem value="annotated" label="Annotated example">
     <UpdateAssetAnnotated />
   </TabItem>
-  <TabItem value="json" label="Governance dApp (JSON)">
+  <TabItem value="json" label="JSON">
     <JSONInstructions />
     <UpdateAssetJSON />
   </TabItem>
@@ -88,15 +89,9 @@ In the tabs below you'll see:
 
 All proposals are voted on by the community. 
 
-<!--
-Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
--->
+To vote, community members need, at a minimum, the larger of the values of the following network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minVoterBalance" /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" /> associated with their Vega key.
 
-To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
-
-Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
-
-Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-the-outcome-is-calculated) determined by the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredParticipation" /> and a majority of the following parameter's value: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredMajority" formatter="percent" hideName={true} />.
 
 ## Enactment
 If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.

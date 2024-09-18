@@ -5,10 +5,6 @@ description: How to access the right APIs for your purposes.
 sidebar_position: 3
 ---
 
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
-
 ## How to access this API
 
 All Vega Wallet software exposes a JSON-RPC API. This API, its endpoints, requests, and responses are all exactly the same, and are handled exactly the same way, whatever the software implementation.

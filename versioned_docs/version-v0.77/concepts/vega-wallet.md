@@ -4,9 +4,6 @@ title: Wallets and keys
 vega_network: MAINNET
 hide_title: false
 ---
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
 
 Vega Wallet is an app that lets you manage wallets and cryptographic key pairs. Key pairs are used to sign and send transactions in a secure way. 
 
@@ -39,12 +36,12 @@ The wallet file can hold any number of key pairs, and you can have more than one
 ### Wallet name
 Since you can have more than one wallet, each wallet needs a unique name so that you can identify the wallet you want to connect with. Rather than creating auto-generated wallet names, a Vega Wallet app will prompt you to name (and create a passphrase for) every wallet you create.
 
-When you are asked to input a wallet name in order to connect your wallet, for example on the governance dApp, or Vega Console, this is to confirm which wallet you want to use, in case you have multiple wallets. You'll also need to input the passphrase for your wallet. 
+When you are asked to input a wallet name in order to connect your wallet, this is to confirm which wallet you want to use, in case you have multiple wallets. You'll also need to input the passphrase for your wallet. 
 
 ![Wallet app with multiple keys](/img/concept-diagrams/multiple-wallets.png)
 
 ### Wallet passphrase
-The wallet passphrase decrypts the information inside your wallet file so that you can use your key pair(s) to interact with an app. Unlocking access to your wallet via a Vega app allows you to associate VEGA, deposit collateral, and place trades, among other things. 
+The wallet passphrase decrypts the information inside your wallet file so that you can use your key pair(s) to interact with an app.
 
 Every time you want to use a wallet or its keys, you’ll need to use the passphrase to unlock (decrypt) the file's information. 
 

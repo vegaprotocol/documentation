@@ -1,29 +1,22 @@
 ---
 sidebar_position: 5
 title: Discounts and rewards
-vega_network: TESTNET
 hide_title: false
 description: Traders can get discounts on fees and rewards.
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-You can offset some of the [fees](./fees.md) you pay, or earn even more, by receiving rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset. You can see what rewards are currently available on [Console ↗](https://console.fairground.wtf/#/rewards).
+Users can offset some of the [fees](./fees.md) they pay, or earn even more, by receiving rewards based on trading activity. Rewards can be funded by anyone, and can be in any asset.
 
 ## Referral program
-You can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives is increased if they have VEGA associated to their public key.
+Participants can earn a commission for referring new users when a referral program is enabled. New users get a discount on their fees, while whoever refers them gets a cut of their referees’ trading fees. How much commission the referrer receives can be increased if they have the governance associated to their public key.
 
-:::tip Refer a friend
-Get benefits for referring, or being referred. In the [referrals section of Console](https://console.fairground.wtf/#/referrals), you can:
-* Create a code to refer others 
-* Enter a code you've been given
-:::
-
-To create a code or join a referral set, you'll need at least the equivalent of  <NetworkParameter frontMatter={frontMatter} param="spam.protection.applyReferral.min.funds" suffix="qUSD" hideName="true" /> in any asset on your key.
+To create a code or join a referral set, you'll need to meet the minimum set of any asset by a network parameter: <NetworkParameter frontMatter={frontMatter} param="spam.protection.applyReferral.min.funds" />.
 
 The referral program only exists if it's been enabled through a [governance proposal](../../tutorials/proposals/referral-program-proposal.md). Once it's enabled, both the requirements and benefits can also be replaced with a new program, also using a governance proposal.
 
-You can see what the current program offers by checking the [Referrals page on Console](https://console.fairground.wtf/#/referrals), or the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
+You can see what the current program offers by using the [referral program API](../../api/rest/data-v2/trading-data-service-get-current-referral-program.api.mdx).
 
 :::note Read more
 * [Tutorial: Propose enabling or changing the referral program](../../tutorials/proposals/referral-program-proposal.md)
@@ -35,14 +28,10 @@ To benefit from referral program perks, you'll need to either create a referral 
 
 A referral set is made up of the participant who created the set, known as the referrer, and all the referees who signed up using the referral code. Each referral set only has one referrer, but the number of referees is unlimited.
 
-:::tip Try it out
-Create a referral code, or enter a referral code you've been given on the [referrals section of Console ↗](https://console.fairground.wtf/#/referrals).
-:::
-
 ### Teams and games
-When you create or update a referral set on [Console ↗](https://console.fairground.wtf/#/referrals), you can opt to turn it into a team. Teams can get access to games, which are [trading rewards](#trading-rewards) set to target those in a team, if they are set up.
+When a user creates or updates a referral set, they can opt to turn it into a team. Teams can get access to games, which are [trading rewards](#trading-rewards) set to target those in a team, if they are set up.
 
-If you're part of a team, you can switch to a different team by using the team's referral code.
+Members of a team can switch to a different team by using the team's referral code.
 
 Teams can have names and avatars to differentiate themselves on leaderboards. 
 
@@ -51,7 +40,7 @@ The team leader, or referrer, can also choose when the team is open to all or to
 #### Game rewards
 Game rewards are assigned to a team based on the team's overall performance, and then rewards are distributed amongst the team members based on their multipliers. However, if you get a 0 score, then you won't get any rewards, even if your team was rewarded. 
 
-You'll need to be in a team for <NetworkParameter frontMatter={frontMatter} param="rewards.team.minEpochsInTeam" suffix="epochs" /> to be eligible for game rewards.
+You'll need to be in a team for the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.team.minEpochsInTeam" suffix="epochs" /> to be eligible for game rewards.
 
 ## Fee discounts based on trading volume
 Traders can get discounts on their [fees](./fees.md) when there's an active volume discount program on the network. The higher your volume of aggressive trades on a market, the greater the discount you can receive.
@@ -70,7 +59,7 @@ Participants who exceed certain eligibility criteria can be rewarded when the el
 
 When setting up the reward, one or both criteria can be set:
 
-* Minimum number of VEGA tokens that need to be staked
+* Minimum number of governance tokens that need to be staked
 * Minimum notional time-weighted average position, on any market using the asset nominated in the reward, or the specified market/markets
 
 ## Trading rewards
@@ -83,10 +72,6 @@ Market participants can also receive rewards for their trading activity, liquidi
 **Market proposers** can receive rewards for proposing markets that draw in trading volume. 
 
 Your reward earnings can grow if you have an activity streak and/or keep earned rewards in your rewards account.
-
-:::tip Try it out
-[See the available rewards ↗](https://console.fairground.wtf/#/rewards)
-:::
 
 A reward can be set to target participants with certain statuses:
 
@@ -102,14 +87,14 @@ Rewards are independent from [fees](./fees.md), which are paid to validators, li
 ### How rewards are paid
 Rewards that you earn are paid into a per-asset *vesting rewards account*.
 
-* **Rewards may be locked.** Each reward has its own lock period. Check the [rewards page on Console ↗](https://https://console.fairground.wtf/#/rewards) or the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see how many [epochs](../vega-chain/network.md#epochs) each reward is locked for.
-* After rewards unlock, a proportion of the rewards move into your *vested account* each epoch: <NetworkParameter frontMatter={frontMatter} name="current rate" param="rewards.vesting.baseRate" formatter="percent" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
+* **Rewards may be locked.** Each reward has its own lock period. Check the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see how many [epochs](../vega-chain/network.md#epochs) each reward is locked for.
+* After rewards unlock, a proportion of the rewards move into a *vested account* each epoch, set by a network parameter: <NetworkParameter frontMatter={frontMatter} param="rewards.vesting.baseRate" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
 * Redeem them from your vested account by transferring them into your general account. Then you can withdraw.
 
 ### Reward hoarder bonus
 Leaving your reward earnings in your vested account will increase your share of the trading rewards you've accrued. How much extra you get depends on your total rewards balance, whether it's locked, vesting, or vested.
 
-You can see the current reward hoarder bonus requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.vesting.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.vesting.benefitTiers` network parameter.
+You can see the current reward hoarder bonus requirements and benefits by querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.vesting.benefitTiers` network parameter.
 
 These tiers are set through network parameters, and thus can be changed through [governance](../governance/network-parameter.md).
 
@@ -124,11 +109,11 @@ Traders that keep up an activity streak, either by placing trades or keeping a p
 
 Keeping up your activity gives you access to greater benefits as your streak grows. Activity streaks are measured in epochs.
 
-You need a minimum trade volume of <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.minQuantumTradeVolume" hideName={true} /> or a minimum open volume of <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.minQuantumOpenVolume" hideName={true} /> (both expressed in quantum) to be considered active.
+You need a minimum trade volume of the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.minQuantumTradeVolume" /> or a minimum open volume of the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.minQuantumOpenVolume" hideName={true} /> (both expressed in quantum) to be considered active.
 
-If you go inactive for more than <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.inactivityLimit" hideName={true} suffix="epochs"/>, you will lose your streak.
+If you go inactive for more than the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.activityStreak.inactivityLimit" suffix="epochs"/>, you will lose your streak.
 
-You can see the current activity streak requirements and benefits on the [block explorer ↗](https://explorer.fairground.wtf/network-parameters#rewards.activityStreak.benefitTiers), or querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.activityStreak.benefitTiers` network parameter.
+You can see the current activity streak requirements and benefits by querying the [network parameters API](../../api/rest/data-v2/trading-data-service-list-network-parameters.api.mdx) for the `rewards.activityStreak.benefitTiers` network parameter.
 
 The details for activity streaks are set through network parameters, and thus can be changed through [governance](../governance/network-parameter.md).
 
@@ -267,7 +252,7 @@ The market creation reward dispatch metric is designed to incentivise creating m
 
 The threshold for what counts as 'enough' trading volume is a formula that takes into account the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="rewards.marketCreationQuantumMultiple" />, as well as the settlement asset's quantum to assess the market's size.
 
-An asset's quantum is defined as an approximation of the smallest 'meaningful' amount of that asset, generally expecting it to be the quantity of the asset valued at approximately the value of 1 USD. An asset's quantum is set in the governance proposal that enabled the asset for use on Vega.
+An asset's quantum is defined as an approximation of the smallest 'meaningful' amount of that asset, generally expecting it to be the quantity of the asset valued at approximately the value of 1 USD. An asset's quantum is set in the governance proposal that enabled the asset for use on a network.
 
 **Example**: 
 
@@ -284,32 +269,32 @@ In the section below are descriptions of potential reward scenarios, including t
 
 <details><summary>See reward examples</summary>
 <p>
-An early liquidity provider who supports the ETH / USDT 1Y Future market wants to encourage people to trade on the market, and as an early adopter of Vega wants to incentivise people to hold VEGA too. That provider would transfer their chosen amount of funds to the relevant reward pool.
+An early liquidity provider who supports the ETH / USDT 1Y Future market wants to encourage people to trade on the market, and as an early adopter wants to incentivise people to hold the governance token too. That provider would transfer their chosen amount of funds to the relevant reward pool.
 
 Reward Pool 1: 
-* Reward asset = VEGA
+* Reward asset = governance-token
 * Market in scope = ETH / USDT 1Y Future (defined by Market ID)
 * Reward metric type = Maker fees paid
 
-This reward pool will transfer VEGA to anyone acting as a price taker and therefore paying maker fees on the market. 
+This reward pool will transfer governance-token to anyone acting as a price taker and therefore paying maker fees on the market. 
 
 They may later decide that they have successfully driven so much volume that they would like to encourage more liquidity in the market to help supplement their own. In this case they could fund another reward pool.
 
 Reward Pool 2: 
-* Reward asset = VEGA
+* Reward asset = governance-token
 * Market in scope = ETH / USDT 1Y Future
 * Reward metric type = Liquidity fees
 
-This will provide an additional incentive for LPs to commit liquidity, since in addition to the liquidity fees they would already receive (in USDT, the settlement asset of the market), they would also receive VEGA proportional to the share of liquidity fees they received for the market.
+This will provide an additional incentive for LPs to commit liquidity, since in addition to the liquidity fees they would already receive (in USDT, the settlement asset of the market), they would also receive governance-token proportional to the share of liquidity fees they received for the market.
 
-Finally, they may decide that they also want to provide a reward in the market’s settlement asset rather than solely reward in VEGA. Therefore they transfer funds to an additional reward pool.
+Finally, they may decide that they also want to provide a reward in the market’s settlement asset rather than solely reward in governance-token. Therefore they transfer funds to an additional reward pool.
 
 Reward pool 3: 
 * Reward asset = USDT
 * Market in scope = ETH / USDT 1Y Future
 * Reward metric type = Maker fees paid
 
-Now, any user that has been a price taker in this market will receive two reward payments at the end of the epoch, once in VEGA and one in USDT, with both proportional to their overall share of maker fees paid in the market. 
+Now, any user that has been a price taker in this market will receive two reward payments at the end of the epoch, once in governance-token and one in USDT, with both proportional to their overall share of maker fees paid in the market. 
 
 </p>
 </details>
@@ -338,11 +323,11 @@ Note: a multiple market recurring transfer can only be used for markets that set
 In the dropdown below  you can read through examples of how funding reward pools works.
 <details><summary>See funding examples</summary>
 <p>
-A participant wants to incentivise trading on three new markets, all of which have the same settlement asset. They can create a transfer that will top up the reward pools for those markets that accept VEGA as a reward and that calculate based on the ‘maker fees paid’ metric.
+A participant wants to incentivise trading on three new markets, all of which have the same settlement asset. They can create a transfer that will top up the reward pools for those markets that accept governance-token as a reward and that calculate based on the ‘maker fees paid’ metric.
 
-* Reward Pool 1:  Reward Asset = VEGA | Market ID = A | Metric Type = Maker fees paid 
-* Reward Pool 2:  Reward Asset = VEGA | Market ID = B | Metric Type = Maker fees paid
-* Reward Pool 3:  Reward Asset = VEGA | Market ID = C | Metric Type = Maker fees paid
+* Reward Pool 1:  Reward Asset = governance-token | Market ID = A | Metric Type = Maker fees paid 
+* Reward Pool 2:  Reward Asset = governance-token | Market ID = B | Metric Type = Maker fees paid
+* Reward Pool 3:  Reward Asset = governance-token | Market ID = C | Metric Type = Maker fees paid
 
 All 3 markets settle in USDT. The rewards will be split to each market proportionally based on how much was paid out in maker fees for each market, and then each market’s pool will be split proportionally between users who paid maker fees in each defined market. 
 
@@ -351,10 +336,10 @@ In the current epoch:
 * Market B has 100 USDT in maker fees paid
 * Market C has 700 USDT in maker fees paid
 
-The user sets up a recurring transfer for 10,000 VEGA into the three reward pools above. 
-* Reward Pool 1 share: 200 / (200 + 100 + 700) = 0.2 x 10,000 = 2,000 VEGA
-* Reward Pool 2 share: 100 / (200 + 100 + 700) = 0.1 x 10,000 = 1,000 VEGA
-* Reward Pool 3 share: 700 / (200 + 100 + 700) = 0.7 x 10,000 = 7,000 VEGA
+The user sets up a recurring transfer for 10,000 governance-token into the three reward pools above. 
+* Reward Pool 1 share: 200 / (200 + 100 + 700) = 0.2 x 10,000 = 2,000 governance-token
+* Reward Pool 2 share: 100 / (200 + 100 + 700) = 0.1 x 10,000 = 1,000 governance-token
+* Reward Pool 3 share: 700 / (200 + 100 + 700) = 0.7 x 10,000 = 7,000 governance-token
 
 Each reward pool is then distributed to individual parties as described in the [Reward pools](#reward-pools) section. 
 

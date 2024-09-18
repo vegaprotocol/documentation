@@ -16,15 +16,13 @@ The *general account* is managed by the party who controls the keys that account
 
 Every public key has a potential general account in every asset supported by the network; it's created the first time assets are deposited or transferred to it. The general account is the place where deposits and rewards go, where withdrawals come from, and where a participant can transfer assets from (or receive assets to).
 
-The general account also holds VEGA tokens that have been deposited to the network (but not those associated with a Vega key via the Ethereum staking bridge and/or locked in a smart contract). Staking rewards, as well as trading rewards, are paid into the general account.
+The general account also holds governance tokens that have been deposited to a network (but not those associated with a Vega key via the Ethereum staking bridge and/or locked in a smart contract). Staking rewards, as well as trading rewards, are paid into the general account.
 
 Any assets that are in a general account can be withdrawn or transferred.
 
 You'll see references to your general account in various places, including under collateral in Console, the trading interface.
 
 :::tip Query for data
-**[Vega Console](https://console.fairground.wtf)**: See how much is allocated to the accounts for your public key.
-
 **[REST](../../api/rest/data-v2/trading-data-service-get-party.api.mdx)**: Use the API to check your public key for the accounts your assets are allocated to.
 :::
 

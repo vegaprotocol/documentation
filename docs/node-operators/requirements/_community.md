@@ -7,12 +7,10 @@ hide_title: false
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Being a high-quality validator involves more than effectively running nodes. You also need to build a reputation and community, and stay actively involved in the wider Vega community. Becoming a recognisable member of the ecosystem is a great way to attract nominations and solidify longevity as a validator.
-
 ## Self-stake
-Validators need to show they're committed to running the network by having Vega tokens staked to their node. There's a minimum amount required to be ranked highly enough to be a validator, and thus receive rewards and pass rewards on to your nominators.
+Validators need to show they're committed to running the network by having governance tokens staked to their node. There's a minimum amount required to be ranked highly enough to be a validator, and thus receive rewards and pass rewards on to your nominators.
 
-Minimum self-stake, set by network parameter: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" hideName={false} formatter="governanceToken" suffix="tokens" />
+Minimum self-stake, set by network parameter: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" />
 
 ## Community
 Vega will communicate with node operators, and node operators should communicate with the community using the channels below. If you are running a Vega node, sign up to the following channels.

@@ -12,7 +12,7 @@ View Source: [contracts/ERC20_Bridge_Logic.sol](https://github.com/vegaprotocol/
 
 **ERC20_Bridge_Logic_Restricted**
 
-This contract is used by Vega network users to deposit and withdraw ERC20 tokens to/from Vega.
+This contract is used to deposit and withdraw ERC20 tokens.
 
 ## Contract Members
 **Constants & Variables**

@@ -47,7 +47,7 @@ vegawallet import --wallet "MY_WALLET_NAME" --recovery-phrase-file "PATH_TO_MY_R
 </TabItem>
 </Tabs>
 
-It will then prompt you to **input a passphrase**, and then **confirm that passphrase**. You'll use this wallet name and passphrase to login to the token site and Vega Console.
+It will then prompt you to **input a passphrase**, and then **confirm that passphrase**.
 
 Once you've imported your wallet, you can carry on with running it and interacting with the network.
 

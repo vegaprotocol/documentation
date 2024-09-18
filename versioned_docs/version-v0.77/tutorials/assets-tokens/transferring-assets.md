@@ -156,10 +156,10 @@ You will need to define the dispatch strategy, which includes the  metric, the l
 
 | Dispatch strategy field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
-| `assetForMetric` | Asset that's used to evaluate how someone performs, such as the settlement asset for the market(s) relevant to the reward | Any asset enabled on Vega |
+| `assetForMetric` | Asset that's used to evaluate how someone performs, such as the settlement asset for the market(s) relevant to the reward | Any asset enabled on the network |
 | `metric` | Specific reward category the transfer is funding | DISPATCH_METRIC_MAKER_FEES_PAID; DISPATCH_METRIC_MAKER_FEES_RECEIVED; DISPATCH_METRIC_LP_FEES_RECEIVED; DISPATCH_METRIC_MARKET_VALUE; DISPATCH_METRIC_AVERAGE_POSITION; DISPATCH_METRIC_RELATIVE_RETURN; DISPATCH_METRIC_RETURN_VOLATILITY; DISPATCH_METRIC_REALISED_RETURN; DISPATCH_METRIC_VALIDATOR_RANKING |
 | `markets` | Optional: Used to choose which market(s) are in scope | Any trading market's ID |
-| `stakingRequirement` | Optional: Sets a minimum number of VEGA tokens that need to be staked for a party to be considered eligible for the reward | Number, if omitted it defaults to 0 |
+| `stakingRequirement` | Optional: Sets a minimum number of tokens that need to be staked for a party to be considered eligible for the reward | Number, if omitted it defaults to 0 |
 | `notionalTimeWeightedAveragePositionRequirement` | Optional: Sets a minimum notional TWAP required for a party to be considered eligible to receive rewards | Defaults to 0 | 
 | `windowLength` | Number of epochs in which performance against the reward metric is measured | Any number between 1 and 100 inclusive |
 | `transferInterval` | Optional: Number of epochs between transfers. For example, if set to 4, funds will be transferred every 4 epochs with the first transfer occurring 4 epochs after the transaction is processed. If left blank, it transfers every epoch. | Any number between 1 and 100 inclusive |
@@ -251,9 +251,6 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
 ```
 </TabItem>
 </Tabs>
-
-### Publicising trading and validator metric rewards
-Once you've funded a reward pool, you can promote the reward, and what it's relevant for, by sharing it with the community on [Discord ↗](https://vega.xyz/discord) and on the [Vega forum ↗](https://community.vega.xyz).
 
 ## Cancelling recurring transfers
 To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers REST query](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx).

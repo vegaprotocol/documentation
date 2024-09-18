@@ -70,6 +70,6 @@ See the [settlement](../trading-on-vega/settlement.md) page for information on h
 See the section on [liquidity provision](../liquidity/index.md) for details on the liquidity provision mechanics.
 
 ## On-chain network treasury 
-Some of the rewards for nominating a validator will be distributed from the on-chain network treasury, in the form of VEGA tokens.
+Some of the rewards for nominating a validator will be distributed from the on-chain network treasury.
 
 The on-chain network treasury is a set of accounts that are funded by parties, deposits, or by direct transfers to allocate funds for rewards, grants, and other initiatives.

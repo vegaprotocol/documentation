@@ -4,10 +4,6 @@ hide_title: false
 sidebar_position: 2
 ---
 
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
-
 The following guide walks you through connecting to the local service so that you can, for example, connect the application you're building to the Vega wallet service.
 
 ## Introduction

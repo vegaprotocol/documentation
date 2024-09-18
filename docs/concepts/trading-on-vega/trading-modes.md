@@ -1,7 +1,6 @@
 ---
 sidebar_position: 2
 title: Auctions & continuous trading
-vega_network: TESTNET
 hide_title: false
 description: Find out what trading modes the protocol supports.
 ---
@@ -11,10 +10,10 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 # Trading modes 
 A market's trading mode denotes the types of trading that can be done on it while the market is in that mode. A market can only have one trading mode at a time.  
 
-The Vega software currently supports two trading modes: continuous trading (using a limit order book) and auctions.
+The Vega software provides support for two trading modes: continuous trading (using a limit order book) and auctions.
 
 ## Continuous trading
-On a market with continuous trading, the Vega network tries to execute an order as soon as it is received. 
+On a market with continuous trading, orders are executed as soon as they are received, if possible. 
 
 A continuous trading market uses a limit order book as the default price determination method.
 
@@ -55,14 +54,14 @@ In the case of a [successor market](../governance/market.md#propose-a-successor-
 A new market’s opening auction begins at the proposal’s closing date.
 
 #### Exit from an opening auction
-A market’s opening auction ends at the market enactment time, unless an opening price can't be determined because no orders would uncross. In that case, the auction is extended by <NetworkParameter frontMatter={frontMatter} param="market.auction.minimumDuration" hideName={true} />. At the end of each extension time, the system looks for orders that would uncross.
+A market’s opening auction ends at the market enactment time, unless an opening price can't be determined because no orders would uncross. In that case, the auction is extended. The extension time is set by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.auction.minimumDuration" />. At the end of each extension time, the system looks for orders that would uncross.
 
 When a market leaves its opening auction, it will use the mid-price within the range of auction bids that would result in the highest trade volume for its normal trading mode. For example, if the volume maximising range is 98-102, the market would price all trades in the uncrossing at 100. The order book would then be uncrossed at that price and the trades follow the normal flow.
 
 When a [successor market](../governance/market.md#propose-a-successor-market) leaves its opening auction, the insurance pool fraction (multiplied by the parent market's insurance pool balance) that was defined in its market proposal is transferred to the successor market's insurance pool.
 
 ### Auction type: Protective
-Sometimes low liquidity and/or a large quantity of order volume can cause a market's price to diverge from the true price. The Vega protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be. The market's risk model and price monitoring settings are used to determine what the boundaries are between small, acceptable moves and large, unrealistic ones.
+Sometimes low liquidity and/or a large quantity of order volume can cause a market's price to diverge from the true price. The protocol is designed to assume that relatively small moves are 'real' and that larger moves might not be. The market's risk model and price monitoring settings are used to determine what the boundaries are between small, acceptable moves and large, unrealistic ones.
 
 If a price move breaches the price monitoring bounds, a market will go into a price monitoring auction.
 
@@ -70,7 +69,7 @@ If a price move breaches the price monitoring bounds, a market will go into a pr
 A market will go into a protective auction if generating a trade would result in a price that is larger than the theoretical bounds implied by the risk model, and the market's price monitoring settings. The trade is not generated, the orders that instigated that trade remain on the order book, and the market goes into an auction.
 
 #### Exit from protective auction 
-A protective auction's exit depends on how large the price move was, and relies on the market's risk model. For a relatively (contextually) small price move, it would be as long as <NetworkParameter frontMatter={frontMatter} param="market.auction.minimumDuration" hideName={true} />. The market's risk model informs  how many multiples of that time the auction would be extended by.
+A protective auction's exit depends on how large the price move was, and relies on the market's risk model. For a relatively (contextually) small price move, it would be as long as the value of the nework parameter <NetworkParameter frontMatter={frontMatter} param="market.auction.minimumDuration" />. The market's risk model informs how many multiples of that time the auction would be extended by.
 
 If no one places orders in the protective auction, the auction is exited and the original order is executed.  
 

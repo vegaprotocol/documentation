@@ -1,7 +1,6 @@
 ---
 sidebar_position: 5
 title: Market protections
-vega_network: TESTNET
 hide_title: false
 description: Read about how markets can trade safely, pseudonymously.
 ---
@@ -16,12 +15,14 @@ Margin calculations take into account the probability of the liquidation value o
 
 Some of those measures include price monitoring and frequent mark to market calculations.
 
+<!--
 :::warning A note on risk
 
 Derivatives markets are financially risky, by design. If a market has no liquidity, it won't be possible to get out of a position.
 
-Vega is not a retail or brokerage platform with third-parties to guarantee positions can always be exited. Vega provides a protocol for users to create markets that put traders directly in the market, with incentives built into the protocol to maximise the potential that a trader can get out of a position quickly. This, however, is not a guarantee.
+Vega is not software for a retail or brokerage platform with third-parties to guarantee positions can always be exited. Vega provides a protocol for users to create markets that put traders directly in the market, with incentives built into the protocol to maximise the potential that a trader can get out of a position quickly. This, however, is not a guarantee.
 :::
+-->
 
 ## Price monitoring
 The dynamics of market price movements mean that prices don't always represent the participants' true average view of the price, but are instead artefacts of the market microstructure. 
@@ -44,7 +45,7 @@ Each trigger contains:
 * *Probability*: The probability level for price projection. For example, a value of 0.95 will result in a price range such that over the specified horizon, the prices observed in the market should be in that range 95% of the time
 * *Auction extension*: Auction extension duration in seconds. Should the price breach its theoretical level over the specified horizon at the specified probability level, the market will continue in auction for the time specified
 
-If the market did not have any triggers specified in its market proposal, then the default triggers will be used (defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" hideValue={true} />). If the triggers are set to an empty array, either explicitly or if they are omitted and that's what the network parameter is set to, then price monitoring is effectively switched off, and the market will never go into a protective auction.
+If the market did not have any triggers specified in its market proposal, then the default triggers will be used (defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.monitor.price.defaultParameters" />). If the triggers are set to an empty array, either explicitly or if they are omitted and that's what the network parameter is set to, then price monitoring is effectively switched off, and the market will never go into a protective auction.
 
 In case of multiple monitoring triggers, each trigger is checked separately and the resulting protective auction length will be the sum of auction durations from all the triggers that were breached.
 

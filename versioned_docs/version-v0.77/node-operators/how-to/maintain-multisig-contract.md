@@ -10,11 +10,11 @@ import TabItem from '@theme/TabItem';
 import EthAddresses from '@site/src/components/EthAddresses';
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-The [Multisig Control](../../api/bridge/interfaces/IMultisigControl.md) contract contains a set of signers whose signatures are required to complete actions on the Ethereum bridge. The set of signers on the contract should match the set of consensus validators in the network. As validators join or leave the network and the set of consensus validators on the Vega network changes, the signer set on the Multisig Control contract must be updated alongside those changes to maintain the security of the bridge.
+The [Multisig Control](../../api/bridge/interfaces/IMultisigControl.md) contract contains a set of signers whose signatures are required to complete actions on the Ethereum bridge. The set of signers on the contract should match the set of consensus validators in the network. As validators join or leave the network and the set of consensus validators on a network changes, the signer set on the Multisig Control contract must be updated alongside those changes to maintain the security of the bridge.
 
 ## Identifying when to update the contract
 
-The consensus set of validators on the Vega network can change because of the following:
+The consensus set of validators on a network can change because of the following:
 * The amounts staked to validators change such that a consensus validator is demoted and replaced by a standby validator with more stake
 * A consensus validator is showing poor performance and they are demoted and replaced by a more performant standby validator
 * The value of the network parameter <NetworkParameter frontMatter={frontMatter} param="network.validators.tendermint.number" hideValue={true} /> changes, causing the size of the consensus set to increase or decrease
@@ -40,7 +40,7 @@ Seeing any validator with the above combination of ranking-score statuses means 
 ## How to update the contract
 
 To update the multisig contract by adding or removing a validator, there are two steps:
-- Send an `IssueSignatures` transaction into the Vega network to prompt it to issue signatures to add/remove a signer. This signature bundle can be retrieved from a data node
+- Send an `IssueSignatures` transaction into a network to prompt it to issue signatures to add/remove a signer. This signature bundle can be retrieved from a data node
 - Submit that signaure bundle to the Multisig Control contract on Ethereum to update the contract
 
 
@@ -48,9 +48,9 @@ To update the multisig contract by adding or removing a validator, there are two
 If you are a node operator and supplied a `--submitter-address` when announcing your node to the network, then signature bundles will be issued automatically and the first step can be skipped.
 :::
 
-### Getting the Vega network to issue signatures
+### Getting the network to issue signatures
 
-To get the Vega network to generate a signature bundle that can be used to add/remove a validator from the multisig contract the following CLI command can be used
+To get the network to generate a signature bundle that can be used to add/remove a validator from the multisig contract the following CLI command can be used
 ```shell
 vega wallet transaction send --network NETWORK-NAME --wallet WALLET-NAME --pubkey PUBKEY TRANSACTION
 '{"issueSignatures": {"submitter": "ETH_ADDRESS", "validator_node_id": "NODE_ID", "kind": "NODE_SIGNATURE_KIND_ERC20_MULTISIG_SIGNER_ADDED"}}'

@@ -1,17 +1,13 @@
 ---
 sidebar_position: 5
 title: Validator nodes
-vega_network: TESTNET
 hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
-import Topic from '/docs/topics/_topic-staking.mdx'
-
-<Topic />
 
 # Validator nodes
-The Vega network is operated by a number of independent validators, who each run a validator node, and may also run data nodes. 
+Networks running the Vega software can be operated by a number of independent validators, who each run a validator node, and may also run data nodes. 
 
 There are three types of validating nodes: consensus validators, standby validators, and candidate validators. 
 
@@ -36,13 +32,13 @@ Consensus validators are chosen based their [validator scores](validator-scores-
 ## Standby validators
 Standby (also called ersatz) validators do not contribute to the chain, but are set up to join the consensus validator set if there are free slots for consensus validators, created by a consensus validator leaving the network, or more slots being made available through governance. As standby validators don’t participate in consensus, they don’t need to be registered with the multisig contract.
 
-Standby validators, and the tokenholders who stake them, receive a share of rewards. The rewards for standby validators are calculated and penalised in the same way as consensus validators, except scaled down based on the scaling factor <NetworkParameter frontMatter={frontMatter} param="network.validators.ersatz.rewardFactor" />.
+Standby validators, and the tokenholders who stake them, receive a share of rewards. The rewards for standby validators are calculated and penalised in the same way as consensus validators, except scaled down based on the scaling factor < frontMatter={frontMatter} param="network.validators.ersatz.rewardFactor" />.
 
 ### How standby can be promoted to consensus
 
 A standby validator can be promoted to take a consensus validator spot, if there is a standby validator with a better validator score than an existing consensus validator. 
 
-Consensus validators have their validator scores scaled to recognise their incumbent status: (1 + <NetworkParameter frontMatter={frontMatter} param="network.validators.incumbentBonus" hideName={true} />), therefore a standby validator must surpass this boosted score to become consensus. This bonus is applied to avoid cases where validators with very similar stake could flip back and forth in status each epoch. 
+Consensus validators have their validator scores scaled to recognise their incumbent status: (1 + <NetworkParameter frontMatter={frontMatter} param="network.validators.incumbentBonus" />, a network parameter), therefore a standby validator must surpass this boosted score to become consensus. This bonus is applied to avoid cases where validators with very similar stake could flip back and forth in status each epoch. 
 
 If a node is eligible for promotion, it must forward a defined number of ethereum events and be added to the multisig contract to complete the process.
 
@@ -53,7 +49,7 @@ The number of standby validators on the network is set as a multiple of the numb
 
 To become a standby validator, a candidate (described as 'Pending' in the APIs) validator must:
 
-1. Have enough self-stake: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} /> 
+1. Have enough self-stake: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" /> set by a network parameter 
 2. Submit a transaction using their keys, announcing they want to validate, and receive a response that the network has verified key ownership
 
 If there are free slots for one or more standby validators, they are added as standby validators in the next epoch. If a node that submits the transaction to join has a higher validator score than the lowest scoring standby validator, then it will become a standby validator and the lowest scoring standby validator is removed from the standby set. As with consensus validators, if there are no free slots then only one node can replace a standby validator per epoch.
@@ -69,14 +65,14 @@ Any other nodes on the network are known as candidate (pending) validators. Node
 When assessing which nodes will be promoted to standby, and potentially later consensus status, if two validators have the same performance score then the network places higher the one that has been validator for longer. Similarly if two validators who joined at the same time have the same score, the priority goes to the one who submitted the transaction to become validator first.
 
 ## Becoming a validator
-A node operator that wants to express interest in running a validator node for Vega needs to do the following:
+A node operator that wants to express interest in running a validator node needs to do the following:
 
-1. Start a Vega node, including the [associated infrastructure](../../node-operators/index.md) and replay the chain
+1. Start a node, including the [associated infrastructure](../../node-operators/index.md) and replay the chain
 2. Submit a transaction using their keys, announcing they want to validate, and receive a response that the network has verified key ownership
-3. Self-stake to their validator Vega key at least <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} />
+3. Self-stake to their validator Vega key at least the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" />
 4. Send heartbeat transactions to show that the node is online and connected to the network - this is done automatically if the node is set up correctly
 5. See and forward enough Ethereum transactions events to be eligible for promotion
-6. Wait for others to nominate them. Validators are advised to introduce themselves to the Vega community on [Discord ↗](https://vega.xyz/discord), and create a profile on the [forums ↗](https://community.vega.xyz/c/mainnet-validator-candidates/23)
+6. Wait for others to stake to them.
 
 :::note Read more
 [Node operator guides](../../node-operators/index.md): See the full set of instructions for setting up and running a node.

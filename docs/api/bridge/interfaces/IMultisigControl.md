@@ -12,7 +12,7 @@ View Source: [contracts/IMultisigControl.sol](https://github.com/vegaprotocol/Mu
 
 **IMultisigControl**
 
-Implementations of this interface are used by the Vega network to control smart contracts without the need for Vega to have any Ethereum of its own.
+Implementations of this interface are used to control smart contracts without the need for a network to have any Ethereum of its own.
 
 ## SignerAdded
 

@@ -167,7 +167,7 @@ Vega relies on accounts to ensure funds are never lost or double spent. The amou
 | Understanding the concepts: accounts | [Accounts](../concepts/assets/accounts.md) | 
 
 ## Governance proposals and voting
-Governance proposals used to add new assets and markets, as well as to suggest changes to assets, markets, and network parameters, as well as off-chain suggestions. VEGA tokens need to be associated to the Vega public key that wants to take part in governance.
+Governance proposals used to add new assets and markets, as well as to suggest changes to assets, markets, and network parameters, as well as off-chain suggestions. Governance tokens need to be associated to the Vega public key that wants to take part in governance.
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |
@@ -175,14 +175,14 @@ Governance proposals used to add new assets and markets, as well as to suggest c
 | Get detailed information about a specific governance proposal using its ID | [Proposal](../api/rest/data-v2/trading-data-service-get-governance-data.api.mdx) | `GET /api/v2/governance`
 |||
 | How to submit proposals using command line | [Submitting proposals](../tutorials/proposals/index.md) | |
-| Understanding the concepts: Governance | [Vega governance](../concepts/governance/index.md) | 
+| Understanding the concepts: Governance | [Governance](../concepts/governance/index.md) | 
 
 ### Governance token
-VEGA token are used for taking part in network, market, asset and freeform governance, and to secure the network by nominating validators that run the network.
+A governance token is used for taking part in network, market, asset and freeform governance, and to secure a network by nominating validators that run it.
 
 | Description | Documentation | Call |
 | ----------- | ----------- | ----------- |
 | See a list of votes | [List votes](../api/rest/data-v2/trading-data-service-list-votes.api.mdx) | `GET /api/v2/votes` |
 |||
 | How to nominate validators using the smart contracts | [Stake tokens](../tutorials/assets-tokens/staking-tokens.md) | 
-| Understand the concepts: Governance | [Vega governance](../concepts/governance/index.md) | 
+| Understand the concepts: Governance | [Governance](../concepts/governance/index.md) | 

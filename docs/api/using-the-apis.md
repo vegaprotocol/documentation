@@ -117,11 +117,11 @@ Moreover, these smart contract bridges operate just like any other smart contrac
 * [Multisig Control](./bridge/contracts/MultisigControl.md)
   * Handles verification of orders signed by a threshold of validators. 
 * [Staking Bridge](./bridge/contracts/Vega_Staking_Bridge.md)
-  * Allows users to deposit and withdraw VEGA tokens for staking. The VEGA tokens are always controlled exclusively by the tokenholder, even when on the Staking Bridge. Stake can be removed at any time by the tokenholder.
+  * Allows users to deposit and withdraw governance tokens for staking. The governance tokens are always controlled exclusively by the tokenholder, even when on the Staking Bridge. Stake can be removed at any time by the tokenholder.
 * VEGA Token contract
   * ERC20 token smart contract.
-* Vesting contract
-  * All VEGA tokens are issued through this. Handles the linear vesting of VEGA tokens and allows users to stake VEGA they own (vested or not).
+
+For any smart contracts unique to a project using the Vega software, refer to the operator's documentation.
 
 ### Ethereum addresses
 <EthAddresses frontMatter={frontMatter} />

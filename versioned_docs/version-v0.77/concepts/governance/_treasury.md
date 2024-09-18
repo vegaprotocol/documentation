@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: Vega treasury
-vega_network: TESTNET
+vega_network: MAINNET
 hide_title: false
 description: How you can allocate treasury funds.
 ---
@@ -13,13 +13,13 @@ Treasury assets can be used to fund trading rewards, team competitions, grants, 
 
 Anyone with enough VEGA tokens can vote and raise proposals to use treasury assets based on discussions in the community.
 
-* To vote on a proposal, you usually need at least 1 VEGA, but the amount may vary per proposal type. Check the [block explorer](https://explorer.fairground.wtf/network-parameters) for each `minVoterBalance`.
-* How many VEGA you need to submit a proposal depends on the proposal type. Check the [block explorer](https://explorer.fairground.wtf/network-parameters) for each `minProposerBalance`.
+* To vote on a proposal, you usually need at least 1 VEGA, but the amount may vary per proposal type. Check the [block explorer](https://explorer.vega.xyz/network-parameters) for each `minVoterBalance`.
+* How many VEGA you need to submit a proposal depends on the proposal type. Check the [block explorer](https://explorer.vega.xyz/network-parameters) for each `minProposerBalance`.
 
 ## Treasury basics
 The network treasury can hold VEGA tokens and other assets, which can be used by the community via on-chain governance to grow and support the development of the Vega software and network. 
 
-### VEGA token details
+###  details
 VEGA token contract address (Ethereum mainnet): `0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e` ([view on Etherscan ↗](https://etherscan.io/token/0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e))
 
 Vega asset ID: `d1984e3d365faa05bcafbe41f50f90e3663ee7c0da22bb1e24b164e9532691b2`

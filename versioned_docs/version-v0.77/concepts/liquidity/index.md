@@ -1,6 +1,6 @@
 ---
 sidebar_position: 5
-title: Liquidity on Vega
+title: Liquidity
 hide_title: false
 ---
 import DocCardList from '@theme/DocCardList';

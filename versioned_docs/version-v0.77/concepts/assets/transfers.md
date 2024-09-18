@@ -13,7 +13,7 @@ Use transfers to move assets from one Vega key to another, or from a Vega key to
 
 Transfers from certain accounts need to be proposed through [governance](#governance-initiated-transfers), because moving assets to/from those asset pools needs to be agreed by the community.
 
-Anyone with a Vega public key and assets can set up a transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough VEGA tokens can propose assets be transferred from those specific network accounts.
+Anyone with a Vega public key and assets can set up a transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough tokens can propose assets be transferred from those specific network accounts.
 
 **Transfers can incur a fee.** How much you pay depends on if you've already paid or accrued trading fee revenue in past epochs. The trading fees you've paid or accrued act like a discount balance that's subtracted from with every transfer. If you use up your fee discount balance, you'll pay the full transfer fee amount.
 
