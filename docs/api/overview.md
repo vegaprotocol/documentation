@@ -88,5 +88,4 @@ To learn more about developing with Vega software, read through the following to
 * **[Using the APIs](./using-the-apis.md)**: All the API frameworks and smart contracts in one place, plus tips on connecting.
 * **[Architecture](./architecture.md)**: Explore the architecture of the Vega protocol.
 * **[Building blocks](./useful-endpoints.md)**: The basic building blocks you should know about.
-* **[Public servers](./public-servers.md)**: Public server URLs for interacting with the APIs.
 * **[Tutorials](../tutorials/index.md)**: Each tutorial includes info about the protocol that you need to use the guide, as well as instructions on how to interact with scripts, API calls, or other code.

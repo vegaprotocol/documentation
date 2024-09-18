@@ -14,8 +14,6 @@ import EthAddresses from '@site/src/components/EthAddresses';
 ## Connecting to the APIs
 As most of the APIs are designed to be used for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. 
 
-The public servers differ between testnet and mainnet, as do the network configurations your Vega-compatible wallet needs in order to connect. See the [public servers page](./public-servers.md) for details. 
-
 To use the Vega APIs, a developer will need access to a network-compatible instance of the relevant software, depending on their goals: core node, data node, and/or Vega Wallet.
 
 **Mainnet**: Consensus validators may provide public servers for accessing the mainnet APIs, however that does not mean they should be relied upon for constant uptime and full access to all APIs. Each Vega Wallet release for mainnet wallet is pre-configured with any publicly announced nodes at the time of release.
