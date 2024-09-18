@@ -18,7 +18,7 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <Link className="cta" href={`${base}/intro`}>New to Vega?</Link>
+        <Link className="cta" href={`${base}/concepts/new-to-vega`}>New to Vega?</Link>
       </div>
     </header>
   );
@@ -70,7 +70,6 @@ export default function Home() {
             <h2>Getting started</h2>
             <p>Get to know the Vega framework and what's coming up next.</p>
             <ul>
-              <li><Link href={`${base}/intro`}>Vega basics</Link></li>
               <li><Link href={`${base}/concepts/new-to-vega`}>About the protocol</Link></li>
               <li><Link className="external" href="https://github.com/orgs/vegaprotocol/projects/114/views/4" target="_blank">Roadmap</Link></li>
             </ul>
@@ -79,7 +78,6 @@ export default function Home() {
             <h2>Trading</h2>
             <p>Place orders on derivatives markets with a trading dApp for Vega software. You'll need a Vega Wallet.</p>
             <ul>
-              <li><Link className="external" href="https://console.vega.xyz/" target="_blank">Mainnet trading dApp</Link></li>
               <li><Link className="external" href="https://console.fairground.wtf/" target="_blank">Testnet trading dApp</Link></li>
               <li><Link to={`${base}/tools/vega-wallet/`}>Vega Wallet software</Link></li>
             </ul>

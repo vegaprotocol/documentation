@@ -10,7 +10,3 @@ import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 [Vega Console ↗](https://console.fairground.wtf) is a reference interface designed to use the Vega protocol software to interact with markets. Anyone can host it on IPFS.
 
 To run Console locally, check out [the Community Guides section for instructions](../tutorials/community-created#self-hosting-console).
-
-Otherwise, see below to learn more.
-
-<DocCardList items={useCurrentSidebarCategory().items}/>
