@@ -39,12 +39,6 @@ module.exports = {
         },
         {
           type: "doc",
-          docId: "intro/index",
-          label: "Intro",
-          position: "left",
-        },
-        {
-          type: "doc",
           docId: "concepts/new-to-vega",
           label: "Concepts",
           position: "left",
@@ -88,10 +82,6 @@ module.exports = {
           title: "Vega Protocol",
           items: [
             {
-              label: "Vega Console",
-              to: "http://console.vega.xyz/",
-            },
-            {
               label: "Website",
               to: "http://vega.xyz/",
             },
@@ -109,7 +99,7 @@ module.exports = {
           title: "Status",
           items: [
             {
-              label: "Mainnet incidents",
+              label: "Incident reports",
               to: "https://blog.vega.xyz/tagged/vega-incident-reports",
             },
             {
@@ -140,10 +130,6 @@ module.exports = {
             {
               label: "Forum",
               to: "https://community.vega.xyz/",
-            },
-            {
-              label: "Twitch",
-              to: "https://www.twitch.tv/vegaprotocol",
             },
             {
               label: "YouTube",
