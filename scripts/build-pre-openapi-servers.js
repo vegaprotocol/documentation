@@ -15,10 +15,10 @@ specs.forEach(s => {
   if (!!s.match('blockexplorer')) {
     console.log('**SPECIAL CASE FOR BLOCK EXPLORER: be**')
     spec.servers = [ {
-      url: '{Server}',
+      url: '{ExplorerServer}',
       description: 'Block Explorer',
       variables: {
-        Server: {
+        ExplorerServer: {
           default: 'https://be.testnet.vega.xyz/rest',
           description: 'Base URL of the Block Explorer'
         }
@@ -27,20 +27,20 @@ specs.forEach(s => {
   } else if (!!s.match('wallet')) {
     console.log('**SPECIAL CASE FOR wallet: localhost**')
     spec.servers = [{
-      url: '{Server}',
+      url: '{WalletServer}',
       description: 'Local wallet',
       variables: {
-      Server: {
+      WalletServer: {
         default: 'http://localhost:1789/api',
         description: 'Base URL of the wallet'
       }
     }}]
   } else {
     spec.servers = [{
-        url: '{Server}',
+        url: '{ApiServer}',
         description: 'Data node',
         variables: {
-          Server: {
+          ApiServer: {
             default: 'https://api.testnet.vega.rocks',
             description: 'Base URL of the data node',
           }
