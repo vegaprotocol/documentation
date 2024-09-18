@@ -3,7 +3,7 @@ title: Setting up a Vega node
 hide_title: false
 sidebar_position: 1
 ---
-The Vega network runs on a set of publicly maintained computers. A Vega network needs validator nodes that take part in consensus, as well as data nodes that receive and store network events that can be queried.
+The Vega node software supports creating a network run on a set of publicly maintained computers. The network needs validator nodes that take part in consensus, as well as data nodes that receive and store network events that can be queried.
 
 The more people run validators, the more robust the network will be. This is however limited by scalability of the underlying consensus protocol, and also requires some diversity properties (e.g., not all validators using the same cloud provider).
 
@@ -16,7 +16,7 @@ You must be able to handle and act on technical issues with your node. Being a v
 ## Requirements
 **[Security, infrastructure, self-stake and active communication](requirements/index.md)**: Prospective validators on Vega must meet the requirements for their node infrastructure as well as building trust with the community.
 
-**[Validator node overview](../concepts/vega-chain/validator-nodes.md)**: Before beginning the process, learn how validator nodes work on Vega. Explore the different types of validator nodes that run a Vega network, how they're chosen, and what impact their scores have on their status.
+**[Validator node overview](../concepts/vega-chain/validator-nodes.md)**: Before beginning the process, learn how validator nodes work on Vega. Explore the different types of validator nodes that run a network, how they're chosen, and what impact their scores have on their status.
 
 **[Data node overview](../concepts/vega-chain/data-nodes.md)**: Read about what a data node does, how the architecture is structured, how the data is stored and how the APIs work.
 

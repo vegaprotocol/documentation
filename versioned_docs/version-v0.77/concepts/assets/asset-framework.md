@@ -54,7 +54,7 @@ ERC-20 is a ubiquitous smart contract interface that allows users to mint, issue
 ![ERC-20 asset bridge diagram](/img/concept-diagrams/erc-20-bridge.jpg)
 
 ## Asset governance
-Assets need to be proposed and pass a governance vote before they can be used on the Vega network. After a new asset vote passes, the change has to be submitted to the asset bridge on Ethereum. Until it has been submitted, no one can start depositing that asset. 
+Assets need to be proposed and pass a governance vote before they can be used on a network. After a new asset vote passes, the change has to be submitted to the asset bridge on Ethereum. Until it has been submitted, no one can start depositing that asset. 
 
 :::note Read more
 * [Concept: Asset governance](../governance/asset.md)
@@ -70,6 +70,6 @@ See the [settlement](../trading-on-vega/settlement.md) page for information on h
 See the section on [liquidity provision](../liquidity/index.md) for details on the liquidity provision mechanics.
 
 ## On-chain network treasury 
-Some of the rewards for nominating a validator will be distributed from the on-chain network treasury, in the form of VEGA tokens.
+Rewards for nominating a validator could be distributed from an on-chain network treasury.
 
-The on-chain network treasury is a set of accounts that are funded by parties, deposits, or by direct transfers to allocate funds for rewards, grants, and other initiatives.
+An on-chain network treasury is a set of accounts that are funded by parties, deposits, or by direct transfers to allocate funds for rewards, grants, and other initiatives.

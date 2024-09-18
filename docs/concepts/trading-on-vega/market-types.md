@@ -1,20 +1,15 @@
 ---
 sidebar_position: 1
-title: Markets on Vega
-vega_network: TESTNET
+title: Markets
 hide_title: false
 description: Understand the products supported by the network.
 ---
 
-Markets supported by the Vega network are cash-settled. When a market expires or a position is closed, the seller does not deliver the underlying asset, but rather transfers the associated cash amount in market's settlement asset.
+Markets are cash-settled. When a market expires or a position is closed, the seller does not deliver the underlying asset, but rather transfers the associated cash amount in market's settlement asset.
 
-All markets created using Vega software are proposed through governance, by community members. Market proposals that pass a governance vote are then enacted and can be traded on.
+All markets created on a network using Vega software are proposed through governance. Market proposals that pass a governance vote are then enacted and can be traded on.
 
-The network supports two types of derivatives markets: futures markets that expire, and perpetual futures markets that do not expire. It also supports spot markets.
-
-:::tip Try it out
-[Console](https://console.fairground.wtf): See all the currently active markets.
-:::
+The software supports creating two types of derivatives markets: futures markets that expire, and perpetual futures markets that do not expire. It also supports spot markets.
 
 ## Futures
 Cash-settled futures markets allow for placing orders and taking margined positions to speculate on what the value of an underlying asset will be at a specific future date.

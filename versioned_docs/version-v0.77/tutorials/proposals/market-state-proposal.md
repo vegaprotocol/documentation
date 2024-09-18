@@ -2,7 +2,7 @@
 sidebar_position: 2
 title: Change market state
 hide_title: true
-vega_network: MAINNET
+vega_network: TESTNET
 toc: true
 keywords:
   - proposal
@@ -27,10 +27,8 @@ Below, learn how to submit a governance proposal to:
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
-* Familiarity with [market governance](../../concepts/governance/market.md) on Vega
-
-<!--You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.-->
+* A minimum of whichever is larger, associated with that public key: based on the network parameter values for <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" />
+* Familiarity with [market governance](../../concepts/governance/market.md)
 
 ## Anatomy of the proposal types
 
@@ -38,8 +36,8 @@ You will need:
 
 | Field                 | Description           |
 | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `closingTimestamp`    | Timestamp (Unix time in seconds) when voting closes for this proposal. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) |
-| `enactmentTimestamp ` | Timestamp (Unix time in seconds) when proposal gets enacted (if passed). The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string)         |
+| `closingTimestamp`    | Timestamp (Unix time in seconds) when voting closes for this proposal. The chosen time must be between network parameter values: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxClose" /> after the proposal submission time. (int64 as string) |
+| `enactmentTimestamp ` | Timestamp (Unix time in seconds) when proposal gets enacted (if passed). The chosen time must be between network parameter values <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minEnact" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.maxEnact" /> after `closingTimestamp`. (int64 as string)         |
 
 ## Submitting proposals in a batch
 
@@ -56,7 +54,7 @@ The proposal to suspend an open market requires:
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
+* JSON example
 * Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
@@ -93,7 +91,7 @@ proposalSubmission: {
 
 </TabItem>
 
-<TabItem value="json-suspend" label="Governance dApp (JSON)">
+<TabItem value="json-suspend" label="JSON">
   <JSONInstructions />
 
 ```json
@@ -122,7 +120,7 @@ proposalSubmission: {
   <TerminalInstructions />
 
  ```bash
-vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '
+vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '
 {
   "proposalSubmission": {
  "rationale": {
@@ -148,7 +146,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
     <TerminalInstructions />
 
 ```bash
-vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
+vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
 "{ ^
  \"proposalSubmission\": { ^
  \"rationale\": { ^
@@ -183,7 +181,7 @@ The proposal to resume an open market requires the `marketID` for the one to sus
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
+* JSON example
 * Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
@@ -219,7 +217,7 @@ proposalSubmission: {
 ```
 
 </TabItem>
-<TabItem value="json-resume" label="Governance dApp (JSON)">
+<TabItem value="json-resume" label="JSON">
   <JSONInstructions />
 
 ```json
@@ -248,7 +246,7 @@ proposalSubmission: {
   <TerminalInstructions />
 
 ```bash
-vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
+vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
 "proposalSubmission": {
   "rationale": {
   "title": "Resume suspended market ORANGES2023",
@@ -273,7 +271,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
   <TerminalInstructions />
 
 ```bash
-vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
+vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
 "{ ^
  \"proposalSubmission\": { ^
  \"rationale\": { ^
@@ -308,7 +306,7 @@ It also requires a final settlement price, with enough digits to account for the
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
+* JSON example
 * Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
@@ -346,7 +344,7 @@ proposalSubmission: {
 ```  
 
 </TabItem>
-<TabItem value="json-terminate" label="Governance dApp (JSON)">
+<TabItem value="json-terminate" label="JSON">
   <JSONInstructions />
 
 ```json
@@ -376,7 +374,7 @@ proposalSubmission: {
   <TerminalInstructions />
 
 ```bash
-vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
+vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
  "proposalSubmission": {
  "rationale": {
   "title": "Terminate market ORANGES2023",
@@ -402,7 +400,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
   <TerminalInstructions />
 
 ```
-vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
+vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
 "{ ^
  \"proposalSubmission\": { ^
  \"rationale\": { ^
@@ -430,13 +428,9 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
 ## Voting
 All proposals are voted on by the community. 
 
-Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
+To vote, community members need, at a minimum, the larger of the following network parameters' values: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minVoterBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" /> associated to their Vega key.
 
-To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minVoterBalance" formatter="governanceToken" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated to their Vega key.
-
-Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredParticipation" formatter="percent" hideName={true} />, a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredMajority" formatter="percent" hideName={true} />, as well as a percentage of liquidity provider votes of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredMajorityLP" formatter="percent" hideName={true} /> so having community support is essential. 
-
-Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) of the value of network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredParticipation" />, a majority determined by the value of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredMajority" />, as well as a percentage of liquidity provider votes determined by the value of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.requiredMajorityLP" />. 
 
 ## Enactment
 If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.

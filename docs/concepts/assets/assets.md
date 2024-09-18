@@ -1,7 +1,6 @@
 ---
 sidebar_position: 1
 title: Collateral management
-vega_network: TESTNET
 hide_title: false
 ---
 

@@ -1,27 +1,16 @@
 ---
 sidebar_position: 6
 title: Validator scores and rewards
-vega_network: MAINNET
+vega_network: TESTNET
 hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
-import Topic from '/docs/topics/_topic-staking.mdx'
-
-<Topic />
 
 # Validator scoring and rewards
-Validators and nominators both receive revenue for securing the network. The amount, rewarded as VEGA and infrastructure fees, depends on factors including how much stake is nominated to the validator.
+Validators and nominators both receive revenue for securing a network running Vega software. The amount can depend on factors including how much stake is nominated to the validator.
 
-**To be considered for staking rewards, a tokenholder must associate VEGA to a Vega key and nominate one or more validators.**
-
-:::info Try it out
-**[Governance dApp](https://governance.fairground.wtf)**: Associate testnet tokens and nominate validators. Staking rewards are paid after each epoch ends.
-
-Staking rewards are vested, and then must be withdrawn to an Ethereum wallet, and then associated to a Vega wallet, before they can be staked.
-:::
-
-In each [epoch](./network.md#epochs), rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. The proportion of staking rewards distributed to nominators is <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
+In each [epoch](./network.md#epochs), rewards are distributed among validators in proportion to the number of tokens they represent (i.e., their total stake). The total stake includes a validator's own stake and the tokens nominated to that validator. Of this reward, a fixed amount is distributed among the tokenholders the validator represents. The proportion of staking rewards distributed to nominators is determined by a network parameter: <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" />.
 
 The reward received by each validator, and therefore passed onto their nominators at the end of each epoch, is based on their validator scores. The score accounts for any penalties. However, there is no token slashing, i.e., a validator or a tokenholder will not lose tokens through any validator actions or poor performance.
 
@@ -45,7 +34,7 @@ See below for how the validator score is calculated.
 
 > `min_validators` = value of the network parameter that defines the minimum viable number of consensus validators to run the network
 > 
-> `num_validators` = actual number of validators running nodes on Vega
+> `num_validators` = actual number of validators running nodes
 > 
 > `comp_level` = value of the network parameter that defines the competition level¹
 > 
@@ -53,7 +42,7 @@ See below for how the validator score is calculated.
 > 
 > `optimal_stake` = total nomination divided by the greater of `min_validators`, OR (`num_validators` / `comp_level`): Optimal stake is how much stake each validator is expected to have, at most
 > 
-> `optimal_stake_multiplier` = value defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.optimalStakeMultiplier" hideValue={true} />), which indicates how many times the optimal stake a validator is penalised for, if they are further than the optimal stake¹
+> `optimal_stake_multiplier` = value defined by network parameter <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.optimalStakeMultiplier" />), which indicates how many times the optimal stake a validator is penalised for, if they are further than the optimal stake¹
 > 
 >`validator_stake_i` = stake of the given validator whose score is being calculated
 >
@@ -130,7 +119,7 @@ If any *non-consensus* validator is in the multisig, then all consensus validato
 
 The multisig score is used in the calculation of rewards. For each validator that gets a multisig score of zero, **no staking rewards** are paid to that consensus validators and their nominators until the epoch following the one in which the configuration issue is resolved. 
 
-This mechanism is designed to ensure that the validators are incentivised to keep the multisig control up to date as validators join and leave, because if it is not correctly configured, the Vega chain cannot interact with the Ethereum chain and crucial operations like associating/staking tokens will not work.
+This mechanism is designed to ensure that the validators are incentivised to keep the multisig control up to date as validators join and leave, because if it is not correctly configured, the relevant chain cannot interact with the Ethereum chain and crucial operations like associating/staking tokens will not work.
 
 Standby and candidate validators always receive a multisig score of 1 since they are not required to be in the multisig list.
 
@@ -142,17 +131,13 @@ To correct the configuration, any validator or tokenholder can submit a transact
 
 ## Reward allocation
 
-:::caution Overstaking
-The Vega network does not prevent tokenholders from nominating validators with an amount that would cause a node to be overstaked. Tokenholders must actively manage their stake and keep track of the nodes they support.
-:::
-
 At the end of each epoch, staking rewards are distributed to validators, and then their nominators. The full pool of staking rewards is allocated to validators, with each validator receiving `total rewards` x `normalised score`.
 
 Each validator keeps a share of these rewards, where that share is:
 
-1 minus the nominator (delegator) share of <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" hideName={true} />.
+1 minus the nominator (delegator) share of network parameter value <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.delegatorShare" />.
 
-If the validator does not have sufficient self-stake as defined by <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" formatter="governanceToken" suffix="tokens" hideName={true} /> then it will not receive these rewards and they are returned to the reward pool.
+If the validator does not have sufficient self-stake as defined by network parameter <NetworkParameter frontMatter={frontMatter} param="reward.staking.delegation.minimumValidatorStake" /> then it will not receive these rewards and they are returned to the reward pool.
 
 The remaining rewards are then distributed to the tokenholders nominating the validator node in proportion to their share of nomination on that node.
 

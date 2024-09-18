@@ -13,7 +13,7 @@ Use transfers to move assets from one Vega key to another, or from a Vega key to
 
 Transfers from certain accounts need to be proposed through [governance](#governance-initiated-transfers), because moving assets to/from those asset pools needs to be agreed by the community.
 
-Anyone with a Vega public key and assets can set up a transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough VEGA tokens can propose assets be transferred from those specific network accounts.
+Anyone with a Vega public key and assets can set up a transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough governance tokens for a network running the Vega software can propose assets be transferred from those specific network accounts.
 
 **Transfers can incur a fee.** How much you pay depends on if you've already paid or accrued trading fee revenue in past epochs. The trading fees you've paid or accrued act like a discount balance that's subtracted from with every transfer. If you use up your fee discount balance, you'll pay the full transfer fee amount.
 
@@ -55,7 +55,7 @@ While a party (public key) can have multiple transfers set up to move assets to 
 ## Cancel or amend transfers
 It's possible to cancel a recurring transfer, but not to amend. If you want to change your transfer, you'll need to cancel the existing transfer and submit a new one. Transfers initiated by governance will need to be cancelled by submitting a proposal to cancel the transfer.
 
-If the asset used to fund a recurring transfer is depleted, either because the funds have run out or it's less than the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" />` x quantum`, then the transfer is cancelled automatically. You'll have to set up a new transfer if you want to keep funding the key/account.
+If the asset used to fund a recurring transfer is depleted, either because the funds have run out or it's less than the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" />` x quantum`, then the transfer is cancelled automatically. You'll have to set up a new transfer if you want to keep funding the key/account.
 
 ## Governance-initiated transfers
 Assets being moved out of certain accounts requires community support, through a governance proposal and vote. Generally speaking, they're accounts that have assets moved into them after markets are settled, because of market protection movements, or entirely funded by community members that transfer assets into them. 

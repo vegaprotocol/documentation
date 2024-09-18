@@ -1,7 +1,6 @@
 ---
 sidebar_position: 3
 title: Margin and leverage
-vega_network: MAINNET
 hide_title: false
 description: How margin is calculated and used.
 ---
@@ -31,14 +30,6 @@ Cross margining is the default mode, so to use isolated margin you'll need to sw
 Overall, the margin tolerance of open orders and positions is determined by the market's risk model and market conditions. The larger the position and the more volatile the market, the greater the amount of margin that will need to be set aside. The volatility tolerance of the market is driven by the risk model.
 
 When placing order on a market, you can set your margin factor when using isolated margin, or the protocol will calculate the initial margin required, when using cross margining. The required funds will be moved into a margin account for that market. If your key's general account doesn't have enough in it to fund this, the order will be rejected.
-
-:::tip Try it out
-[Use Console ↗](https://console.fairground.wtf) to trade with cross margin or isolated margin. The leverage slider lets you set your isolated margin level.
-
-Or [use the update margin mode command](../../api/grpc/vega/commands/v1/commands.proto.mdx#updatemarginmode) to submit the transaction yourself.
-
-Switching between modes may change your margin requirements.
-:::
 
 ### Isolated margin
 To set the amount of leverage you want for an order, use isolated margin. Margin can be isolated per order and position with isolated margin mode. You choose how much to set aside for the lifetime of each order and position, per market, depending on how much leverage you want. That fraction of your order's notional size is moved to an order margin account.
@@ -75,7 +66,7 @@ The margin amount required for cross margining is recalculated every time markin
 :::
 
 ## Margin requirements
-The Vega protocol calculates margin levels, which are used to determine when a trader has the right amount, too much, or not enough margin set aside to support their position(s).
+The protocol calculates margin levels, which are used to determine when a trader has the right amount, too much, or not enough margin set aside to support their position(s).
 
 The margin levels try to ensure that a trader does not enter a trade that will be closed out immediately.
 
@@ -198,9 +189,6 @@ For those using cross margining, the network calculates the overall long / short
 
 The initial margin scaling factor for the market (α<sup>initial</sup>) is 1.2 so the amount of collateral that gets moved to the trader's margin account for the market is 1.2 x 5.42152 = 6.50582.
 
-#### Seen on Vega Console
-![Calculating margin on open orders - Console](/img/concept-diagrams/calculate-margin-open-orders-console.png "Calculating margin on open orders - Console")
-
 #### Queried using GraphQL
 ![Calculating margin on open orders - GraphQL](/img/concept-diagrams/calculate-margin-open-orders-graphQL.png "Calculating margin on open orders - GraphQL")
 
@@ -216,9 +204,6 @@ The following calculation takes into account slippage, as seen on an order book.
 Other margin levels are derived from the maintenance margin using the scaling factors that form part of the market configuration.
 
 Since the amount charged to trader's margin account upon order submission (6.50582 - see previous example) is still above the current (after the order gets filled and trader ends up with a short position of size 1) search level of 6.07964 = 1.1 x 5.52695, no further margin account balance changes are initiated.
-
-#### Seen on Vega Console
-![Calculating margin on open positions - Console](/img/concept-diagrams/calculate-margin-open-positions-console.png "Calculating margin on open orders - Console")
 
 #### Queried using GraphQL
 ![Calculating margin on open positions - GraphQL](/img/concept-diagrams/calculate-margin-open-positions-graphQL.png "Calculating margin on open orders - GraphQL")
@@ -251,7 +236,7 @@ How mark price is calculated is configured per market, and can be changed with a
 The current mark price algorithms that can be used in a market configuration are described below. The configuration can apply to mark price, and for perpetual futures markets, the internal price.
 
 ### Last traded price
-When the mark price is set to be the last traded price, this means it is set after each order transaction is processed from a sequence of transactions with the same timestamp, provided that at least <NetworkParameter frontMatter={frontMatter} param="network.markPriceUpdateMaximumFrequency" hideName="true" /> have elapsed since the last mark price update.
+When the mark price is set to be the last traded price, this means it is set after each order transaction is processed from a sequence of transactions with the same timestamp, provided that at least the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="network.markPriceUpdateMaximumFrequency" /> have elapsed since the last mark price update.
 
 For example, say the maximum frequency is set to 10 seconds.
 

@@ -1,7 +1,6 @@
 ---
 sidebar_position: 6
 title: Orders
-vega_network: MAINNET
 hide_title: false
 description: See the order types and when they're applicable for a market.
 ---
@@ -10,12 +9,9 @@ import NetworkParameter from '@site/src/components/NetworkParameter';
 
 An order is an instruction to buy or sell on a specific market, and it can go long or short on the market's price. Placing an order does not guarantee it gets filled.
 
-:::info Try it out
-**[Vega Console ↗](https://console.fairground.wtf)**: Place orders on markets on the Fairground network, which only uses testnet assets.
-:::
 
 ## Order data
-The information needed by Vega to process an order:
+The information needed to process an order:
 
 | Name           | Description                                                                    | How it's determined |
 |-----------|------------------------------------------------------------------------------------------|----------------|
@@ -33,7 +29,7 @@ The information needed by Vega to process an order:
 | [Order status](#order-status)	  | Whether an order is filled, partially filled, stopped or cancelled |Determined by network|
 | Reference | Unique order reference, used to retrieve an order submitted through consensus |Determined by network|
 | Remaining	  | How many units of the order have not been filled, if any                        |Determined by network|
-| Created at  | Vega date and time the order was created at                                     |Determined by network|
+| Created at  | Network date and time the order was created at                                     |Determined by network|
 | Rejection reason | If an order is rejected, this describes why                     |Determined by network|
 | [Version](#amend-an-order) | If a user amends an order, this increases by 1. You can fetch previous versions |Determined by network|
 | [Updated at](#amend-an-order) | If an order has been amended, when it was amended    |Determined by network|
@@ -51,7 +47,7 @@ If a market requires that orders are specified using integers, fractional order 
 ## Order types
 There are four order types available to traders: limit orders, market orders, stop orders, and pegged orders. One order type is automatically triggered to close out positions for distressed traders - that's called a network order.
 
-Orders can be persistent (stay on the order book) or non-persistent (never enter the order book). Some order types in Vega depend on the market state. 
+Orders can be persistent (stay on the order book) or non-persistent (never enter the order book). Some order types depend on the market state. 
 
 ### Limit order
 A limit order is an instruction that allows you to specify the minimum price at which you will sell, or the maximum at which you will buy.
@@ -78,7 +74,7 @@ Pegged orders are orders that are a defined distance from a reference price (i.e
 
 A pegged order is not placed on the order book itself, but instead generates a limit order with the price generated based on the reference and offset value. As the price levels in the order book move around, the order's price on the order book also moves.
 
-The reference can only be positive and Vega applies it differently depending on if the order is a buy or sell. If the order is a `buy`, then the offset is taken away from the reference price. If the order is a `sell` then the offset is added to the reference price.
+The reference can only be positive and the protocol software applies it differently depending on if the order is a buy or sell. If the order is a `buy`, then the offset is taken away from the reference price. If the order is a `sell` then the offset is added to the reference price.
 
 #### Values available for pegged orders
 Pegged orders are restricted in what values can be used when they are created, and only the times in force of Good 'til Cancelled and Good 'til Time can be used.
@@ -112,7 +108,7 @@ An iceberg order is a limit order for a large amount that, rather than being ent
 
 In other words, an iceberg order allows for the smaller order amount, known as the peak size, to be replenished from a 'hidden' total size. An iceberg's visible size is replenished in full to the peak size until the whole iceberg's volume trades away, or the order is cancelled or expires. It's replenished whenever the remaining visible size drops below the minimum visible size, set when submitting the order. If the reserve amount becomes lower than the peak size, the peak size is then set to the full remaining amount, with nothing in reserve.
 
-While on a centralised exchange the full size of an iceberg order would be hidden, as Vega is a fully public blockchain, the entire order can be deduced. However, even publicly visible iceberg orders allow a trader to remain competitively present on the order book without needing to supply excess volume into a large aggressive order.
+While on a centralised exchange the full size of an iceberg order would be hidden, on a fully public blockchain, the entire order can be deduced. However, even publicly visible iceberg orders allow a trader to remain competitively present on the order book without needing to supply excess volume into a large aggressive order.
 
 #### Submit an iceberg order
 An iceberg order is submitted by populating the following optional fields in an order submission:
@@ -159,7 +155,7 @@ When submitting a stop order that *links to your existing position*, an order is
 
 If your position size moves to zero and there are no open orders, your stop orders for that market are cancelled.
 
-There's a limit to how many stop orders any one public key can have active at one time: <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.stopOrdersPerMarket" hideName={true} />.
+There's a limit to how many stop orders any one public key can have active at one time, set by a network parameter: <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.stopOrdersPerMarket" />.
 
 #### OCO stop orders
 While a stop order can be a single instruction, it could instead be a pair of stop orders where the execution of one side cancels the other (OCO).
@@ -189,7 +185,7 @@ To prevent spamming, the total number of instructions in a batch order transacti
 :::
 
 ### Network order
-A network order is triggered by the Vega network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
+A network order is triggered by a network to close out a distressed trader, as part of position resolution. Network orders cannot be submitted by a party.
 
 :::note Read more
 [Concept: Position resolution](#position-resolution)

@@ -19,15 +19,15 @@ No developer or entity involved in creating the Vega protocol or supporting docu
 In the last tutorial you built a bot that listened to streams of market data to update its knowledge of position and order state to ensure it could trade with full knowledge without having to make repeated queries and incur that time cost. Now that you have a working bot, this tutorial will look at how one could extend the bot to have and manage a liquidity commitment. 
 
 :::note Pre-reading
-Before reading through this it is strongly advisable to read through the full guide to [liquidity provision on Vega Protocol](../../concepts/liquidity/index.md) to fully understand what a liquidity provision entails and requires of you.
+Before reading through this it is strongly advisable to read through the full guide to [liquidity provision](../../concepts/liquidity/index.md) to fully understand what a liquidity provision entails and requires of you.
 :::
 
-In brief, committing liquidity to a Vega Protocol market means that:
+In brief, committing liquidity to a market means that:
 - A party makes a commitment to always provide both a bid and ask order for a given market. As a guarantee of this they lock a portion of their funds in a bond account, which will remain there untouched so long as their commitments are met. The exact size of orders required is determined by the size of the bond and a further network controlled parameter. 
 - In return for this commitment, a party receives a portion of all fees paid on the market, whether they were the maker party in the trade or not. 
 - To count towards a commitment, orders must be within a certain percentage of the mid price on a market. If limit orders are outside these bounds they will not count towards the commitment. If the orders specified in the initial liquidity commitment message are offset such that they are outside these bounds they will be placed just inside the bounds instead.
 - The exact proportion of the fees received is based upon a combination of the commitment bond size relative to others', alongside how competitive the placed limit orders were across the epoch.
-- The amount of time during an epoch where the party must meet the commitment is defined by the SLA settings on the market. There will be a minimum percentage of time, below which the LP may have a penalty to their bond applied depending on the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" formatter="percent" hideName={false} />, but will never receive a portion of the paid liquidity fees within the epoch even if no penalty is applied. Above the SLA, the LP is eligible to receive fees, however there may be a reweighting of some portion of received fees within the set of LPs who met the target to reward those who are on the book a higher percentage of time. 
+- The amount of time during an epoch where the party must meet the commitment is defined by the SLA settings on the market. There will be a minimum percentage of time, below which the LP may have a penalty to their bond applied depending on the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" />, but will never receive a portion of the paid liquidity fees within the epoch even if no penalty is applied. Above the SLA, the LP is eligible to receive fees, however there may be a reweighting of some portion of received fees within the set of LPs who met the target to reward those who are on the book a higher percentage of time. 
 
 Whilst a liquidity commitment can mean a trader receives fees they would not otherwise have received, they must be aware that it is a commitment to provide prices whenever possible, whatever the conditions. Whilst in general a liquidity provider can withdraw at the end of any epoch, if withdrawing their commitment would bring the market below the current target stake then a penalty may be applied to the withdrawn bond amount.
 
@@ -160,6 +160,6 @@ Finally, add a section at the end of `main` after `vega_store.stop()` to cancel 
 
 There are occasions currently, such as a crash, which would mean this cancellation was not called. If adapting this setup to run on a production market, then it would be wise to make this more robust, or at least have a separate script simply to cancel.
 
-Now that you have these two components, you can once more run with `python -m main` and see your liquidity commitment appear on Console. You may also see some liquidity provision orders be created depending on what you are quoting in your standard limit orders.
+Now that you have these two components, you can once more run with `python -m main` and see your liquidity commitment. You may also see some liquidity provision orders be created depending on what you are quoting in your standard limit orders.
 
 Now that you have a liquidity commitment, and if you haven't already, you may want to look at the [other tutorial](adding-an-external-price.md) at this level where you can add in an external price feed to base pricing on.

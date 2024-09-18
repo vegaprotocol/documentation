@@ -1,7 +1,7 @@
 ---
 sidebar_position: 3
 title: Vega treasury
-vega_network: MAINNET
+vega_network: TESTNET
 hide_title: false
 description: How you can allocate treasury funds.
 ---
@@ -11,27 +11,23 @@ The network treasury holds assets that can be used by the community to fund init
 
 Treasury assets can be used to fund trading rewards, team competitions, grants, Vega protocol software and/or product development, teams building on Vega, or other opportunities.
 
-Anyone with enough VEGA tokens can vote and raise proposals to use treasury assets based on discussions in the community.
+Anyone with enough tokens can vote and raise proposals to use treasury assets based on discussions in the community.
 
-* To vote on a proposal, you usually need at least 1 VEGA, but the amount may vary per proposal type. Check the [block explorer](https://explorer.vega.xyz/network-parameters) for each `minVoterBalance`.
-* How many VEGA you need to submit a proposal depends on the proposal type. Check the [block explorer](https://explorer.vega.xyz/network-parameters) for each `minProposerBalance`.
+* To vote on a proposal, you usually need at least 1 VEGA, but the amount may vary per proposal type. Check the [block explorer](https://explorer.fairground.wtf/network-parameters) for each `minVoterBalance`.
+* How many VEGA you need to submit a proposal depends on the proposal type. Check the [block explorer](https://explorer.fairground.wtf/network-parameters) for each `minProposerBalance`.
 
 ## Treasury basics
-The network treasury can hold VEGA tokens and other assets, which can be used by the community via on-chain governance to grow and support the development of the Vega software and network. 
+A network treasury can hold governance tokens and other assets, which can be used by the community via on-chain governance to grow and support the development of the Vega software and network. 
 
 ### VEGA token details
 VEGA token contract address (Ethereum mainnet): `0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e` ([view on Etherscan ↗](https://etherscan.io/token/0xcB84d72e61e383767C4DFEb2d8ff7f4FB89abc6e))
 
 Vega asset ID: `d1984e3d365faa05bcafbe41f50f90e3663ee7c0da22bb1e24b164e9532691b2`
 
-See more details on the [block explorer ↗](https://explorer.vega.xyz/assets/d1984e3d365faa05bcafbe41f50f90e3663ee7c0da22bb1e24b164e9532691b2).
-
 ### Treasury value
-You can see how much is in the network treasury, along with recent transactions using the on-chain treasury page on the [block explorer ↗](https://explorer.vega.xyz/treasury).
-
-You can also see the balance programmatically with the `list accounts API`. For example, using the [REST endpoint](../../api/rest/data-v2/trading-data-service-list-accounts.api.mdx):
+You can see how much is in the network treasury by using the `list accounts API`. For example, using the [REST endpoint](../../api/rest/data-v2/trading-data-service-list-accounts.api.mdx):
 * Filter by:
-    * Asset ID for VEGA: `d1984e3d365faa05bcafbe41f50f90e3663ee7c0da22bb1e24b164e9532691b2`, and 
+    * Asset ID for the governance token, and 
     * Account type: `ACCOUNT_TYPE_NETWORK_TREASURY`
 * Don't forget to account for the token's 18 decimal places
 

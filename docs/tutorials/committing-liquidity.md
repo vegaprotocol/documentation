@@ -8,7 +8,7 @@ description: Commit liquidity onto a market and manage that commitment
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
 In this tutorial, you'll find:
-* Resources about how liquidity works on Vega
+* Resources about how liquidity works
 * How to prepare and submit a liquidity commitment to express your desire to provide liquidity on a live market created with Vega
 * High-level tactics for placing orders to meet your commitment
 * How to change your commitment amount by amending and/or cancelling
@@ -16,7 +16,7 @@ In this tutorial, you'll find:
 At the end of the tutorial, find troubleshooting tips as well as more resources for understanding the mechanics of liquidity provision on Vega.
 
 :::caution
-Providing liquidity is a significant and active commitment to providing orders on a Vega market. Failure to meet the commitment may result in penalties up to losing your entire bonded amount.
+Providing liquidity is a significant and active commitment to providing orders on a market. Failure to meet the commitment may result in penalties up to losing your entire bonded amount.
 
 [Read about the risks below.](#what-can-go-wrong-when-providing-liquidity)
 :::
@@ -94,7 +94,7 @@ Ensure your orders to provide liquidity will earn from liquidity fees by meeting
 ## Amending a liquidity commitment
 When amending a liquidity commitment, the network will allow you to provide more bond for your liquidity immediately. However, whether you amend or reduce your liquidity commitment, the actual commitment change will only be enacted in the epoch after you submitted the amendment transaction.
 
-If you reduce your commitment to the point where the market would drop below its required [target stake](./../concepts/liquidity/provision.md#target-stake), then you will be penalised: <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideName={true} formatter="percent" /> will be deducted from your bond.
+If you reduce your commitment to the point where the market would drop below its required [target stake](./../concepts/liquidity/provision.md#target-stake), then you will be penalised by the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideName={true} formatter="percent" />.
 
 
 ### Transaction template
@@ -116,7 +116,7 @@ submission = {
 ## Cancelling a liquidity commitment
 If you no longer want to keep a liquidity commitment open for a market, you can cancel your commitment using the `liquidityProvisionCancellation` transaction. This will remove the commitment requirement from your public key, and return the bond amount back into your general account.
 
-If cancelling a commitment would leave a market without enough liquidity, then you will be penalised. Specifically, if removing your liquidity will put the market below its [target stake](./../concepts/liquidity/provision.md#target-stake), <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideName={true} formatter="percent" /> will be deducted from your bond.
+If cancelling a commitment would leave a market without enough liquidity, then you will be penalised. Specifically, if removing your liquidity will put the market below its [target stake](./../concepts/liquidity/provision.md#target-stake), the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" /> will be deducted from your bond.
 
 Any open positions will not be cancelled.
 
@@ -142,4 +142,4 @@ You'll need the party ID (public key) and market ID:
 
 ## What can go wrong when providing liquidity?
 
-If you do not have enough collateral in your margin and general accounts to maintain your position, Vega will use some (or all) of your bond to cover the margin requirements. You will get charged a penalty when this happens and it reduces the amount of liquidity you have as your bond amount will be smaller. **You could lose all the money in your margin and general accounts as well as your bond amount if you do not actively manage your orders.**
+If you do not have enough collateral in your margin and general accounts to maintain your position, the network(s) will use some (or all) of your bond to cover the margin requirements. You will get charged a penalty when this happens and it reduces the amount of liquidity you have as your bond amount will be smaller. **You could lose all the money in your margin and general accounts as well as your bond amount if you do not actively manage your orders.**

@@ -12,8 +12,6 @@ The Vega software is publicly available on [GitHub ↗](https://github.com/vegap
 
 See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/releases).
 
-<!--[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.-->
-
 ## Vega core software
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
 
@@ -607,7 +605,7 @@ The unused rewards-related network parameter `reward.staking.delegation.payoutFr
 A stop order is an order to buy or sell once the price reaches a specified price, known as the trigger price. Stop orders can be used to help a trader limit losses (stop loss), or capitalise on a gain (take profit) automatically when they already have an open position. Stop orders can be submitted as a single stop order trigger or an OCO (one cancels the other) pair.
 
 **Iceberg orders**
-An iceberg order is a limit order for a large amount that, rather than being entered as a single large order of that size, is placed on the book as a smaller order that is replenished as that order amount is filled. The peak / 'visible' amount can be filled with one trade, while the reserve is used to support the smaller order amount. As the Vega network is a public one, the iceberg amount below the peak can still be deduced.
+An iceberg order is a limit order for a large amount that, rather than being entered as a single large order of that size, is placed on the book as a smaller order that is replenished as that order amount is filled. The peak / 'visible' amount can be filled with one trade, while the reserve is used to support the smaller order amount. Assuming the network is a public one, the iceberg amount below the peak can still be deduced.
 
 **Successor markets**
 A successor market is a market that will carry on after the original market, or parent, that it is based on has settled, which offers liquidity providers the option to keep their equity-like share on the new market, even after the original market expires.

@@ -14,17 +14,15 @@ Accounts are used either to hold assets that you're in control of using — such
 ## General account
 The *general account* is managed by the party who controls the keys that account was created for.
 
-Every public key has a potential general account in every asset supported on the Vega network; it's created the first time assets are deposited or transferred to it. The general account is the place where deposits and rewards go, where withdrawals come from, and where a participant can transfer assets from (or receive assets to).
+Every public key has a potential general account in every asset supported on a network; it's created the first time assets are deposited or transferred to it. The general account is the place where deposits and rewards go, where withdrawals come from, and where a participant can transfer assets from (or receive assets to).
 
-The general account also holds VEGA tokens that have been deposited to the network (but not those associated with a Vega key via the Ethereum staking bridge and/or locked in a smart contract). Staking rewards, as well as trading rewards, are paid into the general account.
+The general account also holds tokens that have been deposited to the network (but not those associated with a Vega key via the Ethereum staking bridge and/or locked in a smart contract). Staking rewards, as well as trading rewards, are paid into the general account.
 
 Any assets that are in a general account can be withdrawn or transferred.
 
 You'll see references to your general account in various places, including under collateral in Console, the trading interface.
 
 :::tip Query for data
-**[Vega Console](https://console.fairground.wtf)**: See how much is allocated to the accounts for your public key.
-
 **[REST](../../api/rest/data-v2/trading-data-service-get-party.api.mdx)**: Use the API to check your public key for the accounts your assets are allocated to.
 :::
 
@@ -71,7 +69,7 @@ An order on a spot market that doesn't immediately trade in full, has the collat
 Every liquidity provider automatically transfers a certain amount of money to a bond account for each market that they're committed to. The liquidity provider chooses how much goes into the bond account, and that amount is locked up for the entire time that party commits liquidity to the market. It acts as a guarantee for the liquidity obligation, to assure that the commitment is firm and the protocol can rely on that liquidity in any market conditions.
 
 :::note Read more
-[Concept: How liquidity works on Vega](../liquidity/index.md) 
+[Concept: How liquidity works](../liquidity/index.md) 
 :::
 
 ### Insurance pool accounts
@@ -130,10 +128,6 @@ There is also a global rewards account, which is used for validator rewards on t
 
 ### Validator reward accounts
 Validator reward accounts are used to distribute rewards, if they're funded, to consensus and standby validators based on their ranking score. These accounts can be funded through [deposits](./deposits-withdrawals.md) or [transfers](./transfers.md).
-
-:::note Read more
-[Concept: Validator scores and rewards](../vega-chain/validator-scores-and-rewards.md)
-:::
 
 ### Network treasury accounts
 The network treasury is made up of accounts, one per asset (if funded), that can be contributed to by participants in the network. They can be funded through deposits or transfers. 

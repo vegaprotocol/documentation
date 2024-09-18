@@ -8,7 +8,7 @@ vega_network: MAINNET
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Vega's API contains WebSocket endpoints that offer real-time updates to changes in the state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
+Vega's API contains WebSocket endpoints that offer real-time updates to changes in the state of a network that runs Vega software, allowing subscriptions to events such as per-market trades or changes to a party's position.
 
 As Vega relies on a blockchain, time moves in discrete blocks and so updates will appear as blocks are executed.
 

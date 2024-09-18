@@ -1,13 +1,10 @@
 ---
 sidebar_position: 6
 title: Data nodes
-vega_network: MAINNET
+vega_network: TESTNET
 hide_title: false
 ---
 
-import Topic from '/docs/topics/_topic-data-nodes.mdx'
-
-<Topic />
 
 Protocol users need to see and interact with data, such as price history, market changes, validator scores, and more. While the core emits events when states change, it does not store the data about those events. The core is responsible for processing transactions for the chain and ensuring correctness. 
 

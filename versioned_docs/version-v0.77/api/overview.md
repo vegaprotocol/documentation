@@ -9,28 +9,22 @@ import DataNodes from '@site/src/components/DataNodes';
 
 <Topic />
 
-This page describes what you need to know before you start developing on Vega: How authentication and transactions work, and the versioning process.
+This page describes what you need to know before you start developing with Vega: How authentication and transactions work, and the versioning process.
 
 ## Decentralised network
-The Vega protocol provides the backbone to form a network specifically built to support proposing and creating markets for trading financial products. Markets can be proposed and voted on through governance by VEGA tokenholders.
+The Vega protocol software provides the backbone to form a network specifically built to support proposing and creating markets for trading financial products. Markets can be proposed and voted on through governance by tokenholders.
 
-Vega is a public, decentralised network run by independent validators. 
-
-There are several different servers you'll need to interact while working with the network. Data will generally be recieved from one service and transactions will be sent to another using data nodes. See the [data flow section on the architecture page](./architecture.md#data-flow) for more info.
-
-:::caution Supplying your own data
-Anyone that plans to build significant integrations, trading bots, or power backed services should expect to run their own data node, or collaborate with a data node provider, if one exists. 
-:::
+There are several different servers you'll need to interact while working with a network. Data will generally be received from one service and transactions will be sent to another using data nodes. See the [data flow section on the architecture page](./architecture.md#data-flow) for more info.
 
 ## Viewing the code
-Explore the code that makes up Vega by visiting the [Vega Protocol GitHub organisation](https://github.com/vegaprotocol), and more specifically the [Vega repo](https://github.com/vegaprotocol/vega) for core, data node and API code.
+Explore the code by visiting the [Vega Protocol GitHub organisation](https://github.com/vegaprotocol), and more specifically the [Vega repo](https://github.com/vegaprotocol/vega) for core, data node and API code.
 
 ## Authentication
-When requesting data from a public, validator-run data node, such as through a query, you don't need to authenticate nor do you need an API token. 
+The software is built such that when you request data from a public, validator-run data node, such as through a query, you don't need to authenticate nor do you need an API token. 
 
-Other data node operators may require you to authenticate, and if this is the case you will need to refer to the provider's documentation for details of how to do so.
+However, specific data node operators may require you to authenticate, and if this is the case you will need to refer to the provider's documentation for details of how to do so.
 
-If you want to send transactions to the network, all you need is a [Vega wallet](../tools/vega-wallet/index.md) to sign the transaction using your Vega keys.
+If you want to send transactions to a network running the Vega software, you need a [Vega wallet](../tools/vega-wallet/index.md) to sign the transaction using your Vega keys.
 
 However, if you want to integrate the official Vega wallet implementation with your web application or script, you'll need to use the connection layer built into the wallet API, and a wallet API authentication token.
 
@@ -39,9 +33,7 @@ However, if you want to integrate the official Vega wallet implementation with y
 :::
 
 ## Sending transactions to the chain
-When sending transactions, you'll need a Vega Wallet with at least one keypair, and have the wallet service running. You'll need to have your Vega public key (also known as a party ID) to hand, as well as the relevant transaction data, in order to submit your transaction.
-
-To access the Vega network, the wallet needs to be configured with the location of one of more [data nodes](./architecture.md#data-nodes).
+When sending transactions, you'll need a Vega wallet with at least one keypair. You'll need to have your Vega public key (also known as a party ID) to hand, as well as the relevant transaction data, in order to submit your transaction.
 
 If you have a client that you want use to send a transaction using the Vega wallet API, it will construct the transaction in JSON and pass it to the wallet. The wallet performs a client-side proof-of-work calculation, signs the transaction and forwards it to a node on the network before it is added to a block. It is also possible to have the wallet sign a transaction without sending it, if needed. Alternatively, you can build the signer into your client, though you'll need to account for the PoW calculations.
 
@@ -53,7 +45,7 @@ If you have a client that you want use to send a transaction using the Vega wall
 :::
 
 ### Transaction hashes
-Once a transaction has been successfully submitted to the chain, you receive the transaction's hash from the wallet. A transaction hash is a unique identifier for the transaction, and can be used to find that transaction and check its status on a Vega block explorer. Note that a transaction can only be seen by the block explorer once it's been processed by the network and been propagated to the Vega node on the block explorer backend.
+Once a transaction has been successfully submitted to the chain, you receive the transaction's hash from the wallet. A transaction hash is a unique identifier for the transaction, and can be used to find that transaction and check its status on a block explorer. Note that a transaction can only be seen by the block explorer once it's been processed by the network and been propagated to the node on the block explorer backend.
 
 Depending on transaction type, most will be given a deterministic ID, which can be derived by calculating the SHA-3-256 hash of the signature in the transaction, and is specific to the object the transaction creates once it's processed. 
 
@@ -86,15 +78,14 @@ Find out what version a data node is running with the [data node info endpoint](
 
 Breaking APIs changes go through a deprecation cycle, and are announced in the summary for each [release](../releases/overview.md).
 
-The documentation on this site covers the core software version running on the Vega Fairground testnet, and the version on the validator-run Vega mainnet. Check which version's documentation you're viewing (and switch between them) by referring to the top navigation bar on each page. 
+The documentation on this site covers the core software version running on the Vega Fairground testnet, as well as the release-ready version of the software. Check which version's documentation you're viewing (and switch between them) by referring to the top navigation bar on each page. 
 
 See the [releases page](../releases/overview.md) for a summary of each software release and links to the full changelog on GitHub.
 
 ## Next steps
-To learn more about developing on Vega, read through the following topics.
+To learn more about developing with Vega software, read through the following topics.
 
 * **[Using the APIs](./using-the-apis.md)**: All the API frameworks and smart contracts in one place, plus tips on connecting.
-* **[Architecture](./architecture.md)**: Explore the architecture of the Vega network.
+* **[Architecture](./architecture.md)**: Explore the architecture of the Vega protocol.
 * **[Building blocks](./useful-endpoints.md)**: The basic building blocks you should know about.
-* **[Public servers](./public-servers.md)**: Public server URLs for interacting with the APIs.
 * **[Tutorials](../tutorials/index.md)**: Each tutorial includes info about the protocol that you need to use the guide, as well as instructions on how to interact with scripts, API calls, or other code.

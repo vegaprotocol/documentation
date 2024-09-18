@@ -1,7 +1,7 @@
 ---
 sidebar_position: 9
 title: Transfer assets
-vega_network: MAINNET
+vega_network: TESTNET
 hide_title: true
 keywords:
 - proposal
@@ -24,10 +24,8 @@ This tutorial describes what you need to propose transferring assets from those 
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken" formatter="governanceToken" suffix="tokens"/>)
+* A minimum of whichever value is larger, associated with that public key - based on the value of the following network parameters: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minProposerBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" />
 * Familiarity with how [proposing an asset transfer](../../concepts/governance/asset.md#propose-an-asset-transfer) works
-
-You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.
 
 ## Anatomy of an asset transfer proposal
 Read on for the key inputs to a governance-initiated parameter proposal.
@@ -37,8 +35,8 @@ Transfers can be one-off, or they can be set up to send assets repeatedly, for a
 **Rationale** requires a title and a description. They are free-text fields that describe the purpose of the proposal. Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the proposal.
 
 The **terms** of the proposal describe the details of the proposal, including closing and enactment timestamps, and details about the proposed transfer, including what accounts the transfer is to move assets between, and optionally information about rewards to fund with the transfer, if that's the intent.
-* **Closing timestamp**, the date and time when voting closes, must be within a range of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minClose" hideName={true}/> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxClose" hideName={true}/>, from when it was proposed.
-* **Enactment timestamp**, the date and time when the transfer is to happen, must be within a range of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minEnact" hideName={true}/> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxClose" hideName={true}/>.
+* **Closing timestamp**, the date and time when voting closes, must be within a range of the network parameters <NetworkParameter frontMatter={frontMatter} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxClose" />, from when it was proposed.
+* **Enactment timestamp**, the date and time when the transfer is to happen, must be within a range of the network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minEnact" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxClose" />.
 
 For **one-off transfers** use `deliverOn` to set a delivery date/time for when the transfer arrives with the recipient account. This should be after the proposal's enactment date and time, otherwise it's delivered immediately if the proposal is enacted. `deliverOn` only accepts Unix time in nanoseconds. Setting it to 0 means the transfer will be completed immediately. Note: when you delay a transfer, the amount leaves the origin account immediately but is not delivered until the date/time you chose. A one-off transfer **cannot be cancelled**, regardless of when the transfer is scheduled to arrive.
 
@@ -46,9 +44,9 @@ For **recurring transfers**, such as for funding rewards, you'll need to include
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
 * `endEpoch`: The transfer will repeated indefinitely, unless you add this optional parameter to end the recurring transfer in a specified epoch.
 
-**Amount** is the cap on how much will be transferred, as whole number with the asset decimal places implied. For example, if the asset has a decimal place of 2 and the transfer is for 100, then the amount needs to be set at 10000. The maximum you can propose to transfer is <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxAmount" hideName={true}/>, which is a multiplier for the asset's [quantum value](../../concepts/assets/asset-framework.md#quantum). Before proposing, make sure the account you're transferring from exists and has a balance. The full amount may not be transferred if there isn't enough to transfer. For specifics on how the final amount is determined, see the [calculations in the transfers spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0057-TRAN-transfers.md#recurring-transfers).
+**Amount** is the cap on how much will be transferred, as whole number with the asset decimal places implied. For example, if the asset has a decimal place of 2 and the transfer is for 100, then the amount needs to be set at 10000. The maximum you can propose to transfer is the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxAmount" />, which is a multiplier for the asset's [quantum value](../../concepts/assets/asset-framework.md#quantum). Before proposing, make sure the account you're transferring from exists and has a balance. The full amount may not be transferred if there isn't enough to transfer. For specifics on how the final amount is determined, see the [calculations in the transfers spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0057-TRAN-transfers.md#recurring-transfers).
 
-**Fraction of balance** is used to determine what fraction of the source account's balance could be transferred, the biggest fraction that you can choose is <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxFraction" hideName={true}/>.
+**Fraction of balance** is used to determine what fraction of the source account's balance could be transferred, the biggest fraction that you can choose is based on the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxFraction" />.
 
 **Governance transfer type** lets you determine what happens if the full requested amount can't be transferred. The options are "all or nothing", or "best effort", which is as much as is possible of the maximum amount.
 
@@ -65,10 +63,10 @@ You will need to define the dispatch strategy, which includes the metric, the le
 
 | Dispatch strategy field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
-| `assetForMetric` | Asset that's used to evaluate how someone performs. Use the settlement asset for the market(s) relevant to the reward. Not required for market creation and validator ranking rewards | Any asset enabled on Vega |
-| `metric` | Specific reward category the transfer is funding | DISPATCH_METRIC_MAKER_FEES_PAID; DISPATCH_METRIC_MAKER_FEES_RECEIVED; DISPATCH_METRIC_LP_FEES_RECEIVED; DISPATCH_METRIC_MARKET_VALUE; DISPATCH_METRIC_AVERAGE_POSITION; DISPATCH_METRIC_RELATIVE_RETURN; DISPATCH_METRIC_RETURN_VOLATILITY; DISPATCH_METRIC_REALISED_RETURN; DISPATCH_METRIC_VALIDATOR_RANKING |
+| `assetForMetric` | Asset that's used to evaluate how someone performs. Use the settlement asset for the market(s) relevant to the reward. Not required for market creation and validator ranking rewards | Any asset enabled |
+| `metric` | Specific reward category the transfer is funding | DISPATCH_METRIC_MAKER_FEES_PAID; DISPATCH_METRIC_MAKER_FEES_RECEIVED; DISPATCH_METRIC_LP_FEES_RECEIVED; DISPATCH_METRIC_MARKET_VALUE; DISPATCH_METRIC_AVERAGE_POSITION; DISPATCH_METRIC_RELATIVE_RETURN; DISPATCH_METRIC_RETURN_VOLATILITY; DISPATCH_METRIC_REALISED_RETURN; DISPATCH_METRIC_VALIDATOR_RANKING; DISPATCH_METRIC_ELIGIBLE_ENTITIES |
 | `markets` | Optional: Used to choose which market(s) are in scope. If left blank, all markets that are settled in the asset are included | Any trading market's ID |
-| `stakingRequirement` | Optional: Sets a minimum number of VEGA tokens that need to be staked for a party to be considered eligible for the reward | Number, if omitted it defaults to 0 |
+| `stakingRequirement` | Optional: Sets a minimum number of tokens that need to be staked for a party to be considered eligible for the reward | Number, if omitted it defaults to 0 |
 | `notionalTimeWeightedAveragePositionRequirement` | Optional: Sets a minimum notional TWAP, measured for the asset metric, that's required for a party to be considered eligible to receive rewards | Defaults to 0 | 
 | `windowLength` | Number of epochs in which performance against the reward metric is measured | Any number between 1 and 100 inclusive |
 | `transferInterval` | Optional: Number of epochs between transfers. For example, if set to 4, funds will be transferred every 4 epochs with the first transfer occurring 4 epochs after the transaction is processed. If left blank, it transfers every epoch. | Any number between 1 and 100 inclusive |
@@ -76,7 +74,8 @@ You will need to define the dispatch strategy, which includes the metric, the le
 | `entityScope` | Defines the entities within scope, i.e. whether they are in a team or not | ENTITY_SCOPE_INDIVIDUALS; ENTITY_SCOPE_TEAMS |
 | `individualScope` | To be used if the eligible reward recipients should be all participants, individuals, or within a team |  INDIVIDUAL_SCOPE_ALL; INDIVIDUAL_SCOPE_IN_TEAM; INDIVIDUAL_SCOPE_NOT_IN_TEAM |
 | `teamScope` | To be used if the eligible reward recipients need to be in a team, and rewards are to be calculated based on team performance. | Leave blank if allowing all teams, otherwise provide an array of team IDs. See example below |
-| `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../../concepts/trading-on-vega/discounts-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
+| `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../../concepts/trading-on-vega/discounts-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK; DISTRIBUTION_STRATEGY_RANK_LOTTERY |
+| `rankTable`| Ordered list, using start rank, and defines the rank bands and share ratio for each band. Mandatory for the rank and lottery distribution strategies. | `{"start_rank": 1, "share_ratio": 10},` etc |
 | `capRewardFeeMultiple` | Optional value that sets by how much the reward payout amount is to be capped. It will set each participant's actual reward amount received to be whichever is smaller of: full earned reward amount, or the `capRewardFeeMultiple` × participant's fees paid this epoch. | Numbers greater than zero, decimals accepted |
 
 #### Example dispatch strategy snippet
@@ -114,7 +113,7 @@ You will need to define the dispatch strategy, which includes the metric, the le
 
 These templates show an example of how to fund rewards with a governance transfer. **To propose a different reward with a governance-initiated transfer, use the fields and information above to expand the proposal.**
 
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
+* JSON example
 * Command line examples for different operating systems
 
 <Tabs groupId="transferForRewards">
@@ -257,11 +256,11 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
 
 These templates show an example transfer from an asset's insurance pool to the insurance pool of a specific market, both of which need to use the same asset as specified in your transfer.
 
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
+* JSON example
 * Command line examples for different operating systems
 
 <Tabs groupId="transferAssetsParameter">
- <TabItem value="json" label="Governance dApp (JSON)">
+ <TabItem value="json" label="JSON">
 
 ```
 {
@@ -362,15 +361,11 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
 </Tabs>
 
 ## Voting
-All proposals are voted on by the community. 
+All proposals are voted on by the community.
 
-Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
+To vote, community members need, at a minimum, the larger of the network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minVoterBalance" suffix="tokens" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" /> associated with their Vega key. 
 
-To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key. 
-
-Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
-
-Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) of the value of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredParticipation" /> and a majority based on the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.requiredMajority" />.
 
 ## Enactment
-If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.
+If successful, the proposal will be enacted at the time specified in the `enactmentTimestamp` field.

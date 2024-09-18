@@ -628,8 +628,6 @@ In the previous liquidity model, providers would make a commitment and define a 
 
 For full details on these network and market parameters and what they represent please read the [liquidity concepts pages](../concepts/liquidity/index.md).
 
-We advise any existing liquidity providers to use [Console on Fairground ↗](https://console.fairground.wtf/) or the APIs to experiment with the new liquidity protocol ahead of the release to ensure they are comfortable with the changes.
-
 To see lower level details of how the new SLA liquidity feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md). The work items completed on this feature can be seen on issues and pull requests with the [`liquidity-sla` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aliquidity-sla+) label.
 
 #### Perpetual futures markets
@@ -688,7 +686,7 @@ The unused rewards-related network parameter `reward.staking.delegation.payoutFr
 A stop order is an order to buy or sell once the price reaches a specified price, known as the trigger price. Stop orders can be used to help a trader limit losses (stop loss), or capitalise on a gain (take profit) automatically when they already have an open position. Stop orders can be submitted as a single stop order trigger or an OCO (one cancels the other) pair.
 
 **Iceberg orders**
-An iceberg order is a limit order for a large amount that, rather than being entered as a single large order of that size, is placed on the book as a smaller order that is replenished as that order amount is filled. The peak / 'visible' amount can be filled with one trade, while the reserve is used to support the smaller order amount. As the Vega network is a public one, the iceberg amount below the peak can still be deduced.
+An iceberg order is a limit order for a large amount that, rather than being entered as a single large order of that size, is placed on the book as a smaller order that is replenished as that order amount is filled. The peak / 'visible' amount can be filled with one trade, while the reserve is used to support the smaller order amount. As the network is a public one, the iceberg amount below the peak can still be deduced.
 
 **Successor markets**
 A successor market is a market that will carry on after the original market, or parent, that it is based on has settled, which offers liquidity providers the option to keep their equity-like share on the new market, even after the original market expires.

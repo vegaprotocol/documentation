@@ -5,7 +5,7 @@ hide_title: false
 description: Start bot development for submitting orders with this guide.
 ---
 
-In this tutorial you'll learn the basics about how to use Vega and the Vega Wallet to submit orders using the APIs, so you can build bots or other software to interact with the network.
+In this tutorial you'll learn the basics about how to use Vega and the Vega Wallet to submit orders using the APIs, so you can build bots or other software to interact with a network using the Vega software.
 
 :::note Network for tutorial
 This guide suggests using Fairground, the Vega testnet, as well as Sepolia (test Ethereum) for testing purposes.
@@ -136,17 +136,6 @@ Before submitting any orders, you'll need to deposit assets to the wallet you cr
 
 You'll need Sepolia ETH to pay for the Ethereum transaction gas.
 
-### Deposit using Console
-* Go back to [Console ↗](https://console.fairground.wtf/) and select the “PORTFOLIO” button on the top toolbar. 
-* Select the Deposits tab.
-* Click the “DEPOSIT” button on the bottom right.
-* Connect your web3 wallet to the dApp to populate the “from address”.
-* In the asset dropdown, select the asset you got in the faucet step.
-* Enter the amount of the asset you would like to transfer, taking into account the maximum limits shown above the data entry field.
-* Click the “DEPOSIT” button to perform the transfer from your Ethereum address to your Vega key.
-
-After the transaction is confirmed, the assets will be deposited and you will see a new entry in the Deposits tab for your assets. They are now ready to be used for trading.
-
 ### Deposit using Etherscan
 You'll need the following information available:
 * Vega public key you want to deposit to
@@ -154,8 +143,7 @@ You'll need the following information available:
 * Token address for the asset
 
 :::note Ethereum addresses
-* Contract and bridge addresses for the **fairground testnet network** are in the [networks-internal GitHub repo ↗](https://github.com/vegaprotocol/networks-internal/blob/main/fairground/templates/smart_contracts.json). 
-* Contract and bridge addresses for the **validator-run testnet networks**, and for **mainnet**, in the [networks repo on GitHub ↗](https://github.com/vegaprotocol/networks).
+Contract and bridge addresses for the **fairground testnet network** are in the [networks-internal GitHub repo ↗](https://github.com/vegaprotocol/networks-internal/blob/main/fairground/templates/smart_contracts.json). 
 :::
 
 Ensure the token you want to deposit is listed:
@@ -310,7 +298,7 @@ You can use the curl command to subscribe to the endpoints that return order and
 ## Example code 
 
 ### Signer libraries 
-Refer to the following example libraries for submitting signed transactions to the Vega protocol via gRPC, bypassing the Vega Wallet. Note, these may not be actively maintained, so you should test before using either on an active network.
+Refer to the following example libraries for submitting signed transactions via gRPC, bypassing the Vega Wallet. Note, these may not be actively maintained, so you should test before using either on an active network.
 
 * [Authenticator (Go) ↗](https://github.com/MM0819/vega-protocol-auth-go)
 * [Authenticator (Java) ↗](https://github.com/MM0819/vega-protocol-auth-java)

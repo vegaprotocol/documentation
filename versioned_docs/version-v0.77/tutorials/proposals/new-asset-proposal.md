@@ -2,7 +2,7 @@
 sidebar_position: 4
 title: New asset
 hide_title: true
-vega_network: MAINNET
+vega_network: TESTNET
 keywords:
 - proposal
 - governance
@@ -26,30 +26,28 @@ This page provides a tutorial for submitting a proposal for a new ERC-20 asset t
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
+* A minimum of whichever is larger, associated with that public key, based on the network parameter values for <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minProposerBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" />
 * Familiarity with [governance on Vega](../../concepts/governance/asset.md).
 
 After a new asset vote passes, the change has to be submitted to the asset bridge on Ethereum. Until it has been submitted, no one can start depositing that asset. See the [tutorial](./update-asset-bridge.md) for how to do that.
 
-<!--You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.-->
-
 ## Overview
-Vega currently supports adding [ERC-20 assets ↗](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/#top). ERC-20 assets that pass a governance vote can be enabled [via the Vega bridge](../../api/bridge/index.md) - which is to say that they are deposited from and withdrawn to Ethereum. More token standards and chains are on the roadmap.
+The Vega software has support for using [ERC-20 assets ↗](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/#top). ERC-20 assets that pass a governance vote can be enabled via a given network's bridge - which is to say that they are deposited from and withdrawn to Ethereum.
 
 :::tip Query for data
 You can see all of the currently supported assets [using the REST endpoint](../../api/rest/data-v2/trading-data-service-list-assets).
 :::
 
-If an asset that you would like to see on the network is not already available, a governance proposal can be made to list the asset. 
+If an asset that you would like to see on a network is not already available, a governance proposal can be made to list the asset. 
 
-If the vote passes, the network validators will then enable the asset on the [bridge contract](../../api/bridge/contracts/ERC20_Bridge_Logic#tag/TradingDataService/operation/TradingDataService1_ERC20WithdrawalApproval) which will enable deposits and withdrawals for that token.
+If the vote passes, the network's validators will then enable the asset on the [bridge contract](../../api/bridge/contracts/ERC20_Bridge_Logic#tag/TradingDataService/operation/TradingDataService1_ERC20WithdrawalApproval) which will enable deposits and withdrawals for that token.
 
 ## Anatomy of a new asset proposal
 The key inputs on a new asset proposal are as follows.
 
 The contents of a `changes` object specifies what will be different after the proposal. In this case, these are the changes that will occur on the network, in the form of a new market.
 
-**Rationale** requires a title and a description. They are free-text fields that describe the purpose of the proposal. Within the description, include links with more information about your proposal (such as to the IPFS content or forum post) that voters can reference to learn more about the asset proposal. Formatting your rationale with markdown makes it easier to read when it's displayed.
+**Rationale** requires a title and a description. They are free-text fields that describe the purpose of the proposal.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
@@ -62,10 +60,10 @@ The contents of a `changes` object specifies what will be different after the pr
 | `lifetimeLimit` | The lifetime deposit limit per public key, in asset decimals. Users are able to opt out of this functionality using the `exempt_depositor` write function on the ERC20 contract if they wish to. Suggested value: equivalent of 10,000 USD | 10000000000000000000000 |
 
 ## ERC-20 asset validation
-When adding an ERC-20 asset to the bridge, the key details are compared to the smart contract on Ethereum. Specifically:
+When adding an ERC-20 asset to a bridge, the key details are compared to the smart contract on Ethereum. Specifically:
 - The **name** and **symbol** must match
 - The contract **must** be an ERC-20 asset
-- There cannot be multiple assets on a Vega network for the same ERC-20 asset
+- There cannot be multiple assets for the same ERC-20 asset
 
 Validation happens according to the `validationTimestamp` parameter.  The validation timestamp must be within the range between 1 second and 2 days from the time of submission. In most situations, this should be early on in the voting period so that any validation errors are caught before token holders start voting. However you could push the validation later in that range if the contract is not yet deployed. 
 
@@ -73,7 +71,6 @@ Validation happens according to the `validationTimestamp` parameter.  The valida
 When including a new asset proposal in a batch, the entire proposal will not be enacted until the asset's validation has succeeded. If the asset validation fails, the entire proposal fails.
 
 At top level, one closing timestamp. Inside batch each proposal has own enactment. Now a new asset has a validation stamp, only if new asset. If it’s there, there’s a new validation flow, and then once that passes, the whole batch goes through. So the whole batch is on standby. 
-
 
 If you want to submit this proposal as part of a larger batch of proposals, follow this sample structure:
 
@@ -123,7 +120,7 @@ If you want to submit this proposal as part of a larger batch of proposals, foll
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
+* JSON example
 * Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
@@ -132,7 +129,7 @@ In the tabs below you'll see:
   <TabItem value="annotated" label="Annotated example">
     <NewAssetAnnotated />
   </TabItem>
-  <TabItem value="json" label="Governance dApp (JSON)">
+  <TabItem value="json" label="JSON">
     <JSONInstructions />
     <NewAssetJSON />
   </TabItem>
@@ -149,13 +146,9 @@ In the tabs below you'll see:
 ## Voting
 All proposals are voted on by the community. 
 
-Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
+To vote, community members need, at a minimum, the larger of the values of the following network parameters: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minVoterBalance"  /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" /> associated with their Vega key. 
 
-To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.minVoterBalance" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key. 
-
-Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential. 
-
-Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-the-outcome-is-calculated) at a minimum of the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredParticipation" /> and a majority that meets or exceeds the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.asset.requiredMajority".
 
 ## Enactment 
 If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.

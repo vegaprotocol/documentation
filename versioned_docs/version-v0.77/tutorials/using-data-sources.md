@@ -27,12 +27,12 @@ The **binding** tells the market which field contains the value. The **spec** de
 ## EVM data sources
 Settlement data can be sourced from smart contracts and EVM chains that support Ethereum RPC calls.
 
-Data sources that use Ethereum RPC calls cause the Vega network validators to read the result from the specified smart contract and submit the result to Vega. When the data is verified by enough validators, this price is accepted on to the network.
+Data sources that use Ethereum RPC calls cause the network validators to read the result from the specified smart contract and submit the result to Vega. When the data is verified by enough validators, this price is accepted on to the network.
 
 Read on for examples and guidance on [ABIs](#abi), [normalisers](#normaliser) and [time trigger](#time-trigger).
 
 ### Using a Pyth price feed
-Vega supports using Pyth price feeds, with data published to Gnosis or other EVM chains.
+Vega software supports using Pyth price feeds, with data published to Gnosis or other EVM chains.
 
 When considering a market to propose, check the [Pyth price feed IDs ↗](https://pyth.network/developers/price-feed-ids) to determine if Pyth provides the required price data feed.
 

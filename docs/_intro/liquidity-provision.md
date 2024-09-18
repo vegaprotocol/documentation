@@ -31,7 +31,7 @@ The liquidity commitment transaction specifies the following:
 
 * **Market ID:** the Vega ID of the market to commit liquidity to
 * **Commitment size:** specified in terms of the bond amount to be locked
-    - The notional amount of liquidity required for a given bond amount is defined by the bond amount multiplied by <NetworkParameter frontMatter={frontMatter} param="market.liquidity.stakeToCcyVolume" />. For example, for a value of 20, a bond of 1,000 USDT implies a commitment of 20,000 USDT of notional order volume on each side of the book.
+    - The notional amount of liquidity required for a given bond amount is defined by the bond amount multiplied by the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.stakeToCcyVolume" /> network parameter. For example, for a value of 20, a bond of 1,000 USDT implies a commitment of 20,000 USDT of notional order volume on each side of the book.
 * **Proposed liquidity fee:** the LP’s proposal for the liquidity fee that should be charged on the market, e.g. 0.005 implies a 50 basis point liquidity fee in addition to the network-wide infrastructure and maker fee components. See more info on [fees](../concepts/trading-on-vega/fees.md).
     - Note that this value is used to calculate the liquidity fee only if the liquidity fee mode of the market supports it.
 
@@ -47,7 +47,7 @@ Liquidity fee distribution is calculated in several steps:
 
 1. Primarily, when a trade is eligible to pay fees, the market's current liquidity fee is charged, with each LP assigned some portion of it into their liquidity fee per-market account. This distribution is made pro-rata according to their current score. This is determined by their equity-like share and current on-book liquidity quality compared to other LPs - more in-depth calculation is below.
 2. These per-market liquidity fee accounts accumulate fees across an epoch (currently defined as 1 day). At the end of each epoch, the SLA calculations occur:
-    a. Any LP underperforming the SLA minimum time fraction will lose the funds accumulated in their fee account on that market. In addition, currently the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" />. If a non-zero value has been set for it, they may also lose some fraction of their bond.
+    a. Any LP underperforming the SLA minimum time fraction will lose the funds accumulated in their fee account on that market. In addition, currently the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" />. If a non-zero value has been set for it, they may also lose some fraction of their bond.
     b. Any LP meeting the SLA but with less than 100% time on the book may have a percentage of the fees within the liquidity fee account redistributed. This percentage is determined by the market's *competition factor*.
     c. Any funds moved from LPs in steps a. and b. are then redistributed amongst all LPs on the market according to the product of (1 - their penalty) and their proportion of total fees received across the epoch. For example, for a larger LP and a smaller LP with the same time on book, the larger LP will receive more from this pool, but if the larger LP was close to SLA and the smaller was close to 100%, then the smaller LP could receive more.
 
@@ -67,7 +67,7 @@ Point 1 is a function of an LP's strategy directly and so is beyond estimating h
 In order to estimate an approximate range for *received liquidity fees* for a given market there are three components required:
 
 1. **Total liquidity fees paid on the market per epoch**. The liquidity fees paid in a given 24-hour period can be calculated by multiplying the total volume of base currency traded (such as USDT) by the active liquidity fee on the market.
-2. **LP equity-like share.** The LP's equity-like share (ELS) when first joining the market will be equal to their bonded stake. Any growth in future can be seen in the “Adjusted Stake” tab of the Liquidity panel for a market on [Console ↗](https://console.vega.xyz/). This adjusted stake is the stake a new LP would have to provide to equal the ELS for the existing LP. 
+2. **LP equity-like share.** The LP's equity-like share (ELS) when first joining the market will be equal to their bonded stake. This adjusted stake is the stake a new LP would have to provide to equal the ELS for the existing LP. 
 
     In the below example, a new LP would have to provide 113,751 USDT to have equal ELS with the first LP who provided 100,000 USDT at an earlier point in the market's growth.
     
@@ -90,7 +90,7 @@ Pre-requisites:
 - Build an integration for your market making algorithm
     - See the [building a bot tutorial](../tutorials/building-a-bot/adding-a-liquidity-commitment.md) for a basic example
 - Fund your Vega keys(s)
-- Understand how to interact with Vega [data nodes](../concepts/vega-chain/data-nodes.md) and [APIs](../api/overview.md)
+- Understand how to interact with [data nodes](../concepts/vega-chain/data-nodes.md) and [APIs](../api/overview.md)
 
 Optional further reading:
 
