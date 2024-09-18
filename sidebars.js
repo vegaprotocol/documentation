@@ -27,7 +27,6 @@ module.exports = {
     'api/using-the-apis',
     'api/architecture',
     'api/useful-endpoints',
-    'api/public-servers',
     'api/websocket',
 
     {
