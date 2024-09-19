@@ -31,7 +31,7 @@ Specifically:
 ### Transferring assets
 For assets that are held in certain accounts - those with pooled assets, the community determines if the assets should be moved, and how they should be used. Generally speaking, those accounts have accumulated assets from settled markets, market protection movements, or are entirely funded by community members that transfer assets into them.
 
-These proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](../trading-on-vega/discounts-rewards.md#trading-rewards), to move money from [insurance pools](../assets/accounts.md#insurance-pool-accounts) into [network treasury accounts](../assets/accounts.md#network-treasury-accounts), or for other purposes.
+These proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](../trading-framework/discounts-rewards.md#trading-rewards), to move money from [insurance pools](../assets/accounts.md#insurance-pool-accounts) into [network treasury accounts](../assets/accounts.md#network-treasury-accounts), or for other purposes.
 
 Transferring assets from network-managed account types can only be initiated by on-chain governance proposals. 
 

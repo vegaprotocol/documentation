@@ -4,7 +4,7 @@ const { shortenVersion, openApiConfig, version, mainnetVersion } = require('./sc
 
 module.exports = {
   title: "Vega Protocol Documentation",
-  tagline: "Documentation of a protocol for creating and trading derivatives on a fully decentralised network",
+  tagline: "Documentation of a protocol for creating and trading derivatives on decentralised networks",
   url: "https://docs.vega.xyz/",
   baseUrl: "/",
   trailingSlash: false,
@@ -220,7 +220,7 @@ module.exports = {
       // is no long available - so that component has been 'swizzled' out of the theme and in to ./src/theme
       require.resolve("docusaurus-protobuffet-plugin"),
       {
-        routeBasePath: "/testnet/api/grpc",
+        routeBasePath: "/pre-release/api/grpc",
         fileDescriptorsPath: `./specs/v${version}/proto.json`,
         protoDocsPath: "./docs/api/grpc/",
         sidebarPath: "./docs/api/grpc/sidebar.js",
@@ -229,7 +229,7 @@ module.exports = {
 
     [
       // See ./scripts/docusaurus.config.openapi.js for how this is generated, but in short it takes the
-      // current 'mainnet' vresion and the current 'testnet' version from package.json, iterates over the
+      // current 'release' version and the current 'pre-release' version from package.json, iterates over the
       // ./specs/[version number] folder to get all the swagger files, then generates them in a predictable
       // way
       "docusaurus-plugin-openapi-docs",
@@ -259,15 +259,15 @@ module.exports = {
           versions: {
             current: {
               banner: "unreleased",
-              label: `testnet (v${shortenVersion(version)})`,
-              path: "testnet",
+              label: `pre-release (v${shortenVersion(version)})`,
+              path: "pre-release",
               // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
               className: `v${version}`
             },
             "v0.77": {
               banner: "none",
-              label: `mainnet (v${shortenVersion(mainnetVersion)})`,
-              path: "mainnet",
+              label: `release (v${shortenVersion(mainnetVersion)})`,
+              path: "release",
               // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
               className: `v${mainnetVersion}`
             },

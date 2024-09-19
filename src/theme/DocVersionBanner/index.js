@@ -71,7 +71,7 @@ function LatestVersionSuggestionLabel({versionLabel, to, onClick}) {
         ),
       }}>
       {
-        'For mainnet documentation, see the {latestVersionLink} ({versionLabel}).'
+        'For the released version documentation, see the {latestVersionLink} ({versionLabel}).'
       }
     </Translate>
   );

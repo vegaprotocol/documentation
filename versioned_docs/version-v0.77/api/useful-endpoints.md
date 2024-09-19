@@ -3,7 +3,6 @@ title: API endpoints
 sidebar_position: 4
 hide_title: false
 description: Building blocks of data and their APIs.
-vega_network: MAINNET
 ---
 
 While there are hundreds of [available endpoints](../api/rest/overview.md), the categories below cover the basics to get you started. 

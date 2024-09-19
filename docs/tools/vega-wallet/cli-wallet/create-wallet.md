@@ -277,7 +277,7 @@ To terminate the process, if you want to run other commands in Vega Wallet for e
 
 ## 5. Approve transactions
 
-You will need to use your wallet to approve any transactions that you create. You might create those transactions through the governance dApp or when using the APIs, for example. 
+You will need to use your wallet to approve any transactions that you create.
 
 When a transaction is submitted, you will receive a prompt asking if you want to approve the transaction. 
 

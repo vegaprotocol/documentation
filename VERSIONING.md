@@ -2,8 +2,8 @@
 
 This site uses [Docusaurus' built in support for versioning](https://docusaurus.io/docs/versioning). This is configured so that:
 
-- _/docs/mainnet/_ represents the last deployed version on [mainnet](https://blog.vega.xyz/what-to-expect-from-restricted-mainnet-616086d9fdaf)
-- _/docs/testnet/_ represents the most recent version on [Fairground testnet](https://fairground.wtf)
+- _/release/_ represents the last deployed version on Testnet
+- _/pre-release/_ represents the likely next release
 
 
 # Overview
@@ -18,8 +18,8 @@ Every time a release is [tagged in vegaprotocol/vega](https://github.com/vegapro
 --- 
 
 ## tl;dr
-- [/docs/](https://github.com/vegaprotocol/documentation/tree/main/docs/) is 'the current testnet version'. Every time testnet is updated, the docs here will be updated. This folder is served as `/testnet/`.
-- [/versioned_docs/](https://github.com/vegaprotocol/documentation/tree/main/versioned_docs/) contains version folders. The most recent version in this folder is served as `/mainnet/`.
+- [/docs/](https://github.com/vegaprotocol/documentation/tree/main/docs/) is 'the current testnet version'. Every time testnet is updated, the docs here will be updated. This folder is served as `/pre-release/`.
+- [/versioned_docs/](https://github.com/vegaprotocol/documentation/tree/main/versioned_docs/) contains version folders. The most recent version in this folder is served as `/release/`.
 - Only one version is kept in `versioned_docs`. [vegaprotocol/vega](https://github.com/vegaprotocol/vega). This is because each version contains a lot of pages, which slows down the build - and at this point in time, the benefit of keeping old versions is small.
 
 ## Changing the testnet version
@@ -49,7 +49,7 @@ The assumption is that when a release is adopted by a network, it will be done f
 
 This runs a number of tasks on the newly snapshotted docs for mainnet:
 - replace any [front matter](https://docusaurus.io/docs/markdown-features#front-matter) metadata referring to TESTNET to MAINNET
-- Fix any sidebar links that still contain `/testnet/` to `/mainnet/`
+- Fix any sidebar links that still contain `/pre-release/` to `/release/`
 
 
 # Notes

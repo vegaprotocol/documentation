@@ -13,7 +13,7 @@ import TabItem from '@theme/TabItem';
 This tutorial describes how to stake using the smart contracts, the APIs, an Ethereum wallet, and a Vega Wallet.
 :::
 
-* Tokenholders can stake tokens to [validators on a network](../../concepts/vega-chain#delegated-proof-of-stake), also known as nominating validators.
+* Tokenholders on a chain that uses Vega software can stake tokens to [validators on a network](../../concepts/chain/validator-nodes.md), also known as nominating validators.
 * A [Vega Wallet](../../tools/vega-wallet/) is required to create a Vega key and to stake (also known as nominate) validators.
 * Governance tokens may be locked in a vesting schedule set by the network operators. This tutorial covers unlocked tokens, i.e. tokens that are in a user's Ethereum wallet.
 * The staking bridge used to *stake* assets is different to the ERC20 bridge that allows asset *withdrawal*.
@@ -22,7 +22,7 @@ This tutorial describes how to stake using the smart contracts, the APIs, an Eth
 Staking tokens from a tokenholder's Ethereum wallet follows the below process:
 1. On Ethereum, the tokens need to be associated with a Vega key
 2. On a network running Vega software, the Vega key is used to nominate a validator (stake)
-3. At the end of each [epoch](../../concepts/vega-chain/network.md#epochs), rewards are paid out to the Vega key
+3. At the end of each [epoch](../../concepts/chain/network.md#epochs), rewards are paid out to the Vega key
 
 ## Withdrawing unlocked and unassociated tokens
 1. On a network running Vega software, rewards and unassociated tokens can be withdrawn by submitting a withdrawal transaction
@@ -74,7 +74,7 @@ vegawallet.exe transaction send --wallet "WALLET_NAME" --pubkey "VEGA_PUBKEY" --
 
 
 ### 3. Claiming rewards
-A nomination to a validator occurs in one epoch, [and takes effect in the subsequent epoch](../../concepts/vega-chain#operation/ERC20WithdrawalApproval). 
+A nomination to a validator occurs in one epoch, [and takes effect in the subsequent epoch](../../concepts/chain/proof-of-stake.md#nominating-validators). 
 
 That means that during the first epoch in which you nominate, no rewards will be received. For each subsequent epoch, rewards will be deposited to the Vega key. 
 

@@ -21,7 +21,7 @@ Validators, community members, and other service providers may operate public da
 Below, find a list of all the known public servers available for this network, and use them to connect to the **[API endpoints](./useful-endpoints.md)** or **[submit transactions](./useful-endpoints.md#submit-transactions)**.
 
 :::note Read more
-[Data nodes](../concepts/vega-chain/data-nodes.md): Find out what a data node is, and if setting one up for yourself is right for you.
+[Data nodes](../concepts/chain/data-nodes.md): Find out what a data node is, and if setting one up for yourself is right for you.
 :::
 
 ## Node API servers: Fairground

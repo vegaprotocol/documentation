@@ -14,8 +14,7 @@ Governance tokenholders can define the optimal configuration for a network by cr
 Network parameters can only be added and removed with Vega core software releases.
 
 :::note Go deeper
-* [Concept: Network parameters](../vega-chain/network.md#parameters)
-* [Network parameters: See full list on the block explorer ↗](https://explorer.fairground.wtf/network-parameters)
+* [Concept: Network parameters](../chain/network.md#parameters)
 * [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
 :::
 

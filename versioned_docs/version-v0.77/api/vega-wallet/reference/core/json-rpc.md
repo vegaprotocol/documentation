@@ -838,15 +838,6 @@ undefined
     "value": {
         "networks": [
             {
-                "name": "mainnet1",
-                "metadata": [
-                    {
-                        "key": "network",
-                        "value": "mainnet"
-                    }
-                ]
-            },
-            {
                 "name": "fairground",
                 "metadata": [
                     {
@@ -2066,7 +2057,7 @@ undefined
     "jsonrpc": "2.0",
     "method": "admin.start_service",
     "params": {
-        "network": "mainnet1",
+        "network": "fairground",
         "noVersionCheck": false
     }
 }
@@ -2109,7 +2100,7 @@ undefined
     "jsonrpc": "2.0",
     "method": "admin.stop_service",
     "params": {
-        "network": "mainnet1"
+        "network": "fairground"
     }
 }
 ```

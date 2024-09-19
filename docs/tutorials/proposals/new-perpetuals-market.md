@@ -49,7 +49,7 @@ Instrument, liquidity monitoring parameters, price monitoring parameters, and da
 | `decimalPlaces` | Sets the smallest price increment on the book that can be stored by Vega. Use with `tickSize` to get bigger price increments that are currently financially meaningful. Though `decimalPlaces` can't be changed via governance, `tickSize` can. | 18 |
 | `positionDecimalPlaces` | Sets the size that the smallest order / position on the market can be. Set the position decimal places such that the margin on the smallest order ends up being about 1 USD. This ensures that the market will not accept orders with very small margin minimums, protecting the network from being spammed with lots of financially insignificant orders. To figure out the ideal decimal place: Calculate the risk factor. Find the current price the asset is trading for, such as from the oracle you're using. The smallest order margin is `price x 10^{-pdp} x (risk factor)`. Convert to USD. If this is less than 0.5, then decrease the position decimal places (pdp) accordingly. Position decimal places (pdp) can also be negative integers. | 3 |
 
-**Timestamps** are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an [opening auction](../../concepts/trading-on-vega/trading-modes.md#auction-type-opening) will be, which must be smaller than/equal to the difference between the values of the network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
+**Timestamps** are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an [opening auction](../../concepts/trading-framework/trading-modes.md#auction-type-opening) will be, which must be smaller than/equal to the difference between the values of the network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
@@ -144,7 +144,7 @@ Liquidity monitoring uses the following properties:
 
 ### Mark price configuration
 
-The mark price methodology can be fine-tuned per market. If left blank, the market will default to the [last price method](../../concepts/trading-on-vega/margin.md#last-traded-price). You can read further details about the flexible mark price fields in [concepts](../../concepts/trading-on-vega/margin.md#flexible-mark-price-methodology).
+The mark price methodology can be fine-tuned per market. If left blank, the market will default to the [last price method](../../concepts/trading-framework/margin.md#last-traded-price). You can read further details about the flexible mark price fields in [concepts](../../concepts/trading-framework/margin.md#flexible-mark-price-methodology).
 
 | Field | Description | Examples |
 | ----------- | ----------- | --------- |

@@ -107,11 +107,11 @@
     },
     {
       "source": "/mainnet/concepts/trading-on-vega/fees-rewards",
-      "destination": "/mainnet/concepts/trading-on-vega/discounts-rewards"
+      "destination": "/mainnet/concepts/trading-framework/discounts-rewards"
     },
     {
       "source": "/testnet/concepts/trading-on-vega/fees-rewards",
-      "destination": "/mainnet/concepts/trading-on-vega/discounts-rewards"
+      "destination": "/mainnet/concepts/trading-framework/discounts-rewards"
     },
     {
       "source": "/mainnet/node-operators/get-started/setup-server",
@@ -134,21 +134,9 @@
       "destination": "/testnet/tools/vega-wallet/cli-wallet/:path*"
     },
     {
-      "source": "/testnet/tools/vega-wallet/desktop-app/latest/:path*",
-      "destination": "/testnet/tools/vega-wallet/desktop-app/:path*"
-    },
-    {
       "source": "/testnet/concepts/trading-on-vega/positions-margin",
-      "destination": "/testnet/concepts/trading-on-vega/margin"
+      "destination": "/testnet/concepts/trading-framework/margin"
     }, 
-    {
-      "source": "/mainnet/api/public-endpoints",
-      "destination": "/mainnet/api/public-servers"
-    },
-    {
-      "source": "/testnet/api/public-endpoints",
-      "destination": "/testnet/api/public-servers"
-    },
     {
       "source": "/mainnet/api/building-blocks",
       "destination": "/mainnet/api/useful-endpoints"
@@ -156,6 +144,14 @@
     {
       "source": "/testnet/api/building-blocks",
       "destination": "/testnet/api/useful-endpoints"
+    },
+    {
+      "source": "/testnet/:path*",
+      "destination": "/pre-release/:path*"
+    },
+    {
+      "source": "/mainnet/:path*",
+      "destination": "/release/:path*"
     }
   ]
 }

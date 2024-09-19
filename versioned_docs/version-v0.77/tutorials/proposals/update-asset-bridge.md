@@ -2,7 +2,6 @@
 sidebar_position: 6
 title: Update asset bridge
 hide_title: true
-vega_network: MAINNET
 keywords:
   - proposal
   - governance

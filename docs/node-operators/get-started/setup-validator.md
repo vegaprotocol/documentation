@@ -285,9 +285,6 @@ You will be asked for a passphrase for your node wallet, which you created when 
 :::
 
 ### Set up the Vega wallet
-To use your Vega Wallet for staking with the governance dApp (below), you will need to either: 
-a. use a browser running on your server to access the governance dApp, and Ethereum wallet, and connect locally to the wallet
-b. regenerate the wallet on your local machine using the recovery phrase. If you do regenerate the wallet locally, consider removing that wallet from your local machine once you've self-staked, to keep your keys as secure as possible.
 
 [Create a Vega Wallet](../../tools/vega-wallet/cli-wallet/create-wallet.md) and public key, using the software version that matches the network's software version.
 

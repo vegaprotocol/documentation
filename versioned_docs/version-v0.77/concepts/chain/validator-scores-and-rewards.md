@@ -144,4 +144,4 @@ The remaining rewards are then distributed to the tokenholders nominating the va
 Rewards will not be paid to a validator if the multisig control is incorrectly configured or outdated and leads to that validator having a zero-score. Read more in [multisig score](#multisig-score).
 
 ## Validator metric-based rewards
-There may be extra rewards to consensus and standby validators, if the [rewards](../trading-on-vega/discounts-rewards.md#how-to-fund-rewards) are funded. These rewards are based on validators' ranking scores.
+There may be extra rewards to consensus and standby validators, if the [rewards](../trading-framework/discounts-rewards.md#how-to-fund-rewards) are funded. These rewards are based on validators' ranking scores.

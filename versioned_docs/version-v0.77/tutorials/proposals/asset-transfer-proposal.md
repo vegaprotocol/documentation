@@ -74,7 +74,7 @@ You will need to define the dispatch strategy, which includes the metric, the le
 | `entityScope` | Defines the entities within scope, i.e. whether they are in a team or not | ENTITY_SCOPE_INDIVIDUALS; ENTITY_SCOPE_TEAMS |
 | `individualScope` | To be used if the eligible reward recipients should be all participants, individuals, or within a team |  INDIVIDUAL_SCOPE_ALL; INDIVIDUAL_SCOPE_IN_TEAM; INDIVIDUAL_SCOPE_NOT_IN_TEAM |
 | `teamScope` | To be used if the eligible reward recipients need to be in a team, and rewards are to be calculated based on team performance. | Leave blank if allowing all teams, otherwise provide an array of team IDs. See example below |
-| `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../../concepts/trading-on-vega/discounts-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK; DISTRIBUTION_STRATEGY_RANK_LOTTERY |
+| `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. Read [distribution method](../../concepts/trading-framework/discounts-rewards.md#how-rewards-are-scaled) for more info |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK; DISTRIBUTION_STRATEGY_RANK_LOTTERY |
 | `rankTable`| Ordered list, using start rank, and defines the rank bands and share ratio for each band. Mandatory for the rank and lottery distribution strategies. | `{"start_rank": 1, "share_ratio": 10},` etc |
 | `capRewardFeeMultiple` | Optional value that sets by how much the reward payout amount is to be capped. It will set each participant's actual reward amount received to be whichever is smaller of: full earned reward amount, or the `capRewardFeeMultiple` × participant's fees paid this epoch. | Numbers greater than zero, decimals accepted |
 
@@ -117,7 +117,7 @@ These templates show an example of how to fund rewards with a governance transfe
 * Command line examples for different operating systems
 
 <Tabs groupId="transferForRewards">
-<TabItem value="json" label="Governance dApp (JSON)">
+<TabItem value="json" label="JSON">
 
 ```
 {

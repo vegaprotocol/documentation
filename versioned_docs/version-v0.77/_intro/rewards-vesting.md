@@ -18,7 +18,7 @@ Market participants can receive rewards for their trading activity, liquidity pr
 
 **Market proposers** can receive rewards for proposing markets that draw in trading volume. 
 
-Your reward earnings can grow if you have an [activity streak](./activity.md) and/or keep earned rewards in your rewards account. A full summary off all reward metrics can be found in a deeper dive into [rewards](../concepts/trading-on-vega/discounts-rewards.md).
+Your reward earnings can grow if you have an [activity streak](./activity.md) and/or keep earned rewards in your rewards account. A full summary off all reward metrics can be found in a deeper dive into [rewards](../concepts/trading-framework/discounts-rewards.md).
 
 Rewards are independent from [fees](./fees.md), which are paid to validators, liquidity providers, and price makers on each trade.
 

@@ -39,7 +39,7 @@ For proposals adding a new successor market, the outcome of the proposal can cha
 
 If a parent market is still in its proposed state, its successor market cannot be enacted, even if it passes the vote.
 
-Two proposals that name the same parent can be submitted and pass a governance vote. Whichever market clears its [opening auction](../trading-on-vega/trading-modes.md#auction-type-opening) first gets the share of the insurance pool, and the liquidity providers' equity-like share is moved to that market. The second market will then be [rejected](../trading-on-vega/market-lifecycle.md#market-status-rejected).
+Two proposals that name the same parent can be submitted and pass a governance vote. Whichever market clears its [opening auction](../trading-framework/trading-modes.md#auction-type-opening) first gets the share of the insurance pool, and the liquidity providers' equity-like share is moved to that market. The second market will then be [rejected](../trading-framework/market-lifecycle.md#market-status-rejected).
 
 ## Lifecycle of a governance proposal
 You need community support if you want to change something about the network, whether that's to add a new market, change a network parameter, or transfer pooled assets. It's worth considering what your proposed change contributes to the network, and if it would get enough votes from fellow tokenholders.
@@ -59,7 +59,7 @@ Including as much detail as possible gives other community members the opportuni
 When formalising the proposal, it is worth ensuring that any fields that are dependent on a range set by network parameters are correctly defined. Check the network's documentation for specific values for their network parameters.
 
 ### 3. Submitting proposal and telling the community (on-chain and off-chain)
-You can submit a governance proposal to the network using the command line, a script, or the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
+You can submit a governance proposal to the network using the command line, or a script.
 
 Your Vega key must have enough of the governance token associated to submit a proposal. For a 'market parameter change' proposal, you'll also need enough equity-like share in the market from your liquidity commitment. This is defined in the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerEquityLikeShare" />.
 

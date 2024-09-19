@@ -38,7 +38,7 @@ function formatVersionNumber(version) {
  * Somewhat hacky method for determining the correct tag name on 
  * vegaprotocol/vega from which to get the openApi.json
  * 
- * @param {String} vegaNetwork 'TESTNET' | 'MAINNET'
+ * @param {String} vegaNetwork 'TESTNET' | ''
  * @param {Object*} siteConfig Docusaurus site config option
  * @param {Object} siteMetadata Docusaurus configuration
  * @returns 

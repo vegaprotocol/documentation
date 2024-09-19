@@ -145,7 +145,7 @@ Keep your recovery phrase safe and secret. You will need it to import your keys.
 :::
 
 ## 3. Choose a network
-If you want to interact with the governance dApp or Vega Console, you'll need to import network configuration for the network(s) you want to connect to.
+You may need to import network configuration for the network(s) you want to connect to.
 
 ### Import networks
 
@@ -277,7 +277,7 @@ To terminate the process, if you want to run other commands in Vega Wallet for e
 
 ## 5. Approve transactions
 
-You will need to use your wallet to approve any transactions that you create for a network running Vega software. You might create those transactions through the governance dApp or when using the APIs, for example. 
+You will need to use your wallet to approve any transactions that you create for a network running Vega software.
 
 When a transaction is submitted, you will receive a prompt asking if you want to approve the transaction. 
 
