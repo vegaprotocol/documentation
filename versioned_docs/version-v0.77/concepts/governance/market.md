@@ -42,8 +42,8 @@ Optional fields include:
 
 :::note Read more
 * [New market proposal tutorial](../../tutorials/proposals/new-market-proposal.md)
-* [Data sources](../trading-on-vega/data-sources.md)
-* [Price monitoring parameters](../trading-on-vega/market-protections.md#price-monitoring)
+* [Data sources](../trading-framework/data-sources.md)
+* [Price monitoring parameters](../trading-framework/market-protections.md#price-monitoring)
 :::
 
 ### Risk models and parameters

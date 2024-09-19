@@ -37,7 +37,7 @@ Some data nodes are run by consensus validators and offer public access to the A
 Anyone who wants to can run a data node.
 
 :::note Go deeper
-* **[Data node concepts](../concepts/vega-chain/data-nodes.md)**: Get into the details about data nodes.
+* **[Data node concepts](../concepts/chain/data-nodes.md)**: Get into the details about data nodes.
 * **[How to set up a data node](../node-operators/get-started/setup-datanode.md)**: Step by step instructions and config guidance.
 :::
 

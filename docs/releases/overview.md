@@ -105,12 +105,12 @@ This version was released to the Vega testnet on 9 May 2024.
 ### New features
 
 **Spot markets**
-The protocol now supports [proposing spot markets](../tutorials/proposals/new-spot-market.md), which will let users buy or sell assets using assets they own. [Spot](../concepts/trading-on-vega/market-types.md#spot) markets have no margin or leverage.
+The protocol now supports [proposing spot markets](../tutorials/proposals/new-spot-market.md), which will let users buy or sell assets using assets they own. [Spot](../concepts/trading-framework/market-types.md#spot) markets have no margin or leverage.
 
 **New bridge support**
 There is now support for an Arbitrum bridge so that users can bridge assets easily from Arbitrum to Vega and avoid Ethereum gas fees.
 
-A new reward metric has been added that rewards based on the highest realised return. [Read more on the rewards page](../concepts/trading-on-vega/discounts-rewards.md#highest-realised-return). This has been done in [issue 11167 ↗](https://github.com/vegaprotocol/vega/issues/11167).
+A new reward metric has been added that rewards based on the highest realised return. [Read more on the rewards page](../concepts/trading-framework/discounts-rewards.md#highest-realised-return). This has been done in [issue 11167 ↗](https://github.com/vegaprotocol/vega/issues/11167).
 
 The most profitable trader reward has been extended to include losses in the calculation. This has been done in [issue 11165 ↗](https://github.com/vegaprotocol/vega/issues/11165).
 
@@ -660,7 +660,7 @@ Whilst a referral program is active, the following benefits may be available to 
 Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues and pull requests with the [`referral ` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
 
 #### Changes to reward framework
-This release introduces locking and vesting for all rewards accrued, including trading, validator score, and staking rewards. Those rewards will go into a [vesting account](../concepts/trading-on-vega/discounts-rewards.md#how-rewards-are-paid), and can be redeemed on a per-epoch basis. Some rewards may be locked for a number of epochs before they begin vesting, this is defined in each reward pool's funding transfer and may differ for each type of reward.
+This release introduces locking and vesting for all rewards accrued, including trading, validator score, and staking rewards. Those rewards will go into a [vesting account](../concepts/trading-framework/discounts-rewards.md#how-rewards-are-paid), and can be redeemed on a per-epoch basis. Some rewards may be locked for a number of epochs before they begin vesting, this is defined in each reward pool's funding transfer and may differ for each type of reward.
 
 The initial base rate for vesting will be 25%, meaning 25% of your unlocked pool will vest every epoch. This is set in a network parameter and can be changed by the community through governance. At release time, there is no vesting period for staking rewards, and they will be available to transfer from the vested account to general account as they accrue.
 
@@ -669,7 +669,7 @@ The vesting rate can also be accelerated for faster vesting by keeping rewards i
 #### Expanded reward opportunities
 Trading rewards have increased to include 3 new reward types, and validator node operators can also benefit from a new reward.
 
-See details on the [trading rewards page](../concepts/trading-on-vega/discounts-rewards.md#trading-rewards) and the [validator rewards page](../concepts/vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
+See details on the [trading rewards page](../concepts/trading-framework/discounts-rewards.md#trading-rewards) and the [validator rewards page](../concepts/chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
 
 ## Pre-release version 0.72.5 | 2023-07-20
 This version was released to the Vega testnet on 20 July, 2023.

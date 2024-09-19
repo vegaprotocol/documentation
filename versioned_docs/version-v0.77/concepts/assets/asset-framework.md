@@ -63,9 +63,9 @@ Assets need to be proposed and pass a governance vote before they can be used on
 :::
 
 ## Margin, settlement, and liquidity provision
-See the [positions and margin](../trading-on-vega/margin.md) page for details on how margining works. 
+See the [positions and margin](../trading-framework/margin.md) page for details on how margining works. 
 
-See the [settlement](../trading-on-vega/settlement.md) page for information on how settlement is handled.
+See the [settlement](../trading-framework/settlement.md) page for information on how settlement is handled.
 
 See the section on [liquidity provision](../liquidity/index.md) for details on the liquidity provision mechanics.
 

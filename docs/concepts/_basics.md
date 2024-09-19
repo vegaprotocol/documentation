@@ -8,8 +8,8 @@ Welcome! This site documents how the Vega protocol works.
 
 <FeatureList>
   <Column title="Get to know Vega">
-    <Feature url="/testnet/concepts/trading-on-vega" title="Trading features" subtitle="About the trading infrastructure" image="tophat-bond.png" />
-    <Feature url="/testnet/concepts/vega-chain" title="Blockchain" subtitle="How a PoS chain works" image="tophat-bond.png" />
+    <Feature url="/testnet/concepts/trading-framework" title="Trading features" subtitle="About the trading infrastructure" image="tophat-bond.png" />
+    <Feature url="/testnet/concepts/chain" title="Blockchain" subtitle="How a PoS chain works" image="tophat-bond.png" />
   </Column>
     <Column title="Build">
     <Feature url="/testnet/api/overview" title="API Overview" subtitle="Explore using the APIs" image="tophat-bond.png" />

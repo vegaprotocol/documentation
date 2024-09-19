@@ -46,7 +46,7 @@ If you're using *cross margin mode*, collateral may be periodically transferred 
 To move some or all of the money in your margin or order margin account back into your general account, you can try reducing the size of your position on the market, or closing it entirely. If your position size is zero and you have no active orders, your margin accounts will be empty and all the funds will be returned to your general account and you can access them again.
 
 :::note Read more
-[Margin](../trading-on-vega/margin.md)
+[Margin](../trading-framework/margin.md)
 :::
 
 ### Settlement accounts
@@ -57,7 +57,7 @@ Each market has its own settlement account. Cashflows from mark-to-market settle
 Note that this happens instantaneously, so you will likely never observe a current balance in an account of this type. However, you may see transfers to and from this account and historic balances if you examine historic data. This can help you to understand how funds have moved between parties with active positions on a market.
 
 :::info Read more
-[Concept: Mark-to-market settlement](../trading-on-vega/settlement.md#mark-to-market-settlement) 
+[Concept: Mark-to-market settlement](../trading-framework/settlement.md#mark-to-market-settlement) 
 :::
 
 ### Holding accounts
@@ -84,8 +84,8 @@ However, the behaviour is different when a market is defined as a parent to a su
 The assets in the asset insurance pools can only be moved if a  [governance-initiated transfer](./transfers.md#governance-initiated-transfers) is enacted, meaning a governance proposal to move assets to another specified account has passed the vote.
 
 :::note Read more
-* [Concept: Market lifecycle](../trading-on-vega/market-lifecycle.md)
-* [Concept: Market protections](../trading-on-vega/market-protections.md)
+* [Concept: Market lifecycle](../trading-framework/market-lifecycle.md)
+* [Concept: Market protections](../trading-framework/market-protections.md)
 :::
 
 ### Accounts for fees
@@ -100,7 +100,7 @@ The revenue from other fees go into fee-specific accounts:
 * **Infrastructure fee pool**: per asset, to then be distributed to the consensus validators who run the network and thus provide the infrastructure
 
 :::note Read more
-[Concept: Fees](../trading-on-vega/fees.md)
+[Concept: Fees](../trading-framework/fees.md)
 :::
 
 ### Trading reward accounts 
@@ -123,7 +123,7 @@ There is also a global rewards account, which is used for validator rewards on t
 | Market proposers reward | Holds funds allocated to reward creating markets that attract good trading volume |
 
 :::note Read more
-[Concept: Trading rewards](../trading-on-vega/discounts-rewards.md#trading-rewards)
+[Concept: Trading rewards](../trading-framework/discounts-rewards.md#trading-rewards)
 :::
 
 ### Validator reward accounts

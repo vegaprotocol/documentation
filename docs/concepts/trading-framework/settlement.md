@@ -79,7 +79,7 @@ When executing the settlement for each funding period, first cashflows are colle
 If there's a shortfall, the market's [insurance pool](./market-protections.md#insurance-pools) is used to make up the difference. If that's not possible, the protocol will trigger [loss socialisation](./market-protections.md#loss-socialisation).
 
 :::note Read more
-[Concept: Perpetual futures markets](../trading-on-vega/market-types.md#perpetual-futures)
+[Concept: Perpetual futures markets](../trading-framework/market-types.md#perpetual-futures)
 :::
 
 ## Settlement execution
@@ -96,7 +96,7 @@ When collateral is collected, ledger entries that adhere to double-entry account
 If all the requested amounts are successfully transferred to the settlement account, then the amount collected will match the amount to be distributed. The participants whose moves were positive will have their margin accounts credit with what they're owed. 
 
 :::note Read more 
-* [Concept: Insurance pools](../trading-on-vega/market-protections.md#insurance-pools)
-* [Concept: Loss socialisation](../trading-on-vega/market-protections.md#loss-socialisation)
+* [Concept: Insurance pools](../trading-framework/market-protections.md#insurance-pools)
+* [Concept: Loss socialisation](../trading-framework/market-protections.md#loss-socialisation)
 * [Concept: Settlement account](../assets/accounts.md#settlement-accounts)
 :::

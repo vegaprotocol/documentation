@@ -32,7 +32,7 @@ A transaction may be rejected throughout the validation process for several reas
 There are several levels of validation:
 
 1. Vega Wallet ‘sanity check’:
-   If the transaction is sent using the Vega Wallet, the wallet software will ensure that a transaction with a bad payload doesn’t go to the mempool. It checks details including the price formatting, the public key formatting (the right number of characters), the shape of the payload, and more. It also compares fields in the command to ensure they’re not conflicting, such as not specifying fields that are mutually exclusive, or that dependent fields match (such as if the [time in force](../trading-on-vega/orders#times-in-force) is applicable to the order type). 
+   If the transaction is sent using the Vega Wallet, the wallet software will ensure that a transaction with a bad payload doesn’t go to the mempool. It checks details including the price formatting, the public key formatting (the right number of characters), the shape of the payload, and more. It also compares fields in the command to ensure they’re not conflicting, such as not specifying fields that are mutually exclusive, or that dependent fields match (such as if the [time in force](../trading-framework/orders#times-in-force) is applicable to the order type). 
    
    If the wallet validation fails, the transaction is not sent to a node. A transaction that is validated by the wallet, with a success message, is successfully submitted to and ‘ingested’ by a validator node. However, that does not necessarily mean the transaction will be added to a block, which depends on the follow-on validation.
 

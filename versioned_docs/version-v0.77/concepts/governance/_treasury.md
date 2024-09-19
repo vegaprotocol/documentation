@@ -42,11 +42,11 @@ You can also see the balance programmatically with the `list accounts API`. For 
 - Incentivise *liquidity provision* by funding rewards for participants who receive liquidity and/or maker fees
 - Support market success by rewarding proposers who create markets that attract high trading volumes
 
-Read in detail on the [rewards page](../trading-on-vega/discounts-rewards.md#trading-rewards) about the trading rewards you can choose from.
+Read in detail on the [rewards page](../trading-framework/discounts-rewards.md#trading-rewards) about the trading rewards you can choose from.
 
 **Team games**: Rewards that are targeted to a team entity scope let teams compete against each other for a share of the winnings. You can propose a team game for any type of trading reward.
 
-Read more about how these work in the [teams and games](../trading-on-vega/discounts-rewards.md#teams-and-games) section.
+Read more about how these work in the [teams and games](../trading-framework/discounts-rewards.md#teams-and-games) section.
 
 **Grants and other initiatives**: A transfer can send to any Vega key, even if it's an individual and not a reward account. You can use a freeform proposal to gauge the community's interest and hone the plan before setting up the proposal for transferring assets.
 

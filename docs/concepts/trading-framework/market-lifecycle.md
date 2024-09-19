@@ -97,7 +97,7 @@ An active market status indicates it is in continuous trading.
 
 ### Enters active state
 - From `Pending`: enactment date reached and conditions to transition from pending to active are met
-- From `Suspended`: conditions specified in [price monitoring](../trading-on-vega/market-protections.md#price-monitoring) are met for the market to exit the suspended status back to active
+- From `Suspended`: conditions specified in [price monitoring](../trading-framework/market-protections.md#price-monitoring) are met for the market to exit the suspended status back to active
 
 ### What is and isn't possible
 - Liquidity providers can submit, amend, or cancel commitments 

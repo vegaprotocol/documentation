@@ -22,10 +22,10 @@ Liquidity providers earn from the fees paid by takers on the market. How much yo
 Note: During an auction uncrossing, an LP’s orders will not need to provide liquidity or enable trades. However, you must maintain your liquidity commitment, and orders are placed back on the order book when normal trading resumes.
 
 ## Community-funded LP rewards
-In addition to the income made from fees, anyone can fund reward pools that will pay out to liquidity providers at the end of each [epoch](../vega-chain/network.md#epochs), based on the proportion of fees the LPs have received.
+In addition to the income made from fees, anyone can fund reward pools that will pay out to liquidity providers at the end of each [epoch](../chain/network.md#epochs), based on the proportion of fees the LPs have received.
 
 :::note Read more
-**[Concept: Rewards](../trading-on-vega/discounts-rewards.md)**: Learn more about community funded LP rewards, and trading rewards in general.
+**[Concept: Rewards](../trading-framework/discounts-rewards.md)**: Learn more about community funded LP rewards, and trading rewards in general.
 :::
 
 <hr class="subsection" />

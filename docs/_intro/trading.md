@@ -21,8 +21,8 @@ Continuous trading uses a continuous limit order book, and traders can place lim
 Markets enter into auctions when a market first opens, if block times are particularly slow, or if price monitoring bounds are breached because of large price moves. When an auction ends, the orders are sorted, and a price range at which the highest total quantity of trades can occur is derived. The mid-price of that range is used for uncrossing. 
 
 :::note Dive deeper
-[Concepts: Order types](../concepts/trading-on-vega/orders.md)
-[Concepts: Auctions](../concepts/trading-on-vega/trading-modes.md#auctions)
+[Concepts: Order types](../concepts/trading-framework/orders.md)
+[Concepts: Auctions](../concepts/trading-framework/trading-modes.md#auctions)
 :::
 
 ## Market protections
@@ -36,5 +36,5 @@ Protections are enabled to:
 * Enact loss socialisation when a trader cannot support their owed amounts and the insurance pool doesn't have enough to cover the losses the 'winning' traders would have gained
 
 :::note Dive deeper
-[Concepts: Market protections](../concepts/trading-on-vega/market-protections.md)
+[Concepts: Market protections](../concepts/trading-framework/market-protections.md)
 :::

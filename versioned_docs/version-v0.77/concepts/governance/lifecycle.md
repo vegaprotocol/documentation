@@ -39,7 +39,7 @@ For proposals adding a new successor market, the outcome of the proposal can cha
 
 If a parent market is still in its proposed state, its successor market cannot be enacted, even if it passes the vote.
 
-Two proposals that name the same parent can be submitted and pass a governance vote. Whichever market clears its [opening auction](../trading-on-vega/trading-modes.md#auction-type-opening) first gets the share of the insurance pool, and the liquidity providers' equity-like share is moved to that market. The second market will then be [rejected](../trading-on-vega/market-lifecycle.md#market-status-rejected).
+Two proposals that name the same parent can be submitted and pass a governance vote. Whichever market clears its [opening auction](../trading-framework/trading-modes.md#auction-type-opening) first gets the share of the insurance pool, and the liquidity providers' equity-like share is moved to that market. The second market will then be [rejected](../trading-framework/market-lifecycle.md#market-status-rejected).
 
 ## Lifecycle of a governance proposal
 You need community support if you want to change something about the network, whether that's to add a new market, change a network parameter, or transfer pooled assets. It's worth considering what your proposed change contributes to the network, and if it would get enough votes from fellow tokenholders.

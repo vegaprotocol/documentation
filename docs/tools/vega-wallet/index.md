@@ -30,4 +30,4 @@ Use the **[command line app](./cli-wallet/index.md)** to do everything you can d
 Integrate with the [Vega Wallet API](../category/api/wallet-api) to build UIs or create other headless applications like bots or scripts.
 
 ## What is a wallet?
-**[Wallet concepts](../../concepts/vega-wallet.md)**: Read about how the Vega Wallet works and what the terms like 'wallet name' and 'recovery phrase' mean.
+**[Wallet concepts](../../concepts/wallet.md)**: Read about how the Vega Wallet works and what the terms like 'wallet name' and 'recovery phrase' mean.

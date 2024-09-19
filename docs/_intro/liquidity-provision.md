@@ -32,7 +32,7 @@ The liquidity commitment transaction specifies the following:
 * **Market ID:** the Vega ID of the market to commit liquidity to
 * **Commitment size:** specified in terms of the bond amount to be locked
     - The notional amount of liquidity required for a given bond amount is defined by the bond amount multiplied by the value of the <NetworkParameter frontMatter={frontMatter} param="market.liquidity.stakeToCcyVolume" /> network parameter. For example, for a value of 20, a bond of 1,000 USDT implies a commitment of 20,000 USDT of notional order volume on each side of the book.
-* **Proposed liquidity fee:** the LP’s proposal for the liquidity fee that should be charged on the market, e.g. 0.005 implies a 50 basis point liquidity fee in addition to the network-wide infrastructure and maker fee components. See more info on [fees](../concepts/trading-on-vega/fees.md).
+* **Proposed liquidity fee:** the LP’s proposal for the liquidity fee that should be charged on the market, e.g. 0.005 implies a 50 basis point liquidity fee in addition to the network-wide infrastructure and maker fee components. See more info on [fees](../concepts/trading-framework/fees.md).
     - Note that this value is used to calculate the liquidity fee only if the liquidity fee mode of the market supports it.
 
 ## Liquidity SLA
@@ -90,7 +90,7 @@ Pre-requisites:
 - Build an integration for your market making algorithm
     - See the [building a bot tutorial](../tutorials/building-a-bot/adding-a-liquidity-commitment.md) for a basic example
 - Fund your Vega keys(s)
-- Understand how to interact with [data nodes](../concepts/vega-chain/data-nodes.md) and [APIs](../api/overview.md)
+- Understand how to interact with [data nodes](../concepts/chain/data-nodes.md) and [APIs](../api/overview.md)
 
 Optional further reading:
 

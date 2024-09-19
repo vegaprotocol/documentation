@@ -87,7 +87,7 @@ Rewards are independent from [fees](./fees.md), which are paid to validators, li
 ### How rewards are paid
 Rewards that you earn are paid into a per-asset *vesting rewards account*.
 
-* **Rewards may be locked.** Each reward has its own lock period. Check the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see how many [epochs](../vega-chain/network.md#epochs) each reward is locked for.
+* **Rewards may be locked.** Each reward has its own lock period. Check the [transfers API](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx) to see how many [epochs](../chain/network.md#epochs) each reward is locked for.
 * After rewards unlock, a proportion of the rewards move into a *vested account* each epoch, set by a network parameter: <NetworkParameter frontMatter={frontMatter} param="rewards.vesting.baseRate" />. That percentage can be higher if you have an [activity streak](#activity-streak) going.
 * Redeem them from your vested account by transferring them into your general account. Then you can withdraw.
 
@@ -135,7 +135,7 @@ Trading rewards can be defined by the following things:
 * If the reward is available to individuals or those on a team
 * If a reward's payout is capped - which takes into account a trader's paid fees
 
-Extra rewards for validators can also be set up. Learn more about them on the [validator scores and rewards page](../vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
+Extra rewards for validators can also be set up. Learn more about them on the [validator scores and rewards page](../chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
 
 #### Example: Evaluating reward performance over time
 Some rewards measure trader activity over a number of epochs (set per reward). The image below shows how an average of your scores is taken across the window, i.e., the number of epochs chosen for measurement.
