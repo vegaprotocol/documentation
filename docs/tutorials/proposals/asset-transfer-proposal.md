@@ -117,7 +117,7 @@ These templates show an example of how to fund rewards with a governance transfe
 * Command line examples for different operating systems
 
 <Tabs groupId="transferForRewards">
-<TabItem value="json" label="Governance dApp (JSON)">
+<TabItem value="json" label="JSON">
 
 ```
 {

@@ -17,7 +17,6 @@ The Vega Wallet browser extension is an early stage implementation of the Vega W
 The browser extension lets you connect to a Vega Wallet right in your browser, rather than having to install a separate app. It allows you to:
 * Create a new wallet and public keys
 * Import an existing wallet and its keys
-* Connect to Vega dApps, such as Console and the governance dApp
 * Approve or reject transactions
 
 ## CLI app

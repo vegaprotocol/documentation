@@ -4,7 +4,7 @@ const { shortenVersion, openApiConfig, version, mainnetVersion } = require('./sc
 
 module.exports = {
   title: "Vega Protocol Documentation",
-  tagline: "Documentation of a protocol for creating and trading derivatives on a fully decentralised network",
+  tagline: "Documentation of a protocol for creating and trading derivatives on decentralised networks",
   url: "https://docs.vega.xyz/",
   baseUrl: "/",
   trailingSlash: false,
@@ -229,7 +229,7 @@ module.exports = {
 
     [
       // See ./scripts/docusaurus.config.openapi.js for how this is generated, but in short it takes the
-      // current 'mainnet' vresion and the current 'testnet' version from package.json, iterates over the
+      // current 'release' version and the current 'pre-release' version from package.json, iterates over the
       // ./specs/[version number] folder to get all the swagger files, then generates them in a predictable
       // way
       "docusaurus-plugin-openapi-docs",

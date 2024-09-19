@@ -38,7 +38,7 @@ A one-off transfer **cannot be cancelled** by you, regardless of when the transf
 <TabItem value="KeytoKeytransferOnceLinuxcmd" label="Linux / OSX command line example">
 
 ```bash
-vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
+vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
     "transfer":{
         "fromAccountType": "ACCOUNT_TYPE_GENERAL",
         "toAccountType": "ACCOUNT_TYPE_GENERAL",
@@ -55,7 +55,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
 <TabItem value="KeytoKeytransferOnceWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
+vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
 "{\"transfer\": ^
     { ^
         \"fromAccountType\":\"ACCOUNT_TYPE_GENERAL\", ^
@@ -86,7 +86,7 @@ If you do not have enough to cover each transfer and its fee, the transfer will 
 <TabItem value="KeytoKeytransferRepeatLinuxcmd" label="Linux / OSX command line">
 
 ```bash
-vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
+vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
     "transfer":{
         "fromAccountType":"ACCOUNT_TYPE_GENERAL",
         "toAccountType": "ACCOUNT_TYPE_GENERAL",
@@ -105,7 +105,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
 <TabItem value="KeytoKeytransferRepeatcmdWin" label="Windows command line example">
 
 ```bash
-vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
+vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
 "{\"transfer\": ^
     { ^
         \"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\", ^
@@ -189,7 +189,7 @@ You will need to define the dispatch strategy, which includes the  metric, the l
 <TabItem value="KeytoPooltransferRepeatLinuxcmd" label="Linux / OSX command line">
 
 ```bash
-vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{
+vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{
     "transfer":{
         "fromAccountType": "ACCOUNT_TYPE_GENERAL",
         "toAccountType": "ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS",
@@ -221,7 +221,7 @@ vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network m
 <TabItem value="KeytoPooltransferRepeatWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 ^
+vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground ^
 "{ ^
     \"transfer\":{ ^
         \"fromAccountType\": \"ACCOUNT_TYPE_GENERAL\", ^
@@ -261,13 +261,13 @@ One-off transfers cannot be cancelled.
 <TabItem value="canceltransferLinuxcmd" label="Linux / OSX command line">
 
 ```bash
-vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 '{ "cancelTransfer": { "transferId": "123" }}'
+vegawallet transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground '{ "cancelTransfer": { "transferId": "123" }}'
 ```
 </TabItem>
 <TabItem value="canceltransferWincmd" label="Windows command line example">
 
 ```bash
-vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network mainnet1 "{ \"cancelTransfer\": {  \"transferId\": \"123\" }}"
+vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --network fairground "{ \"cancelTransfer\": {  \"transferId\": \"123\" }}"
 ``` 
 </TabItem>
 </Tabs>

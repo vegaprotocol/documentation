@@ -1,7 +1,6 @@
 ---
 title: Before you start
 sidebar_position: 1
-vega_network: MAINNET
 ---
 
 import Topic from '/docs/topics/_topic-development.mdx'
@@ -72,13 +71,13 @@ For example, a submitted order will receive an order ID once the transaction to 
 You can switch between documentation of the networks' software versions in the top menu bar on every page.
 :::
 
-Once the latest code is prepared for a release, it's deployed to a testnet, where the latest features and updates can be trialled. When and if the validator node operators agree that a new version contains changes that should be accepted into mainnet, and is sufficiently stable, they will deploy the code on their nodes and vote on chain to signal readiness to upgrade. 
+Once the latest code is prepared for a release, it's deployed to a testnet, where the latest features and updates can be trialled. When that code is considered stable enough for deployment, it is labeled as a released version. 
 
 Find out what version a data node is running with the [data node info endpoint](./rest/data-v2/trading-data-service-info.api.mdx).
 
 Breaking APIs changes go through a deprecation cycle, and are announced in the summary for each [release](../releases/overview.md).
 
-The documentation on this site covers the core software version running on the Vega Fairground testnet, as well as the release-ready version of the software. Check which version's documentation you're viewing (and switch between them) by referring to the top navigation bar on each page. 
+The documentation on this site covers the core software version running on the Vega Fairground testnet - the pre-release, as well as the release-ready version of the software. Check which version's documentation you're viewing (and switch between them) by referring to the top navigation bar on each page. 
 
 See the [releases page](../releases/overview.md) for a summary of each software release and links to the full changelog on GitHub.
 
