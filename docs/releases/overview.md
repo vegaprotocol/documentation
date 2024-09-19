@@ -2,6 +2,7 @@
 title: Vega software releases
 hide_title: false
 ---
+
 import Topic from '/docs/topics/_topic-development.mdx'
 
 <Topic />

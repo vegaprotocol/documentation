@@ -220,7 +220,7 @@ module.exports = {
       // is no long available - so that component has been 'swizzled' out of the theme and in to ./src/theme
       require.resolve("docusaurus-protobuffet-plugin"),
       {
-        routeBasePath: "/testnet/api/grpc",
+        routeBasePath: "/pre-release/api/grpc",
         fileDescriptorsPath: `./specs/v${version}/proto.json`,
         protoDocsPath: "./docs/api/grpc/",
         sidebarPath: "./docs/api/grpc/sidebar.js",
@@ -259,15 +259,15 @@ module.exports = {
           versions: {
             current: {
               banner: "unreleased",
-              label: `testnet (v${shortenVersion(version)})`,
-              path: "testnet",
+              label: `pre-release (v${shortenVersion(version)})`,
+              path: "pre-release",
               // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
               className: `v${version}`
             },
             "v0.77": {
               banner: "none",
-              label: `mainnet (v${shortenVersion(mainnetVersion)})`,
-              path: "mainnet",
+              label: `release (v${shortenVersion(mainnetVersion)})`,
+              path: "release",
               // Hacky: Classname used for full version number, v prefix. Used for OpenrpcPlayground
               className: `v${mainnetVersion}`
             },

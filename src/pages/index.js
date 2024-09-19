@@ -11,7 +11,7 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   const versions = usePluginData('docusaurus-plugin-content-docs');
   const isBrowser = useIsBrowser();
-  const base = isBrowser ? getBaseUrl(versions) : 'mainnet'
+  const base = isBrowser ? getBaseUrl(versions) : 'release'
 
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
@@ -26,7 +26,7 @@ function HomepageHeader() {
 
 // This feels hacky - but Link doesn't appear to prefix version on the hompage
 // presumably because it's not served by Docs
-const DEFAULT = 'mainnet'
+const DEFAULT = 'release'
 
 // Given an array of versions, and a selected version (see below), return the
 // appropriate base path for the version
@@ -59,7 +59,7 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   const versions = usePluginData('docusaurus-plugin-content-docs');
   const isBrowser = useIsBrowser();
-  const base = isBrowser ? getBaseUrl(versions) : 'mainnet'
+  const base = isBrowser ? getBaseUrl(versions) : 'release'
   
   return (
     <Layout description={`${siteConfig.tagline}`}>
