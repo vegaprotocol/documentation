@@ -144,6 +144,14 @@
     {
       "source": "/testnet/api/building-blocks",
       "destination": "/testnet/api/useful-endpoints"
+    },
+    {
+      "source": "/testnet/:path*",
+      "destination": "/pre-release/:path*"
+    },
+    {
+      "source": "/mainnet/:path*",
+      "destination": "/release/:path*"
     }
   ]
 }
