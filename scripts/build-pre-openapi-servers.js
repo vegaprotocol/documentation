@@ -35,6 +35,17 @@ specs.forEach(s => {
         description: 'Base URL of the wallet'
       }
     }}]
+  } else if (!!s.match('corestate')) {
+    console.log('**SPECIAL CASE FOR corestate: n00.testnet**')
+    spec.servers = [{
+      url: '{CoreStateServer}',
+      description: 'Core State',
+      variables: {
+      CoreStateServer: {
+        default: 'https://n00.testnet.vega.rocks',
+        description: 'Core State endpoint'
+      }
+    }}]
   } else {
     spec.servers = [{
         url: '{ApiServer}',
