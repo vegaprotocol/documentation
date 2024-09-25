@@ -14,5 +14,13 @@ There are several ways to interact with a Vega Wallet:
 ## Trading interface
 Use **[Vega Console](https://console.fairground.wtf)** to try trading on a testnet trading interface. The Fairground network is set up to provide a fairly realistic experience where you can try out the Vega software to place orders, provide liquidity, and see how the market mechanics work.
 
+## Governance interface
+Vega has open-source software for creating and customising a governance user interface. You can find the code on [GitHub](https://github.com/vegaprotocol/frontend-monorepo/tree/develop/apps/governance).
+
+## Block explorer interface
+Vega has open-source software for creating and customising a block explorer user interface. It relies on a [block explorer service](https://github.com/vegaprotocol/vega/tree/develop/blockexplorer) to be run.
+
+You can find the UI code on [GitHub](https://github.com/vegaprotocol/frontend-monorepo/tree/develop/apps/explorer).
+
 ## Vega Tools repo
 The **[Vega Tools repo](https://github.com/vegaprotocol/vegatools)** provides a set of utilities for inspecting and interacting with a network through the APIs.

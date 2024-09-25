@@ -7,6 +7,6 @@ description: Learn about the Console reference interface
 import DocCardList from '@theme/DocCardList';
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
-[Vega Console ↗](https://console.fairground.wtf) is a reference interface designed to use the Vega protocol software to interact with markets. Anyone can host it on IPFS.
+[Vega Console ↗](https://github.com/vegaprotocol/frontend-monorepo/) is an open source reference interface designed to use the Vega protocol software to interact with markets. 
 
 To run Console locally, check out [the Community Guides section for instructions](../tutorials/community-created#self-hosting-console).

@@ -5,7 +5,12 @@ hide_title: false
 
 A Vega Wallet apps allow you to manage wallets and key pairs, deposit and withdraw assets, stake and sign transactions.
 
-You can interact with a Vega wallet and its keys through a browser extension, two different apps, or integrate using the API.
+## Embedded wallet
+The embedded wallet software can be used to create a wallet for a single browser session, derived from a user's existing Ethereum address.
+
+Embedded wallet functionality must be enabled in a user interface that runs the Vega protocol software to be usable. Users don't need to download any additional software to transact using the embedded wallet.
+
+The embedded wallet doesn't require storing a Vega wallet recovery phrase, as connection depends on the Ethereum address that the wallet is derived from. However, the recovery phrase can be exported to be used with other Vega wallet software.
 
 ## Browser extension
 The Vega Wallet browser extension is an early stage implementation of the Vega Wallet, available for Chrome and Firefox. The extensions linked are only for use with the Fairground network.
