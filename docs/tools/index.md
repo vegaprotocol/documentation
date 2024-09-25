@@ -18,7 +18,9 @@ Use **[Vega Console](https://console.fairground.wtf)** to try trading on a testn
 Vega has open-source software for creating and customising a governance user interface. You can find the code on [GitHub](https://github.com/vegaprotocol/frontend-monorepo/tree/develop/apps/governance).
 
 ## Block explorer interface
-Vega has open-source software for creating and customising a block explorer user interface. You can find the code on [GitHub](https://github.com/vegaprotocol/frontend-monorepo/tree/develop/apps/explorer).
+Vega has open-source software for creating and customising a block explorer user interface. It relies on a [block explorer service](https://github.com/vegaprotocol/vega/tree/develop/blockexplorer) to be run.
+
+You can find the UI code on [GitHub](https://github.com/vegaprotocol/frontend-monorepo/tree/develop/apps/explorer).
 
 ## Vega Tools repo
 The **[Vega Tools repo](https://github.com/vegaprotocol/vegatools)** provides a set of utilities for inspecting and interacting with a network through the APIs.
