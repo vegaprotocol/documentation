@@ -930,11 +930,6 @@ undefined
                     "localhost:3029"
                 ]
             }
-        },
-        "apps": {
-            "console": "console.vega.xyz",
-            "governance": "governance.vega.xyz",
-            "explorer": "explorer.vega.xyz"
         }
     }
 }
@@ -2190,7 +2185,7 @@ undefined
     "value": {
         "activeConnections": [
             {
-                "hostname": "console.vega.xyz",
+                "hostname": "example.com",
                 "wallet": "my-btc-wallet"
             },
             {

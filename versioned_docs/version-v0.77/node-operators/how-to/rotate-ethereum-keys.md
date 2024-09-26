@@ -8,7 +8,7 @@ hide_title: false
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Ethereum key rotation is a safety feature that allows validator nodes to manage their Ethereum keys. Every validator node in the network needs three keys: Ethereum, Tendermint and Vega. This section described to how to dynamically rotate a node's Ethereum key.
+Ethereum key rotation is a safety feature that allows validator nodes to manage their Ethereum keys. Every validator node in the network needs three keys: Ethereum, CometBFT and Vega. This section described to how to dynamically rotate a node's Ethereum key.
 
 Key rotation is a cryptographic best practise that allows a current in-use key to be replaced by a new, different key. It is an activity that should be performed regularly to guard against an in-use key being unknowingly compromised.
 
@@ -78,7 +78,7 @@ The below command will send an Ethereum Key Rotation transaction into the networ
 vega rotate_eth_key --target-block=$TARGET_BLOCK --submitter=$SUBMITTER_ADDR --rotate-from=$ETH_ADDR
 ```
 
-`TARGET_BLOCK` is the block-height at which the key-rotation will occur in the Vega network and must be a block in the future. It is advised to choose a block-height that will be at a time where the below steps can be completed, and one that will not be close to an epoch boundary.
+`TARGET_BLOCK` is the block-height at which the key-rotation will occur in the network and must be a block in the future. It is advised to choose a block-height that will be at a time where the below steps can be completed, and one that will not be close to an epoch boundary.
 
 ## Reload Ethereum wallet in Vega validator node
 Once the network reaches `TARGET_BLOCK` it will rotate the keys associating `ETH_NEW_ADDR` with the node. It is at this time that the following command needs to be run to rotate the key on the node itself:
@@ -141,4 +141,4 @@ Using the node's Vega wallet, the below command can be sent to the network to pr
 }
 ```
 
-These can then also be retrieved from a datanode.
+These can then also be retrieved from a data node.

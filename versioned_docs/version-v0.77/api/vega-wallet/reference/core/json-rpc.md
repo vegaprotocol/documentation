@@ -838,15 +838,6 @@ undefined
     "value": {
         "networks": [
             {
-                "name": "mainnet1",
-                "metadata": [
-                    {
-                        "key": "network",
-                        "value": "mainnet"
-                    }
-                ]
-            },
-            {
                 "name": "fairground",
                 "metadata": [
                     {
@@ -930,11 +921,6 @@ undefined
                     "localhost:3029"
                 ]
             }
-        },
-        "apps": {
-            "console": "console.vega.xyz",
-            "governance": "governance.vega.xyz",
-            "explorer": "explorer.vega.xyz"
         }
     }
 }
@@ -2071,7 +2057,7 @@ undefined
     "jsonrpc": "2.0",
     "method": "admin.start_service",
     "params": {
-        "network": "mainnet1",
+        "network": "fairground",
         "noVersionCheck": false
     }
 }
@@ -2114,7 +2100,7 @@ undefined
     "jsonrpc": "2.0",
     "method": "admin.stop_service",
     "params": {
-        "network": "mainnet1"
+        "network": "fairground"
     }
 }
 ```
@@ -2190,7 +2176,7 @@ undefined
     "value": {
         "activeConnections": [
             {
-                "hostname": "console.vega.xyz",
+                "hostname": "example.com",
                 "wallet": "my-btc-wallet"
             },
             {

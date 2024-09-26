@@ -3,12 +3,11 @@ title: WebSocket streams
 sidebar_label: WebSocket streams
 hide_title: false
 description: Learn how to use the available WebSocket APIs.
-vega_network: MAINNET
 ---
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Vega's API contains WebSocket endpoints that offer real-time updates to changes in the state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
+Vega's API contains WebSocket endpoints that offer real-time updates to changes in the state of a network that runs Vega software, allowing subscriptions to events such as per-market trades or changes to a party's position.
 
 As Vega relies on a blockchain, time moves in discrete blocks and so updates will appear as blocks are executed.
 
@@ -22,7 +21,7 @@ Subscription to a WebSocket endpoint happens when the connection is opened and u
 
 ## Subscribing using the WebSocket API
 
-The tabs below show how to stream all ledger movements that occur on the Vega Fairground network using Bash, Python, and NodeJS. If you want to try this on mainnet, you'll need to connect to a mainnet endpoint that provides WebSocket.
+The tabs below show how to stream all ledger movements that occur on the Vega Fairground network using Bash, Python, and NodeJS.
 
 <Tabs>
 <TabItem value="bash" label="Bash">

@@ -151,8 +151,8 @@
             }
           },
           "metadata": [
-            "enactment:2024-09-29T12:30:20Z",
-            "settlement:2024-09-28T12:30:20Z",
+            "enactment:2024-10-13T13:37:44Z",
+            "settlement:2024-10-12T13:37:44Z",
             "source:docs.vega.xyz"
           ],
           "priceMonitoringParameters": {
@@ -218,8 +218,8 @@
           "enableTransactionReordering": true
         }
       },
-      "closingTimestamp": 1727523020,
-      "enactmentTimestamp": 1727609420
+      "closingTimestamp": 1728736664,
+      "enactmentTimestamp": 1728823064
     }
   }
 }

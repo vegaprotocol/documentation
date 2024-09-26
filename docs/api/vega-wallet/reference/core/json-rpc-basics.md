@@ -5,10 +5,6 @@ description: What you need to know about JSON-RPC for the wallet.
 sidebar_position: 1
 ---
 
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
-
 ## JSON-RPC API introduction
 
 All Vega Wallet software supports a JSON-RPC API to manage the wallets and their keys, and sign and send transactions. It's the core of the wallet backend and is consistent across implementations.

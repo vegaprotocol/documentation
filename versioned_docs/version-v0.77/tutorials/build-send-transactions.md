@@ -20,7 +20,7 @@ A transaction is an action you want to issue to the network, usually encoded in 
 }
 ```
 
-Before the transaction is submitted to the Vega network, it must be bundled up with a few pieces of metadata and signed. That metadata includes:
+Before the transaction is submitted to the network, it must be bundled up with a few pieces of metadata and signed. That metadata includes:
 
 - your public key
 - a small proof-of-work calculation
@@ -34,16 +34,16 @@ The former is the most convenient way to sign & submit a transaction, but the la
 
 ## Build transactions
 
-Send and sign transactions to the Vega network by using the following wallet commands:
+Send and sign transactions to the network by using the following wallet commands:
 * `vegawallet transaction sign`: takes your transaction, bundles it with the metadata discussed above, signs it and returns an base64 encoded representation of the `raw_transaction`
 * `vegawallet transaction send`:  as above, but immediately send the transaction to the network rather then displaying the base64 encoded `raw_transaction`
 * `vegawallet raw_transaction send`: forward the base64-encoded output of `transaction sign` and submits it to the network.
 
 :::info Transactions and raw transactions are different
-A Vega raw transaction is a base64 encoded bundle containing a Vega transaction, a signature, a public key and target block height.
+A Vega raw transaction is a base64 encoded bundle containing a transaction, a signature, a public key and target block height.
 
-Inserting a Vega transaction in `vegawallet raw_transaction send` will fail, as it requires a encoded transaction bundle.
-Inserting a Vega raw transaction in `vegawallet transaction sign` will fail, as it requires a Vega transaction only, without signature or any other data.
+Inserting a transaction in `vegawallet raw_transaction send` will fail, as it requires a encoded transaction bundle.
+Inserting a raw transaction in `vegawallet transaction sign` will fail, as it requires a transaction only, without signature or any other data.
 :::
 
 :::warning gRPC only

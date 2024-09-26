@@ -7,14 +7,13 @@ description: Add new markets or change existing ones.
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-Markets are proposed and voted into existence by Vega tokenholders. The parameters for a market all need to be defined in the proposal.
+Markets can be proposed and voted into existence by tokenholders. The parameters for a market all need to be defined in the proposal.
 
 Some market parameters can also be changed. They can only be proposed by a liquidity provider with enough equity-like share in the market, and need to be voted for by a sufficient number of tokenholders and/or liquidity providers.
 
 When creating a market governance proposal, whether it is for a new dated futures market, a new perpetual futures market, a new spot market, or to change parameters for an existing market, it's recommended that you sense check the proposal and share the final details with the tokenholder community before proposing, so that you can garner support and make any necessary amends. 
 
 Read more:
-* [Vega community forum ↗](https://community.vega.xyz): Share your draft proposals for community discussion.
 * [New perpetual futures market proposal ↗](../../tutorials/proposals/new-perpetuals-market.md): Guide to submitting a proposal for a new market
 * [New futures market proposal ↗](../../tutorials/proposals/new-market-proposal.md): Guide to submitting a proposal for a new market
 * [New spot market proposal ↗](../../tutorials/proposals/new-spot-market.md): Guide to submitting a proposal for a new market
@@ -43,8 +42,8 @@ Optional fields include:
 
 :::note Read more
 * [New market proposal tutorial](../../tutorials/proposals/new-market-proposal.md)
-* [Data sources](../trading-on-vega/data-sources.md)
-* [Price monitoring parameters](../trading-on-vega/market-protections.md#price-monitoring)
+* [Data sources](../trading-framework/data-sources.md)
+* [Price monitoring parameters](../trading-framework/market-protections.md#price-monitoring)
 :::
 
 ### Risk models and parameters

@@ -5,9 +5,6 @@ description: How to access the right APIs for your purposes.
 sidebar_position: 3
 ---
 
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
 
 ## How to access this API
 
@@ -24,10 +21,7 @@ The beta version of this JSON-RPC API was released with the Vega software `v.0.6
 
 ## Communicating with the local service
 
-First, you will have to run the Vega wallet using one of the following wallet softwares:
-
-- [Command-line application](../../tools/vega-wallet/cli-wallet/create-wallet.md): Best for developers, tech-savvy users, and those running headless software like bots and scripts.
-- [Desktop application](../../tools/vega-wallet/desktop-app/index.md): Best for regular users, and those who want to test the UI experience.
+First, you will have to run the Vega wallet using wallet software.
 
 Then, to connect the local service, see ["Connect to local service" guide](./how-to/connect-to-local-service.md).
 

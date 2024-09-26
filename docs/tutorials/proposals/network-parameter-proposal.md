@@ -21,17 +21,15 @@ import Batch from './_batch-sample.md';
 
 # Propose a network parameter change
 
-Network parameters are a constant (or an array of constants) in the system, the values of which can be changed by on-chain governance.
+Network parameters are a constant (or an array of constants), the values of which can be changed by on-chain governance.
 
 This page describes what you need to propose a change to a network parameter, and provides proposal templates that you will need to edit before submitting.
-
-<!--You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.-->
 
 ## Requirements
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
+* A minimum of whichever is larger, associated with that public key, based on the network parameter values for <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minProposerBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" />
 * Familiarity with [governance on Vega](../../concepts/governance/network-parameter.md)
 
 ## Anatomy of a network parameter proposal
@@ -45,7 +43,7 @@ The contents of a `changes` object specifies what will be different after the pr
 
 **Value** is the new value you're proposing that the network parameter should have.
 
-Some network parameters include multiple pieces of information in one value. Changes to one of those network parameters needs to include the correct formatting. You can see how the existing value is formatted on [Explorer ↗](https://explorer.vega.xyz/network-parameters).
+Some network parameters include multiple pieces of information in one value. Changes to one of those network parameters needs to include the correct formatting.
 
 For example, a proposal to change the `rewards.activityStreak.benefitTiers` network parameter would include a value that looks like the following, using escaped JSON:
 
@@ -74,10 +72,8 @@ For example, a proposal to change the `rewards.activityStreak.benefitTiers` netw
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example
 * Command line examples for different operating systems
-
-The governance dApp has a [tool ↗](https://governance.fairground.wtf/proposals/propose/network-parameter) to help you build a network parameter proposal. 
 
 **Replace the example data with the relevant details before submitting.**
 
@@ -85,7 +81,7 @@ The governance dApp has a [tool ↗](https://governance.fairground.wtf/proposals
   <TabItem value="annotated" label="Annotated example">
     <UpdateNetworkParameterAnnotated />
   </TabItem>
-  <TabItem value="json" label="Governance dApp (JSON)">
+  <TabItem value="json" label="JSON">
     <JSONInstructions />
     <UpdateNetworkParameterJSON />
   </TabItem>
@@ -100,17 +96,11 @@ The governance dApp has a [tool ↗](https://governance.fairground.wtf/proposals
 </Tabs>
 
 ## Voting
-All proposals are voted on by the community. 
+All proposals are voted on by the community.
 
-<!--
-Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
--->
+To vote, community members need, at a minimum, the larger of the values of the following network parameters: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minVoterBalance" />, or <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" /> associated with their Vega key. 
 
-To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key. 
-
-Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
-
-Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) determined by the value of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredParticipation" /> and a majority determined by the value of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateNetParam.requiredMajority" />.
 
 ## Enactment
 If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.

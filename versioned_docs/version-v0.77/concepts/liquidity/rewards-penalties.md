@@ -1,7 +1,7 @@
 ---
 sidebar_position: 5
 title: Rewards and penalties
-vega_network: MAINNET
+vega_network: TESTNET
 hide_title: false
 ---
 
@@ -22,10 +22,10 @@ Liquidity providers earn from the fees paid by takers on the market. How much yo
 Note: During an auction uncrossing, an LP’s orders will not need to provide liquidity or enable trades. However, you must maintain your liquidity commitment, and orders are placed back on the order book when normal trading resumes.
 
 ## Community-funded LP rewards
-In addition to the income made from fees, anyone can fund reward pools that will pay out to liquidity providers at the end of each [epoch](../vega-chain/network.md#epochs), based on the proportion of fees the LPs have received.
+In addition to the income made from fees, anyone can fund reward pools that will pay out to liquidity providers at the end of each [epoch](../chain/network.md#epochs), based on the proportion of fees the LPs have received.
 
 :::note Read more
-**[Concept: Rewards](../trading-on-vega/discounts-rewards.md)**: Learn more about community funded LP rewards, and trading rewards in general.
+**[Concept: Rewards](../trading-framework/discounts-rewards.md)**: Learn more about community funded LP rewards, and trading rewards in general.
 :::
 
 <hr class="subsection" />
@@ -61,11 +61,11 @@ These include:
 
 And these network parameters, which also impact LP rewards, are set system wide:
 
-- <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" hideValue={true} />: Specifies the maximum fraction of an LP’s bond that may be slashed per epoch for failing to meet their SLA commitment. Currently set to <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" hideName={true} />. When this is set to zero, liquidity bonds are not at risk of slashing.
+- <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltyMax" />: Specifies the maximum fraction of an LP’s bond that may be slashed per epoch for failing to meet their SLA commitment. When this is set to zero, liquidity bonds are not at risk of slashing.
 
-- <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltySlope" hideName={false} />: Specifies how aggressively the penalty is applied for underperformance (for example: a slope of 1.00 means that for every 1% underperformance 1% of the bond is slashed, up to the maximum above, whereas a slope of 0.1 would mean that for every 10% underperformance the bond would be slashed by 1%). Currently set to <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltySlope" hideName={true} />.
+- <NetworkParameter frontMatter={frontMatter} param="market.liquidity.sla.nonPerformanceBondPenaltySlope" />: Specifies how aggressively the penalty is applied for underperformance (for example: a slope of 1.00 means that for every 1% underperformance 1% of the bond is slashed, up to the maximum above, whereas a slope of 0.1 would mean that for every 10% underperformance the bond would be slashed by 1%).
 
-- <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideValue={true} />: This defines the amount of an LPs bond that will be kept if they cancel their commitment while the market is below its target stake of committed liquidity. If the cancellation is partial or takes a market from above to below target stake, only the pro-rata portion of the bond related to the removal of liquidity below the target stake will be assessed for the penalty. Currently set to <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" hideName={true} />.
+- <NetworkParameter frontMatter={frontMatter} param="market.liquidity.earlyExitPenalty" />: This defines the amount of an LPs bond that will be kept if they cancel their commitment while the market is below its target stake of committed liquidity. If the cancellation is partial or takes a market from above to below target stake, only the pro-rata portion of the bond related to the removal of liquidity below the target stake will be assessed for the penalty.
 
 :::note Go deeper
 [Spec: How SLA performance is calculated ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0042-LIQF-setting_fees_and_rewarding_lps.md#calculating-sla-performance)
@@ -130,8 +130,8 @@ In the example below, there are 3 liquidity providers all bidding for their chos
 
 Distribution of fees between LPs is performed in several steps, first at the time of a trade and then with a final rebalancing at the end of each epoch.
 
-- **Probability of trading**: For each price level, the risk model implies a probability of trading based on the cumulative distribution of a lognormal function between the tightest price monitoring bounds currently for the market and best bid/ask. The network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.minimum.probabilityOfTrading.lpOrders" hideValue={true} /> defines a minimum value for the probability of trading at a given price level.
-    1. Parameters `mu`, `tau` and `sigma` are taken from the individual market's risk model, additionally `tau_scaling` is taken from the relevant network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.probabilityOfTrading.tau.scaling" hideValue={true} />
+- **Probability of trading**: For each price level, the risk model implies a probability of trading based on the cumulative distribution of a lognormal function between the tightest price monitoring bounds currently for the market and best bid/ask. The network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.minimum.probabilityOfTrading.lpOrders" /> defines a minimum value for the probability of trading at a given price level.
+    1. Parameters `mu`, `tau` and `sigma` are taken from the individual market's risk model, additionally `tau_scaling` is taken from the relevant network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.probabilityOfTrading.tau.scaling" />
     2. For a price on the buy side, calculate the cdf between `min_valid_price` (the lowest price within the tightest price monitoring boundaries) and the `price`, normalising for a sum of `1` between `min_valid_price` and `best_bid`.
     3. For a price on the buy side, calculate the cdf between the `price` and  `max_valid_price` (the highest price within the tightest price monitoring boundaries), normalising for a sum of `1` between `best_ask` and `max_valid_price`.
     4. Define a lognormal distribution `D` with:
@@ -178,7 +178,7 @@ Distribution of fees between LPs is performed in several steps, first at the tim
 ### How liquidity fees are distributed
 The liquidity fee amount is collected from traders on every trade, and held in a separate account. This account is under the network’s control.
 
-How often fees are distributed is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providersFeeCalculationTimeStep" hideName={false} />. Starting with the end of the market's opening auction, every time the time-step has been hit, the balance in the account is transferred to each liquidity provider's margin account for the market. This depends on your share and how well you performed against the SLA.
+How often fees are distributed is defined by the network parameter <NetworkParameter frontMatter={frontMatter} param="market.liquidity.providersFeeCalculationTimeStep" />. Starting with the end of the market's opening auction, every time the time-step has been hit, the balance in the account is transferred to each liquidity provider's margin account for the market. This depends on your share and how well you performed against the SLA.
 
 <details><summary>Fee distribution example</summary>
 <p>
@@ -230,7 +230,7 @@ The penalty formula defines how much will be removed from the bond account:
 
 `bond penalty = market.liquidity.bondPenaltyParameter ⨉ shortfall`
 
-* <NetworkParameter frontMatter={frontMatter} param="market.liquidity.bondPenaltyParameter" hideName={false} hideValue={true} /> can be changed through governance.
+* <NetworkParameter frontMatter={frontMatter} param="market.liquidity.bondPenaltyParameter" /> can be changed through governance.
 * shortfall refers to the absolute value of the funds that: 
   * the liquidity provider was unable to cover through margin and general accounts
   * are needed for settlement

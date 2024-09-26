@@ -2,7 +2,7 @@
 sidebar_position: 1
 title: New futures market
 hide_title: true
-vega_network: MAINNET
+vega_network: TESTNET
 keywords:
 - proposal
 - governance
@@ -38,9 +38,7 @@ Looking to propose a perpetuals market? See the [perpetual futures tutorial](./n
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* Enough VEGA associated with your public key. Have at least whichever is larger: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>, (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
-
-You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.
+* Enough VEGA associated with your public key. Have at least whichever is larger of the values of the following network parameters: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" />.
 
 ## Anatomy of a market proposal
 In this section, the [full proposal template](#templates-and-submitting) has been divided into sections to provide more details on what you need to submit.
@@ -57,12 +55,12 @@ The general shape is as follows:
 | `decimalPlaces` | Sets the smallest price increment on the book that can be stored by Vega. Use with `tickSize` to get bigger price increments that are currently financially meaningful. Though `decimalPlaces` can't be changed via governance, `tickSize` can. | 18 |
 | `positionDecimalPlaces` | Sets the size that the smallest order / position on the market can be. Set the position decimal places such that the margin on the smallest order ends up being about 1 USD. This ensures that the market will not accept orders with very small margin minimums, protecting the network from being spammed with lots of financially insignificant orders. To figure out the ideal decimal place: Calculate the risk factor. Find the current price the asset is trading for, such as from the oracle you're using. The smallest order margin is `price x 10^{-pdp} x (risk factor)`. Convert to USD. If this is less than 0.5, then decrease the position decimal places (pdp) accordingly. Position decimal places (pdp) can also be negative integers. | 3 |
 
-**Timestamps** are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an [opening auction](../../concepts/trading-on-vega/trading-modes.md#auction-type-opening) will be, which must be smaller than/equal to the difference between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
+**Timestamps** are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an [opening auction](../../concepts/trading-framework/trading-modes.md#auction-type-opening) will be, which must be smaller than/equal to the difference between the values of the network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
 
-| Field | Description | Example |
-| ----------- | ----------- | ----------- |
-| `closingTimestamp` | Timestamp (Unix time in seconds) when voting closes for this proposal. If it passes the vote, liquidity can be committed from this time. The chosen time must be between <NetworkParameter frontMatter={frontMatter}param="governance.proposal.market.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) | 1663517914 |
-| `enactmentTimestamp ` | Timestamp (Unix time in seconds) when the market will be enacted, ready for trading. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string) | 1663604314 |
+| Field                 | Description           |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `closingTimestamp`    | Timestamp (Unix time in seconds) when voting closes for this proposal. The chosen time must be between the values of the network parameters `governance.proposal.updateMarket.minClose` and `governance.proposal.updateMarket.maxClose`" hideName={true} />` after the proposal submission time. (int64 as string) |
+| `enactmentTimestamp ` | Timestamp (Unix time in seconds) when proposal gets enacted (if passed). The chosen time must be between the values of the parameters `governance.proposal.updateMarket.minEnact` and `governance.proposal.updateMarket.maxEnact` after `closingTimestamp`. (int64 as string)         |
 
 The **lineage slippage factor** is a parameter that caps the margin level in low-volume situations for cross margin trades so that traders aren't closed out unnecessarily.
 
@@ -134,7 +132,7 @@ Liquidity monitoring uses the following properties:
 
 ### Mark price configuration
 
-The mark price methodology can be fine-tuned per market. If left blank, the market will default to the [last price method](../../concepts/trading-on-vega/margin.md#last-traded-price). You can read further details about the flexible mark price fields in [concepts](../../concepts/trading-on-vega/margin.md#flexible-mark-price-methodology).
+The mark price methodology can be fine-tuned per market. If left blank, the market will default to the [last price method](../../concepts/trading-framework/margin.md#last-traded-price). You can read further details about the flexible mark price fields in [concepts](../../concepts/trading-framework/margin.md#flexible-mark-price-methodology).
 
 | Field | Description | Examples |
 | ----------- | ----------- | --------- |
@@ -230,14 +228,6 @@ Using the fields below, you can create a prediction market, or set a maximum set
 | `maxPrice` | Sets the highest possible settlement price. Use market decimal places to set this value. For example, 2 market decimals with a price cap of 3 would be 300. Must be greater than 0, if used. | 10000 |
 | `fullyCollateralised` | If set to true, the market will require participants' positions to be fully collateralised, and thus no market participants can be liquidated. | true or false |
 
-### Submitting a verified settlement price
-If you want the community to vote on the verified price used to settle the market:
-* Supply your own Vega public key as the oracle signer under `pubkeys`
-* Set the `conditions` to `OPERATOR_GREATER_THAN` 0 **and** `OPERATOR_LESS_THAN` 0 so no price will be accepted
-After the market has terminated, update the price by: 
-1. Submitting an [update market proposal](./update-market-proposal.md#submitting-a-verified-settlement-price) with the verified price 
-2. Sending the [settlement transaction](../using-data-sources.md#1-define-your-json-structure).
-
 ## Submitting proposals in a batch
 
 <Batch />
@@ -246,8 +236,8 @@ After the market has terminated, update the price by:
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.vega.xyz/proposals/propose/raw)
-* Command line examples for different operating systems that can be submitted with a Vega Wallet app.
+* JSON example 
+* Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
 
@@ -255,34 +245,30 @@ In the tabs below you'll see:
   <TabItem value="annotated" label="Annotated example">
     <NewMarketAnnotated />
   </TabItem>
-  <TabItem value="json" label="Governance dApp (JSON)">
-  	<JSONInstructions />
-		<NewMarketJSON />
+  <TabItem value="json" label="JSON">
+    <JSONInstructions />
+    <NewMarketJSON />
   </TabItem>
   <TabItem value="cmd" label="Command line (Linux / OSX)">
-		<TerminalInstructions />
-		<NewMarketCMD />
+    <TerminalInstructions />
+    <NewMarketCMD />
   </TabItem>
   <TabItem value="win" label="Command line (Windows)">
   <TerminalInstructions />
-		<NewMarketWin />
+    <NewMarketWin />
   </TabItem>
 </Tabs>
 
 ## Voting
 All proposals are voted on by the community. 
 
-Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
+A vote can be submitted with a [transaction](../../api/grpc/vega/commands/v1/commands.proto.mdx#votesubmission) on the command line.
 
-A vote can be submitted with a [transaction](../../api/grpc/vega/commands/v1/commands.proto.mdx#votesubmission) on the command line, or by using the [governance dApp](https://governance.vega.xyz/proposals).
+To vote, community members need, at a minimum, the larger of the value of the following network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" /> associated with their Vega key.
 
-To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" suffix="tokens" hideName={true} formatter="governanceToken" />, or <NetworkParameter formatter="governanceToken" frontMatter={frontMatter} param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated with their Vega key.
-
-Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
-
-Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) at a minimum of the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" /> and a majority of the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" />.
 
 Learn more about voting on the [governance concepts](../../concepts/governance/lifecycle.md#voting) page.
 
 ## Enactment 
-If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field, or as soon as the [opening auction](../../concepts/trading-on-vega/trading-modes.md#auction-type-opening) has successfully concluded, whichever is later.
+If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field, or as soon as the [opening auction](../../concepts/trading-framework/trading-modes.md#auction-type-opening) has successfully concluded, whichever is later.

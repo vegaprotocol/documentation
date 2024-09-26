@@ -9,15 +9,15 @@ description: Use transfers to move assets between keys and/or accounts.
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
 ## Transfer assets to keys or accounts
-Use transfers to move assets from one Vega key to another, or from a Vega key to a specific account, such as to supply assets to a [reward pool](../trading-on-vega/discounts-rewards.md#trading-rewards).
+Use transfers to move assets from one Vega key to another, or from a Vega key to a specific account, such as to supply assets to a [reward pool](../trading-framework/discounts-rewards.md#trading-rewards).
 
 Transfers from certain accounts need to be proposed through [governance](#governance-initiated-transfers), because moving assets to/from those asset pools needs to be agreed by the community.
 
-Anyone with a Vega public key and assets can set up a transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough VEGA tokens can propose assets be transferred from those specific network accounts.
+Anyone with a Vega public key and assets can set up a transfer. Those transfers can only be done from a general account the party has control of, using their own funds. Anyone with a Vega public key and enough governance tokens for a network running the Vega software can propose assets be transferred from those specific network accounts.
 
 **Transfers can incur a fee.** How much you pay depends on if you've already paid or accrued trading fee revenue in past epochs. The trading fees you've paid or accrued act like a discount balance that's subtracted from with every transfer. If you use up your fee discount balance, you'll pay the full transfer fee amount.
 
-The un-discounted amount is set by the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" />. The fee amount is a proportion of the total transfer amount. The fee's subtracted immediately on execution, and is taken on top of the transfer amount. 
+The un-discounted amount is set by the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.fee.factor" hideValue={true} />. The fee amount is a proportion of the total transfer amount. The fee's subtracted immediately on execution, and is taken on top of the transfer amount. 
 
 The fee is paid to the validators who run the network infrastructure.
 
@@ -31,8 +31,8 @@ Transfers can be set up to happen [only once](#one-off-transfers), or can happen
 :::
 
 ### Transfer limits
-* Each party has a max number of transfers per epoch that they can send, set by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.maxUserTransfersPerEpoch" />. Once the max transfers limit is reached for a key, any subsequent transactions are rejected until the epoch switches over.
-* A minimum transfer amount is controlled by the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" />, which is dependent on the quantum (smallest possible amount) specified for the asset. To calculate the smallest a transfer can be, multiply the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" hideValue={true} /> by the asset's quantum.
+* Each party has a max number of transfers per epoch that they can send, set by the network parameter <NetworkParameter frontMatter={frontMatter} param="spam.protection.maxUserTransfersPerEpoch" hideValue={true} />. Once the max transfers limit is reached for a key, any subsequent transactions are rejected until the epoch switches over.
+* A minimum transfer amount is controlled by the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" hideValue={true} />, which is dependent on the quantum (smallest possible amount) specified for the asset. To calculate the smallest a transfer can be, multiply the value of the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" hideValue={true} /> by the asset's quantum.
 
 ## One-off transfers
 A one-off transfer can happen immediately (as soon as it is validated), or be set to happen at a specific time. When you set a delay, the transfer funds are removed from the account immediately and stored in a pool, and then distributed to the destination account once the time you chose is reached.
@@ -46,7 +46,7 @@ A recurring transfer transaction needs to contain the following:
 * Optional: the end epoch when the transfers should stop. If it's not specified, the transfer run until cancelled
 * The percentage of the full amount to pay each epoch, which is defined using the factor - a decimal
   - The amount paid at the end of each epoch is calculated using the following formula: `amount = start amount x factor ^ (current epoch - start epoch)`
-* Optional: When used to fund a reward pool, the [distribution method](../trading-on-vega/discounts-rewards.md#how-rewards-are-scaled) - pro-rata or based on rank
+* Optional: When used to fund a reward pool, the [distribution method](../trading-framework/discounts-rewards.md#how-rewards-are-scaled) - pro-rata or based on rank
 * Optional: How often the reward should be paid out, if not once per epoch, known as the transfer interval
 
 ### Recurring transfer limits
@@ -55,12 +55,12 @@ While a party (public key) can have multiple transfers set up to move assets to 
 ## Cancel or amend transfers
 It's possible to cancel a recurring transfer, but not to amend. If you want to change your transfer, you'll need to cancel the existing transfer and submit a new one. Transfers initiated by governance will need to be cancelled by submitting a proposal to cancel the transfer.
 
-If the asset used to fund a recurring transfer is depleted, either because the funds have run out or it's less than the <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" />` x quantum`, then the transfer is cancelled automatically. You'll have to set up a new transfer if you want to keep funding the key/account.
+If the asset used to fund a recurring transfer is depleted, either because the funds have run out or it's less than the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="transfer.minTransferQuantumMultiple" />` x quantum`, then the transfer is cancelled automatically. You'll have to set up a new transfer if you want to keep funding the key/account.
 
 ## Governance-initiated transfers
 Assets being moved out of certain accounts requires community support, through a governance proposal and vote. Generally speaking, they're accounts that have assets moved into them after markets are settled, because of market protection movements, or entirely funded by community members that transfer assets into them. 
 
-The proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](../trading-on-vega/discounts-rewards.md#trading-rewards), to move money from [insurance pools](./accounts.md#insurance-pool-accounts) into [network treasury accounts](./accounts.md#network-treasury-accounts), or for other purposes.
+The proposals give community members a chance to determine what they think the assets should be spent on, whether that's to fund [trading or validator rewards](../trading-framework/discounts-rewards.md#trading-rewards), to move money from [insurance pools](./accounts.md#insurance-pool-accounts) into [network treasury accounts](./accounts.md#network-treasury-accounts), or for other purposes.
 
 Governance-initiated transfers can be one-off or recurring, unless the transfer is to fund rewards; those can only be set to recur. A recurring transfer can only be cancelled when a governance proposal to cancel it is submitted and passes the governance vote.
 

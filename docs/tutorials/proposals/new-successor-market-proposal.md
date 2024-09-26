@@ -29,7 +29,7 @@ Propose a cash-settled futures market to succeed an existing market, taking alon
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>   (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
+* A minimum of whichever is larger, associated with that public key, based on the network parameter values for <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" />
 * Familiarity with [successor market governance](../../concepts/governance/market.md#propose-a-successor-market) on Vega
 
 ## Anatomy of a new successor market proposal
@@ -54,7 +54,7 @@ The following `successor` parameters need to be used if you are proposing a mark
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example
 * Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
@@ -63,7 +63,7 @@ In the tabs below you'll see:
   <TabItem value="annotated" label="Annotated example">
     <NewSuccessorMarketAnnotated />
   </TabItem>
-  <TabItem value="json" label="Governance dApp (JSON)">
+  <TabItem value="json" label="JSON">
     <JSONInstructions />
     <NewSuccessorMarketJSON />
   </TabItem>
@@ -78,17 +78,11 @@ In the tabs below you'll see:
 </Tabs>
 
 ## Voting
-All proposals are voted on by the community. 
+All proposals are voted on by the community.
 
-<!--
-Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).
--->
+To vote, community members need, at a minimum, the larger of the values of the following network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" /> associated to their Vega key.
 
-To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" formatter="governanceToken" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated to their Vega key.
-
-Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" formatter="percent" hideName={true} /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" formatter="percent" hideName={true} />, so having community support is essential.
-
-Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-a-proposals-outcome-is-calculated) determined by the value of the parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredParticipation" /> and a majority of the value of the parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.requiredMajority" />.
 
 ## Enactment
 If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field, depending on the [status of other successor market proposals](../../concepts/governance/lifecycle.md#proposal-outcome-successor-market).

@@ -1,7 +1,6 @@
 ---
 sidebar_position: 5
 title: Providing liquidity
-vega_network: TESTNET
 hide_title: false
 ---
 
@@ -15,14 +14,14 @@ LPs who take a bigger risk on newer markets with less liquidity are rewarded for
 
 To be eligible to receive any liquidity fee revenue, you will need to submit a [liquidity commitment transaction](#liquidity-commitments), and then place orders to support that commitment.
 
-Once you commit to a market, to receive fee revenue, you need to have a certain percentage of your commitment amount on the order book for a minimum amount of time in each [epoch](../vega-chain/network.md#epochs). 
+Once you commit to a market, to receive fee revenue, you need to have a certain percentage of your commitment amount on the order book for a minimum amount of time in each [epoch](../chain/network.md#epochs). 
 
 These minimums are known as the [liquidity SLA](./rewards-penalties.md#liquidity-sla). The better your performance is against the SLA, the more fee revenue you'll receive. Not meeting the SLA will result in fee payments being withheld for that epoch, and it will have an impact on [future fee revenue earnings](./rewards-penalties.md#penalties-for-not-meeting-sla). 
 
 ## Tactics for providing liquidity
 Providing liquidity can be done using: 
-* Standard limit orders, which give you the most control over your strategy. The [batch orders transaction](./../trading-on-vega/orders#batch-order) is designed to enable this efficiently
-* [Iceberg orders](../trading-on-vega/orders.md#iceberg-order) allow LPs to remain competitively present on the order book without needing to supply excessive volume to a large aggressive order
+* Standard limit orders, which give you the most control over your strategy. The [batch orders transaction](./../trading-framework/orders#batch-order) is designed to enable this efficiently
+* [Iceberg orders](../trading-framework/orders.md#iceberg-order) allow LPs to remain competitively present on the order book without needing to supply excessive volume to a large aggressive order
 
 Anyone that supplies limit orders is eligible to receive maker fees when volume you place on the book is hit. However, a liquidity commitment also makes an LP eligible to receive a portion of the liquidity fee from every trade in the market, on top of the maker fee.
 
@@ -49,14 +48,12 @@ The amount an LP will actually need to have available on the order book is calle
 
 That is calculated by:
 
-`Commitment * market.liquidity.stakeToCcyVolume`, measured in `price level x volume`, i.e. settlement currency of the market.
-
-Currently <NetworkParameter frontMatter={frontMatter} param="market.liquidity.stakeToCcyVolume" />
+`Commitment * market.liquidity.stakeToCcyVolume` (a network parameter), measured in `price level x volume`, i.e. settlement currency of the market.
 
 Once you commit to a market, you need to meet the minimum set by the **[liquidity SLA](./rewards-penalties.md#liquidity-sla)**. The percentage of your commitment amount and minimum time are set for each individual market. Exceeding the minimum leads to more fee revenue. Not meeting the minimum means fee revenue is withheld, plus extra penalties.
 
 ## When to commit liquidity
-You can commit liquidity to a market at any time in the [market's lifecycle](../trading-on-vega/market-lifecycle.md) when it is accepting orders.
+You can commit liquidity to a market at any time in the [market's lifecycle](../trading-framework/market-lifecycle.md) when it is accepting orders.
 
 **When a market is in opening auction**: It's possible to submit the liquidity commit transaction and start putting orders on the book as soon as a market’s governance proposal is submitted and accepted. That means it can be done even before the governance voting period concludes, as well as at any time while the market is trading. Doing so will give you a higher equity-like share on the market, which can lead to a higher share of fee revenue. 
 
@@ -67,7 +64,7 @@ You'll need to submit your orders from the end of the opening auction.
 ### Equity-like share
 By committing liquidity, a liquidity provider gets a share of the market's fees. Liquidity providers who get into a market early benefit from helping to grow the market. Their share of the market, called the equity-like share, allows them to earn a larger share of the market's trading fees than their actual commitment would imply, assuming the trading volume on the market increases with time. This is called an LP’s equity-like share, and it is used to divide fee revenue between LPs.
 
-A liquidity provider's equity-like share is then carried over to the market’s successor, if a successor market comes to exist. The LP will then need to provide liquidity on the successor market while it's [pending](../trading-on-vega/market-lifecycle.md#market-status-pending) to keep that equity-like share active. The equity-like share on a successor market is calculated using the difference between the physical stake present on the parent market and the stake committed to the successor market.
+A liquidity provider's equity-like share is then carried over to the market’s successor, if a successor market comes to exist. The LP will then need to provide liquidity on the successor market while it's [pending](../trading-framework/market-lifecycle.md#market-status-pending) to keep that equity-like share active. The equity-like share on a successor market is calculated using the difference between the physical stake present on the parent market and the stake committed to the successor market.
 
 :::tip Try it out
 **[Tutorial: Committing liquidity](../../tutorials/building-a-bot/adding-a-liquidity-commitment.md)**: See sample bot code for setting up and managing a liquidity commitment.

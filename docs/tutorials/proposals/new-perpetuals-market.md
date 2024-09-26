@@ -30,11 +30,9 @@ import TabItem from '@theme/TabItem';
 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
-* A minimum of whichever is larger, associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideValue={true}/>   (<NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" hideName={true} formatter="governanceToken" suffix="tokens"/>) or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/> (<NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideName={true} formatter="governanceToken"  formatter="governanceToken" suffix="tokens"/>)
+* A minimum of whichever is larger, associated with that public key, based on the network parameter values for <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minProposerBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" /> 
 * Familiarity with [governance](../../concepts/governance/market.md) on Vega
 * Familiarity with using [Ethereum to provide data](../using-data-sources.md#ethereum-oracles)
-
-<!--You should also share your proposal idea in the [_Governance_ forum section ↗](https://community.vega.xyz/c/governance) before submitting it to the network.-->
 
 ## Anatomy of a proposal 
 
@@ -51,14 +49,14 @@ Instrument, liquidity monitoring parameters, price monitoring parameters, and da
 | `decimalPlaces` | Sets the smallest price increment on the book that can be stored by Vega. Use with `tickSize` to get bigger price increments that are currently financially meaningful. Though `decimalPlaces` can't be changed via governance, `tickSize` can. | 18 |
 | `positionDecimalPlaces` | Sets the size that the smallest order / position on the market can be. Set the position decimal places such that the margin on the smallest order ends up being about 1 USD. This ensures that the market will not accept orders with very small margin minimums, protecting the network from being spammed with lots of financially insignificant orders. To figure out the ideal decimal place: Calculate the risk factor. Find the current price the asset is trading for, such as from the oracle you're using. The smallest order margin is `price x 10^{-pdp} x (risk factor)`. Convert to USD. If this is less than 0.5, then decrease the position decimal places (pdp) accordingly. Position decimal places (pdp) can also be negative integers. | 3 |
 
-**Timestamps** are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an [opening auction](../../concepts/trading-on-vega/trading-modes.md#auction-type-opening) will be, which must be smaller than/equal to the difference between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
+**Timestamps** are required for ending the voting period, as well as enacting the market. The time between closing and enactment also defines how long an [opening auction](../../concepts/trading-framework/trading-modes.md#auction-type-opening) will be, which must be smaller than/equal to the difference between the values of the network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" />.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
 | `closingTimestamp` | Timestamp (Unix time in seconds) when voting closes for this proposal. If it passes the vote, liquidity can be committed from this time. The chosen time must be between <NetworkParameter frontMatter={frontMatter}param="governance.proposal.market.minClose" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxClose" hideName={true} /> after the proposal submission time. (int64 as string) | 1663517914 |
-| `enactmentTimestamp` | Timestamp (Unix time in seconds) when the market will be enacted, ready for trading. The chosen time must be between <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minEnact" hideName={true} /> and <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.maxEnact" hideName={true} /> after `closingTimestamp`. (int64 as string) | 1663604314 |
+| `enactmentTimestamp` | Timestamp (Unix time in seconds) when the market will be enacted, ready for trading. The chosen time must be between the values of the network parameters `governance.proposal.market.minEnact` and `governance.proposal.market.maxEnact` after `closingTimestamp`. (int64 as string) | 1663604314 |
 
-**Slippage factors** are parameters that determine by how much the margin slippage is affected by the liquidity component of margin in a low-volume scenario. If there is enough volume on the book, the slippage comes directly from the book and the liquidity component is not used. The suggested values are in the example column below. Margin slippage in a low-volume scenario is calculated as `slippageFromFactors = linear x position  + quadratic x position^2) x price`. I
+**Slippage factors** are parameters that determine by how much the margin slippage is affected by the liquidity component of margin in a low-volume scenario. If there is enough volume on the book, the slippage comes directly from the book and the liquidity component is not used. The suggested values are in the example column below. Margin slippage in a low-volume scenario is calculated as `slippageFromFactors = linear x position  + quadratic x position^2) x price`.
 
 | Field | Description | Example |
 | ----------- | ----------- | ----------- |
@@ -146,7 +144,7 @@ Liquidity monitoring uses the following properties:
 
 ### Mark price configuration
 
-The mark price methodology can be fine-tuned per market. If left blank, the market will default to the [last price method](../../concepts/trading-on-vega/margin.md#last-traded-price). You can read further details about the flexible mark price fields in [concepts](../../concepts/trading-on-vega/margin.md#flexible-mark-price-methodology).
+The mark price methodology can be fine-tuned per market. If left blank, the market will default to the [last price method](../../concepts/trading-framework/margin.md#last-traded-price). You can read further details about the flexible mark price fields in [concepts](../../concepts/trading-framework/margin.md#flexible-mark-price-methodology).
 
 | Field | Description | Examples |
 | ----------- | ----------- | --------- |
@@ -176,10 +174,6 @@ The mark price methodology can be fine-tuned per market. If left blank, the mark
           "compositePriceType": "COMPOSITE_PRICE_TYPE_WEIGHTED",
 ```
 
-:::tip See an example for live markets
-[Update market proposal template ↗](https://github.com/vegaprotocol/governance-templates/blob/main/mainnet/0.74-proposal-templates/update_markets.json): This template includes suggested values for updating two active perpetuals markets to use mark price configurations designed for them. 
-:::
-
 ### Price monitoring
 Price monitoring parameters are optional, and configure the acceptable price movement bounds for price monitoring. See below for more details on each field.
 
@@ -203,6 +197,7 @@ While you cannot define exactly how much margin (or leverage) is possible, you c
 Read about the [risk models and parameters](../../concepts/governance/market.md#risk-models-and-parameters) before choosing your values.
 
 <NewMarketJSONRisk />
+
 The risk model uses the following properties: 
 
 | Field | Description | Sample value |
@@ -244,7 +239,7 @@ Set up the liquidation strategy to minimise the impact of distressed traders on 
 In the tabs below you'll see:
 
 * Annotated example describing what each field is for
-* JSON example that can be submitted with the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw)
+* JSON example 
 * Command line examples for different operating systems
 
 **Replace the example data with the relevant details before submitting.**
@@ -253,7 +248,7 @@ In the tabs below you'll see:
   <TabItem value="annotated" label="Annotated example">
     <NewPerpetualMarketAnnotated />
   </TabItem>
-  <TabItem value="json" label="Governance dApp (JSON)">
+  <TabItem value="json" label="JSON">
     <JSONInstructions />
     <NewPerpetualMarketJSON />
   </TabItem>
@@ -268,12 +263,9 @@ In the tabs below you'll see:
 </Tabs>
 
 ## Voting
-All proposals are voted on by the community. 
+All proposals are voted on by the community.
 
-<!--Building support is down to you. Share your proposal in the [_Governance_ section ↗](https://community.vega.xyz/c/governance) on the Vega community forum. You may also wish to share on [Discord ↗](https://vega.xyz/discord).-->
-
-To vote, community members need, at a minimum, the larger of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" formatter="governanceToken" suffix="tokens" hideName={true} /> or <NetworkParameter frontMatter={frontMatter} formatter="governanceToken" param="spam.protection.voting.min.tokens" suffix="tokens" hideName={true} /> associated to their Vega key.
-Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+To vote, community members need, at a minimum, the larger of the values of the following network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.market.minVoterBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" /> associated to their Vega key.
 
 ## Enactment
 If successful, the proposal will be enacted at the time you specify in the `enactmentTimestamp` field.

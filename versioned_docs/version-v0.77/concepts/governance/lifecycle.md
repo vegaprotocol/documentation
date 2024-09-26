@@ -1,21 +1,20 @@
 ---
 sidebar_position: 2
 title: Taking part
-vega_network: MAINNET
 hide_title: false
 description: Understanding the governance lifecycle.
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
 ## Voting
-Proposals are enacted if they get enough votes from VEGA holders. There's no limit to how many active proposals you can vote on. 
+Proposals are enacted if they get enough votes from governance tokenholders. There's no limit to how many active proposals you can vote on. 
 
-Your tokens must be associated with a Vega public key. The tokens need to be associated to your Vega key, but they don't need to be nominated to validators. To check if your tokens are associated, connect to your Vega wallet on the [governance dApp ↗](https://governance.fairground.wtf).
+Your tokens must be associated with a Vega public key. The tokens need to be associated to your Vega key, but they don't need to be nominated to validators.
 
 You can vote as soon as the proposal passes validation and is active, and it can be voted on until the proposal's closing date/time.
 
 * How many tokens are associated with your voting key determines how much weight the vote has. For market parameter change proposals, the liquidity providers' market share is also taken into account. 
-* Each Vega public key with a non-zero token balance gets one vote, and the key votes with the full weight of all the tokens associated to that key. You'll need to have tokens when the vote is submitted *and* when votes are counted, otherwise your vote is disregarded.
+* Each public key with a non-zero token balance gets one vote, and the key votes with the full weight of all the tokens associated to that key. You'll need to have tokens when the vote is submitted *and* when votes are counted, otherwise your vote is disregarded.
 * Tokens used for voting are not locked or transferred: they can be used to nominate validators and to vote on other active proposals.
 * While the voting period is open, you can change your vote, but only the most recent vote will count at the proposal's close.
 
@@ -32,15 +31,15 @@ The network will also calculate:
 * The rate of 'for' votes cast by liquidity providers, calculated as the sum of all who voted 'for', divided by the LP participation rate - `LP for rate = SUM (all who voted for) / LP participation rate`
 
 The proposal will pass if one of the two scenarios occur: 
-1. The tokenholder vote meets or exceeds the minimum set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" hideValue={true} />, and the votes in favour are greater than the amount set by <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajority" hideValue={true} />. In this case the market's liquidity providers were overridden by governance token holders.
-2. The governance tokenholder vote does not reach participation threshold, but the liquidity providers' votes do, and there are enough votes in favour. The participation rate must be greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" hideValue={true} />, and the liquidity providers' participation rate must be greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipationLP" hideValue={true} />, and the liquidity providers' votes in favour is greater than/equal to <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajorityLP" hideValue={true} />
+1. The tokenholder vote meets or exceeds the minimum set by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" />, and the votes in favour are greater than the amount set by the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajority" />. In this case the market's liquidity providers were overridden by governance token holders.
+2. The governance tokenholder vote does not reach participation threshold, but the liquidity providers' votes do, and there are enough votes in favour. The participation rate must be greater than/equal to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipation" />, and the liquidity providers' participation rate must be greater than/equal to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredParticipationLP" />, and the liquidity providers' votes in favour is greater than/equal to the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarketParam.requiredMajorityLP" />
 
 ### Proposal outcome: Successor market
 For proposals adding a new successor market, the outcome of the proposal can change even after it's been approved. 
 
 If a parent market is still in its proposed state, its successor market cannot be enacted, even if it passes the vote.
 
-Two proposals that name the same parent can be submitted and pass a governance vote. Whichever market clears its [opening auction](../trading-on-vega/trading-modes.md#auction-type-opening) first gets the share of the insurance pool, and the liquidity providers' equity-like share is moved to that market. The second market will then be [rejected](../trading-on-vega/market-lifecycle.md#market-status-rejected).
+Two proposals that name the same parent can be submitted and pass a governance vote. Whichever market clears its [opening auction](../trading-framework/trading-modes.md#auction-type-opening) first gets the share of the insurance pool, and the liquidity providers' equity-like share is moved to that market. The second market will then be [rejected](../trading-framework/market-lifecycle.md#market-status-rejected).
 
 ## Lifecycle of a governance proposal
 You need community support if you want to change something about the network, whether that's to add a new market, change a network parameter, or transfer pooled assets. It's worth considering what your proposed change contributes to the network, and if it would get enough votes from fellow tokenholders.
@@ -48,27 +47,25 @@ You need community support if you want to change something about the network, wh
 You'll have a better chance of positively contributing to the network if you confirm there is support off-chain before submitting a proposal.
 
 ### 1. Sense checking proposal idea (off-chain)
-Before submitting a proposal, share an outline of your proposed action informally in a new topic on the [community forum ↗](https://community.vega.xyz/c/governance/25/) Governance Proposals section, with a "sense-check" tag. You can find out if there is enough interest in your proposal.
+Proposals can be submitted for creating a new market, amending an existing market, changing network parameters, adding an external asset, transferring out of asset pools. You can also suggest changes that won't impact network behaviour with a freeform proposal.
 
-Proposals can be submitted for creating a new market, amending an existing market, changing network parameters, adding an external asset to Vega, transferring out of asset pools. You can also suggest changes that won't impact network behaviour with a freeform proposal.
+Share your proposal with the network participants / community in order to get community support and confirm details.
 
 ### 2. Formalising proposal (off-chain)
 Once the proposal details are refined, share the detailed proposal in the same topic you created for your sense check, and change the tag to "formalise". 
 
 Including as much detail as possible gives other community members the opportunity to fully understand your proposal. Include the rationale for the proposal (and IPFS hash for more details), the specifics of the proposed addition/change, and the data (JSON or similar) that would be submitted on-chain. Invite debate and discussion to amend the proposal until it reaches a final state, ready to submit.
 
-When formalising the proposal, it is worth ensuring that any fields that are dependent on a range set by network parameters are correctly defined. See the network parameters and their values on the [Vega block explorer ↗](https://explorer.vega.xyz/network-parameters).
+When formalising the proposal, it is worth ensuring that any fields that are dependent on a range set by network parameters are correctly defined. Check the network's documentation for specific values for their network parameters.
 
 ### 3. Submitting proposal and telling the community (on-chain and off-chain)
-You can submit a governance proposal to the network using the command line, a script, or the [governance dApp ↗](https://governance.fairground.wtf/proposals/propose/raw).
+You can submit a governance proposal to the network using the command line, or a script.
 
-Your Vega key must have enough VEGA associated to submit a proposal. For a 'market parameter change' proposal, you'll also need enough equity-like share in the market from your liquidity commitment. This is defined in the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerEquityLikeShare" />.
+Your Vega key must have enough of the governance token associated to submit a proposal. For a 'market parameter change' proposal, you'll also need enough equity-like share in the market from your liquidity commitment. This is defined in the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.updateMarket.minProposerEquityLikeShare" />.
 
 Proposals are first checked by the wallet, then verified by the nodes before entering into the voting period you set. A proposal must have all of the relevant information, in the correct format, and in some cases within the accepted range - otherwise it will be rejected immediately.
 
 A proposal cannot be changed once it's submitted to the network.
-
-After it's submitted and accepted, rally the community to vote on the proposal by announcing it on the [forum ↗](https://community.vega.xyz/), [Discord ↗](https://vega.xyz/discord), and through your own networks to vote on the proposal.
 
 :::tip Try it out 
 **[Proposals guides](../../tutorials/proposals/index.md)**: How to build and then submit a proposal using the command line. 
@@ -76,19 +73,19 @@ After it's submitted and accepted, rally the community to vote on the proposal b
 
 #### Validating a proposal
 * The governance proposal is checked and then accepted by the wallet as a transaction.
-* The validator nodes then check and validate the proposal. This is when the proposal data that defines the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated against the network's requirements, defined by [network parameters ↗](https://explorer.vega.xyz/network-parameters), which are different depending the type of proposal.
-* If not specified on the proposal, the required participation rate and majority for success are defined and copied to the proposal. You can find them under the [network parameters ↗](https://explorer.vega.xyz/network-parameters), and they are specific to each proposal type.
+* The validator nodes then check and validate the proposal. This is when the proposal data that defines the minimum duration, minimum time to enactment, minimum participation rate, and required majority are evaluated against the network's requirements, defined by network parameters, which are different depending the type of proposal.
+* If not specified on the proposal, the required participation rate and majority for success are defined and copied to the proposal. They are also network parameters, and are specific to each proposal type.
 * If the above conditions are not met, the proposal will be rejected and will not be available for a vote. **You'll need to fix and re-submit the proposal.**
 
 ### 4. Voting (on-chain)
-VEGA tokenholders - including those who submitted a proposal - can vote for or against any active proposals, with the full weight of the tokens associated with each public key.
+Governance tokenholders - including those who submitted a proposal - can vote for or against any active proposals, with the full weight of the tokens associated with each public key.
 
 Read more about [voting](#voting-on-proposals).
 
 ### 5. Enacting changes (on-chain)
 If a proposal receives enough token weight in favour within the enactment period, the change/addition is accepted (except for a freeform proposal), and will be enacted on the enactment date defined in the proposal.
 
-Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter for each proposal type) after voting closes. See the network parameters and their values on the [Vega block explorer ↗](https://explorer.vega.xyz/network-parameters).
+Note the enactment date must be at least the minimum enactment period for the proposal type/subtype (specified by a network parameter for each proposal type) after voting closes. See the network parameters and their values on the network's block explorer.
 
 ## Submitting proposals in a batch
 You can submit governance proposals individually, or batch up the proposed changes into one proposal.
@@ -106,7 +103,7 @@ When a submitted governance proposal is validated, the values chosen will be che
 
 Each type of governance proposal can have different thresholds, though they fit into broader categories. Those categories include:
 
-* `minProposerBalance`: Minimum amount of VEGA that a proposer needs to have associated with their Vega key to have the proposal accepted for a tokenholder vote
+* `minProposerBalance`: Minimum amount of the governance token that a proposer needs to have associated with their Vega key to have the proposal accepted for a tokenholder vote
 * `minClose`: Minimum amount of time before a proposal can be closed for voting 
 * `maxClose`: Maximum amount of time a proposal can be open for voting 
 * `minEnactment`: Minimum time allowed between vote closing on a proposal and the proposal's change being enacted on the network
@@ -117,8 +114,6 @@ Each type of governance proposal can have different thresholds, though they fit 
 As these thresholds are network parameters, their values can be changed through governance.
 
 :::tip Query for data
-**[Block explorer ↗](https://explorer.vega.xyz)**: See the current network parameter values (in some cases, different per network). 
-
 **[REST](../../api/rest/state/core-state-service-list-network-parameters.api.mdx)** The API provides the network parameters and their values.
 :::
 

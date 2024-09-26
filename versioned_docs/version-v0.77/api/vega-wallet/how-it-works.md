@@ -5,10 +5,6 @@ description: Understand how the wallet works to ease your integration.
 sidebar_position: 2
 ---
 
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
-
 For a transaction to be accepted by a network, it has to be signed by the user.
 
 To sign a transaction, the user uses a cryptographic wallet.
@@ -21,7 +17,7 @@ Technically speaking, the Vega Wallet is a software that sits between the third-
 
 ![High level view of the interactions with the Vega wallet](/img/concept-diagrams/high-level-wallet-workflow.png)
 
-As a developer, if you want to send a transaction to the network, you will have to integrate with Vega Wallet software to allow the user to approve and sign the transaction. Once signed, the Vega Wallet software will either send it to the network, or pass it to your application to send it.
+As a developer, if you want to send a transaction to a network running Vega software, you will have to integrate with Vega Wallet software to allow the user to approve and sign the transaction. Once signed, the Vega Wallet software will either send it to the network, or pass it to your application to send it.
 
 ## How the wallet works
 

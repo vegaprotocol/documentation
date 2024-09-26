@@ -12,7 +12,7 @@ View Source: [contracts/IERC20_Bridge_Logic.sol](https://github.com/vegaprotocol
 
 **IERC20_Bridge_Logic_Restricted**
 
-Implementations of this interface are used by Vega network users to deposit and withdraw ERC20 tokens to/from Vega.
+Implementations of this interface are used to deposit and withdraw ERC20 tokens.
 
 ## Asset_Withdrawn
 

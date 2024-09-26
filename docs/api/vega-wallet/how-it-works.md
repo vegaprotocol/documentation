@@ -5,17 +5,13 @@ description: Understand how the wallet works to ease your integration.
 sidebar_position: 2
 ---
 
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
-
 For a transaction to be accepted by a network, it has to be signed by the user.
 
 To sign a transaction, the user uses a cryptographic wallet.
 
 Therefore, for third-party applications to send a transaction to a network, they have to connect to the user's wallet to get the transaction signed, then send it.
 
-## Wallet in the Vega ecosystem
+## Wallet in the software ecosystem
 
 Technically speaking, the Vega Wallet is a software that sits between the third-party applications and the network, and is owned by the users of the network.
 
@@ -28,7 +24,7 @@ As a developer, if you want to send a transaction to the network, you will have 
 The Vega wallet software has 3 main components:
 
 * **API**: The communication layer used by third-party applications to talk to the wallet.
-* **Backend**: The core of the wallet that is shared by all Vega Wallet implementation. It manages the wallets, their keys and the requests from the third-party applications. It takes the form of a JSON-RPC API and is implementation agnostic.
+* **Backend**: The core of the wallet that is shared by all Vega Wallet implementations. It manages the wallets, their keys and the requests from the third-party applications. It takes the form of a JSON-RPC API and is implementation agnostic.
 * **Frontend**: Displays information about the wallets and the requests from the third-party applications to the user.
 
 ![High level view of the Vega wallet architecture](/img/concept-diagrams/high-level-wallet-architecture.png)

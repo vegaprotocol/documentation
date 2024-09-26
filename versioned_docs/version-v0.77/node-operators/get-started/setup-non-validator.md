@@ -8,10 +8,10 @@ import TabItem from '@theme/TabItem';
 
 The main reason to run a non validator node is to support a data node. We strongly discourage you from running a data node with a validator node.
 
-A non validator node is similar to a validator node except it does not take part in the consensus process and does not require staking or wallets. It will receive all the same blockchain events as the validator nodes and will process them in the same way but it does not affect how the network runs. 
+A non validator node is similar to a validator node except it does not take part in the consensus process and does not require staking. It will receive all the same blockchain events as the validator nodes and will process them in the same way but it does not affect how the network runs. 
 
 ## OS and software
-For production use, we recommend using the Linux binary on Ubuntu as this is the platform used by nodes on Fairground, the Vega testnet, and is the most widely tested so far.
+For production use, we recommend using the Linux binary on Ubuntu as this is the platform used by nodes on the Vega testnet, and is the most widely tested so far.
 
 See the [infrastructure requirements](../requirements/infrastructure.md) page for a full list of what you need to run various parts of the Vega toolchain.
 
@@ -23,7 +23,7 @@ Replay the full chain if you want all history. Use a snapshot if you want to sta
 
 ## Start node from block 0
 
-1. Download version 0.71.4 of the Vega executable. You can find it on its release page in the [Vega GitHub repo ↗](https://github.com/vegaprotocol/vega/releases/tag/v0.71.4%2Bfix). Unzip this file and make sure it is in your command line path.
+1. Download the required version of the [Vega executable](https://github.com/vegaprotocol/vega/releases) based on the version used when the network's mainnet was launched. Unzip this file and make sure it is in your command line path.
 
 If you prefer to build the code yourself, the instructions can be found inside the code repo at [BUILDING ↗](https://github.com/vegaprotocol/vega/blob/develop/BUILDING.md).
 
@@ -31,19 +31,19 @@ If you prefer to build the code yourself, the instructions can be found inside t
 
 ```shell
 user@veganode:~/vega/bin$ vega version
-Vega CLI v0.71.4 (8e5767b20902097c79e8c846cf37f2b5d01dbff8)
+Vega CLI [version-number] (commit-hash)
 
 ```
 
 3. Initialise the node 
 
 ```shell
-vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH full
+vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_COMETBFT_HOME_PATH full
 ```
 
 This creates a set of configuration files which you then need to alter for your specific instance.
 
-4. Edit the file `$YOUR_TENDERMINT_HOME_PATH/config/config.toml`. Find the RPC address located in the configuration point `[rpc]->laddr`
+4. Edit the file `$YOUR_COMETBFT_HOME_PATH/config/config.toml`. Find the RPC address located in the configuration point `[rpc]->laddr`
  
 5. Use this value to update the address in the file `$YOUR_VEGA_HOME_PATH/config/node/config.toml`
 
@@ -53,28 +53,19 @@ This creates a set of configuration files which you then need to alter for your 
 ```
 ## Request peers
 
-6. Build a list of Tendermint peers by reaching out to existing node operators as they can provide the data, on the [Vega Discord](https://vega.xyz/discord) for example. You'll need to format the peers data as a comma separated list.
+6. Build a list of CometBFT peers by reaching out to a network's existing node operators as they can provide the data. You'll need to format the peers data as a comma separated list.
 
-7. Open the config file `$YOUR_TENDERMINT_HOME_PATH/config/config.toml` and update the value `persistent_peers` with the list created above.
+7. Open the config file `$YOUR_COMETBFT_HOME_PATH/config/config.toml` and update the value `persistent_peers` with the list created above.
 
-8. Change the following fields, if needed:
-
-```toml
-  [p2p]
-    max_packet_msg_payload_size=16384
-  [Mempool Configuration Option]
-    broadcast = true
-``` 
-
-9. Then start the node with the following command:
+8. Then start the node with the following command:
 
 ```shell
-vega start --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH --network-url=https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json
+vega start --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_COMETBFT_HOME_PATH --network-url=insert-genesis-file-link
 ```
 
 ## Start a node using a remote snapshot
 
-1. Connect to the running network and see which snapshots are available using the snapshots endpoint `https://api.vega.community/api/v2/snapshots`. Record the latest `blockHash`, the `blockHeight` and the `coreVersion` for that `blockHeight`.
+1. Connect to the running network and see which snapshots are available using the snapshots endpoint `/api/v2/snapshots`. Record the latest `blockHash`, the `blockHeight` and the `coreVersion` for that `blockHeight`.
 
 2. From the [Vega GitHub repo ↗](https://github.com/vegaprotocol/vega/releases), download the version of Vega that matches the `coreVersion`. Unzip the executable and make sure it is in the command path.
 
@@ -82,18 +73,18 @@ vega start --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_P
 
 ```shell
 user@veganode:~/vega/bin$ vega version
-Vega CLI v0.71.6 (7a23f5e2f0fb4981c8318253142e2e23e3aa4f7c)
+Vega CLI [version-number] (commit-hash)
 ```
 
 4. Initialize the node 
 
 ```shell
-vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH full
+vega init --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_COMETBFT_HOME_PATH full
 ```
 
 This creates a set of configuration files which you then need to alter for your specific instance.
 
-5. Edit the file `$YOUR_TENDERMINT_HOME_PATH/config/config.toml` and find the RPC address located in the configuration point `[rpc]->laddr`
+5. Edit the file `$YOUR_COMETBFT_HOME_PATH/config/config.toml` and find the RPC address located in the configuration point `[rpc]->laddr`
 
 6. Use this value to update the address in the file `$VEGA_PATH/config/node/config.toml`
 
@@ -103,7 +94,7 @@ This creates a set of configuration files which you then need to alter for your 
 ```
 ## Request peers
 
-7. Build a list of Tendermint peers by reaching out to existing node operators as they can provide the data, on the [Vega Discord](https://vega.xyz/discord) for example. You'll need to format the peers data as a comma separated list.
+7. Build a list of CometBFT peers by reaching out to existing node operators as they can provide the data. You'll need to format the peers data as a comma separated list.
 
 8. Open the config file `$TENDERMINT_PATH/config/config.toml` and update the value `[p2p] -> persistent_peers` with the list created above
 
@@ -111,22 +102,21 @@ This creates a set of configuration files which you then need to alter for your 
 
 ```toml
   [p2p]
-    max_packet_msg_payload_size=16384
     pex = true
-    seeds = "b0db58f5651c85385f588bd5238b42bedbe57073@13.125.55.240:26656,abe207dae9367995526812d42207aeab73fd6418@18.158.4.175:26656,198ecd046ebb9da0fc5a3270ee9a1aeef57a76ff@144.76.105.240:26656,211e435c2162aedb6d687409d5d7f67399d198a9@65.21.60.252:26656,c5b11e1d819115c4f3974d14f76269e802f3417b@34.88.191.54:26656,61051c21f083ee30c835a34a0c17c5d1ceef3c62@51.178.75.45:26656,b0db58f5651c85385f588bd5238b42bedbe57073@18.192.52.234:26656,36a2ca7bb6a50427be2181c8ebb7f62ac62ebaf5@m2.vega.community:26656,9903c02a0ff881dc369fc7daccb22c1f9680d2dd@api0.vega.community:26656,9903c02a0ff881dc369fc7daccb22c1f9680d2dd@api0.vega.community:26656,32d7380b195c088c0605c5d24bcf15ff1dade05f@api1.vega.community:26656,4f26ec99d3cf6f0e9e973c0a5f3da87d89ec6677@api2.vega.community:26656,eafacd11af53cd9fb2a14eada53485779cbee4ab@api3.vega.community:26656"
+    persistent_peers = "insert-network-peers-here"
   [mempool]
     broadcast = true
   [statesync]
     enable = true
     trust_height = blockHeight from step 1
     trust_hash = Blockhash from step 1
-    rpc_servers = "m3.vega.community:26657,api1.vega.community:26657"
+    rpc_servers = "insert-rpc-server-addresses"
 ```
 
 10. Start the node with the following command:
 
 ```shell
-vega start --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_TENDERMINT_HOME_PATH --network-url=https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json
+vega start --home=$YOUR_VEGA_HOME_PATH --tendermint-home=$YOUR_COMETBFT_HOME_PATH --network-url=insert-genesis-file-link
 ```
 
 ## Upgrade your node using Visor
@@ -141,7 +131,7 @@ During the replay process, the node will require newer versions of the software 
 
 ```script
 user@veganode:~/vega/bin$ visor version
-Vega Visor CLI v0.72.10 (26afd41a2fe4cb20f3fffeae0d4cfe523fc35614)
+Vega Visor CLI [version-number] (commit-hash)
 ```
 3.  Initialise Visor
 
@@ -173,8 +163,8 @@ name = "genesis"
     path = "vega"
     args = ["start",
             "--home=$VEGA_PATH",
-            "--tendermint-home=$YOUR_TENDERMINT_HOME_PATH",
-            "--network-url=https://raw.githubusercontent.com/vegaprotocol/networks/master/mainnet1/genesis.json"]
+            "--tendermint-home=$YOUR_COMETBFT_HOME_PATH",
+            "--network-url=insert-genesis-file-link"]
   [vega.rpc]
     socketPath = "/tmp/vega.sock"
     httpPath = "/rpc"

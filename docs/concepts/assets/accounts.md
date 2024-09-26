@@ -14,17 +14,13 @@ Accounts are used either to hold assets that you're in control of using — such
 ## General account
 The *general account* is managed by the party who controls the keys that account was created for.
 
-Every public key has a potential general account in every asset supported on the Vega network; it's created the first time assets are deposited or transferred to it. The general account is the place where deposits and rewards go, where withdrawals come from, and where a participant can transfer assets from (or receive assets to).
+Every public key has a potential general account in every asset supported by the network; it's created the first time assets are deposited or transferred to it. The general account is the place where deposits and rewards go, where withdrawals come from, and where a participant can transfer assets from (or receive assets to).
 
-The general account also holds VEGA tokens that have been deposited to the network (but not those associated with a Vega key via the Ethereum staking bridge and/or locked in a smart contract). Staking rewards, as well as trading rewards, are paid into the general account.
+The general account also holds governance tokens that have been deposited to a network (but not those associated with a Vega key via the Ethereum staking bridge and/or locked in a smart contract). Staking rewards, as well as trading rewards, are paid into the general account.
 
 Any assets that are in a general account can be withdrawn or transferred.
 
-You'll see references to your general account in various places, including under collateral in Console, the trading interface.
-
 :::tip Query for data
-**[Vega Console](https://console.fairground.wtf)**: See how much is allocated to the accounts for your public key.
-
 **[REST](../../api/rest/data-v2/trading-data-service-get-party.api.mdx)**: Use the API to check your public key for the accounts your assets are allocated to.
 :::
 
@@ -48,7 +44,7 @@ If you're using *cross margin mode*, collateral may be periodically transferred 
 To move some or all of the money in your margin or order margin account back into your general account, you can try reducing the size of your position on the market, or closing it entirely. If your position size is zero and you have no active orders, your margin accounts will be empty and all the funds will be returned to your general account and you can access them again.
 
 :::note Read more
-[Margin](../trading-on-vega/margin.md)
+[Margin](../trading-framework/margin.md)
 :::
 
 ### Settlement accounts
@@ -59,7 +55,7 @@ Each market has its own settlement account. Cashflows from mark-to-market settle
 Note that this happens instantaneously, so you will likely never observe a current balance in an account of this type. However, you may see transfers to and from this account and historic balances if you examine historic data. This can help you to understand how funds have moved between parties with active positions on a market.
 
 :::info Read more
-[Concept: Mark-to-market settlement](../trading-on-vega/settlement.md#mark-to-market-settlement) 
+[Concept: Mark-to-market settlement](../trading-framework/settlement.md#mark-to-market-settlement) 
 :::
 
 ### Holding accounts
@@ -86,8 +82,8 @@ However, the behaviour is different when a market is defined as a parent to a su
 The assets in the asset insurance pools can only be moved if a  [governance-initiated transfer](./transfers.md#governance-initiated-transfers) is enacted, meaning a governance proposal to move assets to another specified account has passed the vote.
 
 :::note Read more
-* [Concept: Market lifecycle](../trading-on-vega/market-lifecycle.md)
-* [Concept: Market protections](../trading-on-vega/market-protections.md)
+* [Concept: Market lifecycle](../trading-framework/market-lifecycle.md)
+* [Concept: Market protections](../trading-framework/market-protections.md)
 :::
 
 ### Accounts for fees
@@ -102,7 +98,7 @@ The revenue from other fees go into fee-specific accounts:
 * **Infrastructure fee pool**: per asset, to then be distributed to the consensus validators who run the network and thus provide the infrastructure
 
 :::note Read more
-[Concept: Fees](../trading-on-vega/fees.md)
+[Concept: Fees](../trading-framework/fees.md)
 :::
 
 ### Trading reward accounts 
@@ -125,14 +121,14 @@ There is also a global rewards account, which is used for validator rewards on t
 | Market proposers reward | Holds funds allocated to reward creating markets that attract good trading volume |
 
 :::note Read more
-[Concept: Trading rewards](../trading-on-vega/discounts-rewards.md#trading-rewards)
+[Concept: Trading rewards](../trading-framework/discounts-rewards.md#trading-rewards)
 :::
 
 ### Validator reward accounts
 Validator reward accounts are used to distribute rewards, if they're funded, to consensus and standby validators based on their ranking score. These accounts can be funded through [deposits](./deposits-withdrawals.md) or [transfers](./transfers.md).
 
 :::note Read more
-[Concept: Validator scores and rewards](../vega-chain/validator-scores-and-rewards.md)
+[Concept: Validator scores and rewards](../chain/validator-scores-and-rewards.md)
 :::
 
 ### Network treasury accounts
