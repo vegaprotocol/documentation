@@ -26,7 +26,7 @@ This page describes what you need to propose enabling or replacing the program, 
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of the value set in the following network parameters. You need whichever amount is larger associated with that public key: <NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeRebateProgram.minProposerBalance" hideValue={true}/>  or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" hideValue={true}/>.
-* Familiarity with [governance on Vega](../../concepts/governance/index.md)
+* Familiarity with [governance](../../concepts/governance/index.md)
 
 ## Anatomy of a maker rebate program proposal
 The fields below all need to be defined to enable the program or replace an existing one. 
