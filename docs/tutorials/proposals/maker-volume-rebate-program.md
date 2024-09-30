@@ -185,3 +185,4 @@ Proposers who invite feedback, engage with comments, and make revisions to meet 
 
 ## Enactment
 If successful, the program changes will go live in the epoch following the time you specify in the `enactmentTimestamp` field.
+}

@@ -65,9 +65,7 @@ The network treasury fee is collected from takers and transferred to the [networ
 The amount charged for this fee is set by a network parameter.
 
 ### Buyback fee
-The buyback fee is collected from takers and is used to buy governance tokens on a spot market via regular auctions. If there is no relevant spot market, and the fee is set to a value higher than 0, the accrued fee payments are transferred to the [network treasury](../assets/accounts.md#network-treasury-accounts).
-
-The amount charged for this fee is set by a network parameter.
+The buyback fee is collected from takers and is used to buy specific tokens on a spot market through automated purchase programs. The amount charged for this fee is set by a network parameter.
 
 ### Fee calculations
 At a high level, the trading fee that someone pays is calculated using the following formulas:

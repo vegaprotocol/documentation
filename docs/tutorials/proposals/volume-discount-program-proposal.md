@@ -2,7 +2,6 @@
 sidebar_position: 11
 title: Enable or replace volume discount program
 hide_title: false
-vega_network: TESTNET
 keywords:
 - proposal
 - governance
@@ -37,7 +36,7 @@ If you are suggesting a replacement program, you'll need to include all the fiel
 
 **Window length**: Number of epochs over which to evaluate traders' volume of taker trades.
 
-To end an existing program early, set your proposal up with the exact same parameters. Set the *end of program timestamp* to be the same as the proposal's *enactment* timestamp. 
+To end an existing program early, set your proposal up with the exact same parameters. Set the *end of program timestamp* to be the same as the proposal's *enactment* timestamp.
 
 #### Benefit tier fields
 
@@ -45,9 +44,11 @@ To end an existing program early, set your proposal up with the exact same param
 | ----------- | ----------- | ----------- |
 | `benefitTiers` | List of values defining the discount factors for the program | Holds the details of each tier of discounts, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxBenefitTiers" hideName={true}/> tiers |
 | `minimumRunningNotionalTakerVolume` | The notional volume of aggressive trades that a trader is required to have across the aggregation window, to access the discount in this tier | Integer greater than or equal to 1 |
+| `volumeDiscountFactors` | Each fee type must be listed separately. | Listed below |
 | `makerVolumeDiscountFactor` | Proportion of each trader's maker fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
-| `lpVolumeDiscountFactor` | Proportion of each trader's liquidity fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
+| `liquidityVolumeDiscountFactor` | Proportion of each trader's liquidity fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
 | `infrastructureVolumeDiscountFactor` | Proportion of each trader's infrastructure fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
+
 
 
 ## Submitting proposals in a batch
@@ -74,32 +75,38 @@ Below you will find:
     "terms": {
         "updateVolumeDiscountProgram": {
           "changes": {
-            "end_of_program_timestamp": 1234567890,
-
-            "window_length": 11,
             "benefitTiers": [
-              {
-                "minimumRunningNotionalTakerVolume": "10000",
-                "makerVolumeDiscountFactor": "0.002",
-                "lpVolumeDiscountFactor": "0.002",
-                "infrastructureVolumeDiscountFactor": "0.002"
-
+             {
+            "minimumRunningNotionalTakerVolume": "11",
+            "minimumEpochs": "1",
+            "volumeDiscountFactor": "",
+            "volumeDiscountFactors": {
+              "infrastructureDiscountFactor": "0.02",
+              "liquidityDiscountFactor": "0.021",
+              "makerDiscountFactor": "0.022"
               },
-              {
-                "minimumRunningNotionalTakerVolume": "10198",
-                "makerVolumeDiscountFactor": "0.098",
-                "lpVolumeDiscountFactor": "0.098",
-                "infrastructureVolumeDiscountFactor": "0.098"
-              }
-            ],
-          }
+              },
+          {
+            "minimumRunningNotionalTakerVolume": "1000",
+            "minimumEpochs": "1",
+            "volumeDiscountFactor": "",
+            "volumeDiscountFactors": {
+              "infrastructureDiscountFactor": "0.044",
+              "liquidityDiscountFactor": "0.045",
+              "makerDiscountFactor": "0.046"
+            },
       },
+      ],
+      "endOfProgramTimestamp": 1234567890,
+      "windowLength": "11"
       "closingTimestamp": 1111111111,
       "enactmentTimestamp": 1111111155
   }
   }
 }
-```  
+}
+}
+```
 </TabItem>
 
 <TabItem value="cmd-linux-osx" label="Command line (Linux / OSX)">
@@ -115,24 +122,35 @@ Below you will find:
     "terms": {
         "updateVolumeDiscountProgram": {
           "changes": {
-            "end_of_program_timestamp": 1234567890,
-
-            "window_length": 3,
             "benefitTiers": [
               {
                 "minimumRunningNotionalTakerVolume": "10020",
-                "makerVolumeDiscountFactor": "0.001",
-                "infrastructureVolumeDiscountFactor": "0.001",
-                "lpVolumeDiscountFactor": "0.001"
+                "minimumEpochs": "1",
+                "volumeDiscountFactor": "0.001"
               },
               {
                 "minimumRunningNotionalTakerVolume": "10198",
-                "makerVolumeDiscountFactor": "0.098",
-                "infrastructureVolumeDiscountFactor": "0.098",
-                "lpVolumeDiscountFactor": "0.098"              }
-            ],
-          }
+            "volumeDiscountFactors": {
+              "infrastructureDiscountFactor": "0.02",
+              "liquidityDiscountFactor": "0.021",
+              "makerDiscountFactor": "0.022"
+              },
+              },
+          {
+            "minimumRunningNotionalTakerVolume": "1000",
+            "minimumEpochs": "1",
+            "volumeDiscountFactor": "",
+            "volumeDiscountFactors": {
+              "infrastructureDiscountFactor": "0.044",
+              "liquidityDiscountFactor": "0.045",
+              "makerDiscountFactor": "0.046"
+            },
+      },  
+      ],
+      }
       },
+      "endOfProgramTimestamp": 1234567890,
+      "windowLength": 3,
       "closingTimestamp": 1111111111,
       "enactmentTimestamp": 1111111155
   }
@@ -156,28 +174,32 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
  : {
         \"updateVolumeDiscountProgram\":^ {
          \"changes\": {^
-            \"end_of_program_timestamp\": \"1234567890\",:^
-
-            \"window_length\": \"3\",
-            \"benefitTiers\": [
+            \"endOfProgramTimestamp\": \"1234567890\",:^
+            \"windowLength\": \"3\",^
+            \"benefitTiers\": [^
               {
-                \"minimumRunningNotionalTakerVolume\": \"10100\",^
-                \"makerVolumeDiscountFactor\": \"0.001\",^
-                \"infrastructureVolumeDiscountFactor\": \"0.001\",^
-                \"lpVolumeDiscountFactor\": \"0.001\"^
-
+                \"minimumEpochs\": \"1\"^
+                \"minimumRunningNotionalTakerVolume\": \"11\",^
+                \"volumeDiscountFactor\":^
+                \"volumeDiscountFactors\":^
+                    \"infrastructureDiscountFactor\": \"0.02\",^
+                    \"liquidityDiscountFactor\": \"0.021\",^
+                    \"makerDiscountFactor\": \"0.022\",^
               },
               {
-                \"minimumRunningNotionalTakerVolume\": \"11000\",^
-                \"makerVolumeDiscountFactor\": \"0.098\",^
-                \"infrastructureVolumeDiscountFactor\": \"0.098\",^
-                \"lpVolumeDiscountFactor\": \"0.098\"^
-              }
-            ],
-          }
-      },
+                \"minimumEpochs\": \"1\"^
+                \"minimumRunningNotionalTakerVolume\": \"1000\",^
+                \"volumeDiscountFactor\":^
+                \"volumeDiscountFactors\":^
+                    \"infrastructureDiscountFactor\": \"0.02\",^
+                    \"liquidityDiscountFactor\": \"0.021\",^
+                    \"makerDiscountFactor\": \"0.022\",^
+              },^
+            ],^
+          }^
+      },^
       \"closingTimestamp\": \"1111111111\",^
-      \"enactmentTimestamp\": \"1111111155\"
+      \"enactmentTimestamp\": \"1111111155\"^
   }^
   }^
 }'^
