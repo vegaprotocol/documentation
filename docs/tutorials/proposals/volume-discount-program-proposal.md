@@ -2,7 +2,6 @@
 sidebar_position: 11
 title: Enable or replace volume discount program
 hide_title: false
-vega_network: TESTNET
 keywords:
 - proposal
 - governance
@@ -26,7 +25,7 @@ This page describes what you need to propose enabling or replacing the volume di
 You will need:
 * A connected [Vega wallet](../../tools/vega-wallet/index.md), with your wallet name and public key to hand
 * A minimum of whichever is larger, associated with that public key: based on the network parameter values for <NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeDiscountProgram.minProposerBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.proposal.min.tokens" />
-* Familiarity with [governance on Vega](../../concepts/governance/index.md)
+* Familiarity with [governance](../../concepts/governance/index.md)
 
 ## Anatomy of a volume discount program proposal
 The fields below all need to be defined to enable the volume discount program or replace an existing one. 
@@ -37,7 +36,7 @@ If you are suggesting a replacement program, you'll need to include all the fiel
 
 **Window length**: Number of epochs over which to evaluate traders' volume of taker trades.
 
-To end an existing program early, set your proposal up with the exact same parameters. Set the *end of program timestamp* to be the same as the proposal's *enactment* timestamp. 
+To end an existing program early, set your proposal up with the exact same parameters. Set the *end of program timestamp* to be the same as the proposal's *enactment* timestamp.
 
 #### Benefit tier fields
 
@@ -45,7 +44,12 @@ To end an existing program early, set your proposal up with the exact same param
 | ----------- | ----------- | ----------- |
 | `benefitTiers` | List of values defining the discount factors for the program | Holds the details of each tier of discounts, listed below. Maximum of <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxBenefitTiers" hideName={true}/> tiers |
 | `minimumRunningNotionalTakerVolume` | The notional volume of aggressive trades that a trader is required to have across the aggregation window, to access the discount in this tier | Integer greater than or equal to 1 |
-| `volumeDiscountFactor` | Proportion of each trader's fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
+| `volumeDiscountFactors` | Each fee type must be listed separately. | Listed below |
+| `makerVolumeDiscountFactor` | Proportion of each trader's maker fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
+| `liquidityVolumeDiscountFactor` | Proportion of each trader's liquidity fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
+| `infrastructureVolumeDiscountFactor` | Proportion of each trader's infrastructure fees to be discounted, will be converted to a percentage | Must be greater than or equal to 0 and less than / equal to <NetworkParameter frontMatter={frontMatter} param="volumeDiscountProgram.maxVolumeDiscountFactor" hideName={true}/> |
+
+
 
 ## Submitting proposals in a batch
 
@@ -71,27 +75,38 @@ Below you will find:
     "terms": {
         "updateVolumeDiscountProgram": {
           "changes": {
-            "end_of_program_timestamp": 1234567890,
-
-            "window_length": 11,
             "benefitTiers": [
-              {
-                "minimumRunningNotionalTakerVolume": "10000",
-                "volumeDiscountFactor": "0.002"
+             {
+            "minimumRunningNotionalTakerVolume": "11",
+            "minimumEpochs": "1",
+            "volumeDiscountFactor": "",
+            "volumeDiscountFactors": {
+              "infrastructureDiscountFactor": "0.02",
+              "liquidityDiscountFactor": "0.021",
+              "makerDiscountFactor": "0.022"
               },
-              {
-                "minimumRunningNotionalTakerVolume": "10198",
-                "volumeDiscountFactor": "0.098"
-              }
-            ],
-          }
+              },
+          {
+            "minimumRunningNotionalTakerVolume": "1000",
+            "minimumEpochs": "1",
+            "volumeDiscountFactor": "",
+            "volumeDiscountFactors": {
+              "infrastructureDiscountFactor": "0.044",
+              "liquidityDiscountFactor": "0.045",
+              "makerDiscountFactor": "0.046"
+            },
       },
+      ],
+      "endOfProgramTimestamp": 1234567890,
+      "windowLength": "11"
       "closingTimestamp": 1111111111,
       "enactmentTimestamp": 1111111155
   }
   }
 }
-```  
+}
+}
+```
 </TabItem>
 
 <TabItem value="cmd-linux-osx" label="Command line (Linux / OSX)">
@@ -107,21 +122,35 @@ Below you will find:
     "terms": {
         "updateVolumeDiscountProgram": {
           "changes": {
-            "end_of_program_timestamp": 1234567890,
-
-            "window_length": 3,
             "benefitTiers": [
               {
                 "minimumRunningNotionalTakerVolume": "10020",
+                "minimumEpochs": "1",
                 "volumeDiscountFactor": "0.001"
               },
               {
                 "minimumRunningNotionalTakerVolume": "10198",
-                "volumeDiscountFactor": "0.098"
-              }
-            ],
-          }
+            "volumeDiscountFactors": {
+              "infrastructureDiscountFactor": "0.02",
+              "liquidityDiscountFactor": "0.021",
+              "makerDiscountFactor": "0.022"
+              },
+              },
+          {
+            "minimumRunningNotionalTakerVolume": "1000",
+            "minimumEpochs": "1",
+            "volumeDiscountFactor": "",
+            "volumeDiscountFactors": {
+              "infrastructureDiscountFactor": "0.044",
+              "liquidityDiscountFactor": "0.045",
+              "makerDiscountFactor": "0.046"
+            },
+      },  
+      ],
+      }
       },
+      "endOfProgramTimestamp": 1234567890,
+      "windowLength": 3,
       "closingTimestamp": 1111111111,
       "enactmentTimestamp": 1111111155
   }
@@ -145,23 +174,32 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
  : {
         \"updateVolumeDiscountProgram\":^ {
          \"changes\": {^
-            \"end_of_program_timestamp\": \"1234567890\",:^
-
-            \"window_length\": \"3\",
-            \"benefitTiers\": [
+            \"endOfProgramTimestamp\": \"1234567890\",:^
+            \"windowLength\": \"3\",^
+            \"benefitTiers\": [^
               {
-                \"minimumRunningNotionalTakerVolume\": \"10100\",^
-                \"volumeDiscountFactor\": \"0.001\"^
+                \"minimumEpochs\": \"1\"^
+                \"minimumRunningNotionalTakerVolume\": \"11\",^
+                \"volumeDiscountFactor\":^
+                \"volumeDiscountFactors\":^
+                    \"infrastructureDiscountFactor\": \"0.02\",^
+                    \"liquidityDiscountFactor\": \"0.021\",^
+                    \"makerDiscountFactor\": \"0.022\",^
               },
               {
-                \"minimumRunningNotionalTakerVolume\": \"11000\",^
-                \"volumeDiscountFactor\": \"0.098\"^
-              }
-            ],
-          }
-      },
+                \"minimumEpochs\": \"1\"^
+                \"minimumRunningNotionalTakerVolume\": \"1000\",^
+                \"volumeDiscountFactor\":^
+                \"volumeDiscountFactors\":^
+                    \"infrastructureDiscountFactor\": \"0.02\",^
+                    \"liquidityDiscountFactor\": \"0.021\",^
+                    \"makerDiscountFactor\": \"0.022\",^
+              },^
+            ],^
+          }^
+      },^
       \"closingTimestamp\": \"1111111111\",^
-      \"enactmentTimestamp\": \"1111111155\"
+      \"enactmentTimestamp\": \"1111111155\"^
   }^
   }^
 }'^
@@ -170,13 +208,9 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
 </Tabs>
 
 ## Voting
-All proposals are voted on by the community. 
+To vote, participants need, at a minimum, the larger of the value of the following network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeDiscountProgram.minVoterBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" /> associated to their Vega key.
 
-To vote, community members need, at a minimum, the larger of the value of the following network parameters <NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeDiscountProgram.minVoterBalance" /> or <NetworkParameter frontMatter={frontMatter} param="spam.protection.voting.min.tokens" /> associated to their Vega key.
-
-Your proposal will need [participation](../../concepts/governance/lifecycle.md#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeDiscountProgram.requiredParticipation" /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeDiscountProgram.requiredMajority" />. 
-
-Proposers who invite feedback, engage with comments, and make revisions to meet the needs of the community are more likely to be successful.
+The proposal will need [participation](../../concepts/governance/lifecycle.md#how-the-outcome-is-calculated) of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeDiscountProgram.requiredParticipation" /> and a majority of <NetworkParameter frontMatter={frontMatter} param="governance.proposal.VolumeDiscountProgram.requiredMajority" />. 
 
 ## Enactment
 If successful, the program changes will go live in the epoch following the time you specify in the `enactmentTimestamp` field.

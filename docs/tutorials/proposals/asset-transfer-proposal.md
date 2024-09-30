@@ -1,7 +1,6 @@
 ---
 sidebar_position: 9
 title: Transfer assets
-vega_network: TESTNET
 hide_title: true
 keywords:
 - proposal
@@ -43,6 +42,7 @@ For **one-off transfers** use `deliverOn` to set a delivery date/time for when t
 For **recurring transfers**, such as for funding rewards, you'll need to include the following information: 
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
 * `endEpoch`: The transfer will repeated indefinitely, unless you add this optional parameter to end the recurring transfer in a specified epoch.
+* `factor`: Factor that the initial transfer amount is multiplied by for each epoch that it is executed. For example if the initial transfer amount is 1000 and the factor is 0.5, then the amounts transferred per epoch will be 1000, 500, 250, 125, etc.
 
 **Amount** is the cap on how much will be transferred, as whole number with the asset decimal places implied. For example, if the asset has a decimal place of 2 and the transfer is for 100, then the amount needs to be set at 10000. The maximum you can propose to transfer is the value of the network parameter <NetworkParameter frontMatter={frontMatter} param="governance.proposal.transfer.maxAmount" />, which is a multiplier for the asset's [quantum value](../../concepts/assets/asset-framework.md#quantum). Before proposing, make sure the account you're transferring from exists and has a balance. The full amount may not be transferred if there isn't enough to transfer. For specifics on how the final amount is determined, see the [calculations in the transfers spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0057-TRAN-transfers.md#recurring-transfers).
 
@@ -139,7 +139,8 @@ These templates show an example of how to fund rewards with a governance transfe
           "destinationType": "ACCOUNT_TYPE_REWARD_AVERAGE_POSITION",
           "recurring": {
             "startEpoch": 116515,
-            "endEpoch": 116615
+            "endEpoch": 116615,
+            "factor": "1"
           "dispatchStrategy": {
           "assetForMetric": "b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663",
           "metric": "DISPATCH_METRIC_MAKER_FEES_PAID",
@@ -183,6 +184,7 @@ These templates show an example of how to fund rewards with a governance transfe
           "recurring": {
             "startEpoch": 1111110,
             "endEpoch": 1111111,
+            "factor": "1"
           "dispatchStrategy": {
           "assetForMetric": "b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663",
           "metric": "DISPATCH_METRIC_MAKER_FEES_PAID",
@@ -228,8 +230,9 @@ vegawallet.exe transaction send --wallet YOUR_WALLETNAME --pubkey YOUR_PUBLIC_KE
         \"fractionOfBalance\": `\"0.1\", ^
         \"destinationType\": \"ACCOUNT_TYPE_REWARD_AVERAGE_POSITION\", ^
         \"recurring\": {^
-           \"startEpoch\": \"1111110\" ^
-          \"endEpoch\": \"1111111\" ^
+           \"startEpoch\": \"1111110\", ^
+          \"endEpoch\": \"1111111\", ^
+          \"factor\": \"1\" ^
           \"dispatchStrategy\": { ^
           \"assetForMetric\": \"b340c130096819428a62e5df407fd6abe66e444b89ad64f670beb98621c9c663\", ^
           \"metric\": \"DISPATCH_METRIC_MAKER_FEES_PAID\", ^
