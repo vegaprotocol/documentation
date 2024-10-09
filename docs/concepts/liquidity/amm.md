@@ -1,44 +1,41 @@
 ---
 sidebar_position: 3
 title: Using an AMM
-vega_network: TESTNET
 hide_title: false
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
 ## What you need to set up an AMM
-You can contribute to a liquidity pool with an AMM (automated market maker) strategy. AMM providers receive a cut of liqudity fees paid by traders, as well as a portion of [community-funded rewards for liquidity providers](./rewards-penalties.md#community-funded-lp-rewards).
+AMM (automated market maker) strategies are used to contribute to a liquidity pool. AMM providers receive a cut of liqudity fees paid by traders, as well as a portion of [community-funded rewards for liquidity providers](./rewards-penalties.md#community-funded-lp-rewards).
 
-Add as little as `market.amm.minCommitmentQuantum` to any market, and earn from the fees paid by traders, plus any potential AMM rewards. 
+Add as little as `market.amm.minCommitmentQuantum` to any market, and earn from the fees paid by traders, plus any potential AMM rewards.
 
-When you provide liquidity using an AMM, the liquidity goes into a pool for the market, which is then tapped when participants place orders. 
+When providing liquidity using an AMM, the liquidity goes into a pool for the market, which is then tapped when participants place orders. 
 
 To provide liquidity using an AMM, you’ll need:
 * Vega public key 
 * Enough of the market's settlement asset to provide liquidity 
 
 ## How to set up AMM
-The easiest way to contribute to an AMM pool is to use the interface, but you can also programmatically manage your AMM.
 
-You'll use the following fields to **set up your AMM** and to **change an existing AMM**.
+The following fields are used to **set up an AMM** and to **change an existing AMM**.
 
 * **Pool**: Choose the market pool. For each pool that you want to supply, you’ll need to set up a separate AMM 
 * **Commitment amount**: How much of the market’s settlement asset you want to add to the liquidity pool
 * **Base price**: What your AMM will quote as its price when its position is zero
 * **Slippage tolerance percentage**: Maximum percentage of slippage you’re willing to accept on your AMM's first position, if it immediately needs to open a position. This is only relevant if your base price is above or below the best bid/offer, which will trigger a limit order
-* **Proposed [liquidity fee](../trading-on-vega/fees.md#liquidity-fee)**: Your proposal for what percentage price takers will pay on trades
+* **Proposed [liquidity fee](../trading-framework/fees.md#liquidity-fee)**: Your proposal for what percentage price takers will pay on trades
 * **Price bounds** - The price bounds you set determine what range your liquidity is deployed in. You'll need to input either an upper bound or lower bound.
     * Upper bound - Price at which your AMM will stop quoting sell volume. If you don’t set a price for this, your AMM will only ever hold a long position.
         * Leverage at upper bound. If not set, the market's risk factors will be used to calculate your leverage.
     * Lower bound - Price at which your AMM will stop quoting buy volume. If not supplied the AMM will only ever hold a short position.
         * Leverage at lower bound. If not set, the market’s risk factors will be used to calculate leverage.
 
-## How to stop your AMM
-You can cancel your AMM in two ways, either immediately by abandoning your position, or over time by reducing your commitment.
+## How to stop an AMM
+An AMM can be cancelled in two ways, either immediately by abandoning your position, or over time by reducing your commitment.
 
-If you **abandon your AMM position**, your open position is immediately taken over by the network, and the margin held aside is transferred to the 
-network's insurance pool. Other funds held by the AMM are transferred back to the AMM owner's key.
+If you **abandon your AMM position**, your open position is immediately taken over by the network, and the margin held aside is transferred to the network's insurance pool. Other funds held by the AMM are transferred back to the AMM owner's key.
 
 If you convert your AMM to **reduce only**, then the AMM's position is reduced over time and will never grow larger. Your AMM's price bound will be set to the current market price. Then, your AMM will only ever quote on the side that will reduce its position. Once the position reaches 0, the AMM is completely cancelled and any remaining funds are transferred back to the AMM owner. How long your AMM position remains open will depend on if traders are interested in taking your AMM's price level.
 
