@@ -10,7 +10,7 @@ const FeatureList = [
     href: `./${latestVersion}/concepts/new-to-vega`,
     description: (
       <>
-        Alpha mainnet is a decentralised network run by a set of
+        Vega provides software for creating decentralised networks run by
         validators. Read about the underlying framework under{" "}
         <a href={`./docs/${latestVersion}/concepts/new-to-vega`}>concepts</a>.
       </>
@@ -33,7 +33,7 @@ const FeatureList = [
     description: (
       <>
         Several tools are available for interacting with the functionality Vega
-        provides. See tools available for mainnet under{" "}
+        provides. See tools available under{" "}
         <a href={`./docs/${latestVersion}/tools`}>tools</a>.
       </>
     ),

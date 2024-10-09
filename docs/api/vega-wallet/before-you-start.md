@@ -5,10 +5,6 @@ description: Don't know where to start? Read this.
 sidebar_position: 1
 ---
 
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
-
 This page provides guidance on how to navigate the wallet API documentation, based on your profile.
 
 ## I am new to the wallet

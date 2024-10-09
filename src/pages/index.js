@@ -11,14 +11,14 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   const versions = usePluginData('docusaurus-plugin-content-docs');
   const isBrowser = useIsBrowser();
-  const base = isBrowser ? getBaseUrl(versions) : 'mainnet'
+  const base = isBrowser ? getBaseUrl(versions) : 'release'
 
   return (
     <header className={clsx("hero hero--primary", styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <Link className="cta" href={`${base}/intro`}>New to Vega?</Link>
+        <Link className="cta" href={`${base}/concepts/new-to-vega`}>New to Vega?</Link>
       </div>
     </header>
   );
@@ -26,7 +26,7 @@ function HomepageHeader() {
 
 // This feels hacky - but Link doesn't appear to prefix version on the hompage
 // presumably because it's not served by Docs
-const DEFAULT = 'mainnet'
+const DEFAULT = 'release'
 
 // Given an array of versions, and a selected version (see below), return the
 // appropriate base path for the version
@@ -59,7 +59,7 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   const versions = usePluginData('docusaurus-plugin-content-docs');
   const isBrowser = useIsBrowser();
-  const base = isBrowser ? getBaseUrl(versions) : 'mainnet'
+  const base = isBrowser ? getBaseUrl(versions) : 'release'
   
   return (
     <Layout description={`${siteConfig.tagline}`}>
@@ -70,27 +70,24 @@ export default function Home() {
             <h2>Getting started</h2>
             <p>Get to know the Vega framework and what's coming up next.</p>
             <ul>
-              <li><Link href={`${base}/intro`}>Vega basics</Link></li>
               <li><Link href={`${base}/concepts/new-to-vega`}>About the protocol</Link></li>
               <li><Link className="external" href="https://github.com/orgs/vegaprotocol/projects/114/views/4" target="_blank">Roadmap</Link></li>
             </ul>
           </article>
           <article>
             <h2>Trading</h2>
-            <p>Place orders on derivatives markets with a trading dApp for Vega software. You'll need a Vega Wallet.</p>
+            <p>Vega software is built for creating trading dApps.</p>
             <ul>
-              <li><Link className="external" href="https://console.vega.xyz/" target="_blank">Mainnet trading dApp</Link></li>
               <li><Link className="external" href="https://console.fairground.wtf/" target="_blank">Testnet trading dApp</Link></li>
               <li><Link to={`${base}/tools/vega-wallet/`}>Vega Wallet software</Link></li>
             </ul>
           </article>
           <article>
             <h2>Governance</h2>
-            <p>The network is governed by the community. Use your tokens to propose and vote on changes.</p>
+            <p>Networks are governed by their communities.</p>
             <ul>
               <li><Link to={`${base}/concepts/governance`}>Intro to governance</Link></li>
               <li><Link to={`${base}/tutorials/proposals`}>Tutorials: How to propose</Link></li>
-              <li><Link className="external" href="https://governance.vega.xyz" target="_blank">Governance dApp</Link></li>
             </ul>
           </article>
         </section>

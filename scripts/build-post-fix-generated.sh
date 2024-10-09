@@ -23,12 +23,9 @@ echo "- REST: Hide submit buttons for export ledger entries endpoint"
 find "docs/api/rest/data-v2/" -name "trading-data-service-export-ledger-entries.api.mdx" | while read -r file; do hide_send_button "$file"; done 
 find "versioned_docs" -name "trading-data-service-export-ledger-entries.api.mdx" | while read -r file; do hide_send_button "$file"; done 
 
-echo "- REST: Hide submit buttons for mainnet core state api"
-find "versioned_docs" -name "core-state-service-*.mdx" | while read -r file; do hide_send_button "$file"; done 
-
 echo "- REST: Remove indexes (todo: fix hardcoded version)"
-find 'versioned_docs/version-v0.73/api/rest/' -name '*-service.mdx' -exec rm {} +
-find 'versioned_docs/version-v0.73/api/rest/' -name '*.info.mdx' -exec rm {} +
+find 'versioned_docs/version-v0.77/api/rest/' -name '*-service.mdx' -exec rm {} +
+find 'versioned_docs/version-v0.77/api/rest/' -name '*.info.mdx' -exec rm {} +
 find 'docs/api/rest/' -name '*-service.mdx' -exec rm {} +
 find 'docs/api/rest/' -name '*.info.mdx' -exec rm {} +
 # Hacky undelete

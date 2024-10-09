@@ -6,11 +6,11 @@ vega_network: TESTNET
 hide_title: false
 ---
 
-import Topic from '/docs/topics/\_topic-data-nodes.mdx';
+import Topic from '/docs/topics/_topic-data-nodes.mdx';
 
 <Topic />
 
-This page covers the minimum and recommended hardware requirements, and the software requirements for running a data node connecting to the Vega network.
+This page covers the minimum and recommended hardware requirements, and the software requirements for running a data node connecting to a network running Vega software.
 
 The best hardware may vary depending on how you set up your node and database service, and how you intend to use the data node.
 

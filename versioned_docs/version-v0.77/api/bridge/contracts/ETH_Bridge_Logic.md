@@ -12,7 +12,7 @@ View Source: [contracts/ETH_Bridge_Logic.sol](https://github.com/vegaprotocol/Mu
 
 **ETH_Bridge_Logic**
 
-This contract is used by Vega network users to deposit and withdraw ETH to/from Vega.
+This contract is used to deposit and withdraw ETH.
 
 ## Contract Members
 **Constants & Variables**

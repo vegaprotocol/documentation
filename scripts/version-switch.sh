@@ -14,20 +14,20 @@
 find 'versioned_docs' -type f -name '*.md' -exec sed -i -E 's#title: Schema Documentation#title: GraphQL Schema Documentation#g' {} +
 find 'docs' -type f -name '*.md' -exec sed -i -E 's#title: Schema Documentation#title: GraphQL Schema Documentation#g' {} +
 
-## Ensure all docs in the versioned folder link to /mainnet/
-find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's#testnet/api/graphql#mainnet/api/graphql#g' {} +
+## Ensure all docs in the versioned folder link to /release/
+find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's#pre-release/api/graphql#release/api/graphql#g' {} +
 
-## Ensure all docs in the versioned folder link to /mainnet/
-find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's#testnet/api/grpc#mainnet/api/grpc#g' {} +
+## Ensure all docs in the versioned folder link to /pre-release/
+find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's#pre-release/api/grpc#release/api/grpc#g' {} +
 
 ## Sidebar fixup
-sed -i -E 's/\/docs\/testnet\//\/docs\/mainnet\//g' versioned_sidebars/version-v0.76-sidebars.json 
+sed -i -E 's/\/docs\/pre-release\//\/docs\/release\//g' versioned_sidebars/version-v0.76-sidebars.json 
 
 # Testnet docs
-## Ensure graphql pages in /docs/ link to /testnet/
-find 'docs/api/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/graphql/\/docs\/testnet\/graphql/g' {} +
-## Ensure grpc pages in /docs/ link to /testnet/
-find 'docs/api/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/grpc/\/docs\/testnet\/grpc/g' {} +
+## Ensure graphql pages in /docs/ link to /pre-release/
+find 'docs/api/graphql' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/graphql/\/docs\/pre-release\/graphql/g' {} +
+## Ensure grpc pages in /docs/ link to /pre-release/
+find 'docs/api/grpc' -type f -name '*.mdx' -exec sed -i -E 's/\/docs\/grpc/\/docs\/pre-release\/grpc/g' {} +
 
 ## Ensure frontmatter for non-testnet docs is set to mainnets
 find 'versioned_docs' -type f -name '*.mdx' -exec sed -i -E 's/vega_network: TESTNET/vega_network: MAINNET/g' {} +

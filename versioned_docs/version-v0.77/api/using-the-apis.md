@@ -2,27 +2,19 @@
 title: API tips
 sidebar_position: 2
 description: See the frameworks and how to use the APIs.
-vega_network: MAINNET
 ---
 
 import Topic from '/docs/topics/_topic-development.mdx'
 import DataNodes from '@site/src/components/DataNodes';
-import EthAddresses from '@site/src/components/EthAddresses';
 
 <Topic />
 
 ## Connecting to the APIs
-As most of the APIs are designed to be used for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. 
+As most of the APIs are designed to be used for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground.
 
-The public servers differ between testnet and mainnet, as do the network configurations your Vega-compatible wallet needs in order to connect. See the [public servers page](./public-servers.md) for details. 
+To use the APIs, a developer will need access to a network-compatible instance of the relevant software, depending on their goals: core node, data node, and/or Vega Wallet.
 
-To use the Vega APIs, a developer will need access to a network-compatible instance of the relevant software, depending on their goals: core node, data node, and/or Vega Wallet.
-
-**Mainnet**: Consensus validators may provide public servers for accessing the mainnet APIs, however that does not mean they should be relied upon for constant uptime and full access to all APIs. Each Vega Wallet release for mainnet wallet is pre-configured with any publicly announced nodes at the time of release.
-
-**Validator testnet**: Some consensus validators may provide public servers for accessing the APIs on the validator testnet network, however that does not mean they should be relied on for constant uptime or full access to APIs.
-
-**Fairground**: The project team operate a number of data nodes with publicly available endpoints for the Vega-run testnet, called Fairground. Each Fairground wallet app release is pre-configured with known nodes, including those operated by the project team, at the time of release.
+The project team operate a number of data nodes with publicly available endpoints for the Vega-run testnet, called Fairground. 
 
 ## Rate limiting
 Some rate limiting is implemented with default limitations on the APIs.
@@ -84,44 +76,12 @@ REST is easy to get started with, and Vega supports nearly all the functionality
 **[Using REST](./rest/overview.md)**: Read the REST overview for everything you need to know before using the endpoints, like the default rate limits and how to paginate results.
 
 ### WebSockets for streaming
-**[WebSocket endpoints](./websocket.md)** offer real-time updates to changes in the state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
+**[WebSocket endpoints](./websocket.md)** offer real-time updates to changes in the state of a network, allowing subscriptions to events such as per-market trades or changes to a party's position.
 
 ### gRPC for fast interactions
-**[gRPC](./grpc/overview.md)** provides fast and efficient communication, and supports near real time streaming of updates from Vega.
+**[gRPC](./grpc/overview.md)** provides fast and efficient communication, and supports near real time update streaming.
 
 ### GraphQL for web apps
 **[GraphQL](../api/graphql/overview.md)** is an alternative to REST that can be used to craft more complex queries.
 
 Try out queries and learn the structure with the [GraphQL playground ↗](https://api.testnet.vega.xyz/graphql/)
-
-<!--## Vega Wallet integration
-To integrate the Vega Wallet with a dApp or bots, you'll likely need to use the wallet API.
-
-The **Wallet API** uses JSON-RPC with an HTTP wrapper. Find out [how to use the API](./vega-wallet/before-you-start.md) before jumping into the reference docs. 
-
-[Download a Vega Wallet](../tools/vega-wallet/index.md) to use the Wallet API to programmatically interact with the network for your own transactions.
--->
-
-## Asset bridges
-Vega uses ERC-20 assets from Ethereum and Arbitrum, and to facilitate inter-chain interactions between Vega and other chains, those assets are then transferred through a series of smart contract bridges. These bridges let participants use ERC-20 and other assets on the (non-Ethereum) Vega chain.
-
-Moreover, these smart contract bridges operate just like any other smart contract on Ethereum, meaning that users can interact with them directly using a JSON-RPC node provider or a service like [Etherscan ↗](https://etherscan.io/), or [Arbiscan ↗](https://arbiscan.io/) which provide a user-friendly interface for exploring and interacting with Ethereum and Arbitrum smart contracts, respectively.
-
-### Smart contracts
-**[Smart contracts overview](./bridge/index.md)**: Explore the contracts.
-
-* [ERC20 Bridge Logic](./bridge/contracts/ERC20_Bridge_Logic.md)
-  * Contains the functions necessary to deposit, withdraw, list assets, etc. It's controlled by Multisig Control and controls Asset Pool.
-* [ERC20 Asset Pool](./bridge/contracts/ERC20_Asset_Pool.md)
-  * Holds deposited assets and remits them to provided addresses based on orders from the assigned Bridge Logic. It is controlled by Bridge Logic and Multisig Control.
-* [Multisig Control](./bridge/contracts/MultisigControl.md)
-  * Handles verification of orders signed by a threshold of validators. 
-* [Staking Bridge](./bridge/contracts/Vega_Staking_Bridge.md)
-  * Allows users to deposit and withdraw VEGA tokens for staking. The VEGA tokens are always controlled exclusively by the tokenholder, even when on the Staking Bridge. Stake can be removed at any time by the tokenholder.
-* VEGA Token contract
-  * ERC20 token smart contract.
-* Vesting contract
-  * All VEGA tokens are issued through this. Handles the linear vesting of VEGA tokens and allows users to stake VEGA they own (vested or not).
-
-### Ethereum addresses
-<EthAddresses frontMatter={frontMatter} />

@@ -73,7 +73,7 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
 </Tabs>
 
 ### Recurring transfer to Vega key
-In a recurring transfer, the assets move from your account to the nominated account at the end of each [epoch](../../concepts/vega-chain/network.md#epochs).
+In a recurring transfer, the assets move from your account to the nominated account at the end of each [epoch](../../concepts/chain/network.md#epochs).
 
 You'll need the following information to set up a recurring transfer: 
 * `startEpoch`: The number of the epoch in which you want the first transfer to be made. It will initiate at the end of that epoch.
@@ -135,7 +135,7 @@ These rewards can be used to incentivise:
 * Consensus and standby validators that have a ranking score higher than 0
 
 :::info Read more
-[Trading rewards](../../concepts/trading-on-vega/discounts-rewards.md): Read about trading rewards, including the different rewards you can contribute to.
+[Trading rewards](../../concepts/trading-framework/discounts-rewards.md): Read about trading rewards, including the different rewards you can contribute to.
 :::
 
  
@@ -157,9 +157,9 @@ You will need to define the dispatch strategy, which includes the  metric, the l
 | Dispatch strategy field | Description | Accepted values |
 | ----------- | ----------- | ----------- |
 | `assetForMetric` | Asset that's used to evaluate how someone performs, such as the settlement asset for the market(s) relevant to the reward | Any asset enabled on Vega |
-| `metric` | Specific reward category the transfer is funding | DISPATCH_METRIC_MAKER_FEES_PAID; DISPATCH_METRIC_MAKER_FEES_RECEIVED; DISPATCH_METRIC_LP_FEES_RECEIVED; DISPATCH_METRIC_MARKET_VALUE; DISPATCH_METRIC_AVERAGE_POSITION; DISPATCH_METRIC_RELATIVE_RETURN; DISPATCH_METRIC_RETURN_VOLATILITY; DISPATCH_METRIC_REALISED_RETURN; DISPATCH_METRIC_VALIDATOR_RANKING |
+| `metric` | Specific reward category the transfer is funding | DISPATCH_METRIC_MAKER_FEES_PAID; DISPATCH_METRIC_MAKER_FEES_RECEIVED; DISPATCH_METRIC_LP_FEES_RECEIVED; DISPATCH_METRIC_MARKET_VALUE; DISPATCH_METRIC_AVERAGE_POSITION; DISPATCH_METRIC_RELATIVE_RETURN; DISPATCH_METRIC_RETURN_VOLATILITY; DISPATCH_METRIC_REALISED_RETURN; DISPATCH_METRIC_VALIDATOR_RANKING; DISPATCH_METRIC_ELIGIBLE_ENTITIES |
 | `markets` | Optional: Used to choose which market(s) are in scope | Any trading market's ID |
-| `stakingRequirement` | Optional: Sets a minimum number of VEGA tokens that need to be staked for a party to be considered eligible for the reward | Number, if omitted it defaults to 0 |
+| `stakingRequirement` | Optional: Sets a minimum number of governance tokens that need to be staked for a party to be considered eligible for the reward | Number, if omitted it defaults to 0 |
 | `notionalTimeWeightedAveragePositionRequirement` | Optional: Sets a minimum notional TWAP required for a party to be considered eligible to receive rewards | Defaults to 0 | 
 | `windowLength` | Number of epochs in which performance against the reward metric is measured | Any number between 1 and 100 inclusive |
 | `transferInterval` | Optional: Number of epochs between transfers. For example, if set to 4, funds will be transferred every 4 epochs with the first transfer occurring 4 epochs after the transaction is processed. If left blank, it transfers every epoch. | Any number between 1 and 100 inclusive |
@@ -167,7 +167,8 @@ You will need to define the dispatch strategy, which includes the  metric, the l
 | `entityScope` | defines the entities within scope | ENTITY_SCOPE_INDIVIDUALS; ENTITY_SCOPE_TEAMS |
 | `individualScope` | To be used if the eligible reward recipients should be individuals, and that can then be further focused to determine who is eligible | INDIVIDUAL_SCOPE_ALL; INDIVIDUAL_SCOPE_IN_TEAM; INDIVIDUAL_SCOPE_NOT_IN_TEAM |
 | `teamScope` | To be used if the eligible reward recipients need to be in a team, and rewards are to be calculated based on team performance. | Leave blank if allowing all teams, otherwise provide an array of team IDs. See example below |
-| `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK |
+| `distributionStrategy` | Sets how the participants should be ranked, and what other factors to consider. |  DISTRIBUTION_STRATEGY_PRO_RATA; DISTRIBUTION_STRATEGY_RANK; DISTRIBUTION_STRATEGY_RANK_LOTTERY |
+| `rankTable`| Ordered list, using start rank, and defines the rank bands and share ratio for each band. Mandatory for the rank and lottery distribution strategies. | `{"start_rank": 1, "share_ratio": 10},` etc |
 | `capRewardFeeMultiple` | Optional value that sets by how much the reward payout amount is to be capped in relation to fees paid and rewards accrued. It will set each participant's actual reward amount received to be whichever is smaller of: full earned reward amount, or the `capRewardFeeMultiple` × participant's fees paid this epoch. | |
 
 #### Example dispatch strategy snippet
@@ -251,9 +252,6 @@ vegawallet.exe transaction send --wallet "wallet-name" --pubkey "pubkey" --netwo
 ```
 </TabItem>
 </Tabs>
-
-### Publicising trading and validator metric rewards
-Once you've funded a reward pool, you can promote the reward, and what it's relevant for, by sharing it with the community on [Discord ↗](https://vega.xyz/discord) and on the [Vega forum ↗](https://community.vega.xyz).
 
 ## Cancelling recurring transfers
 To cancel a recurring transfer, you'll need the transfer's ID. To see the ID for every transfer your public key makes, [run a transfers REST query](../../api/rest/data-v2/trading-data-service-list-transfers.api.mdx).

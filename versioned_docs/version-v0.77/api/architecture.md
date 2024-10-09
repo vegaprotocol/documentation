@@ -1,7 +1,6 @@
 ---
 title: Architecture
 sidebar_position: 3
-vega_network: MAINNET
 ---
 
 import Topic from '/docs/topics/_topic-development.mdx'
@@ -16,7 +15,7 @@ Most of the data you will want to access will come from the trading data REST se
 
 To send in a transaction - you'll need to use a Vega wallet, which will combine your command with a signature and public key, and send that bundle, which makes up the transaction, to a validator node to be included in the chain.
 
-![How data cycles through the Vega network](/img/concept-diagrams/data-flow-vega.png)
+![How data cycles through a network](/img/concept-diagrams/data-flow-vega.png)
 
 <!--
 This guide will use a wallet server running on localhost to 'write' data, and a specific data node to read data from. Depending on your use case, you may eventually run your own data source, or host a wallet on a remote machine.
@@ -37,7 +36,7 @@ Some data nodes are run by consensus validators and offer public access to the A
 Anyone who wants to can run a data node.
 
 :::note Go deeper
-* **[Data node concepts](../concepts/vega-chain/data-nodes.md)**: Get into the details about data nodes.
+* **[Data node concepts](../concepts/chain/data-nodes.md)**: Get into the details about data nodes.
 * **[How to set up a data node](../node-operators/get-started/setup-datanode.md)**: Step by step instructions and config guidance.
 :::
 
@@ -46,5 +45,4 @@ Once you have a high-level understanding, read through the following topics.
 
 * **[Useful endpoints](./useful-endpoints.md)**: The basic features you should know about and their APIs.
 * **[Using the APIs](./using-the-apis.md)**: Quick intro to all the frameworks and smart contracts to help you find what you need.
-* **[Public servers](./public-servers.md)**: Public servers that are currently available for interacting with the APIs on the testnets.
 * **[Tutorials](../tutorials/index.md)**: Each tutorial includes info about the protocol that you need to use the guide, as well as instructions on how to interact with scripts, API calls, or other code.

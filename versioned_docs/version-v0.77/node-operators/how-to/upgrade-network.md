@@ -14,7 +14,7 @@ A protocol upgrade has three steps:
 2. Prepare a node for protocol upgrade
 3. Execute an upgrade at the agreed block
 
-Smooth execution of a protocol upgrade is critical to the Vega network, and any downtime or disruption must be minimised. Using Vega Visor is recommended and will automatically prepare and execute a protocol upgrade. Alternatively, a node operator can manually perform an upgrade at an agreed block height for an agreed Vega software version.
+Smooth execution of a protocol upgrade is critical to a network, and any downtime or disruption must be minimised. Using Vega Visor is recommended and will automatically prepare and execute a protocol upgrade. Alternatively, a node operator can manually perform an upgrade at an agreed block height for an agreed Vega software version.
 
 To help with protocol upgrades, the following endpoints can provide relevant information:
 * To view submitted proposals use the **[protocol upgrade proposals](../../api/rest/data-v2/trading-data-service-list-protocol-upgrade-proposals.api.mdx) endpoint**
@@ -153,7 +153,7 @@ Now you are ready for the protocol upgrade. Move onto the next step,`3. Execute 
 
 You should perform these steps only if you are NOT running Visor. If you use Visor, it will perform these steps for you automatically.
 
-**Important:** Smooth execution of the protocol upgrade is critical to the Vega Network, and any downtime or disruption must be minimised.
+**Important:** Smooth execution of the protocol upgrade is critical to a network, and any downtime or disruption must be minimised.
 
 The below steps cover two use cases: for those running a core node only (marked `a`) and those running a core and data node (marked `b`).
 

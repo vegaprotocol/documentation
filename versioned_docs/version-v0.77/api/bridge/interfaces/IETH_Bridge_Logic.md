@@ -12,7 +12,7 @@ View Source: [contracts/IETH_Bridge_Logic.sol](https://github.com/vegaprotocol/M
 
 **IETH_Bridge_Logic**
 
-Implementations of this interface are used by Vega network users to deposit and withdraw ETH to/from Vega.
+Implementations of this interface are used to deposit and withdraw ETH.
 
 ## ETH_Withdrawn
 

@@ -235,7 +235,7 @@ class VegaWebSocketClient:
     def stop(self):
         rel.abort()
 
-    # https://docs.vega.xyz/testnet/api/rest/data-v2/trading-data-service-observe-markets-data
+    # https://docs.vega.xyz/release/api/rest/data-v2/trading-data-service-observe-markets-data
     def subscribe_market_data(
         self, market_id: str, callback: Callable[[dict], Any]
     ) -> None:
@@ -244,7 +244,7 @@ class VegaWebSocketClient:
             callback=callback,
         )
 
-    # https://docs.vega.xyz/testnet/api/rest/data-v2/trading-data-service-observe-orders
+    # https://docs.vega.xyz/release/api/rest/data-v2/trading-data-service-observe-orders
     def subscribe_orders(
         self, market_id: str, party_id: str, callback: Callable[[dict], Any]
     ) -> None:
@@ -253,7 +253,7 @@ class VegaWebSocketClient:
             callback=callback,
         )
 
-    # https://docs.vega.xyz/testnet/api/rest/data-v2/trading-data-service-observe-positions
+    # https://docs.vega.xyz/release/api/rest/data-v2/trading-data-service-observe-positions
     def subscribe_positions(
         self, market_id: str, party_id: str, callback: Callable[[dict], Any]
     ) -> None:
@@ -262,7 +262,7 @@ class VegaWebSocketClient:
             callback=callback,
         )
 
-    # https://docs.vega.xyz/testnet/api/rest/data-v2/trading-data-service-observe-accounts
+    # https://docs.vega.xyz/release/api/rest/data-v2/trading-data-service-observe-accounts
     def subscribe_accounts(
         self, market_id: str, party_id: str, callback: Callable[[dict], Any]
     ) -> None:

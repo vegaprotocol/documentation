@@ -2,7 +2,7 @@
 title: Getting started
 sidebar_position: 1
 hide_title: false
-description: Start development of a bot to trade on Vega.
+description: Start development of a trading bot.
 ---
 
 import NetworkParameter from '@site/src/components/NetworkParameter';
@@ -12,10 +12,10 @@ As described in the open source license, the Vega Protocol software and supporti
 
 The information provided in this tutorial does not constitute investment advice, financial advice, trading advice, or any other sort of advice and you should not treat any of the content as such. Gobalsky Labs Limited does not recommend that any asset should be bought, sold, or held by you. Do conduct your own due diligence and consult your financial advisor before making any investment decisions.
 
-No developer or entity involved in creating the Vega protocol or supporting documentation will be liable for any claims or damages whatsoever associated with your use, inability to use, or your interaction with other users of the Vega Protocol, including any direct, indirect, incidental, special, exemplary, punitive or consequential damages, or legal costs, loss of profits, cryptocurrencies, tokens, or anything else of value.
+No developer or entity involved in creating the Vega protocol or supporting documentation will be liable for any claims or damages whatsoever associated with your use, inability to use, or your interaction with other users of any network using the Vega protocol, including any direct, indirect, incidental, special, exemplary, punitive or consequential damages, or legal costs, loss of profits, cryptocurrencies, tokens, or anything else of value.
 :::
 
-In this series of tutorials you will work towards building the components of a simple bot that can trade on a Vega Protocol network, and to which you can add your own specific trading logic. In the first section, we will build out the basics of signing transactions, sending order creation and amendment payloads to a node, and listening for position and order updates via WebSockets.
+In this series of tutorials you will work towards building the components of a simple bot, and to which you can add your own specific trading logic. In the first section, we will build out the basics of signing transactions, sending order creation and amendment payloads to a node, and listening for position and order updates via WebSockets.
 
 Later sections will cover adding liquidity to the bot and implementing a simple arbitrage strategy between a centralised exchange's prices and the Vega market's, taking into account trading fees.
 
@@ -27,7 +27,7 @@ If you don't have Python installed already, follow the [Python instructions ↗]
 Once installed, ensure everything is set up correctly by checking the version:
 `python --version`
 
-Next, follow the Vega Wallet setup instructions within the [programmatic trading basics](../programmatic-trading-basics.md#set-up-your-vega-wallet) tutorial to ensure you have a working Vega Wallet and API token. Take a note of your token as you will need it for configuring the bot. If lost, the token can be retrieved by calling `vegawallet api-token list`.
+Next, set up a Vega wallet and ensure you have a working Vega Wallet and API token. Take a note of your token as you will need it for configuring the bot. If lost, the token can be retrieved by calling `vegawallet api-token list`.
 
 ## Setup
 Navigate to the folder you want to place your project folder in and run:
@@ -93,8 +93,8 @@ If later in the guide you find you have a connection error to `api.n11.testnet.v
 Populate the rest of the fields like so:
 
 - `PARTY_ID`: This should be your public key (without a `0x` prefix). You can find it using your Vega Wallet. 
-- `WALLET_TOKEN`: This is the token you received when setting up the steps in [programmatic trading basics](../programmatic-trading-basics.md#set-up-your-vega-wallet)
-- `MARKET_ID`: For this, navigate to the Fairground [Console ↗](https://console.fairground.wtf/#/markets/all) and select a market. Ideally choose one with a `Trading mode` of `continuous` as it will have active trading. Once you've chosen a market, navigate to the `Info` tab and within `Market Specification` -> `Key details` take the `Market ID` value and paste it into that section of the config. If you wish to follow the section of this guide in which we place orders, ensure it is a market trading with an asset you hold on the Fairground testnet, or follow the [deposit section](../programmatic-trading-basics.md#deposit-assets) in the programmatic trading basics tutorial.
+- `WALLET_TOKEN`: You can get this token when setting up a wallet.
+- `MARKET_ID`: For this, use the API endpoint [list markets](../../api/rest/data-v2/trading-data-service-list-markets.api.mdx) and select a market. Ideally choose one with a `Trading mode` of `continuous` as it will have active trading. Once you've chosen a market, navigate to the `Info` tab and within `Market Specification` -> `Key details` take the `Market ID` value and paste it into that section of the config. If you wish to follow the section of this guide in which we place orders, ensure it is a market trading with an asset you hold on the Fairground testnet.
 
 :::tip Query for data
 You can also query for market information by using the [markets endpoint](../../api/rest/data-v2/trading-data-service-list-markets.api.mdx) on REST.
@@ -210,7 +210,7 @@ def instruction_to_json(
 Here we're defining some boilerplate to convert between the raw JSON that you will send to and receive from the Vega node and wallet, and some data classes that make it easier to deal with things locally. We also introduce a few factors of which it's important to be aware when building a trading system interacting with Vega Protocol.
 
 - `BatchMarketInstruction`: A batch market instruction allows you to send multiple order-related actions within one transaction, saving on the number of messages required and allowing you to submit more operations within one block than would otherwise be allowed. Check the network parameter value <NetworkParameter frontMatter={frontMatter} param="spam.protection.max.batchSize" />  to see the maximum number of operations (submissions + amendments + cancellations) which can be submitted in a single batch instruction.
-- `convert_(to/from)_decimals`: As a blockchain it is important for Vega Protocol calculations to be replicable across multiple computers and architectures. To enable that, many numbers are represented as integers, allowing integer arithmetic to be performed and avoiding the representation issues floating point numbers can encounter (which can lead to small numerical differences between computations on different processor types, etc). So, for example, a number `50.12` could be represented as `5012` with a decimal precision of `2` or `50120` with a precision of `3`. We can load these precisions from the market and asset specifications but need to convert between floating point numbers and this decimal precision to interact. There are generally three to be aware of:
+- `convert_(to/from)_decimals`: As a blockchain software, it is important that calculations are replicable across multiple computers and architectures. To enable that, many numbers are represented as integers, allowing integer arithmetic to be performed and avoiding the representation issues floating point numbers can encounter (which can lead to small numerical differences between computations on different processor types, etc). So, for example, a number `50.12` could be represented as `5012` with a decimal precision of `2` or `50120` with a precision of `3`. We can load these precisions from the market and asset specifications but need to convert between floating point numbers and this decimal precision to interact. There are generally three to be aware of:
   - `asset`: Precision of the asset when dealing with it specifically (transfers, etc)
   - `price`: Precision of the price on a market (e.g. a price of `1243.42` would be `2` precision)
   - `position`: Precision of the position on a market, allowing fractional units (e.g. a precision of `1` would allow lots of `0.1` to be traded)
@@ -595,7 +595,7 @@ It then aggregates these into a batch market instruction. One method to implemen
 
 Within a single batch, the orders are placed first as cancellations, then amendments, then submissions, so you will never have overlapping orders. We also take advantage of the fact that an `OrderCancellation` with only `market_id` specified and no `order_id` will cancel all orders on the given market for your party.
 
-From here, you should be able to run your bot with `python -m main` again and watch it trade. You can log into the Fairground [Console ↗](https://console.fairground.wtf) to see the orders it places and current position. 
+From here, you should be able to run your bot with `python -m main` again and watch it trade.
 
 If you watch the logs, you may see that although there is only a 1s sleep in the loop it is only updating the price every few seconds. This is because each of the API queries we do in the loop takes a short amount of time, and that adds up! In the [next guide](streaming-data.md) we will think about ways to tackle that, along with covering how we might add liquidity to our bot.
 

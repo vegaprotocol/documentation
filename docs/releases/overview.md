@@ -2,6 +2,7 @@
 title: Vega software releases
 hide_title: false
 ---
+
 import Topic from '/docs/topics/_topic-development.mdx'
 
 <Topic />
@@ -12,15 +13,48 @@ The Vega software is publicly available on [GitHub ↗](https://github.com/vegap
 
 See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/releases).
 
-<!--[**Governance dApp on GitHub** ↗](https://github.com/vegaprotocol/frontend-monorepo/releases) - The Governance dApp, which provides an interface for interacting with governance proposals, VEGA tokens, and staking to validators; Console, a trading interface; and the Vega Block Explorer are open-source and you see more about them in the frontend monorepo.-->
-
 ## Vega core software
 
-The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version that the validators use to run the Vega mainnet. Releases are listed with their semantic version number and the date the release was made available to mainnet validators.
+The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version.
+
+## Version v0.78.2 | 2024-08-06
+
+### New features
+
+**Stop orders** can now be used to create or increase a position. Previously stop orders could only be used to reduce an existing position. This enhancement allows you to use a stop order much more flexibly. [Issue 8777 ↗](https://github.com/vegaprotocol/vega/issues/8777)
+
+There are **two new fee types**: treasury and buyback. These fees are set by network parameters, thus their values are determined through governance, and they default to 0. Along with this change, the discount and reward factors have been made more granular, so they can target specific fee types, rather than total collective fees. [Issue 11428 ↗](https://github.com/vegaprotocol/vega/issues/11428)
+
+A new program option has been added to provide a fee rebate for high-volume market makers. The volume rebate program can be set up or replaced using a governance proposal. [Issue 11468 ↗](https://github.com/vegaprotocol/vega/issues/11468)
+
+A new reward type has been added that can target eligible participants based on criteria that is not specific to trading gains. This reward type can be enabled by submitting a self-funded transfer or proposing a transfer using treasury funds. [Issue 11528 ↗](https://github.com/vegaprotocol/vega/issues/11528)
+
+A new distribution strategy option has been added to allow rewards to be distributed as a lottery between participants who are eligible for a given reward. [Issue 11535 ↗](https://github.com/vegaprotocol/vega/issues/11535)
+
+The reward targeting time-weighted average position has been replaced with one that targets time-weighted notional value. [11459 ↗](https://github.com/vegaprotocol/vega/issues/11459)
+
+### Improvements
+
+- Add core-derived tier numbers to API. [Issue 11646 ↗](https://github.com/vegaprotocol/vega/issues/11646)
+- Fix panic caused by pegged orders. [Issue 11641 ↗](https://github.com/vegaprotocol/vega/issues/11641)
+- Make the batch market instructions errors programmatically usable.[Issue 11536 ↗](https://github.com/vegaprotocol/vega/issues/11536)
+- Add validation to market proposals' metadata. [Issue 11546 ↗](https://github.com/vegaprotocol/vega/issues/11546)
+- Support per party fee discounts in fee estimation. [Issue 11533 ↗](https://github.com/vegaprotocol/vega/issues/11533)
+- Enhance `EstimatePositions` API for capped futures. [Issue 11619 ↗](https://github.com/vegaprotocol/vega/issues/11619)
+
+### Fixes
+
+- Fix spam check for spot markets to use not double count quantum. [Issue 11540 ↗](https://github.com/vegaprotocol/vega/issues/11540)
+- Fix empty candles stream. [Issue 11544 ↗](https://github.com/vegaprotocol/vega/issues/11544) 
+- Spot calculate fee on amend, use order price if no amended price is provided. [Issue 11579 ↗](https://github.com/vegaprotocol/vega/issues/11579) 
+- Initialise rebate stats service in API. [Issue 11585 ↗](https://github.com/vegaprotocol/vega/issues/11585)
+- Fix the order of calls at end of epoch between rebate engine and market tracker. [Issue 11592 ↗](https://github.com/vegaprotocol/vega/issues/11592) 
+- Apply fees and discounts on network disposal trades for more predictable rebates. [Issue 11652 ↗](https://github.com/vegaprotocol/vega/issues/11652)
 
 ## Version v0.77 | 2024-08-01
 This updated version was released to the Vega testnet on 1 August 2024.
 
+### New features
 This release introduces the ability to create prediction markets, futures markets with a final settlement price cap, and fully collateralised futures markets. There are also a range of bug fixes and general improvements.
 
 Included in this release are a series of new network parameters. Below is a list with their default values.
@@ -34,7 +68,7 @@ Included in this release are a series of new network parameters. Below is a list
 | `market.aggressiveOrderBlockDelay` | Sets the number of blocks by which aggressive (taker) orders are delayed relative to passive (maker) orders. | 1 |
 | `rewards.updateFrequency` | Sets how frequently the live game scores are updated. | 10m |
 
-### Improvements:
+### Improvements
 
 - Adds the ability to publish data about games while the games are ongoing, rather than only after. [Issue 11209 ↗](https://github.com/vegaprotocol/vega/issues/11209)
 - Introduces auctions during times of long block processing. [Issue 11400 ↗](https://github.com/vegaprotocol/vega/issues/11400)
@@ -49,7 +83,7 @@ Included in this release are a series of new network parameters. Below is a list
 - Adds spam checks for orders/liquidity provision. [Issue 10634 ↗](https://github.com/vegaprotocol/vega/issues/10634)
 - Supports querying for historical game scores. [Issue 11357 ↗](https://github.com/vegaprotocol/vega/issues/11357)
 
-### Fixes:
+### Fixes
 
 - Ensures that vesting statistics match vesting accounts numbers. [Issue 11066 ↗](https://github.com/vegaprotocol/vega/issues/11066)
 - Multiple transfers were erroneously blocked when targeting the same game ID. [Issue 11279 ↗](https://github.com/vegaprotocol/vega/issues/11279)
@@ -72,12 +106,12 @@ This version was released to the Vega testnet on 9 May 2024.
 ### New features
 
 **Spot markets**
-The protocol now supports [proposing spot markets](../tutorials/proposals/new-spot-market.md), which will let users buy or sell assets using assets they own. [Spot](../concepts/trading-on-vega/market-types.md#spot) markets have no margin or leverage.
+The protocol now supports [proposing spot markets](../tutorials/proposals/new-spot-market.md), which will let users buy or sell assets using assets they own. [Spot](../concepts/trading-framework/market-types.md#spot) markets have no margin or leverage.
 
 **New bridge support**
 There is now support for an Arbitrum bridge so that users can bridge assets easily from Arbitrum to Vega and avoid Ethereum gas fees.
 
-A new reward metric has been added that rewards based on the highest realised return. [Read more on the rewards page](../concepts/trading-on-vega/discounts-rewards.md#highest-realised-return). This has been done in [issue 11167 ↗](https://github.com/vegaprotocol/vega/issues/11167).
+A new reward metric has been added that rewards based on the highest realised return. [Read more on the rewards page](../concepts/trading-framework/discounts-rewards.md#highest-realised-return). This has been done in [issue 11167 ↗](https://github.com/vegaprotocol/vega/issues/11167).
 
 The most profitable trader reward has been extended to include losses in the calculation. This has been done in [issue 11165 ↗](https://github.com/vegaprotocol/vega/issues/11165).
 
@@ -595,8 +629,6 @@ In the previous liquidity model, providers would make a commitment and define a 
 
 For full details on these network and market parameters and what they represent please read the [liquidity concepts pages](../concepts/liquidity/index.md).
 
-We advise any existing liquidity providers to use [Console on Fairground ↗](https://console.fairground.wtf/) or the APIs to experiment with the new liquidity protocol ahead of the release to ensure they are comfortable with the changes.
-
 To see lower level details of how the new SLA liquidity feature is designed check out the following [spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0044-LIME-lp_mechanics.md). The work items completed on this feature can be seen on issues and pull requests with the [`liquidity-sla` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Aliquidity-sla+) label.
 
 #### Perpetual futures markets
@@ -629,7 +661,7 @@ Whilst a referral program is active, the following benefits may be available to 
 Providing a party has been associated with a referral set for long enough, they will become eligible for greater benefits as their referral set's running taker volume increases. To see more details check out this [spec ↗](https://github.com/vegaprotocol/specs/blob/master/protocol/0083-RFPR-on_chain_referral_program.md). The work items completed on this feature can be seen on issues and pull requests with the [`referral ` ↗](https://github.com/vegaprotocol/vega/issues?q=is%3Aclosed+label%3Areferral+) label.
 
 #### Changes to reward framework
-This release introduces locking and vesting for all rewards accrued, including trading, validator score, and staking rewards. Those rewards will go into a [vesting account](../concepts/trading-on-vega/discounts-rewards.md#how-rewards-are-paid), and can be redeemed on a per-epoch basis. Some rewards may be locked for a number of epochs before they begin vesting, this is defined in each reward pool's funding transfer and may differ for each type of reward.
+This release introduces locking and vesting for all rewards accrued, including trading, validator score, and staking rewards. Those rewards will go into a [vesting account](../concepts/trading-framework/discounts-rewards.md#how-rewards-are-paid), and can be redeemed on a per-epoch basis. Some rewards may be locked for a number of epochs before they begin vesting, this is defined in each reward pool's funding transfer and may differ for each type of reward.
 
 The initial base rate for vesting will be 25%, meaning 25% of your unlocked pool will vest every epoch. This is set in a network parameter and can be changed by the community through governance. At release time, there is no vesting period for staking rewards, and they will be available to transfer from the vested account to general account as they accrue.
 
@@ -638,7 +670,7 @@ The vesting rate can also be accelerated for faster vesting by keeping rewards i
 #### Expanded reward opportunities
 Trading rewards have increased to include 3 new reward types, and validator node operators can also benefit from a new reward.
 
-See details on the [trading rewards page](../concepts/trading-on-vega/discounts-rewards.md#trading-rewards) and the [validator rewards page](../concepts/vega-chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
+See details on the [trading rewards page](../concepts/trading-framework/discounts-rewards.md#trading-rewards) and the [validator rewards page](../concepts/chain/validator-scores-and-rewards.md#validator-metric-based-rewards).
 
 ## Pre-release version 0.72.5 | 2023-07-20
 This version was released to the Vega testnet on 20 July, 2023.
@@ -655,7 +687,7 @@ The unused rewards-related network parameter `reward.staking.delegation.payoutFr
 A stop order is an order to buy or sell once the price reaches a specified price, known as the trigger price. Stop orders can be used to help a trader limit losses (stop loss), or capitalise on a gain (take profit) automatically when they already have an open position. Stop orders can be submitted as a single stop order trigger or an OCO (one cancels the other) pair.
 
 **Iceberg orders**
-An iceberg order is a limit order for a large amount that, rather than being entered as a single large order of that size, is placed on the book as a smaller order that is replenished as that order amount is filled. The peak / 'visible' amount can be filled with one trade, while the reserve is used to support the smaller order amount. As the Vega network is a public one, the iceberg amount below the peak can still be deduced.
+An iceberg order is a limit order for a large amount that, rather than being entered as a single large order of that size, is placed on the book as a smaller order that is replenished as that order amount is filled. The peak / 'visible' amount can be filled with one trade, while the reserve is used to support the smaller order amount. As the network is a public one, the iceberg amount below the peak can still be deduced.
 
 **Successor markets**
 A successor market is a market that will carry on after the original market, or parent, that it is based on has settled, which offers liquidity providers the option to keep their equity-like share on the new market, even after the original market expires.

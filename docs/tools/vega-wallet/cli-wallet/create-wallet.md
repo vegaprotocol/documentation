@@ -10,9 +10,6 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import { NetworkConfigAddress, NetworkConfigAddressText } from '@site/src/components/NetworkConfigAddress';
 import CodeBlock from '@theme/CodeBlock';
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
 
 To download Vega Wallet and create your wallet, follow the step-by-step instructions below. 
 
@@ -150,14 +147,11 @@ Keep your recovery phrase safe and secret. You will need it to import your keys.
 :::
 
 ## 3. Choose a network
-If you want to interact with the governance dApp or Vega Console, you'll need to import network configuration for the network(s) you want to connect to.
+You'll need to import network configuration for the network(s) you want to connect to.
 
 ### Import networks
 
-Import the following network configurations: 
-
-* **Mainnet** network (run by validators): <NetworkConfigAddress frontMatter={frontMatter} label="mainnet1.toml" network="mainnet"/>
-* **Fairground** network: <NetworkConfigAddress frontMatter={frontMatter} label="fairground.toml" network="fairground"/>
+Import network configurations from the network you wish to connect to.
 
 :::info
 To update your networks list, see [manage networks](../cli-wallet/guides/manage-networks.md) for instructions.
@@ -167,13 +161,11 @@ To update your networks list, see [manage networks](../cli-wallet/guides/manage-
 
 Use the following command to import from URL. 
 
-*The URL used below is for mainnet, update the URL if you want to import a different network.*
-
 <Tabs groupId="operating-systems">
 <TabItem value="windows" label="Windows">
 
 <CodeBlock language="bash">
-vegawallet network import --from-url {NetworkConfigAddressText(frontMatter.vega_network)}
+vegawallet network import --from-url [insert-url]
 </CodeBlock>
 
 </TabItem>
@@ -181,14 +173,14 @@ vegawallet network import --from-url {NetworkConfigAddressText(frontMatter.vega_
 
 <CodeBlock language="bash">
 ./vegawallet network import \{'\n'}
-&nbsp;&nbsp;--from-url {NetworkConfigAddressText(frontMatter.vega_network)}
+&nbsp;&nbsp;--from-url [insert-url]
 </CodeBlock>
 
 </TabItem>
 <TabItem value="linux" label="Linux">
 <CodeBlock language="bash">
 ./vegawallet network import \{'\n'}
-&nbsp;&nbsp;--from-url {NetworkConfigAddressText(frontMatter.vega_network)}
+&nbsp;&nbsp;--from-url [insert-url]
 </CodeBlock>
 
 
@@ -285,7 +277,7 @@ To terminate the process, if you want to run other commands in Vega Wallet for e
 
 ## 5. Approve transactions
 
-You will need to use your wallet to approve any transactions that you create for the Vega network. You might create those transactions through the governance dApp or when using the APIs, for example. 
+You will need to use your wallet to approve any transactions that you create.
 
 When a transaction is submitted, you will receive a prompt asking if you want to approve the transaction. 
 
@@ -318,4 +310,4 @@ vegawallet service run --network "NETWORK_NAME" --automatic-consent
 </Tabs>
 
 ## Wallet API
-See the [Wallet API documentation](../../../api/vega-wallet/accessing-api.md) if you're looking to use the Vega Wallet with a script or trading bot, or want to integrate with the wallet software.
+See the [Wallet API documentation](../../../api/vega-wallet/accessing-api.md) if you're looking to use the Vega wallet software with a script or trading bot, or want to integrate with the wallet software.

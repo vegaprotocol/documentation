@@ -4,7 +4,7 @@ title: Running a secure validator
 sidebar_label: Validator security
 hide_title: false
 ---
-Validators are the most important part of the Vega network. Without them, the network is unable to generate new blocks and thus process any transactions. It is therefore important that the validator nodes are protected so that they can run correctly and perform their designated tasks.
+Validators are the most important part of a network. Without them, the network is unable to generate new blocks and thus process any transactions. It is therefore important that the validator nodes are protected so that they can run correctly and perform their designated tasks.
 
 There are two particular areas in which security needs to be addressed:
 * The node software must be run on a secure server which has maximum available up time and connectivity
@@ -21,7 +21,7 @@ A secure server needs to meet the following requirements:
 
 While computers are often built to very high standards, this does not mean they cannot crash or suffer hardware faults during use. The best approach is to assume something will go wrong and have a plan to cope with it. 
 Such ideas include:
-* Power cuts: Install a UPS to allow the server to keep running even if the power fails. This UPS should also be used to power any networking hardware required for the validator node to communicate with the rest of the network.Most good cloud providers already have backup power systems which will keep things running for you.
+* Power cuts: Install a UPS to allow the server to keep running even if the power fails. This UPS should also be used to power any networking hardware required for the validator node to communicate with the rest of the network. Most good cloud providers already have backup power systems which will keep things running for you.
 * Hardware faults: These can range from a broken hard drive, memory errors, failing power supplies to blown motherboards and broken cooling which causes overheating. If you are controlling the server yourself, you need to either buy from a supplier that has a replacement service, or keep spare machines or parts available for you to replace yourself. Backing up your system plays a big part here as the quicker you can restore your data, the quicker you can bring a repaired system back online.
 * Internet outage: Excluding internet issues in major backbones which will be impossible for a normal user to fix, most problems occur between the ISP and the client server. In most cases if you get a second internet connection installed it will connect back to the same ISP which does not offer you much of an improvement in reliability. An option is you setup or install a different type of connectivity as a backup second failover plan. Such connections include 4g wireless, leased lines or radio/satellite internet. Having a good router in place to automatically switch over is a good plan but remember the second connection will have a different IP address associated with it which might prevent your node communicating with the existing network.
 

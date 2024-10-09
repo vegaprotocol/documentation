@@ -7,15 +7,14 @@ description: Change network configuration parameters.
 ---
 import NetworkParameter from '@site/src/components/NetworkParameter';
 
-There are certain parameters within Vega that influence the behaviour of the system and can be changed by on-chain governance. 
+There are certain parameters that can influence the behaviour of a network and can be changed by on-chain governance. 
 
-Vega tokenholders can define the optimal network configuration by creating and voting on network parameter proposals to change the values of existing network parameters.
+Governance tokenholders can define the optimal configuration for a network by creating and voting on network parameter proposals to change the values of existing network parameters.
 
 Network parameters can only be added and removed with Vega core software releases.
 
 :::note Go deeper
-* [Concept: Network parameters](../vega-chain/network.md#parameters)
-* [Network parameters: See full list on the block explorer ↗](https://explorer.fairground.wtf/network-parameters)
+* [Concept: Network parameters](../chain/network.md#parameters)
 * [Tutorial: Propose a network parameter change](../../tutorials/proposals/network-parameter-proposal.md)
 :::
 

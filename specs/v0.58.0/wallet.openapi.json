@@ -7,7 +7,7 @@
   },
   "externalDocs": {
     "description": "Find out more about Vega REST APIs.",
-    "url": "https://docs.vega.xyz/docs/mainnet/api/rest/overview"
+    "url": "https://docs.vega.xyz/release/api/rest/overview"
   },
   "paths": {
     "/v2/requests": {

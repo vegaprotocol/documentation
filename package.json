@@ -1,7 +1,7 @@
 {
   "name": "vega-documentation",
-  "version": "0.77.6",
-  "mainnetVersion": "0.77.6",
+  "version": "0.78.2",
+  "mainnetVersion": "0.77.10",
   "license": "MIT",
   "engines": {
     "node": ">=16.14"
@@ -48,9 +48,9 @@
     "bignumber.js": "^9.0.2",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.1",
-    "docusaurus-plugin-openapi-docs": "2.0.4",
+    "docusaurus-plugin-openapi-docs": "2.2.1",
     "docusaurus-protobuffet": "0.3.3",
-    "docusaurus-theme-openapi-docs": "2.0.4",
+    "docusaurus-theme-openapi-docs": "2.2.1",
     "esbuild": "^0.20.1",
     "file-loader": "6.2.0",
     "glob": "^8.0.3",

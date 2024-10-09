@@ -5,16 +5,13 @@ description: Don't know where to start? Read this.
 sidebar_position: 1
 ---
 
-import Topic from '/docs/topics/_topic-wallet.mdx'
-
-<Topic />
 
 This page provides guidance on how to navigate the wallet API documentation, based on your profile.
 
 ## I am new to the wallet
-If you are not familiar with the wallet, we recommend you to read the [How it works](how-it-works) page. It provides a broad picture of the wallet architecture, its place in the Vega ecosystem, and the flow of a transaction inside the wallet.
+If you are not familiar with the wallet, we recommend you to read the [How it works](how-it-works) page. It provides a broad picture of the wallet architecture, its place in the Vega software ecosystem, and the flow of a transaction inside the wallet.
 
-Once read, you will have a good understanding of the wallet and its interaction with the Vega ecosystem. See the next section to start integrating your application with the Vega wallet.
+Once read, you will have a good understanding of the wallet and its interaction with the Vega software ecosystem. See the next section to start integrating your application with the Vega wallet.
 
 ## I know how it works, but I don't know how to connect
 If you understand how the wallet works and you want to start implementing, choose from the following guides. Start your integration with the local wallet service:

@@ -5,7 +5,7 @@ vega_network: MAINNET
 hide_title: false
 description: Host the trading interface on IPFS.
 ---
-The following instructions will guide you to hosting [Vega Console ↗](https://console.vega.xyz) on IPFS.
+The following instructions will guide you to hosting an instance of Vega Console on IPFS.
 
 ## Hosting Console on IPFS
 IPFS, the [Interplanetary File System ↗](https://ipfs.tech) is a decentralised file storage system. Hosting Vega Console on IPFS involves ‘pinning’ a JavaScript bundle that contains the dApp. Everyone who pins an identical version of the Console ensures the bundle is quick to retrieve for any user wherever they are. IPFS ensures the dApp has not been tampered with.

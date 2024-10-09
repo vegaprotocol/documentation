@@ -14,8 +14,6 @@ import EthAddresses from '@site/src/components/EthAddresses';
 ## Connecting to the APIs
 As most of the APIs are designed to be used for trading-related queries, the best place to try them out is on the testnet network, also known as Fairground. 
 
-The public servers differ between testnet and mainnet, as do the network configurations your Vega-compatible wallet needs in order to connect. See the [public servers page](./public-servers.md) for details. 
-
 To use the Vega APIs, a developer will need access to a network-compatible instance of the relevant software, depending on their goals: core node, data node, and/or Vega Wallet.
 
 **Mainnet**: Consensus validators may provide public servers for accessing the mainnet APIs, however that does not mean they should be relied upon for constant uptime and full access to all APIs. Each Vega Wallet release for mainnet wallet is pre-configured with any publicly announced nodes at the time of release.
@@ -84,7 +82,7 @@ REST is easy to get started with, and Vega supports nearly all the functionality
 **[Using REST](./rest/overview.md)**: Read the REST overview for everything you need to know before using the endpoints, like the default rate limits and how to paginate results.
 
 ### WebSockets for streaming
-**[WebSocket endpoints](./websocket.md)** offer real-time updates to changes in the state of the Vega network, allowing subscriptions to events such as per-market trades or changes to a party's position.
+**[WebSocket endpoints](./websocket.md)** offer real-time updates to changes in state, allowing subscriptions to events such as per-market trades or changes to a party's position.
 
 ### gRPC for fast interactions
 **[gRPC](./grpc/overview.md)** provides fast and efficient communication, and supports near real time streaming of updates from Vega.
@@ -117,11 +115,11 @@ Moreover, these smart contract bridges operate just like any other smart contrac
 * [Multisig Control](./bridge/contracts/MultisigControl.md)
   * Handles verification of orders signed by a threshold of validators. 
 * [Staking Bridge](./bridge/contracts/Vega_Staking_Bridge.md)
-  * Allows users to deposit and withdraw VEGA tokens for staking. The VEGA tokens are always controlled exclusively by the tokenholder, even when on the Staking Bridge. Stake can be removed at any time by the tokenholder.
+  * Allows users to deposit and withdraw governance tokens for staking. The governance tokens are always controlled exclusively by the tokenholder, even when on the Staking Bridge. Stake can be removed at any time by the tokenholder.
 * VEGA Token contract
   * ERC20 token smart contract.
-* Vesting contract
-  * All VEGA tokens are issued through this. Handles the linear vesting of VEGA tokens and allows users to stake VEGA they own (vested or not).
+
+For any smart contracts unique to a project using the Vega software, refer to the operator's documentation.
 
 ### Ethereum addresses
 <EthAddresses frontMatter={frontMatter} />
