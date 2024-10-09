@@ -4,8 +4,6 @@ title: Using an AMM
 hide_title: false
 ---
 
-import NetworkParameter from '@site/src/components/NetworkParameter';
-
 ## What you need to set up an AMM
 AMM (automated market maker) strategies are used to contribute to a liquidity pool. AMM providers receive a cut of liqudity fees paid by traders, as well as a portion of [community-funded rewards for liquidity providers](./rewards-penalties.md#community-funded-lp-rewards).
 
@@ -15,7 +13,7 @@ When providing liquidity using an AMM, the liquidity goes into a pool for the ma
 
 To provide liquidity using an AMM, you’ll need:
 * Vega public key 
-* Enough of the market's settlement asset to provide liquidity 
+* Enough of the market's settlement asset to provide liquidity
 
 ## How to set up AMM
 
