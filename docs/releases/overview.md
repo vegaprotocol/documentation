@@ -17,7 +17,22 @@ See the full release notes on [GitHub ↗](https://github.com/vegaprotocol/vega/
 
 The Vega core software is public and open source under the [AGPL ↗](https://www.gnu.org/licenses/agpl-3.0.en.html) license, so you can both view the repository change logs, and refer here for summary release notes for each version.
 
+## Version v0.79.0-preview.3 | 2024-10-03
+
+### New features
+
+**Automated purchase auctions**: To better manage collected fees, the protocol now has a framework for regular, fully automated exchanges of one token for another on spot markets. This is built to use a schedule auction, which allows for a fair rate for the token exchange. [Issue 11685 ↗](https://github.com/vegaprotocol/vega/issues/11685)
+
+The positions API now includes a participant's total fees paid, as well as the funding payments they've paid and/or received. [Issue 11519 ↗](https://github.com/vegaprotocol/vega/issues/11519)
+
+### Improvement
+- Closed team membership can now be managed by updating the allow list. [Issue 11711 ↗](https://github.com/vegaprotocol/vega/issues/11711)
+
 ## Version v0.78.2 | 2024-08-06
+- Added fee information that had been missing from GraphQL responses. [Issue 11672 ↗](https://github.com/vegaprotocol/vega/issues/11672)
+- Better error when `Arbitrum` bridge details are missing from validator configuration. [11684 ↗](https://github.com/vegaprotocol/vega/issues/11684)
+- Add missing data to the estimate fees API. [Issue 11696 ↗](https://github.com/vegaprotocol/vega/issues/11696)
+- Recalculate stats of program participation at the start of each epoch, rather than the end of each epoch. [Issue 11699 ↗](https://github.com/vegaprotocol/vega/issues/11699)
 
 ### New features
 
