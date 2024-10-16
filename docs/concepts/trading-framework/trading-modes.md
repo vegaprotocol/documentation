@@ -71,7 +71,7 @@ A market will go into a protective auction if generating a trade would result in
 #### Exit from protective auction 
 A protective auction's exit depends on how large the price move was, and relies on the market's risk model. For a relatively (contextually) small price move, it would be as long as the value of the nework parameter <NetworkParameter frontMatter={frontMatter} param="market.auction.minimumDuration" />. The market's risk model informs how many multiples of that time the auction would be extended by.
 
-If no one places orders in the protective auction, the auction is exited and the original order is executed.  
+If no one places orders in the protective auction, the auction is exited and the original order is executed.
 
 :::note Read more
 [Concept: Price monitoring](./market-protections#price-monitoring)
@@ -86,7 +86,22 @@ A slow block that exceeds the threshold will trigger auctions on all markets.
 The duration of the auction depends on how long the previous block took to be processed. The relationship between the two is set as a network parameter: <NetworkParameter frontMatter={frontMatter} param="auction.LongBlock" hideValue={true} />.
 
 #### Exit from block time auction
-When the auction duration time has passed, all markets will leave the block time auction.
+When the auction duration time has passed, all markets will leave the block time auction, if they have crossed orders.
+
+### Auction type: Automated purchase
+In an automated purchase auction, accumulated buyback fees can be used by a network to place orders to acquire a token or asset.
+
+Whether or not a market has automated purchase auction triggers depends on if the program has been set up via governance. 
+
+#### Entry into automated purchase auction
+An automated purchase auction, if enabled, will only occur when the auction schedule time, as defined in the governance-enabled program, is reached.
+
+The proposal includes a time based oracle that sets when the balance of the buyback account is recorded.
+
+When the auction schedule time is reached, an auction is triggered for the time period defined in the proposal. A volume of orders will be placed on the book based on the value of the buyback account as measured in the last balance snapshot, and at a price taken from the latest price oracle value, multiplied by the oracle offset factor, which allows for slippage.
+
+#### Exit from automated purchase auction
+If there are orders that can cross when the pre-defined auction length is reached, then the auction is concluded. Otherwise, the auction continues until there are crossed orders.
 
 ### Auction call period
 During the auction call period, no trades are created, but all orders are queued.
