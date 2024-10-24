@@ -24,6 +24,35 @@ Any assets that are in a general account can be withdrawn or transferred.
 **[REST](../../api/rest/data-v2/trading-data-service-get-party.api.mdx)**: Use the API to check your public key for the accounts your assets are allocated to.
 :::
 
+## Vault
+A *vault* holds assets that have been contributed by one or more parties to be used by another party for trading. The assets in a vault can only be used to enter and exit positions. Vaults have general and margin accounts associated with them.
+
+Contributors to a vault have a share of the value in the vault, based on how much their deposited amount contributed to its original value.
+
+The vault account manager - the party that created the account - can charge fees on account withdrawals if they choose to.
+
+Each vault account handles one asset.
+
+### Contribute to a vault
+To deposit assets into a vault, a participant will need to submit a `depositIntoVault` transaction which includes the vault ID (account ID), and the amount to contribute.
+
+### Redeem from a vault
+Each vault has a list of dates when redemption takes place.
+
+There are two redemption types:
+- Cash-only: Vault participants can redeem from assets available in the vault's general account. When a withdrawal request falls closest to a cash-only date, a fraction can be withdrawn. The withdrawal amount will be the lesser of the amount requested, and the amount that available to withdraw based on the participant's share of the 'maximum redemption fraction * available amount'. Each redemption is fulfilled as much as possible, and the redemption request is considered complete. Any remainder of the redemption requests is cancelled and participants can request a redemption for the next date.
+- Normal: Vault participants can redeem up to a certain fraction of the vault's total balance, which includes the general and margin accounts. If any amount of the withdrawal cannot be fulfilled, the remaining is marked as 'late', and whenever more assets reach the general account, late withdrawals will be fulfilled. 
+
+Cash-only redemption example:
+
+- Redemption day balance in general account = 100
+- Max fraction = 0.5
+- Participant's vault share = 20%
+- Max possible withdrawal = 10. (0.2*0.5*100 = 10)
+- Withdrawn amount = min(asked_withdrawal_amount,10)
+
+In this example, if a partcipant asks for more than 10, they get 10. If they ask for 5, they receive 5.
+
 ## Accounts governed by the protocol
 Assets that are held in any other type of account other than the general account can't be moved by you, though they may be used to support your trades or liquidity commitments. Your assets are still tied to your Vega public key, even if they are in an account you can't actively manage.
 
