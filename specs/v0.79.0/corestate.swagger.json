@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Vega core state APIs",
-    "version": "v0.79.0-preview.2"
+    "version": "v0.79.0"
   },
   "tags": [
     {
@@ -929,10 +929,11 @@
         "ACCOUNT_TYPE_REWARD_REALISED_RETURN",
         "ACCOUNT_TYPE_BUY_BACK_FEES",
         "ACCOUNT_TYPE_REWARD_AVERAGE_NOTIONAL",
-        "ACCOUNT_TYPE_REWARD_ELIGIBLE_ENTITIES"
+        "ACCOUNT_TYPE_REWARD_ELIGIBLE_ENTITIES",
+        "ACCOUNT_TYPE_LOCKED_FOR_STAKING"
       ],
       "default": "ACCOUNT_TYPE_UNSPECIFIED",
-      "description": "- ACCOUNT_TYPE_UNSPECIFIED: Default value\n - ACCOUNT_TYPE_INSURANCE: Insurance pool accounts contain insurance pool funds for a market\n - ACCOUNT_TYPE_SETTLEMENT: Settlement accounts exist only during settlement or mark-to-market\n - ACCOUNT_TYPE_MARGIN: Margin accounts contain funds set aside for the margin needed to support a party's open positions.\nEach party will have a margin account for each market they have traded in.\nRequired initial margin is allocated to each market from user's general account.\nCollateral in the margin account can't be withdrawn or used as margin on another market until\nit is released back to the general account.\nVega protocol uses an internal accounting system to segregate funds held as\nmargin from other funds to ensure they are never lost or 'double spent'\n\nMargin account funds will vary as margin requirements on positions change\n - ACCOUNT_TYPE_GENERAL: General accounts contain the collateral for a party that is not otherwise allocated. A party will\nhave multiple general accounts, one for each asset they want\nto trade with\n\nGeneral accounts are where funds are initially deposited or withdrawn from,\nit is also the account where funds are taken to fulfil fees and initial margin requirements\n - ACCOUNT_TYPE_FEES_INFRASTRUCTURE: Infrastructure accounts contain fees earned by providing infrastructure on Vega\n - ACCOUNT_TYPE_FEES_LIQUIDITY: Liquidity accounts contain fees earned by providing liquidity on Vega markets\n - ACCOUNT_TYPE_FEES_MAKER: This account is created to hold fees earned by placing orders that sit on the book\nand are then matched with an incoming order to create a trade - These fees reward parties\nwho provide the best priced liquidity that actually allows trading to take place\n - ACCOUNT_TYPE_BOND: This account is created to maintain liquidity providers funds commitments\n - ACCOUNT_TYPE_EXTERNAL: External account represents an external source (deposit/withdrawal)\n - ACCOUNT_TYPE_GLOBAL_INSURANCE: Global insurance account for the asset\n - ACCOUNT_TYPE_GLOBAL_REWARD: Global reward account for the asset\n - ACCOUNT_TYPE_PENDING_TRANSFERS: Per asset account used to store pending transfers (if any)\n - ACCOUNT_TYPE_REWARD_MAKER_PAID_FEES: Per asset reward account for fees paid to makers\n - ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES: Per asset reward account for fees received by makers\n - ACCOUNT_TYPE_REWARD_LP_RECEIVED_FEES: Per asset reward account for fees received by liquidity providers\n - ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS: Per asset reward account for market proposers when the market goes above some trading threshold\n - ACCOUNT_TYPE_HOLDING: Per asset account for holding in-flight unfilled orders' funds\n - ACCOUNT_TYPE_LP_LIQUIDITY_FEES: Network controlled liquidity provider's account, per market, to hold accrued liquidity fees.\n - ACCOUNT_TYPE_LIQUIDITY_FEES_BONUS_DISTRIBUTION: Network controlled liquidity fees bonus distribution account, per market.\n - ACCOUNT_TYPE_NETWORK_TREASURY: Network controlled treasury\n - ACCOUNT_TYPE_VESTING_REWARDS: Account holding user's rewards for the vesting period\n - ACCOUNT_TYPE_VESTED_REWARDS: Account holding user's rewards after the vesting period\n - ACCOUNT_TYPE_REWARD_RELATIVE_RETURN: Per asset market reward account given for relative return\n - ACCOUNT_TYPE_REWARD_RETURN_VOLATILITY: Per asset market reward account given for return volatility\n - ACCOUNT_TYPE_REWARD_VALIDATOR_RANKING: Per asset market reward account given to validators by their ranking\n - ACCOUNT_TYPE_PENDING_FEE_REFERRAL_REWARD: Per asset account for pending fee referral reward payouts\n - ACCOUNT_TYPE_ORDER_MARGIN: Per asset market account for party in isolated margin mode\n - ACCOUNT_TYPE_REWARD_REALISED_RETURN: Per asset market reward account for realised return\n - ACCOUNT_TYPE_BUY_BACK_FEES: Per asset account for paid buy-back fees\n - ACCOUNT_TYPE_REWARD_AVERAGE_NOTIONAL: Per asset market reward account given for average notional\n - ACCOUNT_TYPE_REWARD_ELIGIBLE_ENTITIES: Reward account for the eligible entities metric.",
+      "description": "- ACCOUNT_TYPE_UNSPECIFIED: Default value\n - ACCOUNT_TYPE_INSURANCE: Insurance pool accounts contain insurance pool funds for a market\n - ACCOUNT_TYPE_SETTLEMENT: Settlement accounts exist only during settlement or mark-to-market\n - ACCOUNT_TYPE_MARGIN: Margin accounts contain funds set aside for the margin needed to support a party's open positions.\nEach party will have a margin account for each market they have traded in.\nRequired initial margin is allocated to each market from user's general account.\nCollateral in the margin account can't be withdrawn or used as margin on another market until\nit is released back to the general account.\nVega protocol uses an internal accounting system to segregate funds held as\nmargin from other funds to ensure they are never lost or 'double spent'\n\nMargin account funds will vary as margin requirements on positions change\n - ACCOUNT_TYPE_GENERAL: General accounts contain the collateral for a party that is not otherwise allocated. A party will\nhave multiple general accounts, one for each asset they want\nto trade with\n\nGeneral accounts are where funds are initially deposited or withdrawn from,\nit is also the account where funds are taken to fulfil fees and initial margin requirements\n - ACCOUNT_TYPE_FEES_INFRASTRUCTURE: Infrastructure accounts contain fees earned by providing infrastructure on Vega\n - ACCOUNT_TYPE_FEES_LIQUIDITY: Liquidity accounts contain fees earned by providing liquidity on Vega markets\n - ACCOUNT_TYPE_FEES_MAKER: This account is created to hold fees earned by placing orders that sit on the book\nand are then matched with an incoming order to create a trade - These fees reward parties\nwho provide the best priced liquidity that actually allows trading to take place\n - ACCOUNT_TYPE_BOND: This account is created to maintain liquidity providers funds commitments\n - ACCOUNT_TYPE_EXTERNAL: External account represents an external source (deposit/withdrawal)\n - ACCOUNT_TYPE_GLOBAL_INSURANCE: Global insurance account for the asset\n - ACCOUNT_TYPE_GLOBAL_REWARD: Global reward account for the asset\n - ACCOUNT_TYPE_PENDING_TRANSFERS: Per asset account used to store pending transfers (if any)\n - ACCOUNT_TYPE_REWARD_MAKER_PAID_FEES: Per asset reward account for fees paid to makers\n - ACCOUNT_TYPE_REWARD_MAKER_RECEIVED_FEES: Per asset reward account for fees received by makers\n - ACCOUNT_TYPE_REWARD_LP_RECEIVED_FEES: Per asset reward account for fees received by liquidity providers\n - ACCOUNT_TYPE_REWARD_MARKET_PROPOSERS: Per asset reward account for market proposers when the market goes above some trading threshold\n - ACCOUNT_TYPE_HOLDING: Per asset account for holding in-flight unfilled orders' funds\n - ACCOUNT_TYPE_LP_LIQUIDITY_FEES: Network controlled liquidity provider's account, per market, to hold accrued liquidity fees.\n - ACCOUNT_TYPE_LIQUIDITY_FEES_BONUS_DISTRIBUTION: Network controlled liquidity fees bonus distribution account, per market.\n - ACCOUNT_TYPE_NETWORK_TREASURY: Network controlled treasury\n - ACCOUNT_TYPE_VESTING_REWARDS: Account holding user's rewards for the vesting period\n - ACCOUNT_TYPE_VESTED_REWARDS: Account holding user's rewards after the vesting period\n - ACCOUNT_TYPE_REWARD_RELATIVE_RETURN: Per asset market reward account given for relative return\n - ACCOUNT_TYPE_REWARD_RETURN_VOLATILITY: Per asset market reward account given for return volatility\n - ACCOUNT_TYPE_REWARD_VALIDATOR_RANKING: Per asset market reward account given to validators by their ranking\n - ACCOUNT_TYPE_PENDING_FEE_REFERRAL_REWARD: Per asset account for pending fee referral reward payouts\n - ACCOUNT_TYPE_ORDER_MARGIN: Per asset market account for party in isolated margin mode\n - ACCOUNT_TYPE_REWARD_REALISED_RETURN: Per asset market reward account for realised return\n - ACCOUNT_TYPE_BUY_BACK_FEES: Per asset account for paid buy-back fees\n - ACCOUNT_TYPE_REWARD_AVERAGE_NOTIONAL: Per asset market reward account given for average notional\n - ACCOUNT_TYPE_REWARD_ELIGIBLE_ENTITIES: Reward account for the eligible entities metric.\n - ACCOUNT_TYPE_LOCKED_FOR_STAKING: Account for assets that are locked for staking.",
       "title": "Various collateral/account types as used by Vega"
     },
     "vegaAsset": {
@@ -2280,6 +2281,13 @@
           "type": "string",
           "format": "uint64",
           "description": "Number of allowed price levels between an AMM's fair price and its quote prices. An AMM definition that exceeds this will be rejected at submission."
+        },
+        "allowedSellers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Proposer of the market, to be used to restrict the sell side"
         }
       },
       "title": "Market definition"
@@ -2838,6 +2846,13 @@
         "enableTransactionReordering": {
           "type": "boolean",
           "title": "If enabled aggressive orders sent to the market will be delayed by the configured number of blocks"
+        },
+        "allowedSellers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Allowed sellers"
         }
       },
       "title": "Configuration for a new spot market on Vega"
@@ -4071,6 +4086,13 @@
         "enableTransactionReordering": {
           "type": "boolean",
           "title": "If enabled aggressive orders sent to the market will be delayed by the configured number of blocks"
+        },
+        "allowedSellers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "title": "Allowed sellers"
         }
       },
       "title": "Configuration to update a spot market on Vega"
