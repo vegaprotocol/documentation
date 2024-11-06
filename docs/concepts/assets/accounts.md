@@ -25,23 +25,27 @@ Any assets that are in a general account can be withdrawn or transferred.
 :::
 
 ## Vault
-A *vault* holds assets that have been contributed by one or more parties to be used by another party for trading. The assets in a vault can only be used to enter and exit positions. Vaults have general and margin accounts associated with them.
+A *vault* holds assets that have been contributed by one or more parties to be used by the vault manager for trading. The assets in a vault can only be used to enter and exit positions. Vaults have general and margin accounts associated with them.
 
 Contributors to a vault have a share of the value in the vault, based on how much their deposited amount contributed to its original value.
 
-The vault account manager - the party that created the account - can charge fees on account withdrawals if they choose to.
+The vault manager - the party that created the account - can charge fees on the performance and on management if they choose to. Vault managers can transfer the ownership of a vault to another user/public key.
 
 Each vault account handles one asset.
 
 ### Contribute to a vault
-To deposit assets into a vault, a participant will need to submit a `depositIntoVault` transaction which includes the vault ID (account ID), and the amount to contribute.
+To deposit assets into a vault, a participant will need to submit a `depositIntoVault` transaction, which includes the vault ID (account ID), and the amount to contribute.
 
 ### Redeem from a vault
-Each vault has a list of dates when redemption takes place.
+To redeem from a vault, a vault participant will need to submit a `withdrawFromVault` transaction, which includes the vault ID, and the amount to redeem. 
+
+Each vault has a list of dates when redemption takes place. Each redemption cycle has a cutoff period that follows the redemption date,
 
 There are two redemption types:
 - Available funds only: Vault participants can redeem from assets available in the vault's general account. When a withdrawal request falls closest to an `available funds only` date, a fraction can be withdrawn. The withdrawal amount will be the lesser of the amount requested, and the amount that available to withdraw based on the participant's share of the 'maximum redemption fraction * available amount'. Each redemption is fulfilled as much as possible, and the redemption request is considered complete. Any remainder of the redemption requests is cancelled and participants can request a redemption for the next date.
-- Normal: Vault participants can redeem up to a certain fraction of the vault's total balance, which includes the general and margin accounts. If any amount of the withdrawal cannot be fulfilled, the remaining is marked as 'late', and whenever more assets reach the general account, late withdrawals will be fulfilled. 
+- Normal: Vault participants can redeem up to a certain fraction of the vault's total balance, which includes the general and margin accounts. If any amount of the withdrawal cannot be fulfilled, the remaining is marked as 'late', and whenever more funds reach the general account, late withdrawals will be fulfilled.
+
+Each redemption date also has a cut-off period beforehand, set by the vault manager. Any redemption requests that come during the cutoff period are queued until the following redemption date.
 
 `Available funds only` redemption example:
 
