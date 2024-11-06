@@ -40,10 +40,10 @@ To deposit assets into a vault, a participant will need to submit a `depositInto
 Each vault has a list of dates when redemption takes place.
 
 There are two redemption types:
-- Cash-only: Vault participants can redeem from assets available in the vault's general account. When a withdrawal request falls closest to a cash-only date, a fraction can be withdrawn. The withdrawal amount will be the lesser of the amount requested, and the amount that available to withdraw based on the participant's share of the 'maximum redemption fraction * available amount'. Each redemption is fulfilled as much as possible, and the redemption request is considered complete. Any remainder of the redemption requests is cancelled and participants can request a redemption for the next date.
+- Available funds only: Vault participants can redeem from assets available in the vault's general account. When a withdrawal request falls closest to an `available funds only` date, a fraction can be withdrawn. The withdrawal amount will be the lesser of the amount requested, and the amount that available to withdraw based on the participant's share of the 'maximum redemption fraction * available amount'. Each redemption is fulfilled as much as possible, and the redemption request is considered complete. Any remainder of the redemption requests is cancelled and participants can request a redemption for the next date.
 - Normal: Vault participants can redeem up to a certain fraction of the vault's total balance, which includes the general and margin accounts. If any amount of the withdrawal cannot be fulfilled, the remaining is marked as 'late', and whenever more assets reach the general account, late withdrawals will be fulfilled. 
 
-Cash-only redemption example:
+`Available funds only` redemption example:
 
 - Redemption day balance in general account = 100
 - Max fraction = 0.5
