@@ -37,15 +37,26 @@ Each vault account handles one asset.
 Submitting a `CreateVault` transaction will create a vault for others to contribute to.
 
 The transaction needs to include the following information for the vault:
-- Settlement asset for the vault.
-- Metadata describing the vault.
+- Settlement asset for the vault
+- Metadata describing the vault
 - Fee period, which sets the frequency of the vault's fees assessment
-- Management fee factor.
-- Performance fee factor.
+- Management fee factor
+- Performance fee factor
 - Redemption dates
-- The cutoff period following the redemption date until which a redemption request is queued
+- The cut-off period following the redemption date until which a redemption request is queued
 
 Once a vault is created, if the vault manager wants to transfer ownership to another party, they'll need to submit a `ChangeVaultOwnership` transaction with the vault ID and the Vega public key of the new vault manager.
+
+### Change a vault
+A vault manager can submit a transaction to `UpdateVault` if they want to change some of the parameters.
+
+Fields that can be changed:
+- Metadata describing the vault
+- Fee period
+- Management fee factor
+- Performance fee factor
+- Redemption dates: The closest redemption date **cannot** be removed, nor can any date that falls within the cut-off period. New redemption dates can only be after the upcoming redemption date
+- The cut-off period following the redemption date until which a redemption request is queued
 
 ### Contribute to a vault
 To deposit assets into a vault, a participant will need to submit a `depositIntoVault` transaction, which includes the vault ID (account ID), and the amount to contribute.
@@ -53,13 +64,13 @@ To deposit assets into a vault, a participant will need to submit a `depositInto
 ### Redeem from a vault
 To redeem from a vault, a vault participant will need to submit a `withdrawFromVault` transaction, which includes the vault ID, and the amount to redeem. 
 
-Each vault has a list of dates when redemption takes place. Each redemption cycle has a cutoff period that follows the redemption date,
+Each vault has a list of dates when redemption takes place. Each redemption cycle has a cut-off period that follows the redemption date,
 
 There are two redemption types:
 - Available funds only: Vault participants can redeem from assets available in the vault's general account. When a withdrawal request falls closest to an `available funds only` date, a fraction can be withdrawn. The withdrawal amount will be the lesser of the amount requested, and the amount that available to withdraw based on the participant's share of the 'maximum redemption fraction * available amount'. Each redemption is fulfilled as much as possible, and the redemption request is considered complete. Any remainder of the redemption requests is cancelled and participants can request a redemption for the next date.
 - Normal: Vault participants can redeem up to a certain fraction of the vault's total balance, which includes the general and margin accounts. If any amount of the withdrawal cannot be fulfilled, the remaining is marked as 'late', and whenever more funds reach the general account, late withdrawals will be fulfilled.
 
-Each redemption date also has a cut-off period beforehand, set by the vault manager per vault. Any redemption requests that come during the cutoff period are queued until the following redemption date.
+Each redemption date also has a cut-off period beforehand, set by the vault manager per vault. Any redemption requests that come during the cut-off period are queued until the following redemption date.
 
 `Available funds only` redemption example:
 
